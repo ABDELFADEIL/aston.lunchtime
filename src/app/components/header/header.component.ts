@@ -12,7 +12,7 @@ import { LoginComponent } from '../login/login.component';
 export class HeaderComponent implements OnInit {
 
   public items: MenuItem[];
-  
+  ref;
   constructor(public dialogService: DialogService) { }
 
   
@@ -32,10 +32,17 @@ export class HeaderComponent implements OnInit {
 }
 
 show() {
-  const ref = this.dialogService.open(LoginComponent, {
-      width: '70%'
+   this.ref = this.dialogService.open(LoginComponent, {
+      width: '50%',
+      
   });
+  
 }
 
+ngOnDestroy() {
+  if (this.ref) {
+      this.ref.close();
+  }
+}
 
 }
