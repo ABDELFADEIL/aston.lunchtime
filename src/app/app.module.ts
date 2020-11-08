@@ -18,6 +18,9 @@ import {AccordionModule} from 'primeng/accordion';
 import {MenubarModule} from 'primeng/menubar';
 import { InputTextModule } from 'primeng/inputtext';
 import { ButtonModule } from 'primeng/button';
+import {DynamicDialogModule} from 'primeng/dynamicdialog';
+
+
 
 @NgModule({
   declarations: [
@@ -41,9 +44,13 @@ import { ButtonModule } from 'primeng/button';
     AccordionModule,
     MenubarModule,
     InputTextModule,
-    ButtonModule
+    ButtonModule,
+    DynamicDialogModule
 
   ],
+  entryComponents: [
+    LoginComponent
+],
   providers: [],
   bootstrap: [AppComponent]
 })

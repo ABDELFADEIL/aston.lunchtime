@@ -7,9 +7,11 @@
           </ng-template>
 
           <ng-template pTemplate="end">
-            <div class="p-d-flex" style="display: flex;">
-              <div class="p-m-2" style="margin-right: 10px;"><i class="pi pi-shopping-cart"></i></div>
-              <div class="p-m-2" style="margin-right: 10px;"><i class="p-m-2 pi pi-user" style="font-size: 1rem"></i></div>
+            <div class="p-d-flex p-p-3" style="display: flex;">
+              <div class="p-m-2" style="margin-right: 20px;"><i class="fa fa-shopping-cart clickable" style=" color: #585858;"></i></div>
+              <div class="p-m-2" style="margin-right: 20px;"><i class="fa fa-user clickable" style="font-size: 1rem;color: #2d2d2d;"></i></div>
+              <button type="button" (click)="show()" pButton icon="pi pi-info-circle"></button>
+
           </div>
           </ng-template>
 

@@ -2,3 +2,27 @@
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.clickable {
+    cursor: pointer;
+}
+
+.container { 
+   margin: 0px 10px; 
+}
+
+.footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: #87AAB9;
+    color: white;
+    text-align: center;
+  }
+
+  .p-menubar {
+    background: #87AAB9;
+    border-radius: 0;
+}
+  
