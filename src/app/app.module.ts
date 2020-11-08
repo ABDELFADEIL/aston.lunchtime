@@ -6,7 +6,6 @@ import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { HomeComponent } from './pages/home/home.component';
 import { LoginComponent } from './components/login/login.component';
-import { AccountComponent } from './pages/account/account.component';
 import { ClientOrdersComponent } from './pages/client-orders/client-orders.component';
 import { OrdersManagementComponent } from './pages/orders-management/orders-management.component';
 import { ClientsManagementComponent } from './pages/clients-management/clients-management.component';
@@ -19,6 +18,7 @@ import {MenubarModule} from 'primeng/menubar';
 import { InputTextModule } from 'primeng/inputtext';
 import { ButtonModule } from 'primeng/button';
 import {DynamicDialogModule} from 'primeng/dynamicdialog';
+import { UserAccountComponent } from './pages/user-account/user-account.component';
 
 
 
@@ -29,11 +29,11 @@ import {DynamicDialogModule} from 'primeng/dynamicdialog';
     FooterComponent,
     HomeComponent,
     LoginComponent,
-    AccountComponent,
     ClientOrdersComponent,
     OrdersManagementComponent,
     ClientsManagementComponent,
-    MenusManagementComponent
+    MenusManagementComponent,
+    UserAccountComponent
   ],
   imports: [
     BrowserModule,

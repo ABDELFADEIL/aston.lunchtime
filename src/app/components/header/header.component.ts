@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MenuItem } from 'primeng/api';
 import { DialogService } from 'primeng/dynamicdialog';
+import { LoginComponent } from '../login/login.component';
 
 @Component({
   selector: 'app-header',
@@ -29,4 +30,12 @@ export class HeaderComponent implements OnInit {
         {label: 'Mon compte', routerLink: ['/user-account']}
                    ];
 }
+
+show() {
+  const ref = this.dialogService.open(LoginComponent, {
+      width: '70%'
+  });
+}
+
+
 }

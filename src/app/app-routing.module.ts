@@ -2,18 +2,18 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { LoginComponent } from './components/login/login.component';
 import {AuthGuard} from './helpers/authGuard';
-import { AccountComponent } from './pages/account/account.component';
 import { ClientOrdersComponent } from './pages/client-orders/client-orders.component';
 import { ClientsManagementComponent } from './pages/clients-management/clients-management.component';
 import { HomeComponent } from './pages/home/home.component';
 import { MenusManagementComponent } from './pages/menus-management/menus-management.component';
+import { UserAccountComponent } from './pages/user-account/user-account.component';
 
 
 const routes: Routes = [
   { path: '',  redirectTo: 'home', pathMatch: 'full'},
   { path: 'home', component: HomeComponent, data : { title : 'Accueil' } },
   { path: 'login', component: LoginComponent},
-  { path: 'account', component: AccountComponent },
+  { path: 'user-account', component: UserAccountComponent },
   { path: 'client-orders', component: ClientOrdersComponent },
   { path: 'clients-management', component: ClientsManagementComponent },
   { path: 'menu-management', component: MenusManagementComponent }
