@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { JwtHelper } from 'angular2-jwt';
 import {Router} from '@angular/router';
-import { URL_SEC } from '../api-url/url_sec';
+import { URL } from '../api-url/url';
 import {Observable} from 'rxjs';
 
 @Injectable({
@@ -23,7 +23,7 @@ export class AuthenticationService {
   }
 
   login(email, password) :Observable<any>{
-    return  this.http.post(URL_SEC + "/login", { observe: 'response' });
+    return  this.http.post(URL + "/login", { observe: 'response' });
   }
 
 
@@ -43,7 +43,7 @@ export class AuthenticationService {
   }
 
   register(user) {
-    return this.http.post(URL_SEC+ "/user/register", user);
+    return this.http.post(URL+ "/user/register", user);
   }
 
 
@@ -82,7 +82,7 @@ export class AuthenticationService {
   getUserInfo(){
     // if(this.jwtToken==null)
     //this.jwtToken = this.loadToken();
-    return this.http.get(URL_SEC+"/api/users/user-info");
+    return this.http.get(URL+"/api/users/user-info");
   }
 
 }

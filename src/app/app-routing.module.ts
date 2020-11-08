@@ -1,25 +1,22 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import {HomeComponent} from './home/home.component';
-import {LoginComponent} from './login/login.component';
-import {AccountComponent} from './account/account.component';
-import {ClientOrdersComponent} from './client-orders/client-orders.component';
-import {SignupComponent} from './signup/signup.component';
-import {ClientsManagementComponent} from './clients-management/clients-management.component';
-import {MenusManagementComponent} from './menus-management/menus-management.component';
+import { LoginComponent } from './components/login/login.component';
 import {AuthGuard} from './helpers/authGuard';
+import { AccountComponent } from './pages/account/account.component';
+import { ClientOrdersComponent } from './pages/client-orders/client-orders.component';
+import { ClientsManagementComponent } from './pages/clients-management/clients-management.component';
+import { HomeComponent } from './pages/home/home.component';
+import { MenusManagementComponent } from './pages/menus-management/menus-management.component';
 
 
 const routes: Routes = [
   { path: '',  redirectTo: 'home', pathMatch: 'full'},
-  { path: 'home', component: HomeComponent, data : {title:'Accueil'} },
+  { path: 'home', component: HomeComponent, data : { title : 'Accueil' } },
   { path: 'login', component: LoginComponent},
   { path: 'account', component: AccountComponent },
   { path: 'client-orders', component: ClientOrdersComponent },
-  { path: 'signup', component: SignupComponent},
   { path: 'clients-management', component: ClientsManagementComponent },
-  { path: 'menu-management', component: MenusManagementComponent },
-  { path: 'signup', component: SignupComponent },
+  { path: 'menu-management', component: MenusManagementComponent }
 
   /*
     { path: '',  redirectTo: 'home', pathMatch: 'full', canActivate: [AuthGuard]},

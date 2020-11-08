@@ -3,9 +3,9 @@ import { HttpRequest, HttpHandler, HttpEvent, HttpInterceptor } from '@angular/c
 import { Observable } from 'rxjs';
 
 import {AuthenticationService} from '../services/authentication.service';
-import {URL_SEC} from '../api-url/url_sec';
+import {URL} from '../api-url/url';
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class JwtInterceptor implements HttpInterceptor {
   constructor(private authService: AuthenticationService) { }
 
@@ -14,7 +14,7 @@ export class JwtInterceptor implements HttpInterceptor {
     if(this.authService.jwtToken==null)
       this.authService.jwtToken = this.authService.loadToken();
     const isLoggedIn = this.authService.jwtToken;
-    const isApiUrl = request.url.startsWith(URL_SEC);
+    const isApiUrl = request.url.startsWith(URL);
     if (isLoggedIn && isApiUrl) {
       request = request.clone(
         {
