@@ -1,6 +1,9 @@
 /* You can add global styles to this file, and also import other style files */
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&display=swap');
-* {font-family: 'Cormorant Garamond', serif;}
+* {
+  font-family: 'Cormorant Garamond', serif;
+
+}
 html, body { height: 100%; }
 body { margin: 0;  }
 
@@ -9,7 +12,9 @@ body { margin: 0;  }
   color: white !important;
   font-weight: 600 !important;
 }
-
+p, h1, h2, h3, h4, h5, h6, span, button, label {
+  font-size: 120%;
+}
 .p-menubar .p-menubar-root-list > .p-menuitem > .p-menuitem-link:hover {
   background: #204a5d !important;
   border: none !important;
