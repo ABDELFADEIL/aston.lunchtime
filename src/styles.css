@@ -1,14 +1,30 @@
 /* You can add global styles to this file, and also import other style files */
-
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&display=swap');
+* {font-family: 'Cormorant Garamond', serif;}
 html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+body { margin: 0;  }
 
+.p-menuitem-text {
+  font-size: 120% !important;
+  color: white !important;
+  font-weight: 600 !important;
+}
+
+.p-menubar .p-menubar-root-list > .p-menuitem > .p-menuitem-link:hover {
+  background: #204a5d !important;
+  border: none !important;
+}
+ .p-menuitem-link.p-ripple {
+}
+.p-submenu-list .p-menuitem-text{
+  color: #2d2d2d !important;
+}
 .clickable {
     cursor: pointer;
 }
 
-.container { 
-   margin: 0px 10px; 
+.container {
+   margin: 0px 10px;
 }
 
 .footer {
@@ -29,9 +45,9 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .p-dialog .p-dialog-header-icon, .p-dialog .p-dialog-header-icons {
 }
 .p-dialog  {
-  
+
 }
- 
+
  .p-dialog .p-dialog-header{
     height: 0px !important;
     width: 0px !important;
