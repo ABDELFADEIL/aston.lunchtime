@@ -2,13 +2,12 @@
 <div class="content-section implementation">
   <div class="card">
       <p-menubar [model]="items">
-          <ng-template pTemplate="start">
-            <a [routerLink]="[ '/home' ]"> <img src="assets/logo.jpg"  height="40" class="p-mr-2"></a>
+          <ng-template pTemplate="start" >
+            <a [routerLink]="[ '/home' ]" style="margin-right: 20px;"> <img src="assets/logo.jpg"  height="40" class="p-mr-2"></a>
           </ng-template>
 
           <ng-template pTemplate="end">
             <div class="p-d-flex p-p-3" style="display: flex;">
-              <div class="p-m-2" style="margin-right: 20px;"><i class="fa fa-shopping-cart clickable" style=" color: #585858;"></i></div>
               <div class="p-m-2" style="margin-right: 20px;"><i class="fa fa-user clickable" (click)="show()" style="font-size: 1rem;color: #2d2d2d;"></i></div>
           </div>
           </ng-template>

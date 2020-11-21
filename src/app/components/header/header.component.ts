@@ -19,7 +19,6 @@ export class HeaderComponent implements OnInit {
 
     ngOnInit() {
       this.items = [
-        {label: 'Accueil', routerLink: ['/home']},
         {label: 'Menu du jour', routerLink: ['/home']},
         {label: 'Gestion', 
         items: [
