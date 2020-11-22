@@ -7,6 +7,9 @@
 html, body { height: 100%; }
 body { margin: 0;  }
 
+.container {
+  
+}
 .p-menuitem-text {
   font-size: 120% !important;
   color: white !important;
@@ -71,3 +74,23 @@ ul.p-menubar-root-list {
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.p-card-shadow.p-card.p-component {
+  display: flex !important;
+  flex-wrap: wrap;
+  width: 180px !important;
+}
+
+.p-card .p-card-body {
+  padding: 0.1rem;
+  padding-top: .2rem;
+  margin-left: 15px;
+}
+
+.p-card .p-card-content {
+  padding: .5rem 0;
+}
+
+.p-card .p-card-footer {
+  padding: .5rem 1rem;
+}
