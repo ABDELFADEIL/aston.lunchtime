@@ -4,6 +4,7 @@ import {MenuService} from 'src/app/services/menu-service.service';
 import {CommandesService} from 'src/app/services/commande.service';
 import {IngredientService} from 'src/app/services/ingredient.service';
 import { OrdersManagementComponent } from '../orders-management/orders-management.component';
+import { MealService } from 'src/app/services/meal-service.service';
 
 @Component({
   selector: 'app-home',
@@ -12,16 +13,23 @@ import { OrdersManagementComponent } from '../orders-management/orders-managemen
 })
 export class HomeComponent implements OnInit {
  
+  mealList=[];
   menuList =[  ];
   date;
    
-  constructor(private menuService : MenuService, private commandeService :CommandesService, private ingredientService: IngredientService) { }  
+  constructor(private menuService: MenuService,
+    private commandeService: CommandesService,
+    private ingredientService: IngredientService,
+    private mealService: MealService
+  ) { }  
 
-  ngOnInit():void {
-  this.getMenuJour();  
+  ngOnInit(): void {
+    this.getMealsJour();
+    this.getMenuJour();   
   
   }
 
+  
   myVar = setInterval(this.myTimer,1000);
   myTimer(){
   var d = new Date();
@@ -56,8 +64,39 @@ export class HomeComponent implements OnInit {
         this.getOrderMenu(id_menu);
         
       }
-    }      
-    commandTime= setInterval(this.enableMenuBtn, 1000*60); 
+  }   
+
+  /** 
+   *  
+   */
+  async getMealsJour(){
+    const response= await this.mealService.getMealWeek();
+    this.mealList= response;
+    this.mealList.forEach(element=>{
+      this.getMealImage(element.id)
+    });    
+   }
+   async getMealImage(id_meal){
+    const res = await this.mealService.findImgMeal(id_meal); 
+    this.mealList.forEach(element=>{
+      if(element.imageId === res.id){
+        element.img = res.image64;
+        console.log(this.mealList);       
+        
+      }
+    });
+  }     
+  getOrderMeal(id_meal){
+    this.commandeService.orderMeal(id_meal);
+   }  
+    public enableMealBtn(id_meal){    
+     var UTC_hours = new Date().getUTCHours()+2.5;
+     if(UTC_hours<8 && UTC_hours>3.5){
+       this.getOrderMeal(id_meal);       
+     }
+   }      
+  commandTime = setInterval(this.enableMealBtn, 1000 * 60); 
+  
   }
 
 

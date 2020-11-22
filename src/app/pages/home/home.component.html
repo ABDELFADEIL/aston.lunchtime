@@ -1,6 +1,12 @@
 
 
-    
+<div class="cards">
+<div>
+    <h4>
+        Menu du jour
+    </h4>
+</div>
+ 
 <mat-card *ngFor="let menu of menuList" class="card">
     <mat-card-header class="card_header">
         <mat-card-title class="title_header">{{menu.label}}</mat-card-title>
@@ -22,5 +28,39 @@
             <button mat-raised-button color="warn" (click)="enableMenuBtn()">Commande</button>
         </div>
     </mat-card-content>
+
 </mat-card>
 
+</div>  
+
+
+<div class="meals">
+    <div>
+        <h4>
+            Plats de la semaine
+        </h4>
+    </div>
+    <mat-card *ngFor="let meal of mealList" class="card">
+        <mat-card-header class="card_header">
+            <mat-card-title class="title_header">{{meal.label}}</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+        <div>
+                <label><b>Déscription :</b></label>
+                <h5>{{meal.description}}</h5>
+            </div>
+            <div>
+                <label><b>Price :</b></label>
+                <h5>{{meal.priceDF}}</h5>
+            </div>
+            <div>
+                
+                <img src ={{meal.img}}>
+        </div>
+            <div>  
+                <button mat-raised-button color="warn" (click)="enableMealBtn()">Commande</button>       
+            </div>
+        </mat-card-content>
+    </mat-card>
+   
+</div>
