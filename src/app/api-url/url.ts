@@ -1,2 +1,2 @@
 
-export const URL = "http://localhost:8080/stone.lunchtime/";
+export const URL = "http://localhost:8080/lunchtime/";

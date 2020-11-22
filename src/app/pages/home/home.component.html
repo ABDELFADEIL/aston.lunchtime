@@ -1,1 +1,26 @@
-<p>home works!</p>
+
+
+    
+<mat-card *ngFor="let menu of menuList" class="card">
+    <mat-card-header class="card_header">
+        <mat-card-title class="title_header">{{menu.label}}</mat-card-title>
+    </mat-card-header>
+    <mat-card-content> 
+    <div>
+            <label><b>Déscription :</b></label>
+            <h5>{{menu.description}}</h5>
+        </div>
+        <div>
+            <label><b>Price :</b></label>
+            <h5>{{menu.priceDF}}</h5>
+        </div>
+        <div>
+            <img src= {{menu.img}} >
+                
+            </div>
+        <div>  
+            <button mat-raised-button color="warn" (click)="enableMenuBtn()">Commande</button>
+        </div>
+    </mat-card-content>
+</mat-card>
+

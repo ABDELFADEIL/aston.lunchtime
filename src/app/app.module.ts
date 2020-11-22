@@ -19,6 +19,16 @@ import { InputTextModule } from 'primeng/inputtext';
 import { ButtonModule } from 'primeng/button';
 import {DynamicDialogModule} from 'primeng/dynamicdialog';
 import { UserAccountComponent } from './pages/user-account/user-account.component';
+import { MealComponent } from './pages/meal/meal.component';
+
+
+import { MatCardModule } from '@angular/material/card';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material/input';
+import {MatSelectModule} from '@angular/material/select';
+import {MatButtonModule} from '@angular/material/button';
+import { DigitalClockComponent } from './components/digital-clock/digital-clock.component';
+
 
 
 
@@ -33,7 +43,9 @@ import { UserAccountComponent } from './pages/user-account/user-account.componen
     OrdersManagementComponent,
     ClientsManagementComponent,
     MenusManagementComponent,
-    UserAccountComponent
+    UserAccountComponent,
+    MealComponent,
+    DigitalClockComponent,
   ],
   imports: [
     BrowserModule,
@@ -45,7 +57,12 @@ import { UserAccountComponent } from './pages/user-account/user-account.componen
     MenubarModule,
     InputTextModule,
     ButtonModule,
-    DynamicDialogModule
+    DynamicDialogModule,
+    MatCardModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatSelectModule,
+    MatButtonModule
 
   ],
   entryComponents: [
