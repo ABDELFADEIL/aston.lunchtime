@@ -62,14 +62,11 @@ ul.p-menubar-root-list {
 }
 
  .p-dialog .p-dialog-header{
-    height: 0px !important;
-    width: 0px !important;
-    display: none;
+    
 }
 
 .p-dialog .p-dialog-content {
-    margin: 0;
-    padding: 0;
+    
 }
 
 html, body { height: 100%; }
@@ -93,4 +90,11 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 .p-card .p-card-footer {
   padding: .5rem 1rem;
+}
+
+/*
+login com
+*/
+ng-trigger ng-trigger-animation ng-tns-c87-0 p-dialog p-dynamic-dialog p-component ng-star-inserted {
+  
 }
