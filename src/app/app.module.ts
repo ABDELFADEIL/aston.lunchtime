@@ -20,7 +20,6 @@ import {DynamicDialogModule} from 'primeng/dynamicdialog';
 import { UserAccountComponent } from './pages/user-account/user-account.component';
 import { MealComponent } from './pages/meal/meal.component';
 import { ButtonModule } from 'primeng/button';
-
 import { MatCardModule } from '@angular/material/card';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
@@ -32,6 +31,7 @@ import {ConfirmDialogModule} from 'primeng/confirmdialog';
 import {ConfirmationService} from 'primeng/api';
 import { TableModule } from 'primeng/table'
 import { DialogModule } from 'primeng/dialog'
+import {OverlayPanelModule} from "primeng/overlaypanel";
 
 
 @NgModule({
@@ -68,7 +68,8 @@ import { DialogModule } from 'primeng/dialog'
     ButtonModule,
     TableModule,
     ConfirmDialogModule,
-    DialogModule
+    DialogModule,
+    OverlayPanelModule
 
   ],
   entryComponents: [

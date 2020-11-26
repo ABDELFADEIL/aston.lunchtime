@@ -1,24 +1,4 @@
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 <div class="container">
 
 <div class="row">
@@ -30,7 +10,8 @@
       </div>
       <h4 class="text-center text-success">Contectez-vous</h4>
       <div class="card-body">
-        <form (ngSubmit)="onLogin()">
+        <form #f="ngForm" (ngSubmit)="onLogin(f.value)">
+          <div *ngIf="message" class="danger">{{message}}</div>
           <div class="form-group">
             <label class="">Email</label>
             <input type="text" name="email" class="form-control" [ngModel]/>
@@ -55,4 +36,3 @@
   <div class="col-lg-4"></div>
 </div>
 </div>
-

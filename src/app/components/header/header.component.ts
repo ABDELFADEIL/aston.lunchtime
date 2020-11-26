@@ -2,6 +2,7 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 import {ConfirmationService, MenuItem} from 'primeng/api';
 import { DialogService } from 'primeng/dynamicdialog';
 import { LoginComponent } from '../login/login.component';
+import {AuthenticationService} from "../../services/authentication.service";
 
 @Component({
   selector: 'app-header',
@@ -12,28 +13,10 @@ import { LoginComponent } from '../login/login.component';
 export class HeaderComponent implements OnInit {
 
   public items: MenuItem[];
-  ref;
-  name = 'Angular';
-  dlgref: any
   @ViewChild('cd') cd
-  data: any[]
-  display = false;
-  constructor(private confirmationService: ConfirmationService) {}
 
-  show() {
-    this.display = true
-    // this.dlgref = this.confirmationService.confirm({
-    //     message:
-    //       `<p>Are you sure that you want to perform this action?</p>
-    //       <table *ngFor="let row in data">
-    //         <tr>
-    //         <td>{{row.name}}
-    //       </table>`,
-    //     accept: () => {
-    //         //Actual logic to perform a confirmation
-    //     }
-    // });
-  }
+  constructor(public authenticationService: AuthenticationService) {}
+
 
 
 
@@ -51,24 +34,8 @@ export class HeaderComponent implements OnInit {
                    ];
 }
 
-  onAccept() {
-    //onDragEnd
-    console.log("accept ");
-    this.confirmationService.accept.subscribe(accept => {
-      console.log("accept dialog")
-    })
-    // this.display = false
+
+  logout() {
+    this.authenticationService.logout();
   }
-
-  onClose() {
-    //onDragEnd
-    console.log("close ");
-    this.display = false
-      console.log("accept dialog");
-    // this.display = false
-  }
-
-
-
-
 }
