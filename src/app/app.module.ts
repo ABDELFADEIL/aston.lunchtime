@@ -32,6 +32,7 @@ import {ConfirmationService} from 'primeng/api';
 import { TableModule } from 'primeng/table'
 import { DialogModule } from 'primeng/dialog'
 import {OverlayPanelModule} from "primeng/overlaypanel";
+import {SplitButtonModule} from "primeng/splitbutton";
 
 
 @NgModule({
@@ -69,7 +70,8 @@ import {OverlayPanelModule} from "primeng/overlaypanel";
     TableModule,
     ConfirmDialogModule,
     DialogModule,
-    OverlayPanelModule
+    OverlayPanelModule,
+    SplitButtonModule
 
   ],
   entryComponents: [

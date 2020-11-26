@@ -8,7 +8,7 @@ html, body { height: 100%; }
 body { margin: 0;  }
 
 .container {
-  
+
 }
 .p-menuitem-text {
   font-size: 120% !important;
@@ -62,11 +62,11 @@ ul.p-menubar-root-list {
 }
 
  .p-dialog .p-dialog-header{
-    
+
 }
 
 .p-dialog .p-dialog-content {
-    
+
 }
 
 html, body { height: 100%; }
@@ -96,7 +96,11 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 login com
 */
 ng-trigger ng-trigger-animation ng-tns-c87-0 p-dialog p-dynamic-dialog p-component ng-star-inserted {
-  
+
 }
-.p-dialog-header{
+.p-dialog .p-dialog-content {
+  background: none;
+  color: #212529;
+  padding: 0 !important;
+  height: 100%;
 }

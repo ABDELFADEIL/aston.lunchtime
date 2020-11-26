@@ -1,5 +1,5 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {ConfirmationService, MenuItem} from 'primeng/api';
+import {ConfirmationService, MenuItem, MessageService} from 'primeng/api';
 import { DialogService } from 'primeng/dynamicdialog';
 import { LoginComponent } from '../login/login.component';
 import {AuthenticationService} from "../../services/authentication.service";
@@ -8,14 +8,14 @@ import {AuthenticationService} from "../../services/authentication.service";
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css'],
-  providers: []
+  providers: [MessageService]
 })
 export class HeaderComponent implements OnInit {
 
   public items: MenuItem[];
   @ViewChild('cd') cd
 
-  constructor(public authenticationService: AuthenticationService) {}
+  constructor(public authenticationService: AuthenticationService, private messageService: MessageService) {}
 
 
 
@@ -37,5 +37,7 @@ export class HeaderComponent implements OnInit {
 
   logout() {
     this.authenticationService.logout();
+    this.messageService.add({severity:'success', summary:'Success', detail:'Data Updated'});
+
   }
 }

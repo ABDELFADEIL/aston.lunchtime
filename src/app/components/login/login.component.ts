@@ -1,22 +1,21 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {Router} from '@angular/router';
 import { AuthenticationService } from 'src/app/services/authentication.service';
-import {ConfirmationService} from "primeng/api";
+import {ConfirmationService, MessageService} from "primeng/api";
 import {FormBuilder, FormControl} from "@angular/forms";
 import {User} from "../../models/user";
-import {OverlayPanelModule} from 'primeng/overlaypanel';
-
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['./login.component.css'],
+  providers: [MessageService]
 })
 export class LoginComponent implements OnInit {
   message: string;
 
 
-  constructor(public authenticationService: AuthenticationService) {}
+  constructor(public authenticationService: AuthenticationService, private messageService: MessageService) {}
 
   ngOnInit(): void {
   }
@@ -32,7 +31,7 @@ export class LoginComponent implements OnInit {
       this.message = "Le email ou le mot de passe est incorrect!"
       console.log(error);
     })
-
+     this.messageService.add({severity:'success', summary:'Success', detail:'Data Updated'});
 
   }
 }
