@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { MenuItem } from 'primeng/api';
+import {Component, OnInit, ViewChild} from '@angular/core';
+import {ConfirmationService, MenuItem} from 'primeng/api';
 import { DialogService } from 'primeng/dynamicdialog';
 import { LoginComponent } from '../login/login.component';
 
@@ -7,21 +7,41 @@ import { LoginComponent } from '../login/login.component';
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css'],
-  providers: [DialogService]
+  providers: []
 })
 export class HeaderComponent implements OnInit {
 
   public items: MenuItem[];
   ref;
-  constructor(public dialogService: DialogService) { }
+  name = 'Angular';
+  dlgref: any
+  @ViewChild('cd') cd
+  data: any[]
+  display = false;
+  constructor(private confirmationService: ConfirmationService) {}
 
-  
+  show() {
+    this.display = true
+    // this.dlgref = this.confirmationService.confirm({
+    //     message:
+    //       `<p>Are you sure that you want to perform this action?</p>
+    //       <table *ngFor="let row in data">
+    //         <tr>
+    //         <td>{{row.name}}
+    //       </table>`,
+    //     accept: () => {
+    //         //Actual logic to perform a confirmation
+    //     }
+    // });
+  }
+
+
 
     ngOnInit() {
       this.items = [
         {label: 'Menu du jour', routerLink: ['/home']},
        /* {label: 'Plats', routerLink: ['/meal']},*/
-        {label: 'Gestion', 
+        {label: 'Gestion',
         items: [
           {label: 'Gestion plats', routerLink: ['/menu-management']} ,
           {label: 'Gestion commandes', routerLink: ['/client-orders']},
@@ -31,18 +51,24 @@ export class HeaderComponent implements OnInit {
                    ];
 }
 
-show() {
-   this.ref = this.dialogService.open(LoginComponent, {
-      width: '50%',
-      
-  });
-  
-}
-
-ngOnDestroy() {
-  if (this.ref) {
-      this.ref.close();
+  onAccept() {
+    //onDragEnd
+    console.log("accept ");
+    this.confirmationService.accept.subscribe(accept => {
+      console.log("accept dialog")
+    })
+    // this.display = false
   }
-}
+
+  onClose() {
+    //onDragEnd
+    console.log("close ");
+    this.display = false
+      console.log("accept dialog");
+    // this.display = false
+  }
+
+
+
 
 }

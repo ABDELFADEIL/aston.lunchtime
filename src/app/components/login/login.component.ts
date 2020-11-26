@@ -1,6 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {Router} from '@angular/router';
 import { AuthenticationService } from 'src/app/services/authentication.service';
+import {ConfirmationService} from "primeng/api";
+import {FormBuilder, FormControl} from "@angular/forms";
+import {User} from "../../models/user";
+
 
 @Component({
   selector: 'app-login',
@@ -8,41 +12,16 @@ import { AuthenticationService } from 'src/app/services/authentication.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  email : string;
-  password : string;
-  constructor(private authService:AuthenticationService, private router:Router)
-  {
-    /*
-    // redirect to home if already logged in
-    if (this.authService.jwtToken !=null) {
-      this.router.navigate(['/home']);
-    }
-     */
-  }
+  email: string = "email";
+  password:string ="password";
+
+  constructor() {}
 
   ngOnInit(): void {
-    /*
-    if (this.authService.jwtToken != null) {
-      this.router.navigate(['/home']);
-    }
-     */
   }
-
 
   onLogin() {
-    console.log(this.email, this.password)
-    this.authService.login(this.email, this.password)
-      .subscribe(resp => {
-          console.log(this.email, this.password)
-          let jwtToken = resp.headers.get('Authorization');
-          this.authService.saveToken(jwtToken);
-          this.router.navigateByUrl('/home');
-        },
-        err => {
-          console.log(err)
-          this.router.navigateByUrl('/login');
-
-        })
+    console.log("on login");
+    console.log(this.email, this.password);
   }
-
 }

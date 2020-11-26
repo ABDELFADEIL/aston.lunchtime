@@ -8,13 +8,27 @@
 
           <ng-template pTemplate="end">
             <div class="p-d-flex p-p-3" style="display: flex;">
-              <div class="p-m-2" style="margin-right: 20px;"><i class="fa fa-user clickable" (click)="show()" style="font-size: 1rem;color: #2d2d2d;"></i></div>
-          </div>
+              <div class="p-m-2" style="margin-right: 20px;"> <i class="fa fa-user clickable" (click)="show()" style="font-size: 1.3rem;color: #ef4430;"></i></div>
+            </div>
           </ng-template>
 
       </p-menubar>
   </div>
 </div>
+
+
+
+<p-dialog #cd [(visible)]="display" [modal]="true"
+          [closable]="false" [draggable]="false"
+          [showHeader]="false"
+          [responsive]="true"
+          [style]="{width: '50px', minWidth: '300px', height:'700px', borderRadius: 0}" [minY]="70"
+           [baseZIndex]="10000">
+  <app-login style=""></app-login>
+   <button (click)="onAccept()">accept</button>
+  <button (click)="onClose()">close</button>
+</p-dialog>
+
 
 
 
