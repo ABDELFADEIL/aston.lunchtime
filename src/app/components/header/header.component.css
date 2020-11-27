@@ -1,11 +1,11 @@
 
 .fa-user:hover, .fa:hover {
-  color: #2d2d2d;
+  color: #E9E581;
   opacity: .7;
   transform: scale(1.1);
 }
 
 .fa-user, .fa {
-  color: #154e3b;
+  color: #E9E581;
   transform: scale(1);
 }

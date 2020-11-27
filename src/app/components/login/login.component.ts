@@ -31,7 +31,6 @@ export class LoginComponent implements OnInit {
       this.message = "Le email ou le mot de passe est incorrect!"
       console.log(error);
     })
-     this.messageService.add({severity:'success', summary:'Success', detail:'Data Updated'});
 
   }
 }
