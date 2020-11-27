@@ -21,13 +21,14 @@ import { UserAccountComponent } from './pages/user-account/user-account.componen
 import { MealComponent } from './pages/meal/meal.component';
 import { ButtonModule } from 'primeng/button';
 
+import {CardModule} from 'primeng/card';
 import { MatCardModule } from '@angular/material/card';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import {MatSelectModule} from '@angular/material/select';
 import {MatButtonModule} from '@angular/material/button';
 import { DigitalClockComponent } from './components/digital-clock/digital-clock.component';
-import { CardModule, } from 'primeng/card';
+
 
 
 
@@ -63,6 +64,7 @@ import { CardModule, } from 'primeng/card';
     MatButtonModule,
     CardModule,
     ButtonModule,
+    CardModule,
 
   ],
   entryComponents: [
