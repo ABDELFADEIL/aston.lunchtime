@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {OrderListModule} from 'primeng/orderlist';
 
 @Component({
   selector: 'app-orders-management',

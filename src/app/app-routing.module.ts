@@ -7,6 +7,7 @@ import { ClientsManagementComponent } from './pages/clients-management/clients-m
 import { HomeComponent } from './pages/home/home.component';
 import { MealComponent } from './pages/meal/meal.component';
 import { MenusManagementComponent } from './pages/menus-management/menus-management.component';
+import { OrdersManagementComponent } from './pages/orders-management/orders-management.component';
 import { UserAccountComponent } from './pages/user-account/user-account.component';
 
 
@@ -18,7 +19,8 @@ const routes: Routes = [
   { path: 'user-account', component: UserAccountComponent },
   { path: 'client-orders', component: ClientOrdersComponent },
   { path: 'clients-management', component: ClientsManagementComponent },
-  { path: 'menu-management', component: MenusManagementComponent }
+  { path: 'menu-management', component: MenusManagementComponent },
+  { path: 'orders-management', component: OrdersManagementComponent }
 
   /*
     { path: '',  redirectTo: 'home', pathMatch: 'full', canActivate: [AuthGuard]},

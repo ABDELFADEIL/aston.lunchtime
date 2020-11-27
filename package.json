@@ -30,6 +30,7 @@
     "jquery": "^3.5.1",
     "ng": "0.0.0",
     "popper.js": "^1.16.1",
+    "primeflex": "^2.0.0",
     "primeicons": "^4.0.0",
     "primeng": "^10.0.3",
     "rxjs": "~6.5.5",
