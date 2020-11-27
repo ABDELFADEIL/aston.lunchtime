@@ -29,7 +29,7 @@ p, h1, h2, h3, h4, h5, h6, span, button, label {
 }
 
 ul.p-menubar-root-list {
-  background: #87aab9 !important;
+  background: #2d2d2d !important;
 }
 
 .clickable {
@@ -45,13 +45,13 @@ ul.p-menubar-root-list {
     left: 0;
     bottom: 0;
     width: 100%;
-    background-color: #87AAB9;
+    background-color: #2d2d2d;
     color: white;
     text-align: center;
   }
 
   .p-menubar {
-    background: #87AAB9;
+    background: #2d2d2d;
     border-radius: 0;
 }
 
