@@ -16,9 +16,9 @@ import { MatCardModule } from '@angular/material/card';
 export class HomeComponent implements OnInit {
 
   mealList=[];
-  menuList =[  ];
+  menuList =[];
   date;
-  
+
   constructor(private menuService: MenuService,
     private commandeService: CommandesService,
     private ingredientService: IngredientService,

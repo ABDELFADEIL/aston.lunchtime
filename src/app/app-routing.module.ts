@@ -8,7 +8,7 @@ import { HomeComponent } from './pages/home/home.component';
 import { MealComponent } from './pages/meal/meal.component';
 import { MenusManagementComponent } from './pages/menus-management/menus-management.component';
 import { UserAccountComponent } from './pages/user-account/user-account.component';
-import { DigitalClockComponent } from './digital-clock/digital-clock.component';
+import {DigitalClockComponent} from "./components/digital-clock/digital-clock.component";
 
 
 const routes: Routes = [

@@ -2,14 +2,14 @@
 
 
 <!--<div class="cards">
- 
+
 <div class="card-menu" *ngFor="let menu of menuList">
     <div class="img">
-        <img alt="Card" :src="{{menu.img}}"> 
+        <img alt="Card" :src="{{menu.img}}">
     </div>
     <div class="content">
         <p><strong>{{menu.label}}</strong></p>
-        <p>Déscription : Lorem ipsum dolor sit amet,ibus, officiis Lorem ipsum dolor sit amet,ibus, officiis</p> 
+        <p>Déscription : Lorem ipsum dolor sit amet,ibus, officiis Lorem ipsum dolor sit amet,ibus, officiis</p>
        <p>Price: {{menu.priceDF}}</p>
         <p>{{menu.description}}</p>
 
@@ -17,23 +17,24 @@
         </div>
 </div>-->
 
-
+<app-digital-clock></app-digital-clock>
 <div>
     <h4 class="ligne">
         Menus de la semaine
     </h4>
 </div>
-<div class ="cards"> 
+<div class ="cards">
 <!--<div  class="card-menu" *ngFor="let menu of menuList">-->
-<p-card *ngFor="let menu of menuList" header={{menu.label}} subheader={{menu.priceDF}}€  [style]="{width: '360px'}">
+<p-card *ngFor="let menu of menuList" header={{menu.label}} [style]="{width: '360px'}">
     <ng-template pTemplate="header">
-        <img alt="Card" :src="{{menu.img}}">   
+        <img alt="Card" :src="{{menu.img}}">
     </ng-template>
+    <p>{{menu.priceDF + '€'}}</p>
     <p>Déscription: Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
     <ng-template pTemplate="footer">
-        <p-button (click)="enableMenuBtn()" styleClass="p-button-danger" label="Commande" ></p-button>
+        <p-button (click)="enableMenuBtn(menu.id_menu)" styleClass="p-button-danger" label="Commande" ></p-button>
     </ng-template>
-</p-card>    
+</p-card>
 </div>
 
 
@@ -43,9 +44,9 @@
     <p-header>
         <img alt="Card" :src="{{menu.img}}">
     </p-header>
-    
+
     <ng-template pTemplate="body">
-        <p><b>Déscription : Lorem ipsum dolor sit amet,ibus, officiis Lorem ipsum dolor sit amet,ibus, officiis 
+        <p><b>Déscription : Lorem ipsum dolor sit amet,ibus, officiis Lorem ipsum dolor sit amet,ibus, officiis
         </b>{{menu.description}}</p>
     </ng-template>
 
@@ -62,17 +63,18 @@
         Plats de la semaine
     </h4>
 </div>
-<div class ="meals"> 
+<div class ="meals">
 <!--<div  class="card-menu" *ngFor="let menu of menuList">-->
-<p-card *ngFor="let meal of mealList" header={{meal.label}} subheader={{meal.priceDF}}€  [style]="{width: '360px'}" styleClass="p-card-shadow">
+<p-card *ngFor="let meal of mealList" header="{{meal.label}}"  [style]="{width: '360px'}" styleClass="p-card-shadow">
     <ng-template pTemplate="header">
-        <img alt="Card" src="{{meal.img}}">   
+        <img alt="Card" src="{{meal.img}}">
     </ng-template>
+    <p>{{meal.priceDF + '€'}}</p>
     <p>Déscription: Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
     <ng-template pTemplate="footer">
-        <p-button (click)="enableMenuBtn()" styleClass="p-button-danger" label="Commande" ></p-button>
+        <p-button (click)="enableMenuBtn(meal.id_meal)" styleClass="p-button-danger" label="Commande" ></p-button>
     </ng-template>
-</p-card>    
+</p-card>
 </div>
 
  <!---- <mat-card *ngFor="let meal of mealList" class="card">
@@ -89,11 +91,11 @@
                 <h5>{{meal.priceDF}}</h5>
             </div>
             <div>
-                
+
                 <img src ={{meal.img}}>
         </div>
-            <div>  
-                <button mat-raised-button color="warn" (click)="enableMealBtn()">Commande</button>       
+            <div>
+                <button mat-raised-button color="warn" (click)="enableMealBtn()">Commande</button>
             </div>
         </mat-card-content>
     </mat-card>
