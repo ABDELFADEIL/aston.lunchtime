@@ -5,6 +5,8 @@ import {CommandesService} from 'src/app/services/commande.service';
 import {IngredientService} from 'src/app/services/ingredient.service';
 import { OrdersManagementComponent } from '../orders-management/orders-management.component';
 import { MealService } from 'src/app/services/meal-service.service';
+import {CardModule} from 'primeng/card';
+import { MatCardModule } from '@angular/material/card';
 
 @Component({
   selector: 'app-home',
@@ -16,7 +18,7 @@ export class HomeComponent implements OnInit {
   mealList=[];
   menuList =[  ];
   date;
-
+  
   constructor(private menuService: MenuService,
     private commandeService: CommandesService,
     private ingredientService: IngredientService,
