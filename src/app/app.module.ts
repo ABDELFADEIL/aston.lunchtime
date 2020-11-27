@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import {NgModule, NO_ERRORS_SCHEMA} from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
@@ -20,12 +20,15 @@ import {DynamicDialogModule} from 'primeng/dynamicdialog';
 import { UserAccountComponent } from './pages/user-account/user-account.component';
 import { MealComponent } from './pages/meal/meal.component';
 import { ButtonModule } from 'primeng/button';
+
+
+
 import { MatCardModule } from '@angular/material/card';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import {MatSelectModule} from '@angular/material/select';
 import {MatButtonModule} from '@angular/material/button';
-import { DigitalClockComponent } from './components/digital-clock/digital-clock.component';
+
 import { CardModule, } from 'primeng/card';
 import {ConfirmDialogModule} from 'primeng/confirmdialog';
 import {ConfirmationService} from 'primeng/api';
@@ -33,6 +36,8 @@ import { TableModule } from 'primeng/table'
 import { DialogModule } from 'primeng/dialog'
 import {OverlayPanelModule} from "primeng/overlaypanel";
 import {SplitButtonModule} from "primeng/splitbutton";
+import {DigitalClockComponent} from "./components/digital-clock/digital-clock.component";
+
 
 
 @NgModule({
@@ -67,16 +72,19 @@ import {SplitButtonModule} from "primeng/splitbutton";
     MatButtonModule,
     CardModule,
     ButtonModule,
+    CardModule,
     TableModule,
     ConfirmDialogModule,
     DialogModule,
     OverlayPanelModule,
     SplitButtonModule
 
+
   ],
   entryComponents: [
     LoginComponent
 ],
+  schemas: [NO_ERRORS_SCHEMA],
   providers: [ConfirmationService],
   bootstrap: [AppComponent]
 })

@@ -1,46 +1,54 @@
-.cards, .meals {
+
+body{
+
+ font-family: "Roboto", "Helvetica Neue", sans-serif;
+}
+.cards{
     display: flex;
-    border-radius: 5px;
-   
-    margin-top: 20px;
-    padding: 10px;
-    padding-bottom: 10px;
+    border-radius: 5px;         
     width: 100%;
-    justify-content: center;
+    justify-content: space-around;
+    margin-right: 100px;;
     height: auto !important;
     flex-wrap: wrap;
     flex-direction: row;    
-    margin-bottom: 20px;
-    
+    margin-bottom: 20px;    
+    }
+.meals{
+  display: flex;
+  border-radius: 5px;  
+  flex-direction: row; 
+  width:100%;
+  justify-content: center;
 }
 
 .meals mat-card, p-card{
    margin: 5px;
 }
-.cards mat-card , .meals mat-card, p-card{
+/*.cards mat-card , .meals mat-card, p-card{
        
-}
+}*/
 
 
 p-card img {
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
+ 
+    border-radius:5px;
+    width:180px;
+    
    
 }
 
 .card-menu {
     color: #495057;
-    box-shadow: 0 2px 1px -1px rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 1px 3px 0 rgba(0, 0, 0, 0.12);
+/*   box-shadow: 0 2px 1px -1px rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 1px 3px 0 rgba(0, 0, 0, 0.12);*/
     border-radius: 3px;
     margin-top: 20px;
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
-    width: 45rem;
-    margin-right: 10px;
-    
-    
-
+    margin-right: 10px;    
+     width:100%;
+     justify-content: space-around;
 }
 
 .card-menu .img img{
@@ -57,4 +65,12 @@ p-card img {
 
 .card-menu p{
   font-size: 14px;
+}
+.ligne{
+  text-align: center;
+  font-size:1.6rem;
+  padding-top:20px;
+}
+h4{
+  font-family: italic;
 }
