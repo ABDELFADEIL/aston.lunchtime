@@ -8,13 +8,30 @@
 
           <ng-template pTemplate="end">
             <div class="p-d-flex p-p-3" style="display: flex;">
-              <div class="p-m-2" style="margin-right: 20px;"><i class="fa fa-user clickable" (click)="show()" style="font-size: 1rem;color: #2d2d2d;"></i></div>
-          </div>
+              <div *ngIf="!authenticationService.authenticated" class="p-m-2" style="margin-right: 20px;">
+                <i class="fa fa-user clickable" (click)="authenticationService.show()" style="font-size: 1.3rem;"></i>
+              </div>
+              <div *ngIf="authenticationService.authenticated" class="p-m-2" style="margin-right: 20px;">
+                <i class="fa fa-sign-in clickable" (click)="logout()"  style="font-size: 1.3rem;"></i>
+              </div>
+            </div>
           </ng-template>
 
       </p-menubar>
   </div>
 </div>
+
+
+
+<p-dialog #cd [(visible)]="authenticationService.display" [modal]="true"
+          [closable]="false" [draggable]="false"
+          [showHeader]="false"
+          [responsive]="true"
+          [style]="{width: '50px', minWidth: '100vh', height:'100vh', border: 'none', overflow: 'hidden', paddingTop: '2rem'}"
+           [baseZIndex]="10000">
+  <app-login style=""></app-login>
+</p-dialog>
+
 
 
 

@@ -1,48 +1,37 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {Router} from '@angular/router';
 import { AuthenticationService } from 'src/app/services/authentication.service';
+import {ConfirmationService, MessageService} from "primeng/api";
+import {FormBuilder, FormControl} from "@angular/forms";
+import {User} from "../../models/user";
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['./login.component.css'],
+  providers: [MessageService]
 })
 export class LoginComponent implements OnInit {
-  email : string;
-  password : string;
-  constructor(private authService:AuthenticationService, private router:Router)
-  {
-    /*
-    // redirect to home if already logged in
-    if (this.authService.jwtToken !=null) {
-      this.router.navigate(['/home']);
-    }
-     */
-  }
+  message: string;
+
+
+  constructor(public authenticationService: AuthenticationService, private messageService: MessageService) {}
 
   ngOnInit(): void {
-    /*
-    if (this.authService.jwtToken != null) {
-      this.router.navigate(['/home']);
-    }
-     */
   }
 
+   onLogin(form: User) {
+    this.authenticationService.login(form).subscribe(res => {
+      let jwtToken = res.headers.get('authorization');
+      this.authenticationService.saveToken(jwtToken);
+      this.authenticationService.authenticated = true;
+      this.authenticationService.display = false;
+      this.message = "connexion réussie!"
+    }, error => {
+      this.message = "Le email ou le mot de passe est incorrect!"
+      console.log(error);
+    })
+     this.messageService.add({severity:'success', summary:'Success', detail:'Data Updated'});
 
-  onLogin() {
-    console.log(this.email, this.password)
-    this.authService.login(this.email, this.password)
-      .subscribe(resp => {
-          console.log(this.email, this.password)
-          let jwtToken = resp.headers.get('Authorization');
-          this.authService.saveToken(jwtToken);
-          this.router.navigateByUrl('/home');
-        },
-        err => {
-          console.log(err)
-          this.router.navigateByUrl('/login');
-
-        })
   }
-
 }

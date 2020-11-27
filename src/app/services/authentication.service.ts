@@ -4,26 +4,33 @@ import { JwtHelper } from 'angular2-jwt';
 import {Router} from '@angular/router';
 import { URL } from '../api-url/url';
 import {Observable} from 'rxjs';
+import {ConfirmationService} from "primeng/api";
+import {User} from "../models/user";
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthenticationService {
-
+  authenticated: boolean = false;
   jwtToken: string;
   roles: Array<any> = [];
+  display: boolean;
 
 
 
 
-  constructor(private http: HttpClient, private router:Router)
+  constructor(private http: HttpClient, private router:Router, private confirmationService: ConfirmationService)
   {
     this.jwtToken = this.loadToken();
-
+    if (this.jwtToken){
+      this.authenticated = true;
+    }
   }
 
-  login(email, password) :Observable<any>{
-    return  this.http.post(URL + "/login", { observe: 'response' });
+
+
+  login(form: User) {
+    return  this.http.post("http://localhost:8080/lunchtime/login", form, { observe: 'response' });
   }
 
 
@@ -49,8 +56,8 @@ export class AuthenticationService {
 
   logout(){
     this.jwtToken= null;
+    this.authenticated = false;
     localStorage.removeItem('jwtToken');
-    this.router.navigateByUrl('/login');
   }
 
   isAdmin(){
@@ -85,4 +92,12 @@ export class AuthenticationService {
     return this.http.get(URL+"/api/users/user-info");
   }
 
+  show() {
+    this.display = true
+  }
+
+  onClose() {
+    console.log("close ");
+    this.display = false
+  }
 }

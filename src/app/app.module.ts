@@ -13,7 +13,7 @@ import { MenusManagementComponent } from './pages/menus-management/menus-managem
 import {HttpClientModule} from '@angular/common/http';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {FormsModule} from '@angular/forms';
-import {AccordionModule} from 'primeng/accordion';     
+import {AccordionModule} from 'primeng/accordion';
 import {MenubarModule} from 'primeng/menubar';
 import { InputTextModule } from 'primeng/inputtext';
 import {DynamicDialogModule} from 'primeng/dynamicdialog';
@@ -21,7 +21,8 @@ import { UserAccountComponent } from './pages/user-account/user-account.componen
 import { MealComponent } from './pages/meal/meal.component';
 import { ButtonModule } from 'primeng/button';
 
-import {CardModule} from 'primeng/card';
+
+
 import { MatCardModule } from '@angular/material/card';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
@@ -29,6 +30,13 @@ import {MatSelectModule} from '@angular/material/select';
 import {MatButtonModule} from '@angular/material/button';
 import { DigitalClockComponent } from './components/digital-clock/digital-clock.component';
 
+import { CardModule, } from 'primeng/card';
+import {ConfirmDialogModule} from 'primeng/confirmdialog';
+import {ConfirmationService} from 'primeng/api';
+import { TableModule } from 'primeng/table'
+import { DialogModule } from 'primeng/dialog'
+import {OverlayPanelModule} from "primeng/overlaypanel";
+import {SplitButtonModule} from "primeng/splitbutton";
 
 
 
@@ -65,12 +73,18 @@ import { DigitalClockComponent } from './components/digital-clock/digital-clock.
     CardModule,
     ButtonModule,
     CardModule,
+    TableModule,
+    ConfirmDialogModule,
+    DialogModule,
+    OverlayPanelModule,
+    SplitButtonModule
+
 
   ],
   entryComponents: [
     LoginComponent
 ],
-  providers: [],
+  providers: [ConfirmationService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
