@@ -15,6 +15,7 @@ export class LoginComponent implements OnInit {
   message: string;
   login: boolean = true;
   public userForm: FormGroup;
+  userFormLongin: FormGroup;
   user: User = new class implements User {
     address: string;
     email: string;
@@ -37,20 +38,45 @@ export class LoginComponent implements OnInit {
               private router: Router) {}
 
   ngOnInit(): void {
-    this.userForm = new FormGroup({
+    this.userFormLongin = new FormGroup({
       email: new FormControl('', [
-        Validators.required,
-        Validators.minLength(4)
-      ]),
-      password: new FormControl('', [Validators.required,
-        Validators.minLength(6)])
+        Validators.required, Validators.minLength(6)]),
+      password: new FormControl('', [
+        Validators.required, Validators.minLength(4)])
+    });
+
+    this.userForm = new FormGroup({
+      firstname: new FormControl('', [
+        Validators.required, Validators.minLength(4)]),
+      name: new FormControl('', [
+        Validators.required, Validators.minLength(4)]),
+      email: new FormControl('', [
+        Validators.required, Validators.minLength(6)]),
+      password: new FormControl('', [
+        Validators.required, Validators.minLength(6)]),
+      address: new FormControl('', [
+        Validators.required, Validators.minLength(5)]),
+      postalCode: new FormControl('', [
+        Validators.required, Validators.minLength(5)]),
+      town: new FormControl('', [
+        Validators.required, Validators.minLength(3)]),
+      phone: new FormControl('', [
+        Validators.required, Validators.minLength(10)]),
+      sex: new FormControl('', [
+        Validators.required, Validators.minLength(1)]),
+      wallet: new FormControl('', [
+        Validators.required, Validators.minLength(1)]),
+      status: new FormControl('', [
+        Validators.required, Validators.minLength(1)]),
+      registration_date: new FormControl('', [
+        Validators.required, Validators.minLength(6)])
     });
   }
 
    onLogin() {
-     console.log(this.user);
-    this.user = this.userForm.value;
-    console.log(this.userForm.value);
+     console.log(this.userFormLongin.value);
+    this.user = this.userFormLongin.value;
+    console.log(this.user);
     this.authenticationService.login(this.user).subscribe(res => {
       let jwtToken = res.headers.get('authorization');
       this.authenticationService.saveToken(jwtToken);

@@ -14,7 +14,6 @@
 }
 .login-form {
   background-color: rgba(0, 0, 0, .7);
-  opacity: 1;
   margin: auto;
   width: 516px;
   height: 100%;
@@ -29,19 +28,26 @@
 .login-form .p-col-12.p-d-flex.p-jc-center {
 
 }
-.login-form  .p-col-12:nth-child(2) {
-  padding: 0 !important;
-  margin: 0 !important;
+.login-form  .login.p-col-12{
   height: 80% !important;
 }
-.login-form .p-grid {
- padding: 20px;
-  padding-top: 30px;
-  margin: auto;
-  width: 90%;
+
+
+.login-form  .signup.p-col-12 {
+  height: 80% !important;
+  width: 100% !important;
+  margin-top: 10px;
+}
+.login-form  .signup.p-col-12 form {
   height: 100%;
-  justify-content: center;
-  align-items: center;
+  width: 100%;
+}
+.login-form .p-grid {
+  padding: 5px;
+  margin: auto;
+  width: 97%;
+  height: 100%;
+
 }
 
 .p-fluid .p-field {
@@ -57,10 +63,7 @@
 
   outline: none !important;
 }
-textarea, input:focus{
-  border-bottom-style: groove !important;
-  outline: none !important;
-}
+
 .btn{
   background: #ef4430 !important;
   color: white;
