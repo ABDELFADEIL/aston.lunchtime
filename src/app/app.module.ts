@@ -12,7 +12,7 @@ import { ClientsManagementComponent } from './pages/clients-management/clients-m
 import { MenusManagementComponent } from './pages/menus-management/menus-management.component';
 import {HttpClientModule} from '@angular/common/http';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {AccordionModule} from 'primeng/accordion';
 import {MenubarModule} from 'primeng/menubar';
 import { InputTextModule } from 'primeng/inputtext';
@@ -77,7 +77,8 @@ import {DigitalClockComponent} from "./components/digital-clock/digital-clock.co
     ConfirmDialogModule,
     DialogModule,
     OverlayPanelModule,
-    SplitButtonModule
+    SplitButtonModule,
+    ReactiveFormsModule
 
 
   ],
