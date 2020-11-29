@@ -1,7 +1,7 @@
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { Component, OnInit } from '@angular/core';
 import {OrderListModule} from 'primeng/orderlist';
-import { CommandesService } from 'src/app/services/commande.service';
+import { OrdersService } from 'src/app/services/orders.service';
 
 @Component({
   selector: 'app-orders-management',
@@ -10,7 +10,7 @@ import { CommandesService } from 'src/app/services/commande.service';
 })
 export class OrdersManagementComponent implements OnInit {
 
-  constructor(private orderService: CommandesService) {
+  constructor(private orderService: OrdersService) {
 
    }
 

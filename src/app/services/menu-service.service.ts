@@ -19,12 +19,16 @@ getMenuById(menuId:number) : Promise<any> {
   return this.http.get<any>(this.api_url+"menu/find/menuId").toPromise();
 }
 
-getMenuWeek() : Promise<any> {
+getMenuToday() : Promise<any> {
 return this.http.get<any>(this.api_url+"menu/findallavailablefortoday").toPromise();
   }
 async getImage(id_menu:number): Promise<any> {
    return this.http.get<any>(this.api_url+"menu/findimg/"+id_menu).toPromise();
 
 }
+getMenuWeek():Promise<any>{
+  return this.http.get<any>(this.api_url+"menu/findallavailableforweek/"+1).toPromise();
+}
+/*/menu/findallavailableforweek/{weeknumber}*/
 
 }

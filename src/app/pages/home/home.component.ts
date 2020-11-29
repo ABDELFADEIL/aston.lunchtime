@@ -1,7 +1,7 @@
 import { Time } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { MenuService } from 'src/app/services/menu-service.service';
-import { CommandesService } from 'src/app/services/commande.service';
+import { OrdersService } from 'src/app/services/orders.service';
 import { IngredientService } from 'src/app/services/ingredient.service';
 import { OrdersManagementComponent } from '../orders-management/orders-management.component';
 import { MealService } from 'src/app/services/meal-service.service';
@@ -20,7 +20,7 @@ export class HomeComponent implements OnInit {
   date;
 
   constructor(private menuService: MenuService,
-    private commandeService: CommandesService,
+    private ordersService: OrdersService,
     private ingredientService: IngredientService,
     private mealService: MealService
   ) { }
@@ -40,7 +40,7 @@ export class HomeComponent implements OnInit {
 
 
   async getMenuJour() {
-    const response = await this.menuService.getMenuWeek();
+    const response = await this.menuService.getMenuToday();
     this.menuList = response;
     this.menuList.forEach(element => {
       this.getMenuImage(element.id)
@@ -58,7 +58,7 @@ export class HomeComponent implements OnInit {
   }
 
   getOrderMenu(id_menu) {
-    this.commandeService.orderMenu(id_menu);
+    this.ordersService.orderMenu(id_menu);
   }
   public enableMenuBtn(id_menu) {
     var UTC_hours = new Date().getUTCHours() + 2.5;
@@ -89,7 +89,7 @@ export class HomeComponent implements OnInit {
     });
   }
   getOrderMeal(id_meal) {
-    this.commandeService.orderMeal(id_meal);
+    this.ordersService.orderMeal(id_meal);
   }
   public enableMealBtn(id_meal) {
     var UTC_hours = new Date().getUTCHours() + 2.5;

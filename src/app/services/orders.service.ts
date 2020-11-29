@@ -6,7 +6,7 @@ import { end } from '@popperjs/core';
 @Injectable({
   providedIn: 'root'
 })
-export class CommandesService {
+export class OrdersService {
   private api_url = "http://localhost:8080/lunchtime/";
   constructor(private http: HttpClient) { }
   d = new Date();
