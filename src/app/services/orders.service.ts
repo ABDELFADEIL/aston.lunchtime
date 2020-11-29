@@ -34,6 +34,6 @@ export class OrdersService {
     return this.http.get<any>(this.api_url + "order/findallforuser/" + id).toPromise();
   }
   getAllOrdersForAllUsersByDate(status?:number,beginDate?:string,endDate?:string):Promise<any> {
-    return this.http.get<any>(this.api_url + "order/findallbetweendateinstatus?status=" + status + "&beginDate=" + beginDate + "&endDate=" + endDate ).toPromise();
+    return this.http.get<any>(this.api_url + "order/findallbetweendateinstatus?status="+status+"&beginDate="+beginDate+"&endDate=" + endDate ).toPromise();
   }
 }

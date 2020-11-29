@@ -121,3 +121,11 @@ login com
   text-transform: uppercase;
   font-weight: bold;
 }
+.login-form .p-inputtext {
+  background: none;
+  color: white;
+  border: 1px solid #ef4430;
+}
+.login-form .p-inputtext:focus, input:focus{
+  outline-color: #ef4430 !important;
+}
