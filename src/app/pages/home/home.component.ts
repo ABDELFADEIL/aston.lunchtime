@@ -7,6 +7,9 @@ import { OrdersManagementComponent } from '../orders-management/orders-managemen
 import { MealService } from 'src/app/services/meal-service.service';
 import { CardModule } from 'primeng/card';
 import { MatCardModule } from '@angular/material/card';
+import {AuthenticationService} from 'src/app/services/authentication.service';
+import {User} from "../../models/user";
+
 
 @Component({
   selector: 'app-home',
@@ -14,7 +17,7 @@ import { MatCardModule } from '@angular/material/card';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-
+  displayBasic: boolean;
   mealList = [];
   menuList = [];
   date;
@@ -22,7 +25,8 @@ export class HomeComponent implements OnInit {
   constructor(private menuService: MenuService,
     private ordersService: OrdersService,
     private ingredientService: IngredientService,
-    private mealService: MealService
+    private mealService: MealService,
+    private authenticationService: AuthenticationService,
   ) { }
 
   ngOnInit(): void {
@@ -60,12 +64,12 @@ export class HomeComponent implements OnInit {
   getOrderMenu(id_menu) {
     this.ordersService.orderMenu(id_menu);
   }
-  public enableMenuBtn(id_menu) {
+  enableMenuBtn(id_menu) {
     var UTC_hours = new Date().getUTCHours() + 2.5;
     if (UTC_hours < 8 && UTC_hours > 3.5) {
       this.getOrderMenu(id_menu);
-
     }
+  
   }
 
   /**
@@ -88,20 +92,17 @@ export class HomeComponent implements OnInit {
       }
     });
   }
-  getOrderMeal(id_meal) {
-    this.ordersService.orderMeal(id_meal);
-  }
-  public enableMealBtn(id_meal) {
-    var UTC_hours = new Date().getUTCHours() + 2.5;
-    if (UTC_hours < 8 && UTC_hours > 3.5) {
-      this.getOrderMeal(id_meal);
-    }
-  }
-  commandTime = setInterval(this.enableMealBtn, 1000 * 60);
-
+  showInfo() {
+    this.displayBasic = true;
 }
 
 
+ /* getOrderMeal(id_meal) {
+    this.ordersService.orderMeal(id_meal);
+  }*/
+
+
+}
 
 
 

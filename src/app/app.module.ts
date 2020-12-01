@@ -20,6 +20,7 @@ import {DynamicDialogModule} from 'primeng/dynamicdialog';
 import { UserAccountComponent } from './pages/user-account/user-account.component';
 import { MealComponent } from './pages/meal/meal.component';
 import { ButtonModule } from 'primeng/button';
+import {TabViewModule} from 'primeng/tabview';
 
 
 
@@ -78,7 +79,10 @@ import {DigitalClockComponent} from "./components/digital-clock/digital-clock.co
     DialogModule,
     OverlayPanelModule,
     SplitButtonModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    ButtonModule,
+    DialogModule,
+    TabViewModule
 
 
   ],

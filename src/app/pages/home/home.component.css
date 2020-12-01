@@ -136,3 +136,15 @@ input[type=submit]:hover{
   border-radius: 10px;
 }
 
+.hide{
+  display:none;
+}
+/*.mydialog {
+  width: 25vw;
+  background-color:grey;
+  color:white;
+}*/
+h1{
+  color:white;
+  font-size:1.5rem;
+}
