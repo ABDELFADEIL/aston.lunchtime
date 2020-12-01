@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {MealService} from 'src/app/services/meal-service.service';
-import {CommandesService} from 'src/app/services/commande.service';
+import {OrdersService} from 'src/app/services/orders.service';
 
 @Component({
   selector: 'app-meal',
@@ -10,7 +10,7 @@ import {CommandesService} from 'src/app/services/commande.service';
 export class MealComponent implements OnInit {
  
   mealList=[];
-  constructor(private mealService: MealService, private commandeService: CommandesService) { }
+  constructor(private mealService: MealService, private ordersService: OrdersService) { }
 
   ngOnInit(): void {
     this.getMealsJour();
@@ -33,7 +33,7 @@ export class MealComponent implements OnInit {
     });
   }     
   getOrderMeal(id_meal){
-    this.commandeService.orderMeal(id_meal);
+    this.ordersService.orderMeal(id_meal);
    }  
     public enableMealBtn(id_meal){    
      var UTC_hours = new Date().getUTCHours()+2.5;
