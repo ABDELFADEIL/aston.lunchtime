@@ -1,23 +1,17 @@
-<mat-card *ngFor="let meal of mealList" class="card">
-    <mat-card-header class="card_header">
-        <mat-card-title class="title_header">{{meal.label}}</mat-card-title>
-    </mat-card-header>
-    <mat-card-content>
-    <div>
-            <label><b>Déscription :</b></label>
-            <h5>{{meal.description}}</h5>
-        </div>
-        <div>
-            <label><b>Price :</b></label>
-            <h5>{{meal.priceDF}}</h5>
-        </div>
-        <div>
-            
-            <img src ={{meal.img}}>
+<div class ="meals">
+    <!--<div  class="card-menu" *ngFor="let menu of menuList">-->
+    <p-card *ngFor="let meals of allMeals" header="{{meals.label}}"  [style]="{width: '360px'}" styleClass="p-card-shadow">
+        <ng-template pTemplate="header">
+            <figure class="meal_photo">
+            <img alt="Card" src="{{meals.img}}">
+            </figure>
+        </ng-template>
+        <p>{{meals.priceDF + '€'}}</p>
+        <p>Déscription: Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+<!----   <ng-template pTemplate="footer">
+  <p-button (click)="enableMenuBtn(meal.id_meal)" styleClass="p-button-danger" label="Commander" ></p-button>
+        </ng-template>    -->
+    </p-card>
     </div>
-        <div>  
-            <button mat-raised-button color="warn" (click)="enableMealBtn()">Commande</button>       
-        </div>
-    </mat-card-content>
-</mat-card>
+       
 
