@@ -1,6 +1,5 @@
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { Component, OnInit } from '@angular/core';
-import {OrderListModule} from 'primeng/orderlist';
 import { CommandesService } from 'src/app/services/commande.service';
 
 @Component({
@@ -18,7 +17,7 @@ export class OrdersManagementComponent implements OnInit {
     // this.getAllOrders();
     // this.getOrderById(1);
     // this.getOrderByUserId(1);
-    this.getAllOrdersForAllUsersByDate(0);
+    this.getAllOrdersForAllUsersByDate(1,"2020-07-12");
   }
 //recuperer toutes les commandes
   async getAllOrders() {
