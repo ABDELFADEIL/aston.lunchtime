@@ -50,7 +50,7 @@ export class AuthenticationService {
     return this.jwtToken;
   }
 
-  register(user) :Observable<User>{
+  register(user:any) :Observable<User>{
     return this.http.post(URL+ "user/register", user);
   }
 
