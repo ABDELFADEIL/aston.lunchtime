@@ -21,8 +21,8 @@ export class OrdersManagementComponent implements OnInit {
     this.getAllOrdersForAllUsersByDate(1,"2020-07-12");
   }
 //recuperer toutes les commandes
-  async getAllOrders() {
-   const allOrders = await  this.orderService.getAllOrders()
+  async getOrders() {
+   const allOrders = await  this.orderService.getOrders()
    console.log(allOrders);
   }
   //recuperer une commande avec un id
