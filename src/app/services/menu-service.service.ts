@@ -1,19 +1,27 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { getNumberOfCurrencyDigits } from '@angular/common';
+import {AuthenticationService} from 'src/app/services/authentication.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MenuService {
+  jwtToken: string;
 
   private api_url="http://localhost:8080/lunchtime/";
 
-  constructor(private http:HttpClient) { }
+  constructor(private http:HttpClient, private authenticationService: AuthenticationService) { }
 
+async getMenus():Promise<any>{
+   return this.http.get<any>(this.api_url+"menu/findall",
+   {
+     headers: new HttpHeaders({
+       'Content-Type' : 'application/json',
+       'Authorization' : this.jwtToken
+     })
+   }).toPromise();
 
-findAllMenu(){
-  return this.http.get<any>(this.api_url+"menu/findall");
 }
 getMenuById(menuId:number) : Promise<any> {
   return this.http.get<any>(this.api_url+"menu/find/menuId").toPromise();

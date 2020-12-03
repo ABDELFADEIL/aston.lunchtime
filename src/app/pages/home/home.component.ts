@@ -20,19 +20,20 @@ export class HomeComponent implements OnInit {
   displayBasic: boolean;
   mealList = [];
   menuList = [];
-  date;
+  date:boolean;
   
 
   constructor(private menuService: MenuService,
     private ordersService: OrdersService,
     private ingredientService: IngredientService,
     private mealService: MealService,
-    private authenticationService: AuthenticationService,
+    public authenticationService: AuthenticationService,
   ) { }
 
   ngOnInit(): void {
     this.getMealsJour();
     this.getMenuJour();
+    console.log(new Date());
 
   }
 
@@ -62,8 +63,13 @@ export class HomeComponent implements OnInit {
     this.ordersService.orderMeal(id_meal);
   }
     getDate() {
-      let date = new Date().getUTCHours()+2.5;
-      return date.toString();      
+      let date = new Date();
+      let hour = date.getHours();
+      let mins = date.getMinutes();
+      if( hour<=10 && mins<=30 ){
+        return true;
+      }
+      
     }  
 
   /**

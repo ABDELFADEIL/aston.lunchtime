@@ -1,18 +1,25 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient,HttpHeaders } from '@angular/common/http';
+import {AuthenticationService} from 'src/app/services/authentication.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MealService {
-
+  jwtToken: string;
   private api_url = "http://localhost:8080/lunchtime/";
   constructor(private http: HttpClient) { }
 
-  findAllMeals() {
-    return this.http.get<any>(this.api_url + "meal/findall");
-  }
-
+  async getMeals():Promise<any>{
+    return this.http.get<any>(this.api_url+"meal/findall",
+    {
+      headers: new HttpHeaders({
+        'Content-Type' : 'application/json',
+        'Authorization' : this.jwtToken
+      })
+    }).toPromise();
+ 
+ }
   getById(mealId: number): Promise<any> {
     return this.http.get<any>(this.api_url + "meal/find/mealId").toPromise();
   }

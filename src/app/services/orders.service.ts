@@ -1,18 +1,35 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient,HttpHeaders } from '@angular/common/http';
 import { end } from '@popperjs/core';
+import {AuthenticationService} from 'src/app/services/authentication.service';
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class OrdersService {
+
+  jwtToken:string;
+
   private api_url = "http://localhost:8080/lunchtime/";
-  constructor(private http: HttpClient) { }
+
+  constructor(private http: HttpClient, private authenticationService: AuthenticationService) { }
+
   d = new Date();
+
   date = this.d.getFullYear() + '-' + (this.d.getMonth() + 1) + '-' + this.d.getDate() + '' + this.d.getHours() + '' + this.d.getMinutes();
 
 
+  async getOrders():Promise<any>{
+    return this.http.get<any>(this.api_url+"order/findall",
+    {
+      headers: new HttpHeaders({
+        'Content-Type' : 'application/json',
+        'Authorization' : this.jwtToken
+      })
+    }).toPromise();
+ 
+ }
   orderMenu(id_menu: number): Promise<any> {
     return fetch(this.api_url + id_menu, {
       method: "PUT"
@@ -24,9 +41,6 @@ export class OrdersService {
     });
   }
 
-  getAllOrders(): Promise<any> {
-    return this.http.get<any>(this.api_url + "order/findall").toPromise();
-  }
   getOrderById(id:number):Promise<any> {
     return this.http.get<any>(this.api_url + "order/find/" + id).toPromise();
   }
