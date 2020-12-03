@@ -1,4 +1,6 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { UserService } from '../../services/user.service';
 
 @Component({
   selector: 'app-user-account',
@@ -7,9 +9,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UserAccountComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+  private user: UserService
+  ) { }
 
   ngOnInit(): void {
   }
-
 }

@@ -1,11 +1,14 @@
 import { Time } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { MenuService } from 'src/app/services/menu-service.service';
-import { CommandesService } from 'src/app/services/commande.service';
+import { OrdersService } from 'src/app/services/orders.service';
 import { IngredientService } from 'src/app/services/ingredient.service';
 import { OrdersManagementComponent } from '../orders-management/orders-management.component';
 import { MealService } from 'src/app/services/meal-service.service';
 import { MatCardModule } from '@angular/material/card';
+import {AuthenticationService} from 'src/app/services/authentication.service';
+import {User} from "../../models/user";
+
 
 @Component({
   selector: 'app-home',
@@ -13,15 +16,17 @@ import { MatCardModule } from '@angular/material/card';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-
+  displayBasic: boolean;
   mealList = [];
   menuList = [];
   date;
+  
 
   constructor(private menuService: MenuService,
-    private commandeService: CommandesService,
+    private ordersService: OrdersService,
     private ingredientService: IngredientService,
-    private mealService: MealService
+    private mealService: MealService,
+    private authenticationService: AuthenticationService,
   ) { }
 
   ngOnInit(): void {
@@ -31,15 +36,8 @@ export class HomeComponent implements OnInit {
   }
 
 
-  myVar = setInterval(this.myTimer, 1000);
-  myTimer() {
-    var d = new Date();
-    this.date = d.toLocaleTimeString;
-  }
-
-
   async getMenuJour() {
-    const response = await this.menuService.getMenuWeek();
+    const response = await this.menuService.getMenuToday();
     this.menuList = response;
     this.menuList.forEach(element => {
       this.getMenuImage(element.id)
@@ -57,15 +55,15 @@ export class HomeComponent implements OnInit {
   }
 
   getOrderMenu(id_menu) {
-    this.commandeService.orderMenu(id_menu);
+    this.ordersService.orderMenu(id_menu);
   }
-  public enableMenuBtn(id_menu) {
-    var UTC_hours = new Date().getUTCHours() + 2.5;
-    if (UTC_hours < 8 && UTC_hours > 3.5) {
-      this.getOrderMenu(id_menu);
-
-    }
+  getOrderMeal(id_meal) {
+    this.ordersService.orderMeal(id_meal);
   }
+    getDate() {
+      let date = new Date().getUTCHours()+2.5;
+      return date.toString();      
+    }  
 
   /**
    *
@@ -87,20 +85,17 @@ export class HomeComponent implements OnInit {
       }
     });
   }
-  getOrderMeal(id_meal) {
-    this.commandeService.orderMeal(id_meal);
-  }
-  public enableMealBtn(id_meal) {
-    var UTC_hours = new Date().getUTCHours() + 2.5;
-    if (UTC_hours < 8 && UTC_hours > 3.5) {
-      this.getOrderMeal(id_meal);
-    }
-  }
-  commandTime = setInterval(this.enableMealBtn, 1000 * 60);
-
+  showInfo() {
+    this.displayBasic = true;
 }
 
 
+ /* getOrderMeal(id_meal) {
+    this.ordersService.orderMeal(id_meal);
+  }*/
+
+
+}
 
 
 

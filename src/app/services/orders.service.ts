@@ -6,7 +6,7 @@ import { end } from '@popperjs/core';
 @Injectable({
   providedIn: 'root'
 })
-export class CommandesService {
+export class OrdersService {
   private api_url = "http://localhost:8080/lunchtime/";
   constructor(private http: HttpClient) { }
   d = new Date();
@@ -34,6 +34,6 @@ export class CommandesService {
     return this.http.get<any>(this.api_url + "order/findallforuser/" + id).toPromise();
   }
   getAllOrdersForAllUsersByDate(status?:number,beginDate?:string,endDate?:string):Promise<any> {
-    return this.http.get<any>(this.api_url + "order/findallbetweendateinstatus?status=" + status + "&beginDate=" + beginDate + "&endDate=" + endDate ).toPromise();
+    return this.http.get<any>(this.api_url + "order/findallbetweendateinstatus?status="+status+"&beginDate="+beginDate+"&endDate=" + endDate ).toPromise();
   }
 }

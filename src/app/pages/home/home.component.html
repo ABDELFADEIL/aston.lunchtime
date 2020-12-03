@@ -23,20 +23,29 @@
         Menus de la semaine
     </h4>
 </div>
-<div class ="cards">
+<div class ="menus">
 <!--<div  class="card-menu" *ngFor="let menu of menuList">-->
 <p-card *ngFor="let menu of menuList" header={{menu.label}} [style]="{width: '360px'}">
-    <ng-template pTemplate="header">
-        <img alt="Card" :src="{{menu.img}}">
+    <ng-template pTemplate="header">  
+     <figure class="menu_photo">
+      <img alt="Card" src="{{menu.img}}"> *
+      </figure>          
     </ng-template>
     <p>{{menu.priceDF + '€'}}</p>
     <p>Déscription: Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
     <ng-template pTemplate="footer">
-        <p-button (click)="enableMenuBtn(menu.id_menu)" styleClass="p-button-danger" label="Commande" ></p-button>
+        <p-button (click)="getOrderMenu()" styleClass="p-button-danger" label="Commander" *ngIf="authenticationService.authenticated && date <8" ></p-button>
+         &nbsp;
+        <p-button (click)="showInfo()" icon="pi pi-external-link" styleClass="p-button-danger"label="commander"*ngIf="!authenticationService.authenticated"></p-button>
+        <p-dialog header="info" [(visible)]="displayBasic" [style]="{width: '20vw',background:'black'}">
+            <h1>Envie commander? inscriez-vous</h1>
+            <ng-template pTemplate="footer"> 
+                <p-button icon="pi pi-check" (click)="displayBasic=false" label="Ok" styleClass="p-button-text"></p-button>
+            </ng-template>
+        </p-dialog>     
     </ng-template>
 </p-card>
 </div>
-
 
 
 <!--
@@ -61,21 +70,27 @@
 <div>
     <h4 class="ligne">
         Plats de la semaine
+        &nbsp;
+        <a class="btn btn-ghost" [routerLink]="['/meal']">More Plate</a>
     </h4>
 </div>
 <div class ="meals">
 <!--<div  class="card-menu" *ngFor="let menu of menuList">-->
 <p-card *ngFor="let meal of mealList" header="{{meal.label}}"  [style]="{width: '360px'}" styleClass="p-card-shadow">
     <ng-template pTemplate="header">
+        <figure class="meal_photo">
         <img alt="Card" src="{{meal.img}}">
+        </figure>
     </ng-template>
     <p>{{meal.priceDF + '€'}}</p>
     <p>Déscription: Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
     <ng-template pTemplate="footer">
-        <p-button (click)="enableMenuBtn(meal.id_meal)" styleClass="p-button-danger" label="Commande" ></p-button>
-    </ng-template>
+        <p-button (click)="getOrderMeal(meal.id_meal)" styleClass="p-button-danger" label="Commander" ></p-button>
+    </ng-template>    
 </p-card>
 </div>
+   
+
 
  <!---- <mat-card *ngFor="let meal of mealList" class="card">
         <mat-card-header class="card_header">
