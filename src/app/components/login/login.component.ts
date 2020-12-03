@@ -107,7 +107,7 @@ export class LoginComponent implements OnInit {
   onRegister() {
     console.log(this.userForm.value);
 
-    this.authenticationService.register(this.userForm.value).subscribe(res=> {
+    this.authenticationService.register(this.userForm.value).subscribe((res:any)=> {
       console.log(res);
       this.authenticationService.user = res;
     }, error => {

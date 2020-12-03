@@ -51,7 +51,7 @@ export class AuthenticationService {
   }
 
   register(user:any) :Observable<User>{
-    return this.http.post(URL+ "user/register", user);
+    return this.http.post<User>(URL+ "user/register", user);
   }
 
 
