@@ -5,7 +5,6 @@ import { OrdersService } from 'src/app/services/orders.service';
 import { IngredientService } from 'src/app/services/ingredient.service';
 import { OrdersManagementComponent } from '../orders-management/orders-management.component';
 import { MealService } from 'src/app/services/meal-service.service';
-import { CardModule } from 'primeng/card';
 import { MatCardModule } from '@angular/material/card';
 import {AuthenticationService} from 'src/app/services/authentication.service';
 import {User} from "../../models/user";

@@ -13,6 +13,8 @@ export class UserAccountComponent implements OnInit {
   private user: UserService
   ) { }
 
-  ngOnInit(): void {
+  ngOnInit(): void {  
   }
 }
+
+  
