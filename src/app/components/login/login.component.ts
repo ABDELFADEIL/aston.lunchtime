@@ -38,6 +38,28 @@ export class LoginComponent implements OnInit {
               private router: Router) {}
 
   ngOnInit(): void {
+    this.userForm = new FormGroup({
+      firstname: new FormControl('', [
+        Validators.required, Validators.minLength(4)]),
+      name: new FormControl('', [
+        Validators.required, Validators.minLength(4)]),
+      email: new FormControl('', [
+        Validators.required, Validators.minLength(4)]),
+      password: new FormControl('', [
+        Validators.required, Validators.minLength(4)]),
+      address: new FormControl('', [
+        Validators.required, Validators.minLength(4)]),
+      postalCode: new FormControl('', [
+        Validators.required, Validators.minLength(4)]),
+      town: new FormControl('', [
+        Validators.required, Validators.minLength(3)]),
+      phone: new FormControl('', [
+        Validators.required, Validators.minLength(8)]),
+      sex: new FormControl('', [
+        Validators.required]),
+      wallet: new FormControl('', [
+        Validators.required])
+    });
     this.userFormLongin = new FormGroup({
       email: new FormControl('', [
         Validators.required, Validators.minLength(6)]),
@@ -45,32 +67,7 @@ export class LoginComponent implements OnInit {
         Validators.required, Validators.minLength(4)])
     });
 
-    this.userForm = new FormGroup({
-      firstname: new FormControl('', [
-        Validators.required, Validators.minLength(4)]),
-      name: new FormControl('', [
-        Validators.required, Validators.minLength(4)]),
-      email: new FormControl('', [
-        Validators.required, Validators.minLength(6)]),
-      password: new FormControl('', [
-        Validators.required, Validators.minLength(6)]),
-      address: new FormControl('', [
-        Validators.required, Validators.minLength(5)]),
-      postalCode: new FormControl('', [
-        Validators.required, Validators.minLength(5)]),
-      town: new FormControl('', [
-        Validators.required, Validators.minLength(3)]),
-      phone: new FormControl('', [
-        Validators.required, Validators.minLength(10)]),
-      sex: new FormControl('', [
-        Validators.required, Validators.minLength(1)]),
-      wallet: new FormControl('', [
-        Validators.required, Validators.minLength(1)]),
-      status: new FormControl('', [
-        Validators.required, Validators.minLength(1)]),
-      registration_date: new FormControl('', [
-        Validators.required, Validators.minLength(6)])
-    });
+
   }
 
    onLogin() {
@@ -105,5 +102,18 @@ export class LoginComponent implements OnInit {
 
   onCancel() {
     this.authenticationService.display = false;
+  }
+
+  onRegister() {
+    console.log(this.userForm.value);
+
+    this.authenticationService.register(this.userForm.value).subscribe(res=> {
+      console.log(res);
+      this.authenticationService.user = res;
+    }, error => {
+      console.log(error);
+    });
+
+
   }
 }

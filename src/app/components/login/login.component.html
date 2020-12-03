@@ -17,12 +17,12 @@
       <div class="p-fluid">
         <div class="p-field">
           <label>EMAIL</label>
-          <input required minlength="4" style="border-radius: 50px; outline-color: #ef4430 !important"  formControlName="email" type="text" pInputText ngModel>
+          <input style="border-radius: 50px; outline-color: #ef4430 !important"  formControlName="email" type="text" pInputText ngModel>
         </div>
 
         <div class="p-field">
           <label>MOT DE PASSE</label>
-          <input required minlength="4" style="border-radius: 50px; outline-color: #ef4430 !important"  formControlName="password" type="text" pInputText ngModel>
+          <input style="border-radius: 50px; outline-color: #ef4430 !important"  formControlName="password" type="text" pInputText ngModel>
         </div>
         <div ><a style="color: #41f741; cursor: pointer; font-size: 20px; font-weight: bold" (click)="forgetPassword()">Mot de passe oublié</a></div>
 
@@ -43,12 +43,12 @@
     <!-- Inscription form -->
     <div class="p-col-12 signup" *ngIf="!login">
 
-      <form [formGroup]="userForm" (ngSubmit)="onLogin()">
+      <form [formGroup]="userForm" (ngSubmit)="onRegister()">
           <div class="p-d-flex p-flex-wrap">
             <!-- col -->
             <div class="p-col-6">
               <label>Prénom</label>
-              <input required minlength="4" style="border-radius: 50px; outline-color: #ef4430 !important"  formControlName="firstname" type="text" pInputText ngModel>
+              <input required style="border-radius: 50px; outline-color: #ef4430 !important"  formControlName="firstname" type="text" pInputText ngModel>
             </div>
             <div class=" p-col-6">
               <label>Nom</label>
@@ -57,42 +57,42 @@
             <!-- col -->
             <div class="p-col-6">
               <label>Email</label>
-              <input required minlength="4" style="border-radius: 50px; outline-color: #ef4430 !important"  formControlName="email" type="text" pInputText ngModel>
+              <input required style="border-radius: 50px; outline-color: #ef4430 !important"  formControlName="email" type="text" pInputText ngModel>
             </div>
             <div class=" p-col-6">
               <label>Mot de passe</label>
-              <input required minlength="4" style="border-radius: 50px; outline-color: #ef4430 !important"  formControlName="password" type="text" pInputText ngModel>
+              <input required style="border-radius: 50px; outline-color: #ef4430 !important"  formControlName="password" type="text" pInputText ngModel>
             </div>
             <!-- col -->
             <div class="p-col-6">
               <label>Adresse</label>
-              <input required minlength="4" style="border-radius: 50px; outline-color: #ef4430 !important"  formControlName="postalCode" type="text" pInputText ngModel>
+              <input required style="border-radius: 50px; outline-color: #ef4430 !important"  formControlName="postalCode" type="text" pInputText ngModel>
             </div>
             <div class=" p-col-6">
               <label>Code postal</label>
-              <input required minlength="4" style="border-radius: 50px; outline-color: #ef4430 !important"  formControlName="password" type="text" pInputText ngModel>
+              <input required style="border-radius: 50px; outline-color: #ef4430 !important"  formControlName="password" type="text" pInputText ngModel>
             </div>
             <!-- col -->
             <div class="p-col-6">
               <label>Ville</label>
-              <input required minlength="4" style="border-radius: 50px; outline-color: #ef4430 !important"  formControlName="town" type="text" pInputText ngModel>
+              <input required style="border-radius: 50px; outline-color: #ef4430 !important"  formControlName="town" type="text" pInputText ngModel>
             </div>
             <div class=" p-col-6">
               <label>Phone</label>
-              <input required minlength="4" style="border-radius: 50px; outline-color: #ef4430 !important"  formControlName="phone" type="text" pInputText ngModel>
+              <input required style="border-radius: 50px; outline-color: #ef4430 !important"  formControlName="phone" type="text" pInputText ngModel>
             </div>
             <!-- col -->
             <div class="p-col-6">
               <label>Sex</label>
-              <input required minlength="4" style="border-radius: 50px; outline-color: #ef4430 !important"  formControlName="sex" type="text" pInputText ngModel>
+              <input required style="border-radius: 50px; outline-color: #ef4430 !important"  formControlName="sex" type="text" pInputText ngModel>
             </div>
             <div class=" p-col-6">
               <label>Crédit en crération</label>
-              <input required minlength="4" style="border-radius: 50px; outline-color: #ef4430 !important"  formControlName="wallet" type="text" pInputText ngModel>
+              <input required style="border-radius: 50px; outline-color: #ef4430 !important"  formControlName="wallet" type="text" pInputText ngModel>
             </div>
 
               <div class="p-col-6">
-                <button pButton [disabled]="!userForm.valid" pRipple type="submit" label="Connectez-vous" style="width: 100%" class="btn p-button-rounded p-button-danger"></button>
+                <button pButton pRipple type="submit" label="Connectez-vous" style="width: 100%" class="btn p-button-rounded p-button-danger"></button>
               </div>
               <div class="p-col-6">
                 <button pButton (click)="onCancel()" pRipple type="button" label="annuler" style="background: #87AAB9;width: 100%" class="p-button-rounded p-button-info"></button>

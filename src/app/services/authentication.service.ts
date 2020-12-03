@@ -15,6 +15,7 @@ export class AuthenticationService {
   jwtToken: string;
   roles: Array<any> = [];
   display: boolean;
+  user: User;
 
 
 
@@ -30,7 +31,7 @@ export class AuthenticationService {
 
 
   login(form: User) {
-    return  this.http.post("http://localhost:8080/lunchtime/login", form, { observe: 'response' });
+    return  this.http.post(URL+"login", form, { observe: 'response' });
   }
 
 
@@ -49,8 +50,8 @@ export class AuthenticationService {
     return this.jwtToken;
   }
 
-  register(user) {
-    return this.http.post(URL+ "/user/register", user);
+  register(user) :Observable<User>{
+    return this.http.post(URL+ "user/register", user);
   }
 
 
@@ -80,6 +81,19 @@ export class AuthenticationService {
       this.roles=jwtHelper.decodeToken(this.jwtToken).roles;
       for(let r of this.roles) {
         if(r.authority=='ROLE_USER'){
+          return true;
+        }
+      }
+    }
+  }
+
+  isAuthenticated(){
+    let jwtHelper=new JwtHelper();
+    this.jwtToken= localStorage.getItem('jwtToken');
+    if (this.jwtToken){
+      this.roles=jwtHelper.decodeToken(this.jwtToken).roles;
+      for(let r of this.roles) {
+        if(r.authority=='ROLE_LUNCHLADY' || r.authority=='ROLE_USER'){
           return true;
         }
       }
