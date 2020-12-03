@@ -21,6 +21,7 @@ export class HomeComponent implements OnInit {
   mealList = [];
   menuList = [];
   date;
+  
 
   constructor(private menuService: MenuService,
     private ordersService: OrdersService,
@@ -33,13 +34,6 @@ export class HomeComponent implements OnInit {
     this.getMealsJour();
     this.getMenuJour();
 
-  }
-
-
-  myVar = setInterval(this.myTimer, 1000);
-  myTimer() {
-    var d = new Date();
-    this.date = d.toLocaleTimeString;
   }
 
 
@@ -64,13 +58,13 @@ export class HomeComponent implements OnInit {
   getOrderMenu(id_menu) {
     this.ordersService.orderMenu(id_menu);
   }
-  enableMenuBtn(id_menu) {
-    var UTC_hours = new Date().getUTCHours() + 2.5;
-    if (UTC_hours < 8 && UTC_hours > 3.5) {
-      this.getOrderMenu(id_menu);
-    }
-  
+  getOrderMeal(id_meal) {
+    this.ordersService.orderMeal(id_meal);
   }
+    getDate() {
+      let date = new Date().getUTCHours()+2.5;
+      return date.toString();      
+    }  
 
   /**
    *
