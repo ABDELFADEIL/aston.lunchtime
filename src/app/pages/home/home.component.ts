@@ -19,13 +19,8 @@ export class HomeComponent implements OnInit {
   displayBasic: boolean;
   mealList = [];
   menuList = [];
-<<<<<<< HEAD
-  date;
-
-=======
   date:boolean;
-  
->>>>>>> 888bfa81ec7ac491875a230308ec145e992138ef
+
 
   constructor(private menuService: MenuService,
     private ordersService: OrdersService,
@@ -37,12 +32,9 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
     this.getMealsJour();
     this.getMenuJour();
-<<<<<<< HEAD
     // ici c'est l'utilisateur authentifié
     console.log(this.authenticationService.user)
-=======
     console.log(new Date());
->>>>>>> 888bfa81ec7ac491875a230308ec145e992138ef
 
   }
 
@@ -72,20 +64,14 @@ export class HomeComponent implements OnInit {
     this.ordersService.orderMeal(id_meal);
   }
     getDate() {
-<<<<<<< HEAD
-      let date = new Date().getUTCHours()+2.5;
-      return date.toString();
-    }
-=======
       let date = new Date();
       let hour = date.getHours();
       let mins = date.getMinutes();
       if( hour<=10 && mins<=30 ){
         return true;
       }
-      
-    }  
->>>>>>> 888bfa81ec7ac491875a230308ec145e992138ef
+
+    }
 
   /**
    *
