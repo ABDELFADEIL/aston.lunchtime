@@ -75,15 +75,16 @@ export class LoginComponent implements OnInit {
     this.user = this.userFormLongin.value;
     console.log(this.user);
     this.authenticationService.login(this.user).subscribe(res => {
-      let jwtToken = res.headers.get('authorization');
+      let jwtToken = res.headers.get('Authorization');
       this.authenticationService.saveToken(jwtToken);
+      this.authenticationService.getUserAuthenticated(jwtToken);
       this.authenticationService.authenticated = true;
       this.authenticationService.display = false;
       this.message = "connexion réussie!"
     }, error => {
       this.message = "Le email ou le mot de passe est incorrect!"
       console.log(error);
-    })
+    });
 
   }
 

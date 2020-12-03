@@ -20,7 +20,7 @@ export class HomeComponent implements OnInit {
   mealList = [];
   menuList = [];
   date;
-  
+
 
   constructor(private menuService: MenuService,
     private ordersService: OrdersService,
@@ -32,6 +32,8 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
     this.getMealsJour();
     this.getMenuJour();
+    // ici c'est l'utilisateur authentifié
+    console.log(this.authenticationService.user)
 
   }
 
@@ -62,8 +64,8 @@ export class HomeComponent implements OnInit {
   }
     getDate() {
       let date = new Date().getUTCHours()+2.5;
-      return date.toString();      
-    }  
+      return date.toString();
+    }
 
   /**
    *

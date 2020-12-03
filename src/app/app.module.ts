@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import {NgModule, NO_ERRORS_SCHEMA} from '@angular/core';
+import {NgModule, NO_ERRORS_SCHEMA, OnInit} from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
@@ -93,4 +93,11 @@ import {DigitalClockComponent} from "./components/digital-clock/digital-clock.co
   providers: [ConfirmationService],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule implements OnInit{
+
+
+
+  ngOnInit(): void {
+
+  }
+}

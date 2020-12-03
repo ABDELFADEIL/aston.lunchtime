@@ -13,12 +13,8 @@
               <div *ngIf="authenticationService.authenticated" class="p-m-2" style="margin-right: 20px;">
                 <i class="fa fa-sign-in clickable" (click)="logout()"  style="font-size: 1.3rem;"></i>
               </div>
-              <div *ngIf="!authenticationService.authenticated" class="p-m-2">
-                <i class="fa fa-user clickable" (click)="authenticationService.show()" style="font-size: 1.3rem;">
-                  <strong class="nav-item">mon compte</strong>
-                </i>
-              </div>
-              
+
+
             </div>
           </ng-template>
 

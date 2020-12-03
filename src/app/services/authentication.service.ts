@@ -44,7 +44,11 @@ export class AuthenticationService {
 
 
   }
-
+  getUserAuthenticated(jwtToken: string){
+    let jwtHelper = new JwtHelper();
+    this.user = jwtHelper.decodeToken(jwtToken).user;
+    console.log(this.user);
+  }
   loadToken() {
     this.jwtToken = localStorage.getItem('jwtToken');
     return this.jwtToken;
@@ -100,10 +104,10 @@ export class AuthenticationService {
     }
   }
 
-  getUserInfo(){
+  getUserInfo(user_id: number){
     // if(this.jwtToken==null)
     //this.jwtToken = this.loadToken();
-    return this.http.get(URL+"/api/users/user-info");
+    return this.http.get(URL+"user/find/"+user_id);
   }
 
   show() {
