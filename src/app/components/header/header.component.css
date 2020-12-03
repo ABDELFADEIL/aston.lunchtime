@@ -9,3 +9,11 @@
   color: #E9E581;
   transform: scale(1);
 }
+
+.nav-item {
+  text-transform: uppercase;
+  color: white  ;
+}
+
+
+

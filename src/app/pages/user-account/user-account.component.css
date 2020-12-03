@@ -1,0 +1,161 @@
+.nav-header {
+    background-color: white;
+    border-bottom: 0.08em solid #C4C4C4;
+    height: 100px;
+    padding: 10px 0 10px 0;
+    box-shadow: 0 2px 2px -2px gray;
+}
+
+.nav {
+    width: 1000px;
+    margin: auto;
+}
+
+div.small-logo{
+margin: auto;
+}
+.logo-link {
+    display: block;
+    text-align: center;
+    height: 0;
+}
+.logo-link img {
+    vertical-align: middle;
+}
+.user-infos {
+    padding-top: 80%;
+}
+
+
+.right, .user-role {
+    float: right;
+    padding-right: 40px;
+}
+.img-user {
+    clip-path:ellipse(50% 50%);
+}
+
+.nav-left {
+    background-color:#87AAB9;
+    width: 100px;
+    height: 744px;
+    margin-top: -100px;
+}
+
+.order, .euro, .infos , .settings {
+    height: 100px;
+    width: 100px;
+    display: flex;  
+}
+
+.order:hover, .euro:hover, .infos:hover , .settings:hover{
+    background-color: #E9E581;
+}
+.icone, a {
+    height: 50px;
+    width: 50px;
+    margin: auto;
+}
+.items {
+padding-top: 170px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

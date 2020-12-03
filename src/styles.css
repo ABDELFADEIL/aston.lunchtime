@@ -72,7 +72,7 @@ ul.p-menubar-root-list {
 }*/
 
 html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+body { margin: 0; font-family: Poiret One, "Helvetica Neue", sans-serif; }  
 
 .p-card-shadow.p-card.p-component {
   display: flex !important;
