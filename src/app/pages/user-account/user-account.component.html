@@ -1,6 +1,6 @@
 
 <div class="p-d-flex">  
-   <nav class="nav">
+   <div class="modal">
       <div class="nav-header">
             <div class="small-logo p-mr-2">
                 <a class="logo-link" [routerLink]="[ '/home' ]"><img src="assets/logo.jpg" height="80px"></a> 
@@ -11,6 +11,16 @@
             <div class="user-role p-mr-2">
                 <p class="user-infos">Nom <br>Role</p>
             </div>   
+      </div>
+      <div class="content">
+        <h1 class="title-card">Ma cagnotte</h1>
+        <p-card [style]="{'width': '500px', 'margin': 'auto', 'background-color':'#F6F6F6', 'height': '350px', 'padding-top':'30px'}">
+          <ng-template pTemplate="header">
+              <img alt="empty-ct" src="assets/user-account/cat.png" [style]="{'width': '200px','display':'block','margin':'auto'}">
+          </ng-template>
+          <h1 class="titte-ct-empty">Votre Cagnotte est vide </h1>
+          <p class="text">Si vous souhaitez passer des commandes <br/>vous devez recharger votre cagnotte <br/>auprès de la cantinière</p>
+      </p-card>
       </div>
 
       <div class="p-flex-column nav-left">
@@ -29,39 +39,12 @@
             </div>
         </div>
       </div>
-    </nav>
   </div>
+</div>
 
 
-  <section id="shopping">
     
-  </section>
-  <section id="cagnotte">
-    
-  </section>
-  <section id="empty_cagnotte">
-    
-  </section>
-  <section id="user_infos">
-    
-  </section>
-  <section id="settings">
-    
-  </section>
-
-
-
-
-
-
-  
-
-
-
-
-
-
-
+   
 
 
 
