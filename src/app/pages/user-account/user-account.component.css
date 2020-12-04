@@ -23,13 +23,13 @@ margin: auto;
     vertical-align: middle;
 }
 .user-infos {
-    padding-top: 80%;
+    padding-top: 40%;
+    padding-right: 30px;
 }
 
 
 .right, .user-role {
     float: right;
-    padding-right: 40px;
 }
 .img-user {
     clip-path:ellipse(50% 50%);
@@ -61,9 +61,39 @@ padding-top: 170px;
 }
 
 
+/***********responsive***********/
+@media screen and (max-width: 500px) {
 
+    .img-user {
+        height: 40px;
+    }
 
+    .small-logo {
+        display: none;
+    }
+    .user-infos {
+        padding-top: 0;
+    }
 
+    .nav-header {
+        height: 60px;
+    }
+    .nav-left {
+        width: 60px;
+    }
+
+    .order, .euro, .infos , .settings {
+        height: 60px;
+        width: 60px;
+    }
+    .icone, a {
+        height: 30px;
+        width: 30px;
+    }
+
+    
+}
+/********* end responsive ***********/
 
 
 

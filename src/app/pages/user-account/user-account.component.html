@@ -1,17 +1,19 @@
-    <nav class="nav">
+
+<div class="p-d-flex">  
+   <nav class="nav">
       <div class="nav-header">
-            <div class="small-logo">
+            <div class="small-logo p-mr-2">
                 <a class="logo-link" [routerLink]="[ '/home' ]"><img src="assets/logo.jpg" height="80px"></a> 
             </div>
-            <div class="right">
+            <div class="right p-mr-2">
                 <img src="assets/user-account/user-profile.jpg" height="80px" class="img-user">    
             </div>
-            <div class="user-role">
+            <div class="user-role p-mr-2">
                 <p class="user-infos">Nom <br>Role</p>
             </div>   
       </div>
 
-      <div class="nav-left">
+      <div class="p-flex-column nav-left">
         <div class="items">
             <div class="order">
               <a><img class="icone" src="assets/user-account/icones/shopping-cart.png"></a>
@@ -28,6 +30,7 @@
         </div>
       </div>
     </nav>
+  </div>
 
 
   <section id="shopping">
