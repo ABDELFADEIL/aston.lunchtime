@@ -1,44 +1,65 @@
 
 <div class="p-d-flex">  
-   <div class="modal">
-      <div class="nav-header">
-            <div class="small-logo p-mr-2">
+   <div class="modal p-mr-12">
+      <div class="nav-header p-mr-12">
+            <div class="p-mr-4">
+            </div>
+            <div class="small-logo p-mr-4">
                 <a class="logo-link" [routerLink]="[ '/home' ]"><img src="assets/logo.jpg" height="80px"></a> 
             </div>
-            <div class="right p-mr-2">
+            <div class="right p-mr-4">
                 <img src="assets/user-account/user-profile.jpg" height="80px" class="img-user">    
             </div>
-            <div class="user-role p-mr-2">
+            <div class="user-role p-mr-4">
                 <p class="user-infos">Nom <br>Role</p>
             </div>   
       </div>
-      <div class="content">
-        <h1 class="title-card">Ma cagnotte</h1>
-        <p-card [style]="{'width': '500px', 'margin': 'auto', 'background-color':'#F6F6F6', 'height': '350px', 'padding-top':'30px'}">
-          <ng-template pTemplate="header">
-              <img alt="empty-ct" src="assets/user-account/cat.png" [style]="{'width': '200px','display':'block','margin':'auto'}">
-          </ng-template>
-          <h1 class="titte-ct-empty">Votre Cagnotte est vide </h1>
-          <p class="text">Si vous souhaitez passer des commandes <br/>vous devez recharger votre cagnotte <br/>auprès de la cantinière</p>
-      </p-card>
-      </div>
 
-      <div class="p-flex-column nav-left">
-        <div class="items">
-            <div class="order">
-              <a><img class="icone" src="assets/user-account/icones/shopping-cart.png"></a>
-            </div>  
-            <div class="euro">
-              <a><img class="icone" src="assets/user-account/icones/euro.png"></a>
-            </div>
-            <div class="infos">
-              <a><img class="icone" src="assets/user-account/icones/info.png"></a>
-            </div>
-            <div class="settings">
-              <a><img class="icone" src="assets/user-account/icones/settings.png">  </a>
-            </div>
+  
+        <!------<div class="p-mr-12">
+          <h1 class="title-card">Ma cagnotte</h1>
         </div>
+        
+        ---->
+        
+       
+      
+      <div class="p-grid">
+        <div class="p-col-1 nav-left">
+          <div class="items">
+              <div class="order">
+                <a><img class="icone" src="assets/user-account/icones/shopping-cart.png"></a>
+              </div>  
+              <div class="euro">
+                <a><img class="icone" src="assets/user-account/icones/euro.png"></a>
+              </div>
+              <div class="infos">
+                <a><img class="icone" src="assets/user-account/icones/info.png"></a>
+              </div>
+              <div class="settings">
+                <a><img class="icone" src="assets/user-account/icones/settings.png">  </a>
+              </div>
+          </div>
+        </div>
+  
+          <div class="p-col-2">
+            <h1 class="title-card"> Ma cagnotte</h1>
+          </div>
+          <div class="card-content p-col-7">
+              <p-card [style]="{'background-color':'#F6F6F6'}">
+              <ng-template pTemplate="header">
+                  <img alt="empty-ct" src="assets/user-account/cat.png" [style]="{'width': '50%','display':'block','margin':'auto'}">
+              </ng-template>
+              <h1 class="titte-ct-empty">Votre Cagnotte est vide </h1>
+              <p class="text">Si vous souhaitez passer des commandes <br/>vous devez recharger votre cagnotte <br/>auprès de la cantinière</p>
+              </p-card>
+          </div>
+          <div class="p-col-2"></div>
       </div>
+        
+    
+  
+      
   </div>
 </div>
 
