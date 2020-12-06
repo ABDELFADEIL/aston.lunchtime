@@ -43,23 +43,23 @@ export class AuthenticationService {
     // this.email = jwtHelper.decodeToken(this.jwtToken).sub;
 
   }
-<<<<<<< HEAD
 
-  getUserAuthenticated(jwtToken: string){
-=======
+
+
   getUserAuthenticated(){
     this.jwtToken = localStorage.getItem('jwtToken');
->>>>>>> 17d4b53214605d1d0519fd7b7e374f94d983216c
     let jwtHelper = new JwtHelper();
     this.user = jwtHelper.decodeToken(this.jwtToken).user;
     console.log(this.user);
+    this.roles = jwtHelper.decodeToken(this.jwtToken).roles;
+    console.log(this.roles);
     return this.user ;
   }
- getToken(){
-    return localStorage.getItem(this.jwtToken);
-  }
+
   loadToken() {
     this.jwtToken = localStorage.getItem('jwtToken');
+    console.log("this.jwtToken : ")
+    console.log(this.jwtToken)
     return this.jwtToken;
   }
 

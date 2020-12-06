@@ -20,8 +20,7 @@ export class HomeComponent implements OnInit {
   mealList = [];
   menuList = [];
   date:boolean;
-  jwtToken:string;
-  
+
 
 
   constructor(private menuService: MenuService,
@@ -32,25 +31,20 @@ export class HomeComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.getMealsJour();
-    this.getMenuJour();
-  //  this.token();
-    // ici c'est l'utilisateur authentifié
-    console.log(this.authenticationService.isUser);
-    console.log(new Date());
+      this.getMealsJour();
+      this.getMenuJour();
+      console.log(new Date());
   }
 
-   token(){
-    this.jwtToken= this.authenticationService.getToken();
-  }
-  
 
   async getMenuJour() {
     const response = await this.menuService.getMenuToday();
     this.menuList = response;
+    /*
     this.menuList.forEach(element => {
       this.getMenuImage(element.id)
     });
+     */
   }
   async getMenuImage(id_menu) {
     const res = await this.menuService.getImage(id_menu);
@@ -64,7 +58,7 @@ export class HomeComponent implements OnInit {
   }
 
   async orderHomepage(obj) {
-    let or =await this.ordersService.order(obj);
+    let or =await this.ordersService.addOrder(obj);
     console.log(or)
   }
 

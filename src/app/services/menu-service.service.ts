@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { getNumberOfCurrencyDigits } from '@angular/common';
 import {AuthenticationService} from 'src/app/services/authentication.service';
+import {toPromise} from "rxjs-compat/operator/toPromise";
 
 @Injectable({
   providedIn: 'root'
@@ -14,21 +15,16 @@ export class MenuService {
   constructor(private http:HttpClient, private authenticationService: AuthenticationService) { }
 
 async getMenus():Promise<any>{
-   return this.http.get<any>(this.api_url+"menu/findall",
-   {
-     headers: new HttpHeaders({
-       'Content-Type' : 'application/json',
-       'Authorization' : this.jwtToken
-     })
-   }).toPromise();
+   return this.http.get<any>(this.api_url+"menu/findall").toPromise();
 
 }
 getMenuById(menuId:number) : Promise<any> {
-  return this.http.get<any>(this.api_url+"menu/find/menuId").toPromise();
+  return this.http.get<any>(this.api_url+"menu/find/menuId",  null).toPromise();
 }
 
-getMenuToday() : Promise<any> {
-return this.http.get<any>(this.api_url+"menu/findallavailablefortoday").toPromise();
+getMenuToday() : Promise<[]> {
+    console.log("getMenuToday : ")
+return this.http.get<[]>(this.api_url+"menu/findallavailablefortoday").toPromise();
   }
 async getImage(id_menu:number): Promise<any> {
    return this.http.get<any>(this.api_url+"menu/findimg/"+id_menu).toPromise();

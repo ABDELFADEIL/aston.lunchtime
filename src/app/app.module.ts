@@ -1,4 +1,4 @@
-import { BrowserModule } from '@angular/platform-browser';
+import {BrowserModule, Title} from '@angular/platform-browser';
 import {NgModule, NO_ERRORS_SCHEMA, OnInit} from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -10,7 +10,7 @@ import { ClientOrdersComponent } from './pages/client-orders/client-orders.compo
 import { OrdersManagementComponent } from './pages/orders-management/orders-management.component';
 import { ClientsManagementComponent } from './pages/clients-management/clients-management.component';
 import { MenusManagementComponent } from './pages/menus-management/menus-management.component';
-import {HttpClientModule} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {AccordionModule} from 'primeng/accordion';
@@ -39,6 +39,8 @@ import {OverlayPanelModule} from "primeng/overlaypanel";
 import {SplitButtonModule} from "primeng/splitbutton";
 import {DigitalClockComponent} from "./components/digital-clock/digital-clock.component";
 import {OrderListModule} from 'primeng/orderlist';
+import {JwtInterceptor} from "./helpers/jwt.interceptor";
+import {ErrorInterceptor} from "./helpers/error.interceptor";
 
 
 
@@ -92,7 +94,9 @@ import {OrderListModule} from 'primeng/orderlist';
     LoginComponent
 ],
   schemas: [NO_ERRORS_SCHEMA],
-  providers: [ConfirmationService],
+  providers: [ConfirmationService,
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }
+    ],
   bootstrap: [AppComponent]
 })
 export class AppModule implements OnInit{

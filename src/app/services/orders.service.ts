@@ -21,29 +21,18 @@ export class OrdersService {
 
 
  async getOrders():Promise<any>{
-    return this.http.get<any>(this.api_url+"order/findall",
-    {
-      headers: new HttpHeaders({
-        'Content-Type' : 'application/json',
-        'Authorization' : this.jwtToken
-      })
-    }).toPromise();
- 
+    return this.http.get<any>(this.api_url+"order/findall").toPromise();
+
  }
- async order(obj:any): Promise<any>{
+ async addOrder(obj:any): Promise<any>{
    return this.http.put<any>(this.api_url+"order/add", JSON.stringify(obj),
-   {
-    headers: new HttpHeaders({
-      'Content-Type' : 'application/json',
-      'Authorization' : this.jwtToken    
-    
-   })
-   })
-   
+     {headers:new HttpHeaders({'authorization':this.authenticationService.jwtToken})})
+     .toPromise();
+
   }
 
 
- 
+
 
   getOrderById(id:number):Promise<any> {
     return this.http.get<any>(this.api_url + "order/find/" + id).toPromise();
@@ -52,6 +41,7 @@ export class OrdersService {
     return this.http.get<any>(this.api_url + "order/findallforuser/" + id).toPromise();
   }
   getAllOrdersForAllUsersByDate(status?:number,beginDate?:string,endDate?:string):Promise<any> {
-    return this.http.get<any>(this.api_url + "order/findallbetweendateinstatus?status="+status+"&beginDate="+beginDate+"&endDate=" + endDate ).toPromise();
+    return this.http.get<any>(this.api_url + "order/findallbetweendateinstatus?status="+status+"&beginDate="+beginDate+"&endDate=" + endDate ,
+      {headers:new HttpHeaders({'authorization':this.authenticationService.jwtToken})} ).toPromise();
   }
 }
