@@ -20,7 +20,7 @@ export class OrdersService {
   date = this.d.getFullYear() + '-' + (this.d.getMonth() + 1) + '-' + this.d.getDate() + '' + this.d.getHours() + '' + this.d.getMinutes();
 
 
-  async getOrders():Promise<any>{
+ async getOrders():Promise<any>{
     return this.http.get<any>(this.api_url+"order/findall",
     {
       headers: new HttpHeaders({
@@ -30,16 +30,20 @@ export class OrdersService {
     }).toPromise();
  
  }
-  orderMenu(id_menu: number): Promise<any> {
-    return fetch(this.api_url + id_menu, {
-      method: "PUT"
-    });
+ async order(obj:any): Promise<any>{
+   return this.http.put<any>(this.api_url+"order/add", JSON.stringify(obj),
+   {
+    headers: new HttpHeaders({
+      'Content-Type' : 'application/json',
+      'Authorization' : this.jwtToken    
+    
+   })
+   })
+   
   }
-  orderMeal(id_meal: number): Promise<any> {
-    return fetch(this.api_url + id_meal, {
-      method: "PUT"
-    });
-  }
+
+
+ 
 
   getOrderById(id:number):Promise<any> {
     return this.http.get<any>(this.api_url + "order/find/" + id).toPromise();

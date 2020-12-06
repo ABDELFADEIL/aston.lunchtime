@@ -77,7 +77,7 @@ export class LoginComponent implements OnInit {
     this.authenticationService.login(this.user).subscribe(res => {
       let jwtToken = res.headers.get('Authorization');
       this.authenticationService.saveToken(jwtToken);
-      this.authenticationService.getUserAuthenticated(jwtToken);
+      this.authenticationService.getUserAuthenticated();
       this.authenticationService.authenticated = true;
       this.authenticationService.display = false;
       this.message = "connexion réussie!"
