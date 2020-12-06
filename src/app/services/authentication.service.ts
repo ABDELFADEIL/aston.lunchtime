@@ -44,6 +44,7 @@ export class AuthenticationService {
 
 
   }
+
   getUserAuthenticated(jwtToken: string){
     let jwtHelper = new JwtHelper();
     this.user = jwtHelper.decodeToken(jwtToken).user;

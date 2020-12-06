@@ -38,6 +38,7 @@ import { DialogModule } from 'primeng/dialog'
 import {OverlayPanelModule} from "primeng/overlaypanel";
 import {SplitButtonModule} from "primeng/splitbutton";
 import {DigitalClockComponent} from "./components/digital-clock/digital-clock.component";
+import {OrderListModule} from 'primeng/orderlist';
 
 
 
@@ -82,7 +83,8 @@ import {DigitalClockComponent} from "./components/digital-clock/digital-clock.co
     ReactiveFormsModule,
     ButtonModule,
     DialogModule,
-    TabViewModule
+    TabViewModule,
+    OrderListModule
 
 
   ],
