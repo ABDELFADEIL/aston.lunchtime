@@ -31,7 +31,7 @@ export class AuthenticationService {
 
 
   login(form: User) {
-    return  this.http.post(URL+"login", form, { observe: 'response' });
+    return  this.http.post("http://localhost:8080/lunchtime/login", form, { observe: 'response' });
   }
 
 
@@ -42,21 +42,29 @@ export class AuthenticationService {
     this.roles = jwtHelper.decodeToken(this.jwtToken).roles;
     // this.email = jwtHelper.decodeToken(this.jwtToken).sub;
 
-
   }
+<<<<<<< HEAD
 
   getUserAuthenticated(jwtToken: string){
+=======
+  getUserAuthenticated(){
+    this.jwtToken = localStorage.getItem('jwtToken');
+>>>>>>> 17d4b53214605d1d0519fd7b7e374f94d983216c
     let jwtHelper = new JwtHelper();
-    this.user = jwtHelper.decodeToken(jwtToken).user;
+    this.user = jwtHelper.decodeToken(this.jwtToken).user;
     console.log(this.user);
+    return this.user ;
+  }
+ getToken(){
+    return localStorage.getItem(this.jwtToken);
   }
   loadToken() {
     this.jwtToken = localStorage.getItem('jwtToken');
     return this.jwtToken;
   }
 
-  register(user:any) :Observable<User>{
-    return this.http.post<User>(URL+ "user/register", user);
+  register(user) {
+    return this.http.post(URL+ "/user/register", user);
   }
 
 
@@ -92,23 +100,10 @@ export class AuthenticationService {
     }
   }
 
-  isAuthenticated(){
-    let jwtHelper=new JwtHelper();
-    this.jwtToken= localStorage.getItem('jwtToken');
-    if (this.jwtToken){
-      this.roles=jwtHelper.decodeToken(this.jwtToken).roles;
-      for(let r of this.roles) {
-        if(r.authority=='ROLE_LUNCHLADY' || r.authority=='ROLE_USER'){
-          return true;
-        }
-      }
-    }
-  }
-
-  getUserInfo(user_id: number){
+  getUserInfo(){
     // if(this.jwtToken==null)
     //this.jwtToken = this.loadToken();
-    return this.http.get(URL+"user/find/"+user_id);
+    return this.http.get(URL+"/api/users/user-info");
   }
 
   show() {

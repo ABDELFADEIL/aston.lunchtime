@@ -1,4 +1,4 @@
-<div class ="meals">
+<div *ngIf = "allMeals" class ="meals">
     <!--<div  class="card-menu" *ngFor="let menu of menuList">-->
     <p-card *ngFor="let meals of allMeals" header="{{meals.label}}"  [style]="{width: '360px'}" styleClass="p-card-shadow">
         <ng-template pTemplate="header">

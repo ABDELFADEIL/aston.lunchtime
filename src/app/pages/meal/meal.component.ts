@@ -11,7 +11,7 @@ import { CardModule } from 'primeng/card';
 })
 export class MealComponent implements OnInit {
  
-  allMeals=[];
+  allMeals:[]=[];
   constructor(private mealService: MealService, private ordersService: OrdersService) { }
 
   ngOnInit(): void {
@@ -21,20 +21,14 @@ export class MealComponent implements OnInit {
   async getAllMeals() {
     const response = await this.mealService.getMeals();
     this.allMeals = response;
-    this.allMeals.forEach(element => {
-      this.getMealImage(element.id)
-      console.log(this.allMeals);
-    });
+    console.log(response);
+      
+  
   }
   async getMealImage(id_meal) {
     const res = await this.mealService.findImgMeal(id_meal);
-    this.allMeals.forEach(element => {
-      if (element.imageId === res.id) {
-        element.img = res.image64;
-        // console.log(this.menuList);
-
-      }
-    });
+    const img = res.image64;
+    return img;
   }
 
     

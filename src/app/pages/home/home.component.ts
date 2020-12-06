@@ -8,7 +8,7 @@ import { MealService } from 'src/app/services/meal-service.service';
 import { MatCardModule } from '@angular/material/card';
 import {AuthenticationService} from 'src/app/services/authentication.service';
 import {User} from "../../models/user";
-
+import {UserService} from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-home',
@@ -20,6 +20,8 @@ export class HomeComponent implements OnInit {
   mealList = [];
   menuList = [];
   date:boolean;
+  jwtToken:string;
+  
 
 
   constructor(private menuService: MenuService,
@@ -32,12 +34,16 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
     this.getMealsJour();
     this.getMenuJour();
+  //  this.token();
     // ici c'est l'utilisateur authentifié
-    console.log(this.authenticationService.user)
+    console.log(this.authenticationService.isUser);
     console.log(new Date());
-
   }
 
+   token(){
+    this.jwtToken= this.authenticationService.getToken();
+  }
+  
 
   async getMenuJour() {
     const response = await this.menuService.getMenuToday();
@@ -57,12 +63,11 @@ export class HomeComponent implements OnInit {
     });
   }
 
-  getOrderMenu(id_menu) {
-    this.ordersService.orderMenu(id_menu);
+  async orderHomepage(obj) {
+    let or =await this.ordersService.order(obj);
+    console.log(or)
   }
-  getOrderMeal(id_meal) {
-    this.ordersService.orderMeal(id_meal);
-  }
+
     getDate() {
       let date = new Date();
       let hour = date.getHours();

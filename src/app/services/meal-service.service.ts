@@ -10,14 +10,9 @@ export class MealService {
   private api_url = "http://localhost:8080/lunchtime/";
   constructor(private http: HttpClient) { }
 
-  async getMeals():Promise<any>{
-    return this.http.get<any>(this.api_url+"meal/findall",
-    {
-      headers: new HttpHeaders({
-        'Content-Type' : 'application/json',
-        'Authorization' : this.jwtToken
-      })
-    }).toPromise();
+  async getMeals():Promise<[]>{
+    return this.http.get<[]>(this.api_url+"meal/findall") 
+    .toPromise();
  
  }
   getById(mealId: number): Promise<any> {
