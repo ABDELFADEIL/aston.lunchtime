@@ -38,10 +38,10 @@
          &nbsp;
         <p-button (click)="showInfo()" icon="pi pi-external-link" styleClass="p-button-primary"label="commander"*ngIf="!authenticationService.authenticated"></p-button>
         <p-dialog header="info" [(visible)]="displayBasic" [style]="{width: '20vw',background:'black'}">
-            <h1>Envie commander? inscriez-vous</h1>
-            <ng-template pTemplate="footer"> 
-                <p-button icon="pi pi-check" (click)="displayBasic=false" label="Ok" styleClass="p-button-text"></p-button>
-            </ng-template>
+        <h1>Envie commander? Inscriez-vous</h1>
+    <ng-template pTemplate="footer"> 
+     <p-button icon="pi pi-user-edit" [routerLink]="['/login']" label="Ok" styleClass="p-button-text"></p-button>
+    </ng-template>
         </p-dialog>     
     </ng-template>
 </p-card>

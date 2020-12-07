@@ -26,7 +26,7 @@ getMenuToday() : Promise<[]> {
     console.log("getMenuToday : ")
 return this.http.get<[]>(this.api_url+"menu/findallavailablefortoday").toPromise();
   }
-async getImage(id_menu:number): Promise<any> {
+async findImgMenu(id_menu:number): Promise<any> {
    return this.http.get<any>(this.api_url+"menu/findimg/"+id_menu).toPromise();
 
 }

@@ -10,6 +10,7 @@ import {AuthenticationService} from 'src/app/services/authentication.service';
 import {User} from "../../models/user";
 import {UserService} from 'src/app/services/user.service';
 
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -28,6 +29,7 @@ export class HomeComponent implements OnInit {
     private ingredientService: IngredientService,
     private mealService: MealService,
     public authenticationService: AuthenticationService,
+    private userService: UserService,
   ) { }
 
   ngOnInit(): void {
@@ -40,14 +42,13 @@ export class HomeComponent implements OnInit {
   async getMenuJour() {
     const response = await this.menuService.getMenuToday();
     this.menuList = response;
-    /*
     this.menuList.forEach(element => {
-      this.getMenuImage(element.id)
-    });
-     */
+    this.getMenuImage(element.id)
+    })
+    
   }
   async getMenuImage(id_menu) {
-    const res = await this.menuService.getImage(id_menu);
+    const res = await this.menuService.findImgMenu(id_menu);
     this.menuList.forEach(element => {
       if (element.imageId === res.id) {
         element.img = res.image64;
@@ -57,9 +58,12 @@ export class HomeComponent implements OnInit {
     });
   }
 
+
   async orderHomepage(obj) {
-    let or =await this.ordersService.addOrder(obj);
-    console.log(or)
+    if(this.authenticationService.isUser && this.userService.findById !=null ){
+    const order =await this.ordersService.addOrder(obj);
+    console.log(order);
+    } 
   }
 
     getDate() {
