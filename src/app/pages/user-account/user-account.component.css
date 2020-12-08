@@ -33,13 +33,14 @@ margin: auto;
     float: right;
 }
 .img-user {
-    clip-path:ellipse(50% 50%);
+    border-radius: 80px;
+border: 1px solid #E9E581;
 }
 
 .nav-left {
     background-color:#87AAB9;
-    height: 744px;
-    margin-top: -100px;
+    height:650px;
+    margin-top: -100px!important;
 }
 
 .order, .euro, .infos , .settings {
@@ -67,12 +68,6 @@ padding-top: 170px;
     text-align: center;
     font-size: 20px;
 }
-
-.title-card{
-    padding:20px;
-    font-size: 14px;
-
-}
 .small-logo {
     margin: auto;
 }
@@ -83,9 +78,16 @@ padding-top: 170px;
 
 .content {
     float: right;
-    background-color: hotpink;
 }
-
+.title {
+    padding-left:10%;
+    position: absolute;
+}
+.title-card {
+    padding-top: 30px;
+    margin: 0;
+    font-size: 20px;
+}
 .p-col-1 {
     padding: 0;
     margin: 0;
@@ -98,6 +100,45 @@ padding-top: 170px;
 .card-content {
     margin: auto;
 }
+.nav-content {
+    height: 100px;
+}
+.card {
+    padding-bottom: 100px;
+}
+
+/***********jackpot***********/
+.btn-order {
+    text-transform: uppercase;
+    background-color:#DE1B1B;
+    display: block;
+    margin: auto;
+    margin-top: 50px;
+}
+.ct-text {
+    text-align: center;
+    font-size: 18px;
+}
+.ct-sum{
+    text-align: center; 
+    color:#DE1B1B;
+    font-size: 50px;
+    font-weight: bold;
+}
+.ct-content {
+    margin: auto;
+}
+.ct-background {
+    background-color: #87AAB9;
+    border-radius: 200px;
+    width: 200px;
+    height: 200px;
+    margin: auto;
+    display: flex;
+    border: 1px solid #E9E581;
+
+}
+/***********end jackpot***********/
 
 
 /***********responsive***********/
@@ -129,9 +170,19 @@ padding-top: 170px;
         height: 30px;
         width: 30px;
     }
-
-   
-    
+    .title-card {
+        text-align: center;
+    }
+    .ct-background {
+        width: 150px;
+        height: 150px;
+    }
+    .ct-sum{
+        font-size:40px;
+    }
+    .ct-text{
+        font-size: 14px;
+    }
 }
 /********* end responsive ***********/
 

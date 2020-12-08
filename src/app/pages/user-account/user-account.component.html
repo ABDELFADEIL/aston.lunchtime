@@ -14,17 +14,14 @@
                 <p class="user-infos">Nom <br>Role</p>
             </div>   
       </div>
-
-  
-        <!------<div class="p-mr-12">
-          <h1 class="title-card">Ma cagnotte</h1>
+      <div class='p-grid'>
+        <div class="p-col-1">
         </div>
-        
-        ---->
-        
-       
-      
-      <div class="p-grid">
+        <div class="p-col-11 title">
+          <h1 class="title-card"> Ma cagnotte</h1>
+        </div>
+      </div>
+      <div class="p-grid nav-content">
         <div class="p-col-1 nav-left">
           <div class="items">
               <div class="order">
@@ -41,26 +38,35 @@
               </div>
           </div>
         </div>
-  
-          <div class="p-col-2">
-            <h1 class="title-card"> Ma cagnotte</h1>
+      </div>
+        <div class="p-grid card">
+          <div class="p-col-1">
           </div>
-          <div class="card-content p-col-7">
-              <p-card [style]="{'background-color':'#F6F6F6'}">
+          <div class="p-col-2">
+          </div>
+          <!-- <p-card [style]="{'background-color':'#F6F6F6'}">
               <ng-template pTemplate="header">
                   <img alt="empty-ct" src="assets/user-account/cat.png" [style]="{'width': '50%','display':'block','margin':'auto'}">
               </ng-template>
               <h1 class="titte-ct-empty">Votre Cagnotte est vide </h1>
               <p class="text">Si vous souhaitez passer des commandes <br/>vous devez recharger votre cagnotte <br/>auprès de la cantinière</p>
+              </p-card> -->
+          <div class="card-content p-col-7">
+              <p-card [style]="{'background-color':'#F6F6F6'}">
+              <ng-template pTemplate="header">
+              </ng-template>
+              <div class="ct-background">
+                <div class="ct-content">
+                  <p class="ct-text">Vous avez</p>
+                  <p class="ct-sum">50€</p>
+                  <p class="ct-text">Dans votre cagnotte</p>
+                </div>
+              </div>
               </p-card>
+              <button pButton type="button" label="commander" class="btn-order p-button-rounded"></button>
           </div>
-          <div class="p-col-2"></div>
-      </div>
-        
-    
-  
-      
-  </div>
+          <div class="p-col-2 left"></div>
+        </div>
 </div>
 
 
