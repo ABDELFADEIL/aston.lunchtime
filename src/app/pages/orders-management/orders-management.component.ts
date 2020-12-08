@@ -51,5 +51,5 @@ export class OrdersManagementComponent implements OnInit {
    console.log("getAllOrdersForAllUsersByDate =>");
    console.log(allOrdersByDate);
   }
-  
+
 }

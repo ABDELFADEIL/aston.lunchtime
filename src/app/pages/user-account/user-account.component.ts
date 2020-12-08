@@ -16,7 +16,6 @@ export class UserAccountComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    console.log(this.authenticationService.getUserAuthenticated())
   }
 }
 

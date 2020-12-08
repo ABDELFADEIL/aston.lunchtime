@@ -41,7 +41,14 @@ export class OrdersService {
     return this.http.get<any>(this.api_url + "order/findallforuser/" + id).toPromise();
   }
   getAllOrdersForAllUsersByDate(status?:number,beginDate?:string,endDate?:string):Promise<any> {
+   if (!beginDate){
+     return this.http.get<any>(this.api_url + "order/findallbetweendateinstatus?status="+status+"&endDate=" + endDate ,
+       {headers:new HttpHeaders({'Authorization':this.authenticationService.jwtToken})} ).toPromise();
+   } if (!endDate){
+      return this.http.get<any>(this.api_url + "order/findallbetweendateinstatus?status="+status+"&beginDate="+beginDate ,
+        {headers:new HttpHeaders({'Authorization':this.authenticationService.jwtToken})} ).toPromise();
+    }
     return this.http.get<any>(this.api_url + "order/findallbetweendateinstatus?status="+status+"&beginDate="+beginDate+"&endDate=" + endDate ,
-      {headers:new HttpHeaders({'authorization':this.authenticationService.jwtToken})} ).toPromise();
+      {headers:new HttpHeaders({'Authorization':this.authenticationService.jwtToken})} ).toPromise();
   }
 }

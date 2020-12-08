@@ -8,12 +8,12 @@ import {AuthenticationService} from 'src/app/services/authentication.service';
 export class MealService {
   jwtToken: string;
   private api_url = "http://localhost:8080/lunchtime/";
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private authenticationService: AuthenticationService) { }
 
   async getMeals():Promise<[]>{
-    return this.http.get<[]>(this.api_url+"meal/findall") 
+    return this.http.get<[]>(this.api_url+"meal/findall", {headers:new HttpHeaders({'Authorization':this.authenticationService.jwtToken})})
     .toPromise();
- 
+
  }
   getById(mealId: number): Promise<any> {
     return this.http.get<any>(this.api_url + "meal/find/mealId").toPromise();

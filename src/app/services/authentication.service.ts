@@ -49,22 +49,23 @@ export class AuthenticationService {
   getUserAuthenticated(){
     this.jwtToken = localStorage.getItem('jwtToken');
     let jwtHelper = new JwtHelper();
-    this.user = jwtHelper.decodeToken(this.jwtToken).user;
-    console.log(this.user);
-    this.roles = jwtHelper.decodeToken(this.jwtToken).roles;
-    console.log(this.roles);
+    if (this.jwtToken){
+      this.user = jwtHelper.decodeToken(this.jwtToken).user;
+      console.log(this.user);
+      this.roles = jwtHelper.decodeToken(this.jwtToken).roles;
+      console.log(this.roles);
+    }
+
     return this.user ;
   }
 
   loadToken() {
     this.jwtToken = localStorage.getItem('jwtToken');
-    console.log("this.jwtToken : ")
-    console.log(this.jwtToken)
     return this.jwtToken;
   }
 
   register(user) {
-    return this.http.post(URL+ "/user/register", user);
+    return this.http.put(URL+ "user/register", user);
   }
 
 

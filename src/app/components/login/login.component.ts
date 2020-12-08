@@ -107,10 +107,11 @@ export class LoginComponent implements OnInit {
 
   onRegister() {
     console.log(this.userForm.value);
-
     this.authenticationService.register(this.userForm.value).subscribe((res:any)=> {
       console.log(res);
       this.authenticationService.user = res;
+      this.message = "Inscription avec succès! "
+      this.login = true;
     }, error => {
       console.log(error);
     });
