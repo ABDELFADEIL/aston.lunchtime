@@ -1,12 +1,12 @@
 <div *ngIf = "allMeals" class ="meals">
     <!--<div  class="card-menu" *ngFor="let menu of menuList">-->
-    <p-card *ngFor="let meals of allMeals" header="{{meals.label}}"  [style]="{width: '360px'}" styleClass="p-card-shadow">
+    <p-card *ngFor="let amls of allMeals" header="{{amls.label}}"  [style]="{width: '360px'}" styleClass="p-card-shadow">
         <ng-template pTemplate="header">
             <figure class="meal_photo">
-            <img alt="Card" src="{{meals.img}}">
+            <img alt="Card" src="{{amls.img}}">
             </figure>
         </ng-template>
-        <p>{{meals.priceDF + '€'}}</p>
+        <p>{{amls.priceDF + '€'}}</p>
         <p>Déscription: Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
 <!----   <ng-template pTemplate="footer">
   <p-button (click)="enableMenuBtn(meal.id_meal)" styleClass="p-button-danger" label="Commander" ></p-button>
@@ -15,3 +15,4 @@
     </div>
        
 
+    

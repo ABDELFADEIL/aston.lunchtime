@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {MealService} from 'src/app/services/meal-service.service';
 import {OrdersService} from 'src/app/services/orders.service';
 import {Observable} from 'rxjs';
-import { CardModule } from 'primeng/card';
+
 
 @Component({
   selector: 'app-meal',
@@ -11,7 +11,8 @@ import { CardModule } from 'primeng/card';
 })
 export class MealComponent implements OnInit {
  
-  allMeals:[]=[];
+  allMeals:any[]=[];
+  
   constructor(private mealService: MealService, private ordersService: OrdersService) { }
 
   ngOnInit(): void {
@@ -25,14 +26,18 @@ export class MealComponent implements OnInit {
       
   
   }
-  async getMealImage(id_meal) {
-    const res = await this.mealService.findImgMeal(id_meal);
-    const img = res.image64;
-    return img;
-  }
-
-    
-    
+  async getMealImage(id) {
+    const res = await this.mealService.findImgMeal(id);
+      this.allMeals.forEach(element=>{
+      if(element.imageId === res.id){
+        element.img = res.image64;
+        
+     
+      }
+    })
+/*    const img = res.image64;
+    return img;*/
+  }    
   }
 
   
