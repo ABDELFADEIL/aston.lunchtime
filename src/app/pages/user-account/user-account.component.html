@@ -1,6 +1,8 @@
 
-<div class="p-d-flex">  
+<div class="p-d-flex"> 
+   <!-- modal ----->
    <div class="modal p-mr-12">
+      <!-- horizontal menu ----->
       <div class="nav-header p-mr-12">
             <div class="p-mr-4">
             </div>
@@ -14,36 +16,50 @@
                 <p class="user-infos">Nom <br>Role</p>
             </div>   
       </div>
+       <!-- end horizontal menu ----->
       <div class='p-grid'>
         <div class="p-col-1">
         </div>
         <div class="p-col-11 title">
-          <h1 class="title-card"> Ma cagnotte</h1>
+         
+          <h1 class="title-card">Mes commandes</h1>
+            <!--  
+               <h1 class="title-card">Paramètres</h1>
+              <h1 class="title-card">Mes informations</h1>
+              <h1 class="title-card"> Ma cagnotte</h1>
+               <h1 class="title-card">Mes commandes</h1>
+          <h1 class="title-card">Paramètres</h1>
+               ----->
         </div>
       </div>
+       <!---- vertical menu --->
       <div class="p-grid nav-content">
         <div class="p-col-1 nav-left">
           <div class="items">
               <div class="order">
-                <a><img class="icone" src="assets/user-account/icones/shopping-cart.png"></a>
+                <a class="order-link"><img class="icone" src="assets/user-account/icones/shopping-cart.png"></a>
               </div>  
               <div class="euro">
-                <a><img class="icone" src="assets/user-account/icones/euro.png"></a>
+                <a class="euro-link"><img class="icone" src="assets/user-account/icones/euro.png"></a>
               </div>
               <div class="infos">
-                <a><img class="icone" src="assets/user-account/icones/info.png"></a>
+                <a class="infos-link"><img class="icone" src="assets/user-account/icones/info.png"></a>
               </div>
               <div class="settings">
-                <a><img class="icone" src="assets/user-account/icones/settings.png">  </a>
+                <a class="settings-link"><img class="icone" src="assets/user-account/icones/settings.png">  </a>
               </div>
           </div>
         </div>
       </div>
+       <!---- end vertical menu --->
+
+        <!---- card --->
+        <!----
         <div class="p-grid card">
           <div class="p-col-1">
           </div>
           <div class="p-col-2">
-          </div>
+          </div> --->
           <!-- <p-card [style]="{'background-color':'#F6F6F6'}">
               <ng-template pTemplate="header">
                   <img alt="empty-ct" src="assets/user-account/cat.png" [style]="{'width': '50%','display':'block','margin':'auto'}">
@@ -51,7 +67,7 @@
               <h1 class="titte-ct-empty">Votre Cagnotte est vide </h1>
               <p class="text">Si vous souhaitez passer des commandes <br/>vous devez recharger votre cagnotte <br/>auprès de la cantinière</p>
               </p-card> -->
-          <div class="card-content p-col-7">
+         <!--   <div class="card-content p-col-7">
               <p-card [style]="{'background-color':'#F6F6F6'}">
               <ng-template pTemplate="header">
               </ng-template>
@@ -64,9 +80,118 @@
               </div>
               </p-card>
               <button pButton type="button" label="commander" class="btn-order p-button-rounded"></button>
+          </div> --->
+          <!---- end card --->
+        <!----  <div class="p-col-2 left"></div>--->
+        <!---- user infos --->
+        <!----
+        <div class="p-grid">
+          <div class="p-col-1"></div>
+          <div class="user-infos-content p-col-9 p-d-flex">
+            <div class="p-col-4 profile-img">
+            <img src="assets/user-account/user-profile.jpg" class="img-user" height="150px">
+            <p><b>Nom <br> prénom</b></p>
+            </div>
+            <div class="p-col-4 user-details">
+              <p class="user-info"><i class="fa fa-envelope" aria-hidden="true"></i>email@gmail.com</p>
+              <p class="user-info"><i class="fa fa-map-marker" aria-hidden="true"></i>40 rue de tourtille 75020</p>
+            </div>
+            <div class="p-col-4 user-details">
+            <p class="user-info"><i class="fa fa-mobile"></i>06 60 98 76 54</p>
+            <p class="user-info"><i class="fa fa-graduation-cap" aria-hidden="true"></i>Développeur web</p>
+            </div>
           </div>
-          <div class="p-col-2 left"></div>
         </div>
+        --->
+        <!---- end user infos --->
+        <!---- parameters --->
+         <!---- <div class="p-grid">
+            <div class="user-infos-edit">
+              <form>
+                <div class="phone p-d-flex p-flex-column p-flex-md-row p-mt-4 p-mb-4 p-pl-3">
+                  <div class="p-col-12 p-md-6 p-lg-3 display-grid">
+                    <label>Téléphone</label>
+                    <input class="p-mt-2" required type="phone" placeholder="+336 60 55 42 96" pInputText>
+                  </div>
+                  <div class="p-col-12 p-md-6 p-lg-3 display-grid">
+                    <label>Nouveau  téléphone</label>
+                    <input class="p-mt-2" required type="phone" pInputText>
+                  </div>
+                  <div class="p-col-12 p-md-6 p-lg-3 display-grid">
+                    <label>Confirmer</label>
+                    <input class="p-mt-2" class="p-mt-2" required type="phone" pInputText>
+                  </div>
+                  <div class="p-col-12 p-md-6 p-lg-3 display-grid">
+                    <button pButton  pRipple type="button" label="Editer" class="p-button-rounded btn-edit p-mt-4"></button>
+                  </div>
+                </div>
+                <div class="email p-d-flex p-flex-column p-flex-md-row p-mt-4 p-mb-4 p-pl-3">
+                  <div class="p-col-12 p-md-6 p-lg-3 display-grid">
+                    <label>Email</label>
+                    <input class="p-mt-2"  required type="phone" placeholder="email@gmail.com" pInputText>
+                  </div>
+                  <div class="p-col-12 p-md-6 p-lg-3 display-grid">
+                    <label>Nouveau  email</label>
+                    <input class="p-mt-2" required type="phone" pInputText>
+                  </div>
+                  <div class="p-col-12 p-md-6 p-lg-3 display-grid">
+                    <label>Confirmer</label>
+                    <input class="p-mt-2" required type="phone" pInputText>
+                  </div>
+                  <div class="p-col-12 p-md-6 p-lg-3 display-grid">
+                    <button pButton  pRipple type="button" label="Editer" class="p-button-rounded btn-edit p-mt-4"></button>
+                  </div>
+                </div>
+                <div class="mdp p-d-flex p-flex-column p-flex-md-row p-mt-4 p-mb-4 p-pl-3">
+                  <div class="p-col-12 p-md-6 p-lg-3 display-grid">
+                    <label>Ancien mot de passe</label>
+                    <input class="p-mt-2" required type="phone" placeholder="......." pInputText>
+                  </div>
+                  <div class="p-col-12 p-md-6 p-lg-3 display-grid">
+                    <label>Nouveau  mot de passe</label>
+                    <input class="p-mt-2" required type="phone" pInputText>
+                  </div>
+                  <div class="p-col-12 p-md-6 p-lg-3 display-grid">
+                    <label>Confirmer</label>
+                    <input class="p-mt-2" required type="phone" pInputText>
+                  </div>
+                  <div class="p-col-12 p-md-6 p-lg-3">
+                    <button pButton  pRipple type="button" label="Editer" class="p-button-rounded btn-edit p-mt-4"></button>
+                  </div>
+                </div>
+            </form>
+            </div>
+          </div> --->
+        <!---- end parameters --->
+        <!---- mes commandes --->
+         <!---- end mes commandes --->
+         <div class="p-grid">
+          <div class="p-col-1"></div>
+          <div class="table">
+            <p-table class="p-col-11">
+              <ng-template pTemplate="header">
+                  <tr>
+                      <th>Date</th>
+                      <th>Heure</th>
+                      <th>Commande</th>
+                      <th>Prix</th>
+                      <th>Statut</th>
+                  </tr>
+              </ng-template>
+              <ng-template pTemplate="body">
+                  <tr>
+                      <td>12/12/2020</td>
+                      <td>12/40/30</td>
+                      <td>commande</td>
+                      <td>5</td>
+                      <td><span>livrée</span></td>
+                  </tr>
+              </ng-template>
+            </p-table>
+          </div>
+         </div>
+      </div>
+      <!---- end modal --->
 </div>
 
 

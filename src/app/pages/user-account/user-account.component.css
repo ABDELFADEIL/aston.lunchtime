@@ -8,6 +8,7 @@
 
 .modal {
     width: 1000px;
+    height: 650px;
     margin: auto;
     background-color: #E5E5E5;
 }
@@ -41,6 +42,7 @@ border: 1px solid #E9E581;
     background-color:#87AAB9;
     height:650px;
     margin-top: -100px!important;
+    position: absolute;
 }
 
 .order, .euro, .infos , .settings {
@@ -48,13 +50,16 @@ border: 1px solid #E9E581;
     display: flex;  
 }
 
-.order:hover, .euro:hover, .infos:hover , .settings:hover{
+.order:hover, .euro:hover, .infos:hover, .settings:hover{
     background-color: #E9E581;
 }
 .icone, a {
     height: 50px;
     width: 50px;
     margin: auto;
+}
+.order-link:active, .euro-link:active, .infos-link:active, .settings-link:active{
+    background-color: #E9E581
 }
 .items {
     padding-top: 170px;
@@ -114,6 +119,10 @@ border: 1px solid #E9E581;
     display: block;
     margin: auto;
     margin-top: 50px;
+    border: none;
+}
+.btn-order:hover {
+    background-color: #E9E581;
 }
 .ct-text {
     text-align: center;
@@ -140,6 +149,63 @@ border: 1px solid #E9E581;
 }
 /***********end jackpot***********/
 
+/*********** user infos ***********/
+.profile-img {
+   text-align: center;
+}
+.user-infos-content {
+    background-color: white;
+    border-radius: 5px;
+    margin: auto;
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+.user-details {
+    vertical-align: middle;
+    margin: auto;
+}
+.user-info-img{
+    padding-right: 10px;
+    vertical-align: middle;
+}
+.fa-envelope, .fa-graduation-cap, .fa-map-marker, .fa-mobile {
+    padding-right: 10px;
+    color:#87AAB9;
+    vertical-align: middle;
+    font-size: 30px;
+}
+.fa-map-marker, .fa-mobile {
+    font-size: 38px;
+}
+/*********** end user infos ***********/
+
+/*********** edit user infos form ***********/
+.btn-edit {
+    background-color: #DE1B1B;
+    text-transform: uppercase;
+    border: none;
+    margin: auto;
+    display: block;
+}
+.btn-edit:hover {
+    background-color: #E9E581;
+    border: none;
+}
+.user-infos-edit {
+    background-color: white;
+    margin-left: 150px;
+    width: 80%;
+    border-radius: 5px;
+}
+
+/*********** end edit user infos form ***********/
+
+/*********** orders ***********/
+.table {
+    width: 80%;
+    margin: auto;
+}
+/*********** end orders ***********/
 
 /***********responsive***********/
 @media screen and (max-width: 540px) {
@@ -174,14 +240,40 @@ border: 1px solid #E9E581;
         text-align: center;
     }
     .ct-background {
-        width: 150px;
-        height: 150px;
+        width: 120px;
+        height: 120px;
     }
     .ct-sum{
         font-size:40px;
     }
     .ct-text{
-        font-size: 14px;
+        font-size: 12px;
+    }
+
+    .nav-left {
+        margin-top:-60px!important;
+    }
+    .items {
+        margin-top: 0px;
+    }
+    .user-infos-content {
+        display: block!important;
+        padding-bottom: 0;
+        padding-top: 0;
+        padding-left: 20px;
+    }
+    .profile-img {
+        width: 100%!important;
+    }
+    .user-details {
+
+        width: 100%!important;
+    }
+    .display-grid {
+        display: grid;
+    }
+    .user-infos-edit {
+        margin-left: 78px;
     }
 }
 /********* end responsive ***********/
