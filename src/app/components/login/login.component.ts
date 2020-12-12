@@ -14,6 +14,7 @@ import {User} from "../../models/user";
 export class LoginComponent implements OnInit {
   message: string;
   login: boolean = true;
+  forgetPassword: boolean = false;
   public userForm: FormGroup;
   userFormLongin: FormGroup;
   user: User = new class implements User {
@@ -32,6 +33,7 @@ export class LoginComponent implements OnInit {
     town: string;
     wallet: number;
   };
+  email: string;
 
   constructor(public authenticationService: AuthenticationService,
               private messageService: MessageService,
@@ -80,7 +82,7 @@ export class LoginComponent implements OnInit {
       this.authenticationService.getUserAuthenticated();
       this.authenticationService.authenticated = true;
       this.authenticationService.display = false;
-      this.message = "connexion réussie!"
+      // this.message = "connexion réussie!"
     }, error => {
       this.message = "Le email ou le mot de passe est incorrect!"
       console.log(error);
@@ -88,9 +90,9 @@ export class LoginComponent implements OnInit {
 
   }
 
-  forgetPassword() {
-    this.authenticationService.display = false;
-    this.router.navigateByUrl('/login');
+  onForgetPassword() {
+    this.login = false;
+    this.forgetPassword = true;
   }
 
   connectionNavigate(signin: string) {
@@ -102,6 +104,8 @@ export class LoginComponent implements OnInit {
   }
 
   onCancel() {
+    this.forgetPassword = false;
+    this.login = true;
     this.authenticationService.display = false;
   }
 
@@ -115,7 +119,15 @@ export class LoginComponent implements OnInit {
     }, error => {
       console.log(error);
     });
+  }
 
-
+  resendingPassword(form){
+    this.authenticationService.resendPassword(form.email).subscribe(res => {
+      this.message = "Un email vous a été envoyé avec votre mot de passe! ";
+      this.login = true;
+      this.forgetPassword = false;
+    }, error =>{
+      console.log(error);
+    });
   }
 }

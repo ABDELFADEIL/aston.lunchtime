@@ -68,7 +68,9 @@ export class AuthenticationService {
     return this.http.put(URL+ "user/register", user);
   }
 
-
+  resendPassword(email: string){
+    return this.http.post(URL+ 'forgotpassword?email='+email, {});
+  }
   logout(){
     this.jwtToken= null;
     this.authenticated = false;
