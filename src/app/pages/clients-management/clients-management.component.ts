@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {UserService} from "../../services/user.service";
 
 @Component({
   selector: 'app-clients-management',
@@ -6,10 +7,37 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./clients-management.component.css']
 })
 export class ClientsManagementComponent implements OnInit {
-
-  constructor() { }
+  users: any [];
+  cols: any[];
+  public user: any;
+  constructor(private userService: UserService) { }
 
   ngOnInit(): void {
+    this.getAllUser();
+    this.cols = [
+      {field: "firstname", header: "Prénom"},
+      {field: "name", header: "Nom"},
+      {field: "wallet", header: "Cagnotte"},
+      {field: "status", header: "Statut"},
+    ]
   }
 
+
+  getAllUser(){
+    this.userService.findAll().subscribe(res => {
+      this.users = res;
+      console.log(this.users);
+    }, error => {
+      console.log(error);
+    })
+  }
+
+  onAddCredit(user: any) {
+    this.user = user
+    console.log(user)
+  }
+  editUser(user: any){
+    this.user = user;
+    console.log(user)
+  }
 }

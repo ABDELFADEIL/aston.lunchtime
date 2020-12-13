@@ -21,9 +21,9 @@ export class OrdersManagementComponent implements OnInit {
     // this.getOrderByUserId(1);
     this.getAllOrdersForAllUsersByDate(0,"2020-07-12");
     this.cols = [
-      { field: 'date', header: 'date' },
+      { field: 'creationDate', header: 'creationDate' },
       { field: 'name', header: 'Name' },
-      { field: 'category', header: 'Category' },
+      { field: 'creationTime', header: 'creationTime' },
       { field: 'quantity', header: 'Quantity' }
   ];
     // this.getAllOrdersForAllUsersByDate(0,"2020-07-12");

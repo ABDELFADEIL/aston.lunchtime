@@ -41,6 +41,7 @@ import {DigitalClockComponent} from "./components/digital-clock/digital-clock.co
 import {OrderListModule} from 'primeng/orderlist';
 import {JwtInterceptor} from "./helpers/jwt.interceptor";
 import {ErrorInterceptor} from "./helpers/error.interceptor";
+import { UpdateClientComponent } from './pages/clients-management/update-client/update-client.component';
 
 
 
@@ -58,6 +59,7 @@ import {ErrorInterceptor} from "./helpers/error.interceptor";
     UserAccountComponent,
     MealComponent,
     DigitalClockComponent,
+    UpdateClientComponent,
   ],
   imports: [
     BrowserModule,

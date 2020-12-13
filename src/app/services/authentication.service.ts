@@ -103,11 +103,6 @@ export class AuthenticationService {
     }
   }
 
-  getUserInfo(){
-    // if(this.jwtToken==null)
-    //this.jwtToken = this.loadToken();
-    return this.http.get(URL+"/api/users/user-info");
-  }
 
   show() {
     this.display = true
@@ -117,5 +112,5 @@ export class AuthenticationService {
     console.log("close ");
     this.display = false
   }
- 
+
 }

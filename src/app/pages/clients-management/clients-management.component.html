@@ -1,1 +1,46 @@
-<p>clients-management works!</p>
+<div class="p-d-flex p-flex-wrap" style="margin-bottom: 3rem">
+  <div style="background: #d3c2ea;" class="p-md-7">
+    <div class="p-card">
+      <p-table style="min-width: 400px" [columns]="cols" [value]="users" [paginator]="true" [rows]="12"
+               [rowsPerPageOptions]="[10,20]" [scrollable]="true" scrollHeight="600px" [virtualScroll]="true">
+        <ng-template pTemplate="header" let-columns>
+          <tr>
+            <th *ngFor="let col of columns">
+              {{col.header}}
+            </th>
+            <th></th>
+            <th></th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-user let-i="rowIndex">
+          <tr>
+            <td>
+              {{user.firstname}}
+            </td>
+            <td>
+              {{user.name}}
+            </td>
+            <td>
+              {{user.wallet}}
+            </td>
+            <td>
+              {{user.status == 0 ? 'activé': user.status == 1 ? 'désactivé': 'supprimé'}}
+            </td>
+            <td>
+            <td>
+              <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success p-mr-2" (click)="editUser(user)"></button>
+            </td>
+            <td>
+              <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="onAddCredit(user)"></button>
+            </td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </div>
+  </div>
+  <div style="background: #57e1e7" class="p-md-5">
+    <div class="p-card" *ngIf="user">
+      <app-update-client [user]="user"></app-update-client>
+    </div>
+  </div>
+</div>
