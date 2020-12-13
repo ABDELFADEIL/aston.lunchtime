@@ -7,6 +7,8 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class UserService {
+  display: boolean;
+
 
   constructor(private http: HttpClient) { }
 
@@ -25,5 +27,12 @@ export class UserService {
 
   update(id: number, data): Observable<User> {
     return this.http.patch<User>(URL + "/user/update/" + id, data);
+  }
+
+  show(){
+    this.display = true;
+  }
+  onClose() {
+    this.display = false;
   }
 }

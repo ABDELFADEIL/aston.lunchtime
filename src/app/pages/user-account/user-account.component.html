@@ -21,15 +21,10 @@
         <div class="p-col-1">
         </div>
         <div class="p-col-11 title">
-         
-          <h1 class="title-card">Mes commandes</h1>
-            <!--  
-               <h1 class="title-card">Paramètres</h1>
-              <h1 class="title-card">Mes informations</h1>
-              <h1 class="title-card"> Ma cagnotte</h1>
-               <h1 class="title-card">Mes commandes</h1>
-          <h1 class="title-card">Paramètres</h1>
-               ----->
+          <h1 class="title-card" *ngIf="orders">Mes commandes</h1>
+          <h1 class="title-card" *ngIf="parameters">Paramètres</h1>
+          <h1 class="title-card" *ngIf="infos">Mes informations</h1>
+          <h1 class="title-card" *ngIf="jackpot"> Ma cagnotte</h1>     
         </div>
       </div>
        <!---- vertical menu --->
@@ -37,37 +32,42 @@
         <div class="p-col-1 nav-left">
           <div class="items">
               <div class="order">
-                <a class="order-link"><img class="icone" src="assets/user-account/icones/shopping-cart.png"></a>
+                <p (click)="userAccountNavigate('orders')" class="order-link">
+                  <img class="icone" src="assets/user-account/icones/shopping-cart.png">
+                </p>
               </div>  
               <div class="euro">
-                <a class="euro-link"><img class="icone" src="assets/user-account/icones/euro.png"></a>
+                <p (click)="userAccountNavigate('jackpot')" class="euro-link">
+                  <img class="icone" src="assets/user-account/icones/euro.png">
+                </p>
               </div>
               <div class="infos">
-                <a class="infos-link"><img class="icone" src="assets/user-account/icones/info.png"></a>
+                <p (click)="userAccountNavigate('infos')" class="infos-link">
+                  <img class="icone" src="assets/user-account/icones/info.png">
+                </p>
               </div>
               <div class="settings">
-                <a class="settings-link"><img class="icone" src="assets/user-account/icones/settings.png">  </a>
+                <p (click)="userAccountNavigate('parameters')" class="settings-link">
+                  <img class="icone" src="assets/user-account/icones/settings.png">
+                </p>
               </div>
           </div>
         </div>
       </div>
-       <!---- end vertical menu --->
-
-        <!---- card --->
-        <!----
-        <div class="p-grid card">
+      <!---- end vertical menu --->
+        <div class="p-grid card" *ngIf="jackpot">
           <div class="p-col-1">
           </div>
           <div class="p-col-2">
-          </div> --->
-          <!-- <p-card [style]="{'background-color':'#F6F6F6'}">
+          </div>
+              <p-card [style]="{'background-color':'#F6F6F6'}">
               <ng-template pTemplate="header">
                   <img alt="empty-ct" src="assets/user-account/cat.png" [style]="{'width': '50%','display':'block','margin':'auto'}">
               </ng-template>
               <h1 class="titte-ct-empty">Votre Cagnotte est vide </h1>
               <p class="text">Si vous souhaitez passer des commandes <br/>vous devez recharger votre cagnotte <br/>auprès de la cantinière</p>
-              </p-card> -->
-         <!--   <div class="card-content p-col-7">
+              </p-card>
+              <div class="card-content p-col-7">
               <p-card [style]="{'background-color':'#F6F6F6'}">
               <ng-template pTemplate="header">
               </ng-template>
@@ -80,12 +80,13 @@
               </div>
               </p-card>
               <button pButton type="button" label="commander" class="btn-order p-button-rounded"></button>
-          </div> --->
+          </div> 
+          <div class="p-col-2 left"></div>
+        </div>
           <!---- end card --->
-        <!----  <div class="p-col-2 left"></div>--->
         <!---- user infos --->
-        <!----
-        <div class="p-grid">
+       
+        <div class="p-grid" *ngIf="infos">
           <div class="p-col-1"></div>
           <div class="user-infos-content p-col-9 p-d-flex">
             <div class="p-col-4 profile-img">
@@ -102,10 +103,9 @@
             </div>
           </div>
         </div>
-        --->
         <!---- end user infos --->
         <!---- parameters --->
-         <!---- <div class="p-grid">
+          <div class="p-grid" *ngIf="parameters">
             <div class="user-infos-edit">
               <form>
                 <div class="phone p-d-flex p-flex-column p-flex-md-row p-mt-4 p-mb-4 p-pl-3">
@@ -161,11 +161,10 @@
                 </div>
             </form>
             </div>
-          </div> --->
+          </div>
         <!---- end parameters --->
-        <!---- mes commandes --->
-         <!---- end mes commandes --->
-         <div class="p-grid">
+        <!---- my orders --->
+         <div class="p-grid" *ngIf="orders">
           <div class="p-col-1"></div>
           <div class="table">
             <p-table class="p-col-11">
@@ -190,7 +189,12 @@
             </p-table>
           </div>
          </div>
-      </div>
+        <!---- end my orders --->
+         <!---- 
+          <div class="p-field p-col-6">
+          <button pButton (click)="onCancel()" pRipple type="button" label="annuler" class="p-button-rounded p-button-info"></button>
+        </div>
+      </div> --->
       <!---- end modal --->
 </div>
 

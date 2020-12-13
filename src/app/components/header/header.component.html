@@ -3,6 +3,9 @@
       <p-menubar [model]="items">
           <ng-template pTemplate="start" >
             <a [routerLink]="[ '/home' ]" style="margin-right: 20px;"> <img src="assets/logo.jpg"  height="40" class="p-mr-2"></a>
+            <div *ngIf="authenticationService.authenticated" class="p-m-2" style="margin-right: 20px;">
+              <p class="clickable" (click)="userService.show()"  style="font-size: 1.3rem; color: white; float:right;">Mon compte</p>
+            </div>
           </ng-template>
 
           <ng-template pTemplate="end">
@@ -13,15 +16,12 @@
               <div *ngIf="authenticationService.authenticated" class="p-m-2" style="margin-right: 20px;">
                 <i class="fa fa-sign-in clickable" (click)="logout()"  style="font-size: 1.3rem;"></i>
               </div>
-
-
             </div>
           </ng-template>
 
       </p-menubar>
   </div>
 </div>
-
 
 
 <p-dialog #cd [(visible)]="authenticationService.display" [modal]="true" [draggable]="true"
@@ -31,4 +31,13 @@
           [style]="{ minWidth: '100vh', height:'100vh', border: 'none', overflow: 'hidden', paddingTop: '1rem'}"
            [baseZIndex]="10000">
   <app-login style =""></app-login>
+</p-dialog>
+
+<p-dialog #cd [(visible)]="userService.display" [modal]="true" [draggable]="true"
+          [closable]="false" [draggable]="true"
+          [showHeader]="false"
+          [responsive]="true"
+          [style]="{ minWidth: '100vh', height:'100vh', border: 'none', overflow: 'hidden', paddingTop: '1rem'}"
+           [baseZIndex]="10000">
+  <app-user-account style =""></app-user-account>
 </p-dialog>
