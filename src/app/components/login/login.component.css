@@ -3,20 +3,31 @@
 }
 
 #login {
+  background: url('src/assets/login_bg.jpg') no-repeat center center;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  min-height: 80vh;
+  max-width: 60vh;
+  margin: auto;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+
+.login-form {
+  /*
   background-image: url('src/assets/login_bg.jpg');
   background-repeat: no-repeat;
-  background-position: center;
-  background-size: contain;
-  height: 80vh;
-  width: 516px;
-  margin: auto;
-  margin-top: 3rem;
+  background-position: center center;
+  background-size: cover;
+   */
 }
 .login-form {
   background-color: rgba(0, 0, 0, .7);
   margin: auto;
-  width: 516px;
-  height: 100%;
+
+  min-height: 80vh;
   color: #ffffff;
 }
 .login-form .p-col-12:nth-child(1) {
@@ -36,22 +47,20 @@
 .login-form  .signup.p-col-12 {
   height: 80% !important;
   width: 100% !important;
-  margin-top: 10px;
 }
 .login-form  .signup.p-col-12 form {
   height: 100%;
   width: 100%;
 }
 .login-form .p-grid {
-  padding: 5px;
-  margin: auto;
-  width: 97%;
-  height: 100%;
+  width: 95% !important;
+  margin: auto !important;
+
 
 }
 
 .p-fluid .p-field {
-  margin-top: 40px;
+
 }
 
 .login-form .p-inputtext {
@@ -77,4 +86,13 @@ label {
 }
 .mr-top {
   margin-top: 30px;
+}
+.p-col-12.mr-top.login.ng-star-inserted {
+  margin-top: 60px;
+  width: 90%;
+  margin: auto;
+}
+
+.p-col-12.mr-top.login.ng-star-inserted .p-field {
+  margin-top: 40px;
 }

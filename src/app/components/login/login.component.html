@@ -6,12 +6,14 @@
   <div class="p-grid">
 
     <div style="" class="p-col-12 p-d-flex p-jc-center">
-      <div class="box p-mr-5"><h4 (click)="connectionNavigate('signin')" style="font-size: 24px;cursor: pointer" [ngClass]="login? 'connexion': ''">CONNEXTION</h4></div>
-      <div class="box"><h4 (click)="connectionNavigate('signup')" style="font-size: 24px; cursor: pointer"  [ngClass]="login? '': 'connexion'">INSCRIPTION</h4></div>
+      <div *ngIf="!forgetPassword" class="box p-mr-5"><h4 (click)="connectionNavigate('signin')" style="font-size: 24px;cursor: pointer" [ngClass]="login? 'connexion': ''">CONNEXTION</h4></div>
+      <div *ngIf="!forgetPassword" class="box"><h4 (click)="connectionNavigate('signup')" style="font-size: 24px; cursor: pointer"  [ngClass]="login? '': 'connexion'">INSCRIPTION</h4></div>
+      <div *ngIf="forgetPassword" class="box p-mr-5"><h4 style="font-size: 24px;cursor: pointer" [ngClass]="forgetPassword? 'connexion': ''">MOT DE PASSE OUBLIE</h4></div>
+
     </div>
 
-
-    <div class="p-col-12 mr-top login" *ngIf="login">
+<!--  form login -->
+    <div class="p-col-12 mr-top login" *ngIf="login && !forgetPassword">
       <div *ngIf="message" class="danger"><p>{{message}}</p></div>
       <form [formGroup]="userFormLongin" (ngSubmit)="onLogin()">
       <div class="p-fluid">
@@ -24,7 +26,7 @@
           <label>MOT DE PASSE</label>
           <input style="border-radius: 50px; outline-color: #ef4430 !important"  formControlName="password" type="text" pInputText ngModel>
         </div>
-        <div ><a style="color: #41f741; cursor: pointer; font-size: 20px; font-weight: bold" (click)="forgetPassword()">Mot de passe oublié</a></div>
+        <div ><a style="color: #41f741; cursor: pointer; font-size: 20px; font-weight: bold" (click)="onForgetPassword()">Mot de passe oublié</a></div>
 
        <div class="p-d-flex p-jc-center mr-top">
         <div class="p-col-6 p-mr-4">
@@ -41,61 +43,61 @@
 
 
     <!-- Inscription form -->
-    <div class="p-col-12 signup" *ngIf="!login">
+    <div class="p-col-12 signup mr-top" *ngIf="!login && !forgetPassword">
 
       <form [formGroup]="userForm" (ngSubmit)="onRegister()">
-          <div class="p-d-flex p-flex-wrap">
+          <div class="p-fluid p-formgrid p-grid">
             <!-- col -->
-            <div class="p-col-6">
+            <div class="p-field p-col-6">
               <label>Prénom</label>
               <input required style="border-radius: 50px; outline-color: #ef4430 !important"  formControlName="firstname" type="text" pInputText ngModel>
             </div>
-            <div class=" p-col-6">
+            <div class="p-field p-col-6">
               <label>Nom</label>
               <input required minlength="4" style="border-radius: 50px; outline-color: #ef4430 !important"  formControlName="name" type="text" pInputText ngModel>
             </div>
             <!-- col -->
-            <div class="p-col-6">
+            <div class="p-field p-col-6">
               <label>Email</label>
               <input required style="border-radius: 50px; outline-color: #ef4430 !important"  formControlName="email" type="text" pInputText ngModel>
             </div>
-            <div class=" p-col-6">
+            <div class="p-field p-col-6">
               <label>Mot de passe</label>
               <input required style="border-radius: 50px; outline-color: #ef4430 !important"  formControlName="password" type="text" pInputText ngModel>
             </div>
             <!-- col -->
-            <div class="p-col-6">
+            <div class="p-field p-col-6">
               <label>Adresse</label>
               <input required style="border-radius: 50px; outline-color: #ef4430 !important"  formControlName="address" type="text" pInputText ngModel>
             </div>
-            <div class=" p-col-6">
+            <div class="p-field p-col-6">
               <label>Code postal</label>
               <input required style="border-radius: 50px; outline-color: #ef4430 !important"  formControlName="postalCode" type="text" pInputText ngModel>
             </div>
             <!-- col -->
-            <div class="p-col-6">
+            <div class="p-field p-col-6">
               <label>Ville</label>
               <input required style="border-radius: 50px; outline-color: #ef4430 !important"  formControlName="town" type="text" pInputText ngModel>
             </div>
-            <div class=" p-col-6">
+            <div class="p-field p-col-6">
               <label>Phone</label>
               <input required style="border-radius: 50px; outline-color: #ef4430 !important"  formControlName="phone" type="text" pInputText ngModel>
             </div>
             <!-- col -->
-            <div class="p-col-6">
+            <div class="p-field p-col-6">
               <label>Sex</label>
               <input required style="border-radius: 50px; outline-color: #ef4430 !important"  formControlName="sex" type="text" pInputText ngModel>
             </div>
-            <div class=" p-col-6">
+            <div class="p-field p-col-6">
               <label>Crédit en crération</label>
               <input required style="border-radius: 50px; outline-color: #ef4430 !important"  formControlName="wallet" type="text" pInputText ngModel>
             </div>
 
-              <div class="p-col-6">
-                <button pButton pRipple type="submit" label="Connectez-vous" style="width: 100%" class="btn p-button-rounded p-button-danger"></button>
+              <div class="p-field p-col-6">
+                <button pButton pRipple type="submit" label="Connectez-vous" style="width: 100%;margin-top: 20px" class="btn p-button-rounded p-button-danger"></button>
               </div>
-              <div class="p-col-6">
-                <button pButton (click)="onCancel()" pRipple type="button" label="annuler" style="background: #87AAB9;width: 100%" class="p-button-rounded p-button-info"></button>
+              <div class="p-field p-col-6">
+                <button pButton (click)="onCancel()" pRipple type="button" label="annuler" style="background: #87AAB9;width: 100%; margin-top: 20px" class="p-button-rounded p-button-info"></button>
               </div>
           </div>
 
@@ -104,11 +106,35 @@
     </div>
 
 
+
+
+
+
+  <!-- form forgotpassword -->
+  <div class="p-col-12 mr-top login" *ngIf="!login && forgetPassword">
+    <div *ngIf="message" class="danger"><p>{{message}}</p></div>
+    <form #f="ngForm" (ngSubmit)="resendingPassword(f.value)">
+      <div class="p-fluid">
+        <div class="p-field">
+          <label>EMAIL</label>
+          <input style="border-radius: 50px; outline-color: #ef4430 !important"  name="email" type="text" pInputText ngModel>
+        </div>
+        <div class="p-d-flex p-jc-center mr-top">
+          <div class="p-col-6 p-mr-4">
+            <button pButton pRipple type="submit" label="Envoyer" class="btn p-button-rounded p-button-danger"></button>
+          </div>
+          <div class="p-col-6">
+            <button pButton (click)="onCancel()" pRipple type="button" label="annuler" style="background: #87AAB9" class="p-button-rounded p-button-info"></button>
+          </div>
+        </div>
+
+      </div>
+    </form>
   </div>
 </div>
 </div>
 
-
+</div>
 
 <!--
 

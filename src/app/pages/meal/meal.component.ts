@@ -23,14 +23,17 @@ export class MealComponent implements OnInit {
     const response = await this.mealService.getMeals();
     this.allMeals = response;
     console.log(response);
+    this.allMeals.forEach(element=>{
+      this.getMealImage(element.id);
+    });
       
-  
   }
   async getMealImage(id) {
     const res = await this.mealService.findImgMeal(id);
+    console.log(res);
       this.allMeals.forEach(element=>{
       if(element.imageId === res.id){
-        element.img = res.image64;
+        element.img64 = res.image64;
         
      
       }
