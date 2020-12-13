@@ -1,7 +1,7 @@
 <div class="p-d-flex p-flex-wrap" style="margin-bottom: 3rem">
   <div style="background: #d3c2ea;" class="p-md-7">
     <div class="p-card">
-      <p-table style="min-width: 400px" [columns]="cols" [value]="users" [paginator]="true" [rows]="12"
+      <p-table [columns]="cols" [value]="users" [paginator]="true" [rows]="12"
                [rowsPerPageOptions]="[10,20]" [scrollable]="true" scrollHeight="600px" [virtualScroll]="true">
         <ng-template pTemplate="header" let-columns>
           <tr>

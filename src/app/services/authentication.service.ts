@@ -17,9 +17,6 @@ export class AuthenticationService {
   display: boolean;
   user: User;
 
-
-
-
   constructor(private http: HttpClient, private router:Router, private confirmationService: ConfirmationService)
   {
     this.jwtToken = this.loadToken();

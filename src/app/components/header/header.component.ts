@@ -3,6 +3,7 @@ import {ConfirmationService, MenuItem, MessageService} from 'primeng/api';
 import { DialogService } from 'primeng/dynamicdialog';
 import { LoginComponent } from '../login/login.component';
 import {AuthenticationService} from "../../services/authentication.service";
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-header',
@@ -15,7 +16,7 @@ export class HeaderComponent implements OnInit {
   public items: MenuItem[];
   @ViewChild('cd') cd
 
-  constructor(public authenticationService: AuthenticationService, private messageService: MessageService) {}
+  constructor(public authenticationService: AuthenticationService, private messageService: MessageService, public userService: UserService) {}
 
 
 
@@ -30,10 +31,8 @@ export class HeaderComponent implements OnInit {
           {label: 'Gestion commandes', routerLink: ['/orders-management']},
           {label: 'Gestion clients', routerLink: ['/clients-management']}
               ]},
-        {label: 'Mon compte', routerLink: ['/user-account']}
                    ];
 }
-
 
   logout() {
     this.authenticationService.logout();

@@ -42,6 +42,7 @@ import {OrderListModule} from 'primeng/orderlist';
 import {JwtInterceptor} from "./helpers/jwt.interceptor";
 import {ErrorInterceptor} from "./helpers/error.interceptor";
 import { UpdateClientComponent } from './pages/clients-management/update-client/update-client.component';
+import {ListboxModule} from 'primeng/listbox';
 
 
 
@@ -88,7 +89,8 @@ import { UpdateClientComponent } from './pages/clients-management/update-client/
     ButtonModule,
     DialogModule,
     TabViewModule,
-    OrderListModule
+    OrderListModule,
+    ListboxModule
 
 
   ],

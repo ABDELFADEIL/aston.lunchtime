@@ -9,6 +9,8 @@ import {AuthenticationService} from "./authentication.service";
   providedIn: 'root'
 })
 export class UserService {
+  display: boolean;
+
 
   constructor(private http: HttpClient, private authenticationService: AuthenticationService) { }
 
@@ -26,5 +28,12 @@ export class UserService {
 
   update(id: number, data): Observable<User> {
     return this.http.patch<User>(URL + "/user/update/" + id, data, {headers:new HttpHeaders({'Authorization':this.authenticationService.jwtToken})});
+  }
+
+  show(){
+    this.display = true;
+  }
+  onClose() {
+    this.display = false;
   }
 }

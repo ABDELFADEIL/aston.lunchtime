@@ -53,7 +53,7 @@ border: 1px solid #E9E581;
 .order:hover, .euro:hover, .infos:hover, .settings:hover{
     background-color: #E9E581;
 }
-.icone, a {
+.icone, p {
     height: 50px;
     width: 50px;
     margin: auto;
@@ -232,7 +232,7 @@ border: 1px solid #E9E581;
         height: 60px;
         width: 60px;
     }
-    .icone, a {
+    .icone, p {
         height: 30px;
         width: 30px;
     }
