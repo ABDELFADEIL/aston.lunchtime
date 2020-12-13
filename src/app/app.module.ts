@@ -41,6 +41,7 @@ import {DigitalClockComponent} from "./components/digital-clock/digital-clock.co
 import {OrderListModule} from 'primeng/orderlist';
 import {JwtInterceptor} from "./helpers/jwt.interceptor";
 import {ErrorInterceptor} from "./helpers/error.interceptor";
+import {ListboxModule} from 'primeng/listbox';
 
 
 
@@ -86,7 +87,8 @@ import {ErrorInterceptor} from "./helpers/error.interceptor";
     ButtonModule,
     DialogModule,
     TabViewModule,
-    OrderListModule
+    OrderListModule,
+    ListboxModule
 
 
   ],

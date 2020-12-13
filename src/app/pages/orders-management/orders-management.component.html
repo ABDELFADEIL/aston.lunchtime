@@ -17,7 +17,7 @@
       </ng-template>
     </p-orderList> -->
 
-
+    
     <p-table #dt [value]="listeCommandesDays" [globalFilterFields]="['user.name']">
       <ng-template pTemplate="caption">
         <div class="table-header">
@@ -55,7 +55,7 @@
         </tr>
         <div *ngIf="detailVisible === i">
           <ul>
-            <li *ngFor="let plat of listeCommandesDays[i].quantity; let j = index">
+            <li *ngFor="let plat of listeCommandesDays[i].quantity; let j = index" style="min-width: 20rem;">
               <p>{{plat.meal.label}} prix: {{plat.meal.priceDF}}</p>
             </li>
           </ul>
@@ -64,5 +64,19 @@
     </p-table>
 
   </div>
-  <div class="p-col-5">t</div>
+  <div class="p-col-5"> <h1>Détail des commandes :</h1><p-button (click)="createOrderRecap()" label="Afficher"></p-button>
+    <ul>
+    <li *ngFor="let meal of listRecap; let k= index" style="min-width: 20rem;">
+      <p>{{meal.label}}, quantité: {{meal.qty}}</p>
+    </li>
+  </ul>
+  <p-listbox [options]="listRecap" [(ngModel)]="selectedListRecap" [metaKeySelection]="false" [checkbox]="true" [filter]="true" [multiple]="true" optionLabel="name" [listStyle]="{'max-height':'250px'}" [style]="{'width':'15rem'}">
+    <ng-template let-recap pTemplate="item">
+        <div class="recap-item">
+            <div>{{recap.label}} t</div>
+        </div>
+    </ng-template>
+  </p-listbox>
+</div>
+  
 </div>
