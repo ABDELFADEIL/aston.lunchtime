@@ -1,5 +1,5 @@
 <div class="p-grid">
-  <div class="p-col-8">t
+  <div class="p-col-7">t
     <!-- <p-orderList [value]="listeCommandesDayS" [listStyle]="{'height':'auto'}" header="Commandes" filterBy="name"
       filterPlaceholder="Filter by name" dragdrop="true">
       <ng-template let-commande pTemplate="item">
@@ -21,35 +21,48 @@
     <p-table #dt [value]="listeCommandesDays" [globalFilterFields]="['user.name']">
       <ng-template pTemplate="caption">
         <div class="table-header">
-            Commandes
-            <span class="p-input-icon-left">
-                <i class="pi pi-search"></i>
-                <input pInputText type="text" (input)="dt.filterGlobal($event.target.value, 'contains')" placeholder="Global Search" />
-            </span>
+          Commandes
+          <span class="p-input-icon-left">
+            <i class="pi pi-search"></i>
+            <input pInputText type="text" (input)="dt.filterGlobal($event.target.value, 'contains')"
+              placeholder="Global Search" />
+          </span>
         </div>
-    </ng-template>
+      </ng-template>
       <ng-template pTemplate="header">
-          <tr>
-              <th>Date</th>
-              <th>Name</th>
-              <th>Category</th>
-              <th>Quantity</th>
-              <th>details</th>
-          </tr>
+        <tr>
+          <th>Date</th>
+          <th>Nom</th>
+          <th>Quantité</th>
+          <th>details</th>
+        </tr>
       </ng-template>
-      <ng-template pTemplate="body" let-listeCommandesDay>
-          <tr>
-              <td>{{listeCommandesDay.creationDate}}</td>
-              <td>{{listeCommandesDay.user.name}}</td>
-              <td>{{listeCommandesDay.creationTime}}</td>
-              <td>{{listeCommandesDay.creationDate}}</td>
-              <td>
-                <p-button label="détails" ></p-button>
-              </td>
-          </tr>
+      <ng-template pTemplate="body" let-listeCommandesDay let-i="rowIndex">
+        <tr>
+          <td>{{listeCommandesDay.creationDate}}</td>
+          <td>{{listeCommandesDay.user.name}}</td>
+          <td>{{listeCommandesDay.quantity != null?listeCommandesDay.quantity.length : ""}}</td>
+          <td>
+            <p-button (click)="showDetails(i)" label="détails">
+
+            </p-button>
+          </td>
+          <td style="width: 0; padding: 0 0 0 2rem">
+            <button pButton pRipple type="button" styleClass="p-button-sm" icon="pi pi-times"
+              class="p-button-rounded p-button-danger"></button>
+          </td>
+
+        </tr>
+        <div *ngIf="detailVisible === i">
+          <ul>
+            <li *ngFor="let plat of listeCommandesDays[i].quantity; let j = index">
+              <p>{{plat.meal.label}} prix: {{plat.meal.priceDF}}</p>
+            </li>
+          </ul>
+        </div>
       </ng-template>
-  </p-table>
+    </p-table>
 
   </div>
-  <div class="p-col-4">t</div>
+  <div class="p-col-5">t</div>
 </div>

@@ -11,6 +11,7 @@ export class OrdersManagementComponent implements OnInit {
 
   listeCommandesDays:any = [];
   cols: any[];
+  detailVisible:number;
   constructor(private orderService: OrdersService) {
 
    }
@@ -51,5 +52,9 @@ export class OrdersManagementComponent implements OnInit {
    console.log("getAllOrdersForAllUsersByDate =>");
    console.log(allOrdersByDate);
   }
-
+  showDetails(i) {
+    this.detailVisible =i
+    console.log("index => ");
+    console.log(i);
+  }
 }
