@@ -149,3 +149,42 @@ login com
   color: #2d3f47;
   box-shadow: 0 3px 2px -2px rgba(0, 0, 0, 0.4), 0 2px 2px 0 rgba(0, 0, 0, 0.18), 0 2px 4px 0 rgba(0, 0, 0, 0.16);
 }
+.p-datatable .p-datatable-tbody > tr > td {
+  padding: .4rem .5rem;
+}
+
+.p-paginator .p-paginator-pages .p-paginator-page.p-highlight {
+  background: #87AAB9;
+  border-color: #87AAB9;
+  color: #ffffff;
+}
+
+.p-paginator .p-paginator-pages .p-paginator-page.p-highlight {
+  background: #87AAB9;
+  border-color: #87AAB9;
+  color: #ffffff;
+}
+
+.p-paginator .p-paginator-pages .p-paginator-page {
+  background-color: #ffffff;
+  border: 1px solid #dee2e6;
+  color: #322b2b;
+}
+
+.p-paginator .p-paginator-first, .p-paginator .p-paginator-prev, .p-paginator .p-paginator-next, .p-paginator .p-paginator-last {
+  background-color: #ffffff;
+  border: 1px solid #dee2e6;
+  color: #87aab9;
+
+}
+
+.p-paginator .p-paginator-pages .p-paginator-page:hover {
+  background-color: #ffffff;
+  border: 1px solid #87aab9;
+  color: #494444 !important;
+}
+
+.p-dropdown-panel .p-dropdown-items .p-dropdown-item.p-highlight {
+  color: #ffffff;
+  background: #87aab9;
+}

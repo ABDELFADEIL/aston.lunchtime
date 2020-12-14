@@ -19,15 +19,15 @@ export class UserService {
   }
 
   findById(id: number): Observable<User> {
-    return this.http.get<User>(URL + "/user/find/" + id, {headers:new HttpHeaders({'Authorization':this.authenticationService.jwtToken})});
+    return this.http.get<User>(URL + "user/find/" + id, {headers:new HttpHeaders({'Authorization':this.authenticationService.jwtToken})});
   }
 
-  delete(id: number): Observable<User> {
-    return this.http.delete<User>(URL + "/user/find/" + id, {headers:new HttpHeaders({'Authorization':this.authenticationService.jwtToken})});
+  delete(id: number) {
+    return this.http.delete(URL + "user/find/" + id, {headers:new HttpHeaders({'Authorization':this.authenticationService.jwtToken})});
   }
 
   update(id: number, data): Observable<User> {
-    return this.http.patch<User>(URL + "/user/update/" + id, data, {headers:new HttpHeaders({'Authorization':this.authenticationService.jwtToken})});
+    return this.http.patch<User>(URL + "user/update/" + id, data, {headers:new HttpHeaders({'Authorization':this.authenticationService.jwtToken})});
   }
 
   show(){
