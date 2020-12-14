@@ -135,7 +135,17 @@ login com
 }
 
 .myclass .p-card .p-card-title {
-  font-size: 1.1rem !important;
+  font-size: 1.4rem !important;
   font-weight: bold !important;
   margin-bottom: 0.5rem;
+}
+
+.myclass .p-card-title.ng-star-inserted {
+  max-height: 20px !important;
+  margin-bottom: 25px !important;
+}
+
+.myclass .p-card:hover {
+  color: #2d3f47;
+  box-shadow: 0 3px 2px -2px rgba(0, 0, 0, 0.4), 0 2px 2px 0 rgba(0, 0, 0, 0.18), 0 2px 4px 0 rgba(0, 0, 0, 0.16);
 }
