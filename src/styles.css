@@ -72,9 +72,9 @@ ul.p-menubar-root-list {
 }*/
 
 html, body { height: 100%; }
-body { margin: 0; font-family: Poiret One, "Helvetica Neue", sans-serif; }  
+body { margin: 0; font-family: Poiret One, "Helvetica Neue", sans-serif; }
 
-.p-card-shadow.p-card.p-component {
+.meals .p-card-shadow.p-card.p-component {
   display: flex !important;
   flex-wrap: wrap;
   width: 180px !important;
@@ -129,4 +129,13 @@ login com
 }
 .login-form .p-inputtext:focus, input:focus{
   outline-color: #ef4430 !important;
+}
+.myclass {
+  margin-bottom: 30px;
+}
+
+.myclass .p-card .p-card-title {
+  font-size: 1.1rem !important;
+  font-weight: bold !important;
+  margin-bottom: 0.5rem;
 }
