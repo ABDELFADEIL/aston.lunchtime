@@ -85,7 +85,7 @@
     <p>{{meal.priceDF + '€'}}</p>
     <p>Déscription: Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
     <ng-template pTemplate="footer">
-<p-button (click)="orderMealHomepage(meal.id,1)" styleClass="p-button-danger" label="Commander" *ngIf="authenticationService.authenticated && getDate()   " ></p-button>
+<p-button (click)="orderMealHomepage(meal.id,1)" styleClass="p-button-danger" label="Commander" *ngIf="authenticationService.authenticated   " ></p-button>
 
          &nbsp;
         <p-button (click)="showInfo()" icon="pi pi-external-link" styleClass="p-button-primary"label="commander"*ngIf="!authenticationService.authenticated"></p-button>
