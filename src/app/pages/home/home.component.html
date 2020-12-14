@@ -84,7 +84,7 @@
   <h6>Prix: {{meal.priceDF + '€'}}</h6>
   <ng-template pTemplate="footer">
     <p-button label="Commander" (click)="orderMealHomepage(meal.id,1)" *ngIf="authenticationService.authenticated" icon="pi pi-shopping-cart" [style]="{'background': 'red','width': '100%'}"></p-button>
-    <p-button label="Commander" (click)="showInfo()" *ngIf="!authenticationService.authenticated" icon="pi pi-shopping-cart" [style]="{'background': 'red','width': '100%'}"></p-button>
+    <p-button label="Commander" (click)="showInfo()" *ngIf="!authenticationService.authenticated" icon="pi pi-external-link" [style]="{'background': 'red','width': '100%'}"></p-button>
   </ng-template>
   <p-dialog header="info" [(visible)]="displayBasic" [style]="{width: '20vw',background:'#212529'}">
     <h1>Envie commander? inscriez-vous</h1>
