@@ -1,3 +1,4 @@
+/* You can add global styles to this file, and also import other style files */
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Rye&display=swap');
 
@@ -9,6 +10,7 @@ html, body { height: 100%; }
 body { margin: 0;  }
 
 /*.container {
+
 }*/
 .p-menuitem-text {
   font-size: 120% !important;
@@ -58,10 +60,15 @@ ul.p-menubar-root-list {
 /*.p-dialog .p-dialog-header-icon, .p-dialog .p-dialog-header-icons {
 }
 .p-dialog  {
+
 }
+
  .p-dialog .p-dialog-header{
+
 }
+
 .p-dialog .p-dialog-content {
+
 }*/
 
 html, body { height: 100%; }
@@ -95,6 +102,7 @@ body { margin: 0; font-family: Poiret One, "Helvetica Neue", sans-serif; }
 login com
 */
 /*ng-trigger ng-trigger-animation ng-tns-c87-0 p-dialog p-dynamic-dialog p-component ng-star-inserted {
+
 }*/
 .p-dialog .p-dialog-content {
   background: none;

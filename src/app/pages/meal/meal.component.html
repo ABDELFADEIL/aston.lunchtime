@@ -1,16 +1,16 @@
-<div *ngIf = "allMeals" class ="meals">
-    <!--<div  class="card-menu" *ngFor="let menu of menuList">-->
-    <p-card *ngFor="let amls of allMeals" header="{{amls.label}}"  [style]="{width: '360px'}" styleClass="p-card-shadow">
-        <ng-template pTemplate="header">
-            <figure class="meal_photo">
-            <img alt="Card" [src]="amls.img64">
-            </figure>
-        </ng-template>
-        <p>{{amls.priceDF + '€'}}</p>
-        <p>Déscription: Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-<!----   <ng-template pTemplate="footer">
-  <p-button (click)="enableMenuBtn(meal.id_meal)" styleClass="p-button-danger" label="Commander" ></p-button>
-        </ng-template>    -->
-    </p-card>
-    </div>
-       
+
+
+<div *ngIf = "allMeals" class="myclass p-d-flex p-flex-row p-flex-wrap p-jc-center">
+  <p-card *ngFor="let meal of allMeals" header="{{meal.label}}" [style]="{width: '220px'}" styleClass="p-card-shadow p-m-2">
+    <p-header>
+      <img alt="Card" src="{{meal.img64}}" style="border-top-left-radius: 4px;border-top-right-radius: 4px; height: 220px !important;">
+    </p-header>
+    <p>Déscription: {{meal.description ? meal.description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit.'}}</p>
+    <h4>Prix: <strong style="font-size: 1.4rem !important;">{{meal.priceDF + '€'}}</strong></h4>
+    <ng-template pTemplate="footer">
+      <p-button label="Commander" icon="pi pi-shopping-cart" [style]="{'background': 'red','width': '100%'}"></p-button>
+    </ng-template>
+  </p-card>
+
+</div>
+

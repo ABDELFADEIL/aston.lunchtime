@@ -83,7 +83,7 @@ export class HomeComponent implements OnInit {
       user: this.user.id,
       mealId: id_meal,
       quantity: quantity,
-   //   constraintId:id_constraint, (mis 1 par défaut )
+   //   constraintId:id_constraint,
     }
 
     console.log(JSON.stringify(obj));

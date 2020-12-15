@@ -40,4 +40,18 @@ export class ClientsManagementComponent implements OnInit {
     this.user = user;
     console.log(user)
   }
+  onDelete(id){
+    let conf = confirm("Êtes vous sûr de vouloir supprimer?");
+    if (conf) {
+    console.log(id)
+      this.userService.delete(id).subscribe(res => {
+      console.log(res);
+      }, error => {
+        console.log(error);
+      })
+    }
+  }
+  onUpdate(user){
+    console.log(user);
+  }
 }

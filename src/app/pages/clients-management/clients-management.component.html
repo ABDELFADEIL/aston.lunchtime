@@ -1,21 +1,29 @@
-<div class="p-d-flex p-flex-wrap" style="margin-bottom: 3rem">
+<div class="p-d-flex p-flex-wrap" style="margin-bottom: 3rem;">
   <div class="p-md-7">
     <div class="p-card">
-      <p-table [columns]="cols" [value]="users" [paginator]="true" [rows]="12"
-               [rowsPerPageOptions]="[10,20]" [scrollable]="true" scrollHeight="600px"
-               [resizableColumns]="true" [rowHover]="true"
+      <p-table #dt [columns]="cols" [value]="users" [paginator]="true" [rows]="20"
+               [rowsPerPageOptions]="[20,30]" [scrollable]="true" scrollHeight="65.2vh"
+                [rowHover]="true"
+               [globalFilterFields]="['name','firstname']"
                >
+        <ng-template pTemplate="caption">
+          <div class="p-d-flex">
+                <span class="p-input-icon-left p-ml-auto">
+                    <i class="pi pi-search"></i>
+                    <input pInputText type="text" (input)="dt.filterGlobal($event.target.value, 'contains')" placeholder="Chercher par nom ou prénom" />
+                </span>
+          </div>
+        </ng-template>
         <ng-template pTemplate="header" let-columns>
           <tr>
-            <th pResizableColumn *ngFor="let col of columns">
+            <th pResizableColumn *ngFor="let col of columns" style="background: #87AAB9">
               {{col.header}}
             </th>
-            <th pResizableColumn></th>
-            <th pResizableColumn></th>
+            <th style="background: #87AAB9" pResizableColumn></th>
           </tr>
         </ng-template>
         <ng-template pTemplate="body" let-user let-i="rowIndex">
-          <tr>
+          <tr (click)="editUser(user)">
             <td>
               {{user.firstname}}
             </td>
@@ -29,10 +37,7 @@
               {{user.status == 0 ? 'activé': user.status == 1 ? 'désactivé': 'supprimé'}}
             </td>
             <td>
-              <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success p-mr-2" (click)="editUser(user)"></button>
-            </td>
-            <td>
-              <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="onAddCredit(user)"></button>
+              <button pButton pRipple icon="pi pi-trash" (click)="onDelete(user.id)" ck class="p-button-rounded p-button-warning"></button>
             </td>
           </tr>
         </ng-template>
@@ -40,7 +45,7 @@
     </div>
   </div>
   <div class="p-md-5">
-    <div class="p-card" *ngIf="user">
+    <div class="p-card" >
       <app-update-client [user]="user"></app-update-client>
     </div>
   </div>
