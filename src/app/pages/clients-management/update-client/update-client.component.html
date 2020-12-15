@@ -3,16 +3,28 @@
   <p-header>
   </p-header>
   <h4 style="color: #063b52;" *ngIf="user">Nom et prénom: {{ user.name +' '+user.firstname}}</h4>
-  <p>Adresse: {{user.address | titlecase}} {{ user.postalCode }} {{ user.town | titlecase }}</p>
-    <p>Téléphone: {{user.phone}}</p>
-    <p> Email: {{ user.email}}</p>
-    <p> Statut: {{ user.status == 0 ? 'activé': user.status == 1 ? 'désactivé': 'supprimé'}}</p>
-    <p>Date de création compte: {{ user.email}}</p>
-    <p>Crédit: {{ user.wallet +'€'}}</p>
+  <p><i class="fa fa-map-marker" style="font-size: 1.8rem; color: yellowgreen"></i> : {{user.address | titlecase}} {{ user.postalCode }} {{ user.town | titlecase }}</p>
+    <p><i class="fa fa-phone" style="font-size: 1.8rem; color: green"></i>
+       : {{user.phone}}</p>
+    <p> <i class="fa fa-envelope-square" style="font-size: 1.8rem; color: red"></i> : {{ user.email}}</p>
+    <p><i class="fa fa-credit-card" aria-hidden="true" style="font-size: 1.8rem; color: blue"></i>
+      : {{ user.wallet +'€'}}</p>
+  <p> Statut: {{ user.status == 0 ? 'activé': user.status == 1 ? 'désactivé': 'supprimé'}}</p>
+  <p>Date de création compte: {{ user.registrationDate}}</p>
   <ng-template pTemplate="footer">
-    <p-button class="p-mr-2" label="Ajouter un crédit" icon="pi pi-shopping-cart" [style]="{'background': 'red','width': '40%'}"></p-button>
-    <p-button class="p-mr-2" label="Mise à jour" icon="pi pi-external-link" [style]="{'background': 'red','width': '40%'}"></p-button>
+    <p-button *ngIf="!credit && !update" (click)="onCredit()" class="p-mr-2" icon="pi pi-euro" [style]="{'background': '#009688','width': '40%'}">Créditer</p-button>
+    <p-button *ngIf="!update && !credit" (click)="onUpdate()" class="p-mr-2" icon="fa fa-pencil-square-o" [style]="{'background': '#87aab9','width': '40%'}">Modifier</p-button>
   </ng-template>
+  <div class=" mr-top" *ngIf="credit && !update">
+    <form class="p-field p-grid" #f="ngForm" (ngSubmit)="creditUser(f.value, user.id)" novalidate>
+    <label for="firstname3" class="p-col-fixed" style="width:100px">Le montant:</label>
+    <div class="">
+      <input id="firstname3" style="height: 100%" type="number" pInputText  name="amount" ngModel>
+    </div>
+    <p-button type="submit" class="" [style]="{'background': '#009688', marginLeft: '10px'}">Créditer</p-button>
+    </form>
+  </div>
+
 </p-card>
 
 <p-card *ngIf="!user" header="Mise à jour informations" [style]="{width: '100%', 'min-height': '85vh'}" styleClass="p-card-shadow">

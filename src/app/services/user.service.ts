@@ -30,6 +30,30 @@ export class UserService {
     return this.http.patch<User>(URL + "user/update/" + id, data, {headers:new HttpHeaders({'Authorization':this.authenticationService.jwtToken})});
   }
 
+  creditUser(id: number, amount:number) {
+    console.log(this.authenticationService.jwtToken);
+    /*
+    return this.http.post<User>(URL+ 'user/credit/'+id+'?amount='+amount, {headers:new HttpHeaders({'Authorization':this.authenticationService.jwtToken})});
+  */
+   return  fetch(URL+ 'user/credit/'+id+'?amount='+amount, {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        'Authorization': this.authenticationService.jwtToken
+      }
+    });
+  }
+
+
+  debitUser(id: number, amount:number){
+    console.log(this.authenticationService.jwtToken);
+    if (!this.authenticationService.jwtToken)
+      this.authenticationService.jwtToken = this.authenticationService.loadToken();
+    console.log(this.authenticationService.jwtToken);
+    return this.http.post(URL+ 'user/debit/'+id+'?amount='+amount, {headers:new HttpHeaders({'Authorization':this.authenticationService.jwtToken})});
+  }
+
   show(){
     this.display = true;
   }

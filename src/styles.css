@@ -188,3 +188,13 @@ login com
   color: #ffffff;
   background: #87aab9;
 }
+span.fa.fa-pencil-square-o.p-button-icon.ng-star-inserted, span.pi.pi-euro.p-button-icon.ng-star-inserted {
+  margin-left: 10px !important;
+}
+.p-field > label {
+  margin-bottom: -0.9rem;
+  font-weight: bold;
+}
+.mr-top {
+  margin-top: 40px !important;
+}
