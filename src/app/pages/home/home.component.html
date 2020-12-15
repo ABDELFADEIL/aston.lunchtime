@@ -1,21 +1,8 @@
 
 
 
-<!--<div class="cards">
 
-<div class="card-menu" *ngFor="let menu of menuList">
-    <div class="img">
-        <img alt="Card" :src="{{menu.img}}">
-    </div>
-    <div class="content">
-        <p><strong>{{menu.label}}</strong></p>
-        <p>Déscription : Lorem ipsum dolor sit amet,ibus, officiis Lorem ipsum dolor sit amet,ibus, officiis</p>
-       <p>Price: {{menu.priceDF}}</p>
-        <p>{{menu.description}}</p>
 
-        <p-button (click)="enableMenuBtn()" styleClass="p-button-danger" label="Commande" ></p-button>
-        </div>
-</div>-->
 
 <app-digital-clock></app-digital-clock>
 <div>
@@ -34,9 +21,10 @@
     <p>{{menu.priceDF + '€'}}</p>
     <p>Déscription: Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
     <ng-template pTemplate="footer">
-        <p-button (click)="orderMenuHomepage(menu.id,1)" styleClass="p-button-danger" label="Commander" *ngIf="authenticationService.authenticated && getDate() " ></p-button>
-         &nbsp;
-        <p-button (click)="showInfo()" icon="pi pi-external-link" styleClass="p-button-primary"label="commander"*ngIf="!authenticationService.authenticated"></p-button>
+    
+        <p-button label="Commander" (click)="orderMealHomepage(menu.id,1)" *ngIf="authenticationService.authenticated " icon="pi pi-shopping-cart" [style]="{'background': ' #585858','width': '50%'}"></p-button> 
+        <p-button (click)="showInfo()" icon="pi pi-shopping-cart" styleClass="p-button-primary"label="commander"*ngIf="!authenticationService.authenticated"[style]="{'background': '  #87AAB9','width': '50%'}"></p-button>      
+    
         <p-dialog header="info" [(visible)]="displayBasic" [style]="{width: '20vw',background:'black'}">
         <h1>Envie commander? Inscriez-vous</h1>
     <ng-template pTemplate="footer">
@@ -48,24 +36,6 @@
 </div>
 
 
-<!--
-<p-card header="{{menu.label}}" *ngFor="let menu of menuList" subheader="Price: {{menu.priceDF}}" [style]="{width: '360px'}" styleClass="p-card-shadow">
-    <p-header>
-        <img alt="Card" :src="{{menu.img}}">
-    </p-header>
-
-    <ng-template pTemplate="body">
-        <p><b>Déscription : Lorem ipsum dolor sit amet,ibus, officiis Lorem ipsum dolor sit amet,ibus, officiis
-        </b>{{menu.description}}</p>
-    </ng-template>
-
-    <ng-template pTemplate="footer">
-        <p-button (click)="enableMenuBtn()" styleClass="p-button-danger" label="Commande" ></p-button>
-    </ng-template>
-</p-card>
--->
-
-<!--</div>  -->
 
 <div>
     <h4 class="ligne">
@@ -78,13 +48,15 @@
 <div class="myclass p-d-flex p-flex-row p-flex-wrap p-jc-center">
 <p-card *ngFor="let meal of mealList" header="{{meal.label}}" [style]="{width: '220px'}" styleClass="p-card-shadow">
   <p-header>
-    <img alt="Card" src="{{meal.img}}" style="border-top-left-radius: 4px;border-top-right-radius: 4px; height: 220px !important;">
+      <figure class= "meal_photo">
+    <img class= "meal_photo"alt="Card" src="{{meal.img}}" style="border-top-left-radius: 4px;border-top-right-radius: 4px; height: 220px !important;">
+    </figure>
   </p-header>
   <p>Déscription: {{meal.description ? meal.description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit.'}}</p>
-  <h4>Prix: <strong style="font-size: 1.4rem !important;">{{meal.priceDF + '€'}}</strong></h4>
+  <h6 style="font-size:15px;font-family: 'Cormorant Garamond', serif;">Prix:{{meal.priceDF + '€'}}</h6>
   <ng-template pTemplate="footer">
-    <p-button label="Commander" (click)="orderMealHomepage(meal.id,1)" *ngIf="authenticationService.authenticated" icon="pi pi-shopping-cart" [style]="{'background': 'red','width': '100%'}"></p-button>
-    <p-button label="Commander" (click)="showInfo()" *ngIf="!authenticationService.authenticated" icon="pi pi-external-link" [style]="{'background': 'red','width': '100%'}"></p-button>
+    <p-button label="Commander" (click)="orderMealHomepage(meal.id,1)" *ngIf="authenticationService.authenticated " icon="pi pi-shopping-cart" [style]="{'background': '#585858','width': '100%'}"></p-button>
+    <p-button label="Commander" (click)="showInfo()" *ngIf="!authenticationService.authenticated" icon="pi pi-shopping-cart" [style]="{'background': '#87AAB9','width': '100%'}"></p-button>
   </ng-template>
   <p-dialog header="info" [(visible)]="displayBasic" [style]="{width: '20vw',background:'#212529'}">
     <h1>Envie commander? inscriez-vous</h1>
@@ -93,6 +65,5 @@
     </ng-template>
   </p-dialog>
 </p-card>
-
 </div>
 
