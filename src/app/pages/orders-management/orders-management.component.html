@@ -1,5 +1,5 @@
-<div class="p-grid">
-  <div class="p-col-7">t
+<div class="p-grid mr-t">
+  <div class="p-col-7">
     <!-- <p-orderList [value]="listeCommandesDayS" [listStyle]="{'height':'auto'}" header="Commandes" filterBy="name"
       filterPlaceholder="Filter by name" dragdrop="true">
       <ng-template let-commande pTemplate="item">
@@ -18,7 +18,7 @@
     </p-orderList> -->
 
 
-    <p-table #dt [value]="listeCommandesDays" [globalFilterFields]="['user.name']">
+    <p-table #dt [value]="listeCommandesDays" [scrollable]="true" scrollHeight="58vh"  [globalFilterFields]="['user.name']">
       <ng-template pTemplate="caption">
         <div class="table-header">
           Commandes
@@ -31,10 +31,11 @@
       </ng-template>
       <ng-template pTemplate="header">
         <tr>
-          <th>Date</th>
-          <th>Nom</th>
-          <th>Quantité</th>
-          <th>details</th>
+          <th pResizableColumn style="width:5rem">Date</th>
+          <th pResizableColumn style="width:5rem">Nom</th>
+          <th pResizableColumn style="width:5rem">Quantité</th>
+          <th pResizableColumn style="width:5rem">details</th>
+          <th pResizableColumn style="width:5rem"></th>
         </tr>
       </ng-template>
       <ng-template pTemplate="body" let-listeCommandesDay let-i="rowIndex">
@@ -47,7 +48,7 @@
 
             </p-button>
           </td>
-          <td style="width: 0; padding: 0 0 0 2rem">
+          <td >
             <button pButton pRipple type="button" styleClass="p-button-sm" icon="pi pi-times"
               class="p-button-rounded p-button-danger"></button>
           </td>
@@ -64,21 +65,28 @@
     </p-table>
 
   </div>
-  <div class="p-col-4">t</div>
-</div>
-
-  <div class="p-col-5"> <h1>Détail des commandes :</h1><p-button (click)="createOrderRecap()" label="Afficher"></p-button>
-    <ul>
-    <li *ngFor="let meal of listRecap; let k= index" style="min-width: 20rem;">
-      <p>{{meal.label}}, quantité: {{meal.qty}}</p>
-    </li>
-  </ul>
-  <p-listbox [options]="listRecap" [(ngModel)]="selectedListRecap" [metaKeySelection]="false" [checkbox]="true" [filter]="true" [multiple]="true" optionLabel="name" [listStyle]="{'max-height':'250px'}" [style]="{'width':'15rem'}">
-    <ng-template let-recap pTemplate="item">
-        <div class="recap-item">
-            <div>{{recap.label}} t</div>
+  <div class="p-col-5">
+    <p-listbox [options]="listRecaps" [(ngModel)]="selectedListRecap" 
+      [filter]="true" [multiple]="true"  [listStyle]="{'max-height':'60.2vh'}"
+      [style]="{'width':'90%', margin:'auto'}">
+      <p-header [style]="{fontSize:'1.3rem'}">
+        Détail des commandes :
+    </p-header>
+      <ng-template pTemplate="caption">
+        <div class="table-header">
+          Commandes
         </div>
-    </ng-template>
-  </p-listbox>
+      </ng-template>
+      <ng-template let-listRecap pTemplate="item">
+        <div class="listRecap-item">
+          <div style="font-size: 1.1rem">Plat:        {{ listRecap.label }}       quantité: <span style="font-weight: bold;">{{listRecap.qty}} </span> </div>
+        </div>
+      </ng-template>
+    </p-listbox>
+  </div>
 </div>
 
+<div class="p-col-5">
+  
+
+</div>

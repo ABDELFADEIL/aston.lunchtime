@@ -18,31 +18,18 @@ export class OrdersManagementComponent implements OnInit {
   listeCommandesDays:any = [];
   cols: any[];
   detailVisible:number;
-  listRecap:Recap[];
+  listRecaps:Recap[];
   selectedListRecap: Recap[];
 
   constructor(private orderService: OrdersService) {
 
    }
 
-  ngOnInit(): void {
+  async ngOnInit() {
     // this.getOrders();
     // this.getOrderById(1);
     // this.getOrderByUserId(1);
-    this.getAllOrdersForAllUsersByDate(0,"2020-07-12");
-    this.cols = [
-      { field: 'creationDate', header: 'creationDate' },
-      { field: 'name', header: 'Name' },
-      { field: 'creationTime', header: 'creationTime' },
-      { field: 'quantity', header: 'Quantity' }
-  ];
-  //   this.cols = [
-  //     { field: 'date', header: 'date' },
-  //     { field: 'name', header: 'Name' },
-  //     { field: 'category', header: 'Category' },
-  //     { field: 'quantity', header: 'Quantity' }
-  // ];
-    // this.getAllOrdersForAllUsersByDate(0,"2020-07-12");
+    await this.getAllOrdersForAllUsersByDate(0,"2020-07-12");
     this.createOrderRecap();
     console.log("tg");
   }
@@ -74,14 +61,15 @@ export class OrdersManagementComponent implements OnInit {
     console.log("index => ");
     console.log(i);
   }
-  createOrderRecap() {
+   createOrderRecap() {
     let listmeal = []
     let listUnicName = []
     let listRecap = []
+    console.log("ssssssssssssssssssssssssssssssssssssssss");
+    console.log(this.listeCommandesDays);
     for(let command of this.listeCommandesDays ) {
       if (command.quantity != null) {
         for(let item of command.quantity) {
-          console.log(item)
           let obj = {label: undefined, price: undefined, qty: undefined};
           if(!listUnicName.includes(item.meal.id)) {
             obj.label = item.meal.label
@@ -101,7 +89,7 @@ export class OrdersManagementComponent implements OnInit {
         }
       }
 
-    this.listRecap = listRecap;
+    this.listRecaps = listRecap;
     console.log(listRecap);
 
 
