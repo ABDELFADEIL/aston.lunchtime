@@ -2,6 +2,7 @@
 <p-card *ngIf="user" header="Mise à jour informations" [style]="{width: '100%', 'min-height': '85vh'}" styleClass="p-card-shadow">
   <p-header>
   </p-header>
+  <div *ngIf="!update">
   <h4 style="color: #063b52;" *ngIf="user">Nom et prénom: {{ user.name +' '+user.firstname}}</h4>
   <p><i class="fa fa-map-marker" style="font-size: 1.8rem; color: yellowgreen"></i> : {{user.address | titlecase}} {{ user.postalCode }} {{ user.town | titlecase }}</p>
     <p><i class="fa fa-phone" style="font-size: 1.8rem; color: green"></i>
@@ -11,17 +12,76 @@
       : {{ user.wallet +'€'}}</p>
   <p> Statut: {{ user.status == 0 ? 'activé': user.status == 1 ? 'désactivé': 'supprimé'}}</p>
   <p>Date de création compte: {{ user.registrationDate}}</p>
+
+  </div>
   <ng-template pTemplate="footer">
     <p-button *ngIf="!credit && !update" (click)="onCredit()" class="p-mr-2" icon="pi pi-euro" [style]="{'background': '#009688','width': '40%'}">Créditer</p-button>
     <p-button *ngIf="!update && !credit" (click)="onUpdate()" class="p-mr-2" icon="fa fa-pencil-square-o" [style]="{'background': '#87aab9','width': '40%'}">Modifier</p-button>
   </ng-template>
-  <div class=" mr-top" *ngIf="credit && !update">
-    <form class="p-field p-grid" #f="ngForm" (ngSubmit)="creditUser(f.value, user.id)" novalidate>
-    <label for="firstname3" class="p-col-fixed" style="width:100px">Le montant:</label>
-    <div class="">
-      <input id="firstname3" style="height: 100%" type="number" pInputText  name="amount" ngModel>
-    </div>
-    <p-button type="submit" class="" [style]="{'background': '#009688', marginLeft: '10px'}">Créditer</p-button>
+  <div class="mr-top credit-form" *ngIf="credit && !update">
+
+    <form #f="ngForm" (ngSubmit)="creditUser(f.value, user.id)" novalidate>
+      <div class="p-fluid">
+        <div class="p-field">
+          <label>Le montant:</label>
+          <input style="border-radius: 50px; outline: none !important"  type="number" name="amount" pInputText ngModel>
+        </div>
+
+        <div class="p-field">
+          <div class="p-col">
+            <button pButton pRipple type="submit" label="Créditer" [style]="{'background': '#009688', textAlign: 'center'}" class="btn p-button-rounded"></button>
+          </div>
+        </div>
+
+      </div>
+    </form>
+  </div>
+
+  <div class="mr-top credit-form" *ngIf="!credit && update">
+
+    <form #f="ngForm" (ngSubmit)="creditUser(f.value, user.id)" novalidate>
+      <div class="p-fluid">
+        <div class="p-field">
+          <label>Nom:</label>
+          <input style="border-radius: 50px; outline: none !important"  type="text" name="name" pInputText [(ngModel)]="user.name">
+        </div>
+
+        <div class="p-field">
+          <label>Prénom:</label>
+          <input style="border-radius: 50px; outline: none !important"  type="text" name="firstname" pInputText [(ngModel)]="user.firstname">
+        </div>
+        <div class="p-field">
+          <label>Email:</label>
+          <input style="border-radius: 50px; outline: none !important"  type="text" name="email" pInputText [(ngModel)]="user.email">
+        </div>
+        <div class="p-field">
+          <label>Tel:</label>
+          <input style="border-radius: 50px; outline: none !important"  type="number" name="phone" pInputText [(ngModel)]="user.phone">
+        </div>
+        <div class="p-field">
+          <label>Adresse:</label>
+          <input style="border-radius: 50px; outline: none !important"  type="text" name="address" pInputText [(ngModel)]="user.address">
+        </div>
+        <div class="p-field">
+          <label>Code postale:</label>
+          <input style="border-radius: 50px; outline: none !important"  type="number" name="postalCode" pInputText [(ngModel)]="user.postalCode">
+        </div>
+        <div class="p-field">
+          <label>Ville:</label>
+          <input style="border-radius: 50px; outline: none !important"  type="text" name="town" pInputText [(ngModel)]="user.town">
+        </div>
+        <div class="p-field">
+          <label>Statut:</label>
+          <input style="border-radius: 50px; outline: none !important"  type="text" name="status" pInputText [(ngModel)]="user.status">
+        </div>
+
+        <div class="p-field">
+          <div class="p-col">
+            <button pButton pRipple type="submit" label="Envoyer" [style]="{'background': '#009688', textAlign: 'center'}" class="btn p-button-rounded"></button>
+          </div>
+        </div>
+
+      </div>
     </form>
   </div>
 
