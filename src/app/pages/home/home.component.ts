@@ -37,7 +37,7 @@ export class HomeComponent implements OnInit {
       this.user = this.authenticationService.getUserAuthenticated();
       this.constraint= this.menuService.getConstraint();
       this.getMealsWeek();
-      this.getMenuWeek();
+     // this.getMenuWeek();
       console.log(new Date());
   }
 
@@ -48,7 +48,7 @@ export class HomeComponent implements OnInit {
     this.menuList.forEach(element => {
     this.getMenuImage(element.id)
     })
-    
+
   }
   async getMenuImage(id_menu) {
     const res = await this.menuService.findImgMenu(id_menu);
@@ -105,7 +105,7 @@ export class HomeComponent implements OnInit {
     .catch(err=>{
     console.log("err:",err);
     })
-    
+
   }*/
 
 

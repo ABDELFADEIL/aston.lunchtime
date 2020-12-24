@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
-import { HttpRequest, HttpHandler, HttpEvent, HttpInterceptor } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import {HttpRequest, HttpHandler, HttpEvent, HttpInterceptor, HttpErrorResponse} from '@angular/common/http';
+import {Observable, throwError} from 'rxjs';
 
 import {AuthenticationService} from '../services/authentication.service';
 import {URL} from '../api-url/url';
+import {catchError, tap} from "rxjs/operators";
 
 @Injectable({ providedIn: 'root' })
 export class JwtInterceptor implements HttpInterceptor {
@@ -15,15 +16,24 @@ export class JwtInterceptor implements HttpInterceptor {
       this.authService.jwtToken = this.authService.loadToken();
     const isLoggedIn = this.authService.jwtToken;
     const isApiUrl = request.url.startsWith(URL);
-    if (false) {
+    if (isLoggedIn && isApiUrl) {
       request = request.clone(
         {
         setHeaders: {
-          Authorization: `Bearer ${this.authService.jwtToken}`
+          Authorization: `${this.authService.jwtToken}`
         }
       });
     }
 
-    return next.handle(request);
+    return next.handle(request).pipe( tap((ev: HttpEvent<any>) => {
+
+      }),
+      catchError(response => {
+        if (response instanceof HttpErrorResponse) {
+          console.log('Processing http error', response);
+        }
+
+        return throwError(response);
+      }));
   }
 }

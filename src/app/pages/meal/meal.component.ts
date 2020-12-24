@@ -10,9 +10,9 @@ import {Observable} from 'rxjs';
   styleUrls: ['./meal.component.css']
 })
 export class MealComponent implements OnInit {
- 
+
   allMeals:any[]=[];
-  
+
   constructor(private mealService: MealService, private ordersService: OrdersService) { }
 
   ngOnInit(): void {
@@ -26,7 +26,7 @@ export class MealComponent implements OnInit {
     this.allMeals.forEach(element=>{
       this.getMealImage(element.id);
     });
-      
+
   }
   async getMealImage(id) {
     const res = await this.mealService.findImgMeal(id);
@@ -34,17 +34,15 @@ export class MealComponent implements OnInit {
       this.allMeals.forEach(element=>{
       if(element.imageId === res.id){
         element.img64 = res.image64;
-        
-     
+
+
       }
     })
 /*    const img = res.image64;
     return img;*/
-  }    
+  }
   }
 
-  
- 
 
 
 
@@ -54,8 +52,10 @@ export class MealComponent implements OnInit {
 
 
 
- 
- 
 
 
-  
+
+
+
+
+

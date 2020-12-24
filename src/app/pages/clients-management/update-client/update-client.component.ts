@@ -37,4 +37,8 @@ export class UpdateClientComponent implements OnInit {
     this.update = true;
     this.credit = false;
   }
+
+  updateUser() {
+    console.log(this.user)
+  }
 }

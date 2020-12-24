@@ -39,7 +39,7 @@
 
   <div class="mr-top credit-form" *ngIf="!credit && update">
 
-    <form #f="ngForm" (ngSubmit)="creditUser(f.value, user.id)" novalidate>
+    <form #f="ngForm" (ngSubmit)="updateUser()" novalidate>
       <div class="p-fluid">
         <div class="p-field">
           <label>Nom:</label>
@@ -56,7 +56,7 @@
         </div>
         <div class="p-field">
           <label>Tel:</label>
-          <input style="border-radius: 50px; outline: none !important"  type="number" name="phone" pInputText [(ngModel)]="user.phone">
+          <input style="border-radius: 50px; outline: none !important"  type="text" name="phone" pInputText [(ngModel)]="user.phone">
         </div>
         <div class="p-field">
           <label>Adresse:</label>

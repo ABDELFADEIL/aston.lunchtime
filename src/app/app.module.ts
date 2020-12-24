@@ -99,7 +99,7 @@ import {ListboxModule} from 'primeng/listbox';
 ],
   schemas: [NO_ERRORS_SCHEMA],
   providers: [ConfirmationService,
-    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }
+    Title, { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }
     ],
   bootstrap: [AppComponent]
 })

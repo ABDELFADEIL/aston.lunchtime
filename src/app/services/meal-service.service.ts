@@ -11,7 +11,7 @@ export class MealService {
   constructor(private http: HttpClient, private authenticationService: AuthenticationService) { }
 
   async getMeals():Promise<[]>{
-    return this.http.get<[]>(this.api_url+"meal/findall", {headers:new HttpHeaders({'Authorization':this.authenticationService.jwtToken})})
+    return this.http.get<[]>(this.api_url+"meal/findall")
     .toPromise();
 
  }
