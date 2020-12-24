@@ -59,8 +59,8 @@ export class OrdersService {
   getOrderById(id:number):Promise<any> {
     return this.http.get<any>(this.api_url + "order/find/" + id).toPromise();
   }
-  getOrderByUserId(id:number):Promise<any> {
-    return this.http.get<any>(this.api_url + "order/findallforuser/" + id).toPromise();
+  getOrderByUserId(id:number) {
+    return this.http.get<any>(this.api_url + "order/findallforuser/" + id);
   }
   getAllOrdersForAllUsersByDate(status?:number,beginDate?:string,endDate?:string):Promise<any> {
    if (!beginDate){
