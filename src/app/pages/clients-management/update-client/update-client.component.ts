@@ -1,5 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {UserService} from "../../../services/user.service";
+import {Router} from "@angular/router";
+import {FormControl, FormGroup, Validators} from "@angular/forms";
 
 @Component({
   selector: 'app-update-client',
@@ -8,13 +10,18 @@ import {UserService} from "../../../services/user.service";
 })
 export class UpdateClientComponent implements OnInit {
   @Input() user: any;
+  @Input() notifyIUserProcessed: () => void;
   amount: number = 0;
   credit: boolean = false;
   update: boolean = false;
-  constructor(private userService: UserService) {
+  public userForm: FormGroup;
+
+  constructor(private userService: UserService, private router: Router) {
   }
 
   ngOnInit(): void {
+    this.userFormInit();
+    console.log(this.user)
   }
 
 
@@ -39,6 +46,46 @@ export class UpdateClientComponent implements OnInit {
   }
 
   updateUser() {
-    console.log(this.user)
+    console.log(this.userForm.value)
+    this.userService.update(this.user.id, this.userForm.value).subscribe(data=> {
+      console.log(data);
+      this.update = false;
+      this.router.navigateByUrl("/clients-management");
+    }, error => {
+      console.log("error ///////////////////");
+      console.log(error);
+    })
+  }
+
+  private userFormInit() {
+    this.userForm = new FormGroup({
+      firstname: new FormControl('', [
+        Validators.required, Validators.minLength(4)]),
+      name: new FormControl('', [
+        Validators.required, Validators.minLength(4)]),
+      email: new FormControl('', [
+        Validators.required, Validators.minLength(4)]),
+      password: new FormControl('', [
+        Validators.required, Validators.minLength(4)]),
+      address: new FormControl('', [
+        Validators.required, Validators.minLength(4)]),
+      postalCode: new FormControl('', [
+        Validators.required, Validators.minLength(4)]),
+      town: new FormControl('', [
+        Validators.required, Validators.minLength(3)]),
+      phone: new FormControl('', [
+        Validators.required, Validators.minLength(8)]),
+      sex: new FormControl('', [
+        Validators.required]),
+      status: new FormControl('', [
+        Validators.required]),
+      wallet: new FormControl('', [
+        Validators.required])
+    });
+  }
+
+  onCancel() {
+    this.update = false;
+    this.credit = false;
   }
 }
