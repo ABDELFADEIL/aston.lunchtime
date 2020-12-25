@@ -22,7 +22,6 @@ export class ClientsManagementComponent implements OnInit {
     ]
   }
 
-
   getAllUser(){
     this.userService.findAll().subscribe(res => {
       this.users = res;
