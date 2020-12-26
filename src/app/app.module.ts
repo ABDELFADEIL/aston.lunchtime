@@ -21,9 +21,7 @@ import { UserAccountComponent } from './pages/user-account/user-account.componen
 import { MealComponent } from './pages/meal/meal.component';
 import { ButtonModule } from 'primeng/button';
 import {TabViewModule} from 'primeng/tabview';
-
-
-
+import {InputSwitchModule} from 'primeng/inputswitch';
 import { MatCardModule } from '@angular/material/card';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
@@ -90,7 +88,8 @@ import {ListboxModule} from 'primeng/listbox';
     DialogModule,
     TabViewModule,
     OrderListModule,
-    ListboxModule
+    ListboxModule,
+    InputSwitchModule
 
 
   ],

@@ -1,5 +1,5 @@
 
-<div class="p-d-flex"> 
+<div class="p-d-flex">
    <!-- modal ----->
    <div class="modal p-mr-12">
       <!-- horizontal menu ----->
@@ -7,14 +7,14 @@
             <div class="p-mr-4">
             </div>
             <div class="small-logo p-mr-4">
-                <a class="logo-link" [routerLink]="[ '/home' ]"><img src="assets/logo.jpg" height="80px"></a> 
+                <a class="logo-link" [routerLink]="[ '/home' ]"><img src="assets/logo.jpg" height="80px"></a>
             </div>
             <div class="right p-mr-4">
-                <img src="{{ getUserImg ()}}" height="80px" class="img-user">    
+                <img src="{{ getUserImg()}}" height="80px" class="img-user">
             </div>
             <div class="user-role p-mr-4">
                 <p class="user-infos">{{user.name}}<br>{{ user.firstname }}</p>
-            </div>   
+            </div>
       </div>
        <!-- end horizontal menu ----->
       <div class='p-grid'>
@@ -24,7 +24,7 @@
           <h1 class="title-card" *ngIf="orders">Mes commandes</h1>
           <h1 class="title-card" *ngIf="parameters">Paramètres</h1>
           <h1 class="title-card" *ngIf="infos">Mes informations</h1>
-          <h1 class="title-card" *ngIf="wallet"> Ma cagnotte</h1>     
+          <h1 class="title-card" *ngIf="wallet"> Ma cagnotte</h1>
         </div>
       </div>
        <!---- vertical menu --->
@@ -35,7 +35,7 @@
                 <p (click)="userAccountNavigate('orders')" class="order-link">
                   <img class="icone" src="assets/user-account/icones/shopping-cart.png">
                 </p>
-              </div>  
+              </div>
               <div class="euro">
                 <p (click)="userAccountNavigate('wallet')" class="euro-link">
                   <img class="icone" src="assets/user-account/icones/euro.png">
@@ -84,12 +84,12 @@
               </div>
               </p-card>
               <button pButton type="button" label="commander" class="btn-order p-button-rounded"></button>
-          </div> 
+          </div>
           <div class="p-col-2 left"></div>
         </div>
           <!---- end card --->
         <!---- user infos --->
-       
+
         <div class="p-grid" *ngIf="infos">
           <div class="p-col-1"></div>
           <div class="user-infos-content p-col-9 p-d-flex">
@@ -194,7 +194,7 @@
           </div>
          </div>
         <!---- end my orders --->
-         <!---- 
+         <!----
           <div class="p-field p-col-6">
           <button pButton (click)="onCancel()" pRipple type="button" label="annuler" class="p-button-rounded p-button-info"></button>
         </div>
@@ -203,8 +203,6 @@
 </div>
 
 
-    
-   
 
 
 
@@ -245,6 +243,8 @@
 
 
 
-    
+
+
+
 
 

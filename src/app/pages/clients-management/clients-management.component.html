@@ -35,6 +35,7 @@
               {{user.wallet}}
             </td>
             <td>
+              <p-inputSwitch (onChange)="changeStatus(user)" [ngModel]="user.status == 0"></p-inputSwitch>
               {{user.status == 0 ? 'activé': user.status == 1 ? 'désactivé': 'supprimé'}}
             </td>
             <td>

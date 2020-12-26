@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, OnChanges, OnInit, SimpleChange, SimpleChanges} from '@angular/core';
 import {UserService} from "../../../services/user.service";
 import {Router} from "@angular/router";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
@@ -8,8 +8,8 @@ import {FormControl, FormGroup, Validators} from "@angular/forms";
   templateUrl: './update-client.component.html',
   styleUrls: ['./update-client.component.css']
 })
-export class UpdateClientComponent implements OnInit {
-  @Input() user: any;
+export class UpdateClientComponent implements OnInit, OnChanges {
+ // @Input() user: any;
   @Input() notifyIUserProcessed: () => void;
   amount: number = 0;
   credit: boolean = false;
@@ -21,15 +21,29 @@ export class UpdateClientComponent implements OnInit {
 
   ngOnInit(): void {
     this.userFormInit();
-    console.log(this.user)
+
   }
 
+
+  private _user; // private property _user
+  // use getter setter to define the property
+  get user(): any {
+    return this._user;
+  }
+
+  @Input()
+  set user(val: any) {
+    this._user = val;
+  }
+
+  @Input() notifyItemProcessed: () => void;
 
   creditUser(form, id){
     console.log(id, form.amount);
     this.userService.creditUser(id, form.amount).then( res => {
       console.log(res);
       this.credit = false;
+      this.router.navigateByUrl("/clients");
     }, error => {
       console.log(error);
     })
@@ -50,7 +64,7 @@ export class UpdateClientComponent implements OnInit {
     this.userService.update(this.user.id, this.userForm.value).subscribe(data=> {
       console.log(data);
       this.update = false;
-      this.router.navigateByUrl("/clients-management");
+      this.router.navigateByUrl("/clients");
     }, error => {
       console.log("error ///////////////////");
       console.log(error);
@@ -87,5 +101,14 @@ export class UpdateClientComponent implements OnInit {
   onCancel() {
     this.update = false;
     this.credit = false;
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    const currentUser: SimpleChange = changes.user;
+    if(currentUser.currentValue){
+      this.update = false;
+      this.credit = false;
+    }
+
   }
 }

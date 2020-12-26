@@ -13,7 +13,7 @@ import { OrdersService } from 'src/app/services/orders.service';
 export class UserAccountComponent implements OnInit {
   orders: boolean = true;
   wallet: boolean = false;
-  infos: boolean = false; 
+  infos: boolean = false;
   parameters:boolean = false;
   user: User;
   userOrders: any;
@@ -35,26 +35,26 @@ export class UserAccountComponent implements OnInit {
       case 'orders':
         this.orders = true;
         this.wallet = false;
-        this.infos = false; 
+        this.infos = false;
         this.parameters = false;
         break;
       case 'wallet':
-        this.wallet = true; 
+        this.wallet = true;
         this.orders = false;
-        this.infos = false; 
+        this.infos = false;
         this.parameters = false;
         break;
       case 'infos':
-        this.infos = true; 
-        this.wallet = false; 
+        this.infos = true;
+        this.wallet = false;
         this.orders = false;
         this.parameters = false;
         break;
         case 'parameters':
           this.parameters = true;
-          this.wallet = false; 
+          this.wallet = false;
           this.orders = false;
-          this.infos = false; 
+          this.infos = false;
         break;
       default:
         this.orders = true;
@@ -63,14 +63,14 @@ export class UserAccountComponent implements OnInit {
 
   // get orders for logged-in user
   async getOrdersForCurrentUser() {
-    const user = this.authenticationService.getUserAuthenticated();
-    this.orderService.getOrderByUserId(user.id).subscribe(data => {
+
+    this.orderService.getOrderByUserId(this.user.id).subscribe(data => {
       this.userOrders = data;
     })
    }
    getUserImg() {
-    const user = this.authenticationService.getUserAuthenticated();
-    const img = this.userService.findUserImag(user.id);
-    console.log(img);
+    //const user = this.authenticationService.getUserAuthenticated();
+    const img = this.userService.findUserImag(this.user.id);
+    //console.log(img);
   }
 }

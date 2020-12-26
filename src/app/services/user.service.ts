@@ -47,12 +47,10 @@ export class UserService {
   findUserImag(id: number) {
     return this.http.get<User>(URL + "/user/findimg/" + id, {headers:new HttpHeaders({'Authorization':this.authenticationService.jwtToken})});
   }
-  
+
   debitUser(id: number, amount:number){
-    console.log(this.authenticationService.jwtToken);
     if (!this.authenticationService.jwtToken)
       this.authenticationService.jwtToken = this.authenticationService.loadToken();
-    console.log(this.authenticationService.jwtToken);
     return this.http.post(URL+ 'user/debit/'+id+'?amount='+amount, {headers:new HttpHeaders({'Authorization':this.authenticationService.jwtToken})});
   }
 
@@ -62,4 +60,14 @@ export class UserService {
   onClose() {
     this.display = false;
   }
+
+  changeUserStatus(user) {
+    if(user.status == 0) {
+      return this.http.patch(URL+'user/deactivate/'+user.id, null);
+    } else {
+      return this.http.patch(URL+'user/activate/'+user.id, null);
+    }
+
+  }
+
 }

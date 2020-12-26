@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {UserService} from "../../services/user.service";
+import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
   selector: 'app-clients-management',
@@ -10,7 +11,13 @@ export class ClientsManagementComponent implements OnInit {
   users: any [];
   cols: any[];
   public user: any;
-  constructor(private userService: UserService) { }
+  status:  boolean= true;
+  constructor(private userService: UserService, private activatedRoute: ActivatedRoute, private router: Router) {
+    this.activatedRoute.url.subscribe(() => {
+      activatedRoute.snapshot;
+      this.getAllUser();
+    });
+  }
 
   ngOnInit(): void {
     this.getAllUser();
@@ -25,7 +32,6 @@ export class ClientsManagementComponent implements OnInit {
   getAllUser(){
     this.userService.findAll().subscribe(res => {
       this.users = res;
-      console.log(this.users);
     }, error => {
       console.log(error);
     })
@@ -33,24 +39,42 @@ export class ClientsManagementComponent implements OnInit {
 
   onAddCredit(user: any) {
     this.user = user
-    console.log(user)
   }
   editUser(user: any){
     this.user = user;
-    console.log(user)
   }
   onDelete(id){
     let conf = confirm("Êtes vous sûr de vouloir supprimer?");
     if (conf) {
-    console.log(id)
       this.userService.delete(id).subscribe(res => {
-      console.log(res);
       }, error => {
         console.log(error);
       })
     }
   }
-  onUpdate(user){
-    console.log(user);
+
+  changeStatus(user) {
+    this.user = user
+    this.userService.changeUserStatus(this.user).subscribe(res => {
+        console.log(res);
+        this.user = res
+      console.log(this.user.status);
+     this.router.navigateByUrl("/clients");
+    }, error => {
+        console.log(error)
+      });
+    console.log(this.user.status);
+
+  }
+
+
+  updateUser(){
+    this.userService.update(this.user.id, this.user).subscribe(data=> {
+      console.log(data);
+      this.router.navigateByUrl("/clients");
+    }, error => {
+      console.log("error ///////////////////");
+      console.log(error);
+    })
   }
 }
