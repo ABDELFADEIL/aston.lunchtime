@@ -69,7 +69,7 @@ export class UserAccountComponent implements OnInit {
     })
    }
    getUserImg() {
-    //const user = this.authenticationService.getUserAuthenticated();
+    const user = this.authenticationService.getUserAuthenticated();
     const img = this.userService.findUserImag(this.user.id);
     //console.log(img);
   }
