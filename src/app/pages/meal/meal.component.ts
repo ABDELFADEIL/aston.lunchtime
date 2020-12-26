@@ -20,9 +20,10 @@ export class MealComponent implements OnInit {
   currentPage:number = this.page;
   meals:any[]=[];
   pages: any[]=[];
+  currentCategory = 1;
   categories=
     {1: "Categories", 2: "viande" ,3:"poission",4:"vegeterian",5:"fast-food",6:"fruit-mer",
-    7:"dessert",8:"entrée",9:"boission"}
+    7:"dessert",8:"boission",9:"entrée"}
 
 
 
@@ -76,6 +77,7 @@ export class MealComponent implements OnInit {
     }
 
   searchByCategory(value: any) {
+    this.currentCategory = value;
     console.log(value);
     if (value != 1){
       const  meals = this.allMeals.filter(meal => meal.category == value);
