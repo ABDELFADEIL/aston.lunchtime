@@ -3,9 +3,10 @@
       <p-menubar [model]="items">
           <ng-template pTemplate="start" >
             <a [routerLink]="[ '/home' ]" style="margin-right: 20px;"> <img src="assets/logo.jpg"  height="40" class="p-mr-2"></a>
-            <div *ngIf="authenticationService.authenticated" class="p-m-2" style="margin-right: 20px;">
-              <p class="clickable" (click)="userService.show()"  style="font-size: 1.3rem; color: white; float:right;">Mon compte</p>
-            </div>
+            <!-- <div *ngIf="authenticationService.authenticated" class="p-m-2" style="margin-right: 20px;">
+              <p class="clickable" (click)="userService.show()"  style="font-size: 1.3rem; color: white; float:right;"></p>
+            </div> -->
+            
           </ng-template>
 
           <ng-template pTemplate="end">
@@ -18,7 +19,6 @@
               </div>
             </div>
           </ng-template>
-
       </p-menubar>
   </div>
 </div>

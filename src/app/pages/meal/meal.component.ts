@@ -10,8 +10,9 @@ import {Observable} from 'rxjs';
   styleUrls: ['./meal.component.css']
 })
 export class MealComponent implements OnInit {
- 
+
   allMeals:any[]=[];
+
   cols: any[];
   public meal: any;
   page: number = 1;
@@ -24,6 +25,7 @@ export class MealComponent implements OnInit {
 6:"dessert",7:"boission",8:"entrée"}
 
   
+
   constructor(private mealService: MealService, private ordersService: OrdersService) { }
 
   async ngOnInit(){
@@ -40,8 +42,8 @@ export class MealComponent implements OnInit {
     console.log(response);
         this.allMeals.forEach(element=>{
       this.getMealImage(element.id);     
-    });
-      return response;
+
+      return respon
   }
   async getMealImage(id) {
     const res = await this.mealService.findImgMeal(id);
@@ -49,12 +51,13 @@ export class MealComponent implements OnInit {
       this.allMeals.forEach(element=>{
       if(element.imageId === res.id){
         element.img64 = res.image64;
-        
-     
+
+
       }
     })    
 /*    const img = res.image64;
     return img;*/
+
   }   
   paginateMeals(page_number) {​​​​​​​
     const totalPages:any= this.allMeals.length/12;
@@ -71,10 +74,10 @@ export class MealComponent implements OnInit {
     this.paginateMeals(this.currentPage);
   }
 
+
+  }
   }
 
-  
- 
 
 
 
@@ -84,8 +87,10 @@ export class MealComponent implements OnInit {
 
 
 
- 
- 
 
 
-  
+
+
+
+
+

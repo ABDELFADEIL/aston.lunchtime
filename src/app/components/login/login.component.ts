@@ -17,22 +17,7 @@ export class LoginComponent implements OnInit {
   forgetPassword: boolean = false;
   public userForm: FormGroup;
   userFormLongin: FormGroup;
-  user: User = new class implements User {
-    address: string;
-    email: string;
-    firstname;
-    id: number;
-    image_id: string;
-    name: string;
-    password: string;
-    phone: string;
-    postal_code: string;
-    registration_date: string;
-    sex: number;
-    status;
-    town: string;
-    wallet: number;
-  };
+  user: User = new  User()
   email: string;
 
   constructor(public authenticationService: AuthenticationService,
@@ -40,28 +25,7 @@ export class LoginComponent implements OnInit {
               private router: Router) {}
 
   ngOnInit(): void {
-    this.userForm = new FormGroup({
-      firstname: new FormControl('', [
-        Validators.required, Validators.minLength(4)]),
-      name: new FormControl('', [
-        Validators.required, Validators.minLength(4)]),
-      email: new FormControl('', [
-        Validators.required, Validators.minLength(4)]),
-      password: new FormControl('', [
-        Validators.required, Validators.minLength(4)]),
-      address: new FormControl('', [
-        Validators.required, Validators.minLength(4)]),
-      postalCode: new FormControl('', [
-        Validators.required, Validators.minLength(4)]),
-      town: new FormControl('', [
-        Validators.required, Validators.minLength(3)]),
-      phone: new FormControl('', [
-        Validators.required, Validators.minLength(8)]),
-      sex: new FormControl('', [
-        Validators.required]),
-      wallet: new FormControl('', [
-        Validators.required])
-    });
+   this.userFormInit();
     this.userFormLongin = new FormGroup({
       email: new FormControl('', [
         Validators.required, Validators.minLength(6)]),
@@ -128,6 +92,31 @@ export class LoginComponent implements OnInit {
       this.forgetPassword = false;
     }, error =>{
       console.log(error);
+    });
+  }
+
+  private userFormInit() {
+    this.userForm = new FormGroup({
+      firstname: new FormControl('', [
+        Validators.required, Validators.minLength(4)]),
+      name: new FormControl('', [
+        Validators.required, Validators.minLength(4)]),
+      email: new FormControl('', [
+        Validators.required, Validators.minLength(4)]),
+      password: new FormControl('', [
+        Validators.required, Validators.minLength(4)]),
+      address: new FormControl('', [
+        Validators.required, Validators.minLength(4)]),
+      postalCode: new FormControl('', [
+        Validators.required, Validators.minLength(4)]),
+      town: new FormControl('', [
+        Validators.required, Validators.minLength(3)]),
+      phone: new FormControl('', [
+        Validators.required, Validators.minLength(8)]),
+      sex: new FormControl('', [
+        Validators.required]),
+      wallet: new FormControl('', [
+        Validators.required])
     });
   }
 }

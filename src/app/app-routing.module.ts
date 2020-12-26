@@ -21,6 +21,7 @@ const routes: Routes = [
   { path: 'user-account', component: UserAccountComponent },
   { path: 'client-orders', component: ClientOrdersComponent },
   { path: 'clients-management', component: ClientsManagementComponent },
+  { path: 'clients', redirectTo: 'clients-management', pathMatch: 'full' },
   { path: 'menu-management', component: MenusManagementComponent },
   { path: 'orders-management', component: OrdersManagementComponent }
 

@@ -29,8 +29,9 @@ export class HeaderComponent implements OnInit {
         items: [
           {label: 'Gestion plats', routerLink: ['/menu-management']} ,
           {label: 'Gestion commandes', routerLink: ['/orders-management']},
-          {label: 'Gestion clients', routerLink: ['/clients-management']}
+          {label: 'Gestion clients', routerLink: ['/clients-management']},
               ]},
+              {label: 'Mon compte', routerLink: ['/user-account']}
                    ];
 }
 

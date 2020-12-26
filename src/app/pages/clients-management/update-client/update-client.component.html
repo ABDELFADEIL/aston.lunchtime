@@ -10,7 +10,7 @@
     <p> <i class="fa fa-envelope-square" style="font-size: 1.8rem; color: red"></i> : {{ user.email}}</p>
     <p><i class="fa fa-credit-card" aria-hidden="true" style="font-size: 1.8rem; color: blue"></i>
       : {{ user.wallet +'€'}}</p>
-  <p> Statut: {{ user.status == 0 ? 'activé': user.status == 1 ? 'désactivé': 'supprimé'}}</p>
+  <p> Statut: {{ user.status == 0 ? 'activé': user.status == 1 ? 'désactivé': 'supprimé'}}</p>  
   <p>Date de création compte: {{ user.registrationDate}}</p>
 
   </div>
@@ -39,40 +39,44 @@
 
   <div class="mr-top credit-form" *ngIf="!credit && update">
 
-    <form #f="ngForm" (ngSubmit)="creditUser(f.value, user.id)" novalidate>
+    <form [formGroup]="userForm" (ngSubmit)="updateUser()" novalidate>
       <div class="p-fluid">
         <div class="p-field">
           <label>Nom:</label>
-          <input style="border-radius: 50px; outline: none !important"  type="text" name="name" pInputText [(ngModel)]="user.name">
+          <input style="border-radius: 50px; outline: none !important"  type="text" formControlName="name" pInputText [(ngModel)]="user.name">
         </div>
 
         <div class="p-field">
           <label>Prénom:</label>
-          <input style="border-radius: 50px; outline: none !important"  type="text" name="firstname" pInputText [(ngModel)]="user.firstname">
+          <input style="border-radius: 50px; outline: none !important"  type="text" formControlName="firstname" pInputText [(ngModel)]="user.firstname">
         </div>
         <div class="p-field">
           <label>Email:</label>
-          <input style="border-radius: 50px; outline: none !important"  type="text" name="email" pInputText [(ngModel)]="user.email">
+          <input style="border-radius: 50px; outline: none !important"  type="text" formControlName="email" pInputText [(ngModel)]="user.email">
+        </div>
+        <div class="p-field">
+          <label>Password:</label>
+          <input style="border-radius: 50px; outline: none !important"  type="text" formControlName="password" pInputText [(ngModel)]="user.password">
         </div>
         <div class="p-field">
           <label>Tel:</label>
-          <input style="border-radius: 50px; outline: none !important"  type="number" name="phone" pInputText [(ngModel)]="user.phone">
+          <input style="border-radius: 50px; outline: none !important"  type="text" formControlName="phone" pInputText [(ngModel)]="user.phone">
         </div>
         <div class="p-field">
           <label>Adresse:</label>
-          <input style="border-radius: 50px; outline: none !important"  type="text" name="address" pInputText [(ngModel)]="user.address">
+          <input style="border-radius: 50px; outline: none !important"  type="text" formControlName="address" pInputText [(ngModel)]="user.address">
         </div>
         <div class="p-field">
           <label>Code postale:</label>
-          <input style="border-radius: 50px; outline: none !important"  type="number" name="postalCode" pInputText [(ngModel)]="user.postalCode">
+          <input style="border-radius: 50px; outline: none !important"  type="number" formControlName="postalCode" pInputText [(ngModel)]="user.postalCode">
         </div>
         <div class="p-field">
           <label>Ville:</label>
-          <input style="border-radius: 50px; outline: none !important"  type="text" name="town" pInputText [(ngModel)]="user.town">
+          <input style="border-radius: 50px; outline: none !important"  type="text" formControlName="town" pInputText [(ngModel)]="user.town">
         </div>
         <div class="p-field">
           <label>Statut:</label>
-          <input style="border-radius: 50px; outline: none !important"  type="text" name="status" pInputText [(ngModel)]="user.status">
+          <input style="border-radius: 50px; outline: none !important"  type="text" formControlName="status" pInputText [(ngModel)]="user.status">
         </div>
 
         <div class="p-field">
@@ -80,7 +84,11 @@
             <button pButton pRipple type="submit" label="Envoyer" [style]="{'background': '#009688', textAlign: 'center'}" class="btn p-button-rounded"></button>
           </div>
         </div>
-
+        <div class="p-field">
+        <div class="p-field p-col">
+          <button pButton (click)="onCancel()" pRipple type="button" label="annuler" style="background: #87AAB9;width: 100%; margin-top: 20px" class="p-button-rounded p-button-info"></button>
+        </div>
+        </div>
       </div>
     </form>
   </div>
