@@ -1,15 +1,19 @@
 *{
-    font-family: 'Cormorant Garamond', serif;
-  }
+  font-family: 'Cormorant Garamond', serif;
+}
 
-  .meals{
-    display: flex;
-    border-radius: 5px;         
-    width: 100%;
-    justify-content: space-between;
-  /*  margin-right: 100px;*/
-  /*  height: auto !important;*/
-    flex-wrap: wrap;
-    flex-direction:row;    
-  /*  margin-bottom: 20px;  */  
-    }
+.meals{
+  display: flex;
+  border-radius: 5px;
+  width: 100%;
+  justify-content: space-between;
+/*  margin-right: 100px;*/
+/*  height: auto !important;*/
+  flex-wrap: wrap;
+  flex-direction:row;
+/*  margin-bottom: 20px;  */
+  }
+  .page-item{
+    display:inline;
+    font-size:40px;
+  }
