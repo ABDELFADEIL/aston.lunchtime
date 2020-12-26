@@ -18,7 +18,8 @@
     </p-orderList> -->
 
 
-    <p-table #dt [value]="listeCommandesDays" [scrollable]="true" scrollHeight="58vh"  [globalFilterFields]="['user.name']">
+    <p-table #dt [value]="listeCommandesDays" [scrollable]="true" scrollHeight="58vh"
+      [globalFilterFields]="['user.name']">
       <ng-template pTemplate="caption">
         <div class="table-header">
           Commandes
@@ -34,21 +35,21 @@
           <th pResizableColumn style="width:5rem">Date</th>
           <th pResizableColumn style="width:5rem">Nom</th>
           <th pResizableColumn style="width:5rem">Quantité</th>
-          <th pResizableColumn style="width:5rem">details</th>
+          <!-- <th pResizableColumn style="width:5rem">details</th> -->
           <th pResizableColumn style="width:5rem"></th>
         </tr>
       </ng-template>
       <ng-template pTemplate="body" let-listeCommandesDay let-i="rowIndex">
         <tr>
           <td>{{listeCommandesDay.creationDate}}</td>
-          <td>{{listeCommandesDay.user.name}}</td>
+          <td>{{listeCommandesDay.user.firstname}} {{listeCommandesDay.user.name}}</td>
           <td>{{listeCommandesDay.quantity != null?listeCommandesDay.quantity.length : ""}}</td>
+          <!-- <td> {{listeCommandesDay.user.name}}</td> -->
           <td>
-            <p-button (click)="showDetails(i)" label="détails">
+            <!-- <button pButton class="p-button-rounded p-button-primary" styleClass="p-button-sm" (click)="showDetails(i)" icon=" pi pi-search-plus" ></button> -->
 
-            </p-button>
-          </td>
-          <td >
+            <button pButton pRipple type="button" styleClass="p-button-sm" icon="pi pi-search-plus"
+              (click)="showDetails(i)" style="margin-right: 0.5rem;" class="p-button-rounded p-button-primary"></button>
             <button pButton pRipple type="button" styleClass="p-button-sm" icon="pi pi-times"
               class="p-button-rounded p-button-danger"></button>
           </td>
@@ -66,12 +67,11 @@
 
   </div>
   <div class="p-col-5">
-    <p-listbox [options]="listRecaps" [(ngModel)]="selectedListRecap" 
-      [filter]="true" [multiple]="true"  [listStyle]="{'max-height':'60.2vh'}"
-      [style]="{'width':'90%', margin:'auto'}">
+    <p-listbox [options]="listRecaps" [(ngModel)]="selectedListRecap" [filter]="true" [multiple]="true" [readonly] ="true"
+      [listStyle]="{'max-height':'60.2vh'}" [style]="{'width':'90%', margin:'auto'}">
       <p-header [style]="{fontSize:'1.3rem'}">
         Détail des commandes :
-    </p-header>
+      </p-header>
       <ng-template pTemplate="caption">
         <div class="table-header">
           Commandes
@@ -79,7 +79,11 @@
       </ng-template>
       <ng-template let-listRecap pTemplate="item">
         <div class="listRecap-item">
-          <div style="font-size: 1.1rem">Plat:        {{ listRecap.label }}       quantité: <span style="font-weight: bold;">{{listRecap.qty}} </span> </div>
+          <div style="font-size: 1.1rem">Plat: {{ listRecap.label }} quantité: <span
+              style="font-weight: bold;">{{listRecap.qty}} </span>
+               <button pButton pRipple type="button" styleClass="p-button-sm" icon="pi pi-search-plus"
+              (click)="test()" style="margin-right: 0.5rem;" class="p-button-rounded p-button-primary"></button>
+            </div>
         </div>
       </ng-template>
     </p-listbox>
@@ -87,6 +91,6 @@
 </div>
 
 <div class="p-col-5">
-  
+
 
 </div>
