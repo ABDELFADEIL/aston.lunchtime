@@ -4,12 +4,13 @@
 
   .meals{
     display: flex;
-    border-radius: 5px;         
+    border-radius: 5px;
     width: 100%;
     justify-content: space-between;
   /*  margin-right: 100px;*/
   /*  height: auto !important;*/
     flex-wrap: wrap;
-    flex-direction:row;    
-  /*  margin-bottom: 20px;  */  
+    flex-direction:row;
+  /*  margin-bottom: 20px;  */
     }
+

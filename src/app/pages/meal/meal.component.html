@@ -3,15 +3,15 @@
   <h3>Categories</h3>
 <div *ngFor ="let category of categories | keyvalue ">
   <div>
-   {{category.value}} 
-  </div>  
+   {{category.value}}
+  </div>
 </div>
 </div>
 <div class="p-col-10">
 <div class="p-col">
   <div class="p-inputgroup">
     <span class="p-inputgroup-addon"><i class="pi pi-user"></i></span>
-    <input type="text" pInputText placeholder="Chercher">         
+    <input type="text" pInputText placeholder="Chercher">
 </div>
 </div>
 <div *ngIf = "meals" class="myclass p-d-flex p-flex-row p-flex-wrap p-jc-center">
@@ -26,9 +26,19 @@
     </ng-template>
   </p-card>
 </div>
-<div *ngFor = "let p of pages; let i = index" class="p-col" style="background-color:red;margin-bottom:40px;color:black;font-size:16px">
- <p (click)="OnMealPage(i+1)"> page: {{i}}</p>
-</div>
+  <nav style="display: block;margin-bottom:40px;text-align: center;padding-bottom: 20px">
+   <u class="pagination p-col" style="">
+     <li class="page-item">
+       <a class="page-link" [ngClass]="currentPage == 1? 'disable': ''" (click)="OnMealPage(currentPage-1)"> << </a>
+     </li>
+     <li  class="page-item" *ngFor = "let p of pages; let i = index" (click)="OnMealPage(i+1)">
+       <a [ngClass]="currentPage == i+1? 'active': ''" class="page-link">{{i}}</a>
+     </li>
+     <li class="page-item">
+       <a class="page-link" [ngClass]="currentPage == pages.length? 'disable': ''"  (click)="OnMealPage(currentPage+1)"> >> </a>
+     </li>
+   </u>
+  </nav>
 </div>
 </div>
 
@@ -56,10 +66,10 @@
               </th>
               <th style="background: #87AAB9" pResizableColumn></th>
             </tr>
-          </ng-template>        
+          </ng-template>
   <tr>
 <div *ngIf = "allMeals" class="myclass p-d-flex p-flex-row p-flex-wrap p-jc-center">
-<p-card *ngFor="let meal of allMeals" header="{{meal.label}}" [style]="{width: '220px'}" styleClass="p-card-shadow p-m-2">    
+<p-card *ngFor="let meal of allMeals" header="{{meal.label}}" [style]="{width: '220px'}" styleClass="p-card-shadow p-m-2">
 <ng-template pTemplate="body" let-meal let-i="rowIndex">
     <p-header>
       <img alt="Card" src="{{meal.img64}}" style="border-top-left-radius: 4px;border-top-right-radius: 4px; height: 220px !important;">
@@ -67,7 +77,7 @@
     <p>Déscription: {{meal.description ? meal.description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit.'}}</p>
     <h4>Prix: <strong style="font-size: 1.4rem !important;">{{meal.priceDF + '€'}}</strong></h4>
   </ng-template>
-  </p-card>    
+  </p-card>
 </td>
 </tr>
 </div>
