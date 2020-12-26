@@ -211,16 +211,22 @@ ul.pagination {
   list-style: none;
   border-radius: .25rem;
 }
+nav {
+  height:80px !important;
+}
 
 .page-link {
   position: relative;
-  padding: .5rem .75rem;
+  padding: .75rem 1rem;
   margin-left: -1px;
   line-height: 1.25;
   color: #007bff;
   background-color: #fff;
   border: 1px solid #dee2e6;
   cursor: pointer;
+}
+.page-link a{
+  font-weight: 600;
 }
  li
 {

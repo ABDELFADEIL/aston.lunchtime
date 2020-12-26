@@ -24,6 +24,7 @@ export class MealComponent implements OnInit {
   categories=
 {1: "viande" ,2:"poission",3:"vegeterian",4:"fast-food",5:"fruit-mer",
 6:"dessert",7:"boission",8:"entrée"}
+  motCle: any;
 
 
 
@@ -56,8 +57,6 @@ export class MealComponent implements OnInit {
     }
 
     paginateMeals(page_number) {
-      console.log(page_number)
-
       const totalPages:any= this.allMeals.length/12;
       this.pages= new Array<number>(parseInt(totalPages)+1);
       if (0 > page_number){
