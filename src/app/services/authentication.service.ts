@@ -48,11 +48,8 @@ export class AuthenticationService {
     let jwtHelper = new JwtHelper();
     if (this.jwtToken){
       this.user = jwtHelper.decodeToken(this.jwtToken).user;
-      console.log(this.user);
       this.roles = jwtHelper.decodeToken(this.jwtToken).roles;
-      console.log(this.roles);
     }
-
     return this.user ;
   }
 
@@ -106,7 +103,6 @@ export class AuthenticationService {
   }
 
   onClose() {
-    console.log("close ");
     this.display = false
   }
 

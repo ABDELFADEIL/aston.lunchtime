@@ -23,6 +23,9 @@ export class HomeComponent implements OnInit {
   date:boolean;
   user:any;
   constraint: any;
+  paniers:[];
+
+
 
 
   constructor(private menuService: MenuService,
@@ -37,7 +40,7 @@ export class HomeComponent implements OnInit {
       this.user = this.authenticationService.getUserAuthenticated();
       this.constraint= this.menuService.getConstraint();
       this.getMealsWeek();
-      this.getMenuWeek();
+     // this.getMenuWeek();
       console.log(new Date());
   }
 
@@ -48,7 +51,7 @@ export class HomeComponent implements OnInit {
     this.menuList.forEach(element => {
     this.getMenuImage(element.id)
     })
-    
+
   }
   async getMenuImage(id_menu) {
     const res = await this.menuService.findImgMenu(id_menu);
@@ -60,52 +63,45 @@ export class HomeComponent implements OnInit {
       }
     });
   }
-
-
-  async orderMenuHomepage(id_menu,quantity:number,id_constraint) {
+ 
+/*  async orderMenuHomepage(id_menu,quantity:number,id_constraint) {
     //console.log('id_menu : '+id_menu);
     //console.log('quantity : '+quantity);
     console.log(this.user.id);
-    var obj = {
+     var obj = {
       userId: this.user.id,
       menuId: id_menu,
-      quantity: quantity,
-   //   constraintId:id_constraint,
+      constraintId: 1,     
+      
     }
 
     console.log(JSON.stringify(obj));
-  }
+  }*/
+
+
   async orderMealHomepage(id_meal,quantity:number,id_constraint) {
     //console.log('id_menu : '+id_menu);
     //console.log('quantity : '+quantity);
     console.log(this.user.id);
+    
     var obj = {
       user: this.user.id,
       mealId: id_meal,
       quantity: quantity,
    //   constraintId:id_constraint,
     }
+  
 
     console.log(JSON.stringify(obj));
   }
-   /* {
-      "userId": 0,
-      "constraintId": 0,
-      "quantity": [
-        {
-          "quantity": 0,
-          "mealId": 0,
-          "menuId": 0
-        }
-      ]
-    }
+
     /*if(this.authenticationService.isUser && this.userService.findById !=null ){
     const order =await this.ordersService.addOrder(JSON.stringify(obj))
     .then(res=>{console.log("res:",res)})
     .catch(err=>{
     console.log("err:",err);
     })
-    
+
   }*/
 
 

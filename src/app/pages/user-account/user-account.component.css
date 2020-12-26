@@ -55,7 +55,6 @@ border: 1px solid #E9E581;
 }
 .icone, p {
     height: 50px;
-    width: 50px;
     margin: auto;
 }
 .order-link:active, .euro-link:active, .infos-link:active, .settings-link:active{
@@ -168,7 +167,7 @@ border: 1px solid #E9E581;
     padding-right: 10px;
     vertical-align: middle;
 }
-.fa-envelope, .fa-graduation-cap, .fa-map-marker, .fa-mobile {
+.fa-envelope, .fa-calendar, .fa-map-marker, .fa-mobile {
     padding-right: 10px;
     color:#87AAB9;
     vertical-align: middle;

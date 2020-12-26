@@ -97,8 +97,5 @@ export class OrdersManagementComponent implements OnInit {
 
     this.listRecaps = listRecap;
     console.log(listRecap);
-
-
-
   }
 }

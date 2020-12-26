@@ -1,8 +1,22 @@
-
-
-<div *ngIf = "allMeals" class="myclass p-d-flex p-flex-row p-flex-wrap p-jc-center">
-  <p-card *ngFor="let meal of allMeals" header="{{meal.label}}" [style]="{width: '220px'}" styleClass="p-card-shadow p-m-2">
-    <p-header>
+<div class = "p-grid">
+<div class = "p-col-2">
+  <h3>Categories</h3>
+<div *ngFor ="let category of categories | keyvalue ">
+  <div>
+   {{category.value}} 
+  </div>  
+</div>
+</div>
+<div class="p-col-10">
+<div class="p-col">
+  <div class="p-inputgroup">
+    <span class="p-inputgroup-addon"><i class="pi pi-user"></i></span>
+    <input type="text" pInputText placeholder="Chercher">         
+</div>
+</div>
+<div *ngIf = "meals" class="myclass p-d-flex p-flex-row p-flex-wrap p-jc-center">
+  <p-card *ngFor="let meal of meals; let i = index" header="{{meal.label}}" [style]="{width: '220px'}" styleClass="p-card-shadow p-m-2">
+      <p-header>
       <img alt="Card" src="{{meal.img64}}" style="border-top-left-radius: 4px;border-top-right-radius: 4px; height: 220px !important;">
     </p-header>
     <p>Déscription: {{meal.description ? meal.description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit.'}}</p>
@@ -11,6 +25,59 @@
       <p-button label="Commander" icon="pi pi-shopping-cart" [style]="{'background': 'red','width': '100%'}"></p-button>
     </ng-template>
   </p-card>
-
 </div>
+<div *ngFor = "let p of pages; let i = index" class="p-col" style="background-color:red;margin-bottom:40px;color:black;font-size:16px">
+ <p (click)="OnMealPage(i+1)"> page: {{i}}</p>
+</div>
+</div>
+</div>
+
+<!---
+<div class="p-d-flex p-flex-wrap" style="margin-bottom: 3rem;">
+  <div class="p-md-12">
+    <div class="p-card">
+      <div #dt [columns]="cols" [value]="allMeals" [paginator]="true" [rows]="2"
+               [rowsPerPageOptions]="[2,3]" [scrollable]="true" scrollHeight="65.2vh"
+                [rowHover]="true"
+               [globalFilterFields]="['label']"
+               >
+        <ng-template pTemplate="caption">
+          <div class="p-d-flex">
+                <span class="p-input-icon-left p-ml-auto">
+                    <i class="pi pi-search"></i>
+                    <input pInputText type="text" (input)="dt.filterGlobal($event.target.value, 'contains')" placeholder="Chercher" />
+                </span>
+          </div>
+    </ng-template>
+          <ng-template pTemplate="header" let-columns>
+            <tr>
+              <th pResizableColumn *ngFor="let col of columns" style="background: #87AAB9">
+                {{col.header}}
+              </th>
+              <th style="background: #87AAB9" pResizableColumn></th>
+            </tr>
+          </ng-template>        
+  <tr>
+<div *ngIf = "allMeals" class="myclass p-d-flex p-flex-row p-flex-wrap p-jc-center">
+<p-card *ngFor="let meal of allMeals" header="{{meal.label}}" [style]="{width: '220px'}" styleClass="p-card-shadow p-m-2">    
+<ng-template pTemplate="body" let-meal let-i="rowIndex">
+    <p-header>
+      <img alt="Card" src="{{meal.img64}}" style="border-top-left-radius: 4px;border-top-right-radius: 4px; height: 220px !important;">
+    </p-header>
+    <p>Déscription: {{meal.description ? meal.description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit.'}}</p>
+    <h4>Prix: <strong style="font-size: 1.4rem !important;">{{meal.priceDF + '€'}}</strong></h4>
+  </ng-template>
+  </p-card>    
+</td>
+</tr>
+</div>
+ </div>
+</div>
+  <div class="p-col">
+    <div class="p-card" >
+      <app-update-meal [meal]="meal"></app-update-meal>
+    </div>
+  </div>
+</div>-->
+
 

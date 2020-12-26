@@ -1,5 +1,5 @@
 
-<div class="p-d-flex"> 
+<div class="p-d-flex">
    <!-- modal ----->
    <div class="modal p-mr-12">
       <!-- horizontal menu ----->
@@ -7,14 +7,14 @@
             <div class="p-mr-4">
             </div>
             <div class="small-logo p-mr-4">
-                <a class="logo-link" [routerLink]="[ '/home' ]"><img src="assets/logo.jpg" height="80px"></a> 
+                <a class="logo-link" [routerLink]="[ '/home' ]"><img src="assets/logo.jpg" height="80px"></a>
             </div>
             <div class="right p-mr-4">
-                <img src="assets/user-account/user-profile.jpg" height="80px" class="img-user">    
+                <img src="{{ getUserImg()}}" height="80px" class="img-user">
             </div>
             <div class="user-role p-mr-4">
-                <p class="user-infos">Nom <br>Role</p>
-            </div>   
+                <p class="user-infos">{{user.name}}<br>{{ user.firstname }}</p>
+            </div>
       </div>
        <!-- end horizontal menu ----->
       <div class='p-grid'>
@@ -24,7 +24,7 @@
           <h1 class="title-card" *ngIf="orders">Mes commandes</h1>
           <h1 class="title-card" *ngIf="parameters">Paramètres</h1>
           <h1 class="title-card" *ngIf="infos">Mes informations</h1>
-          <h1 class="title-card" *ngIf="jackpot"> Ma cagnotte</h1>     
+          <h1 class="title-card" *ngIf="wallet"> Ma cagnotte</h1>
         </div>
       </div>
        <!---- vertical menu --->
@@ -35,9 +35,9 @@
                 <p (click)="userAccountNavigate('orders')" class="order-link">
                   <img class="icone" src="assets/user-account/icones/shopping-cart.png">
                 </p>
-              </div>  
+              </div>
               <div class="euro">
-                <p (click)="userAccountNavigate('jackpot')" class="euro-link">
+                <p (click)="userAccountNavigate('wallet')" class="euro-link">
                   <img class="icone" src="assets/user-account/icones/euro.png">
                 </p>
               </div>
@@ -55,51 +55,55 @@
         </div>
       </div>
       <!---- end vertical menu --->
-        <div class="p-grid card" *ngIf="jackpot">
+      <!---- card --->
+
+        <div class="p-grid card" *ngIf="wallet">
           <div class="p-col-1">
           </div>
           <div class="p-col-2">
           </div>
-              <p-card [style]="{'background-color':'#F6F6F6'}">
-              <ng-template pTemplate="header">
-                  <img alt="empty-ct" src="assets/user-account/cat.png" [style]="{'width': '50%','display':'block','margin':'auto'}">
-              </ng-template>
-              <h1 class="titte-ct-empty">Votre Cagnotte est vide </h1>
-              <p class="text">Si vous souhaitez passer des commandes <br/>vous devez recharger votre cagnotte <br/>auprès de la cantinière</p>
-              </p-card>
-              <div class="card-content p-col-7">
+              <div *ngIf="user.wallet == 0">
+                <p-card [style]="{'background-color':'#F6F6F6'}">
+                  <ng-template pTemplate="header">
+                      <img alt="empty-ct" src="assets/user-account/cat.png" [style]="{'width': '50%','display':'block','margin':'auto'}">
+                  </ng-template>
+                  <h1 class="titte-ct-empty">Votre Cagnotte est vide </h1>
+                  <p class="text">Si vous souhaitez passer des commandes <br/>vous devez recharger votre cagnotte <br/>auprès de la cantinière</p>
+                  </p-card>
+              </div>
+              <div class="card-content p-col-7" *ngIf="user.wallet > 0">
               <p-card [style]="{'background-color':'#F6F6F6'}">
               <ng-template pTemplate="header">
               </ng-template>
               <div class="ct-background">
                 <div class="ct-content">
                   <p class="ct-text">Vous avez</p>
-                  <p class="ct-sum">50€</p>
+                  <p class="ct-sum">{{ user.wallet }} € </p>
                   <p class="ct-text">Dans votre cagnotte</p>
                 </div>
               </div>
               </p-card>
               <button pButton type="button" label="commander" class="btn-order p-button-rounded"></button>
-          </div> 
+          </div>
           <div class="p-col-2 left"></div>
         </div>
           <!---- end card --->
         <!---- user infos --->
-       
+
         <div class="p-grid" *ngIf="infos">
           <div class="p-col-1"></div>
           <div class="user-infos-content p-col-9 p-d-flex">
             <div class="p-col-4 profile-img">
             <img src="assets/user-account/user-profile.jpg" class="img-user" height="150px">
-            <p><b>Nom <br> prénom</b></p>
+            <p><b>{{ user.name }}<br> {{ user.firstname }}</b></p>
             </div>
             <div class="p-col-4 user-details">
-              <p class="user-info"><i class="fa fa-envelope" aria-hidden="true"></i>email@gmail.com</p>
-              <p class="user-info"><i class="fa fa-map-marker" aria-hidden="true"></i>40 rue de tourtille 75020</p>
+              <p class="user-info"><i class="fa fa-envelope" aria-hidden="true"></i>{{ user.email }}</p>
+              <p class="user-info"><i class="fa fa-map-marker" aria-hidden="true"></i>{{user.address | titlecase}} {{ user.postalCode }} {{ user.town | titlecase }}</p>
             </div>
             <div class="p-col-4 user-details">
-            <p class="user-info"><i class="fa fa-mobile"></i>06 60 98 76 54</p>
-            <p class="user-info"><i class="fa fa-graduation-cap" aria-hidden="true"></i>Développeur web</p>
+            <p class="user-info"><i class="fa fa-mobile"></i>{{ user.phone}}</p>
+            <p class="user-info"><i class="fa fa-calendar" aria-hidden="true"></i>{{ user.registrationDate}}</p>
             </div>
           </div>
         </div>
@@ -167,7 +171,7 @@
          <div class="p-grid" *ngIf="orders">
           <div class="p-col-1"></div>
           <div class="table">
-            <p-table class="p-col-11">
+            <p-table class="p-col-11" [value] = "userOrders">
               <ng-template pTemplate="header">
                   <tr>
                       <th>Date</th>
@@ -177,20 +181,20 @@
                       <th>Statut</th>
                   </tr>
               </ng-template>
-              <ng-template pTemplate="body">
+              <ng-template pTemplate="body" let-userOrder let-i="rowIndex">
                   <tr>
-                      <td>12/12/2020</td>
-                      <td>12/40/30</td>
+                      <td>{{ userOrder.creationDate }}</td>
+                      <td>{{ userOrder.creationTime }}</td>
                       <td>commande</td>
                       <td>5</td>
-                      <td><span>livrée</span></td>
+                      <td>{{ userOrder.status == 0 ? 'crée': userOrder.status == 1 ? 'prête': 'annulée'}}</td>
                   </tr>
               </ng-template>
             </p-table>
           </div>
          </div>
         <!---- end my orders --->
-         <!---- 
+         <!----
           <div class="p-field p-col-6">
           <button pButton (click)="onCancel()" pRipple type="button" label="annuler" class="p-button-rounded p-button-info"></button>
         </div>
@@ -199,8 +203,6 @@
 </div>
 
 
-    
-   
 
 
 
@@ -241,6 +243,8 @@
 
 
 
-    
+
+
+
 
 
