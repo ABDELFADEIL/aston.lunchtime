@@ -27,7 +27,8 @@ export class UserAccountComponent implements OnInit {
 
   ngOnInit(): void {
     this.user = this.authenticationService.getUserAuthenticated();
-    this.getOrdersForCurrentUser()
+    this.getOrdersForCurrentUser();
+    this.findUserImg(this.user.id)
   }
 // menu navigation
   userAccountNavigate(navigate: string) {
@@ -73,4 +74,12 @@ export class UserAccountComponent implements OnInit {
     const img = this.userService.findUserImag(this.user.id);
     //console.log(img);
   }
+
+ findUserImg(id_user){
+   const res = this.userService.findImgUser(id_user).then(res => {
+     console.log(res.image64)
+   });
+
+ }
+
 }
