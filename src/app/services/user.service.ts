@@ -1,3 +1,4 @@
+  
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { User } from '../models/user';
@@ -70,4 +71,7 @@ export class UserService {
 
   }
 
+   findImgUser(id_user: number): Promise<any> {
+    return this.http.get<any>(URL + "user/findimg/" + id_user).toPromise();
+  }
 }
