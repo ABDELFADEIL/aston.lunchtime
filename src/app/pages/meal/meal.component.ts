@@ -25,7 +25,7 @@ export class MealComponent implements OnInit {
     {1: "viande" ,3:"poission",4:"vegeterian",5:"fast-food",6:"fruit-mer",
     7:"dessert",8:"boission",9:"entrée"}
 
-
+  
 
 
   constructor(private mealService: MealService, private ordersService: OrdersService) { }

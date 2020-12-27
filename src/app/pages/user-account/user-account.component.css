@@ -58,7 +58,7 @@ border: 1px solid #E9E581;
     margin: auto;
 }
 .order-link:active, .euro-link:active, .infos-link:active, .settings-link:active{
-    background-color: #E9E581
+    background-color: #E9E581;
 }
 .items {
     padding-top: 170px;
