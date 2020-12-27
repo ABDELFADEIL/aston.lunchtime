@@ -77,9 +77,7 @@ export class UserAccountComponent implements OnInit {
 
  findUserImg(id_user){
    const res = this.userService.findImgUser(id_user).then(res => {
-     console.log(res.image64)
    });
-
  }
 
 }
