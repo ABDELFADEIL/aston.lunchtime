@@ -29,7 +29,6 @@ export class MenusManagementComponent implements OnInit {
     this.menus = await this.menuService.getMenus();
     this.menus.forEach((menu:any) => {
       this.findMenuImg(menu.id).then(res =>{
-        console.log(res)
         menu.image64 = res.image64;
       })
     })
@@ -39,7 +38,6 @@ export class MenusManagementComponent implements OnInit {
     this.meals = await this.mealService.getMeals();
     this.meals.forEach((meals:any) => {
       this.findMealImg(meals.id).then(res =>{
-        console.log(res)
         meals.image64 = res.image64;
       })
     })
@@ -50,7 +48,6 @@ export class MenusManagementComponent implements OnInit {
      console.log(this.ingredients);
      this.ingredients.forEach((ingredient:any) => {
        this.findIngredientImg(ingredient.id).then(res =>{
-         console.log(res)
          ingredient.image64 = res.image64;
        })
      })
