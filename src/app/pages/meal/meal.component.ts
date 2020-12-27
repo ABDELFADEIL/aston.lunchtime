@@ -22,8 +22,8 @@ export class MealComponent implements OnInit {
   pages: any[]=[];
   currentCategory = 1;
   categories=
-    { 1: "viande" ,2:"poission",4:"fast-food",5:"fruit-mer",
-    6:"dessert",7:"boission",8:"entrée"}
+    {1: "viande" ,3:"poission",4:"vegeterian",5:"fast-food",6:"fruit-mer",
+    7:"dessert",8:"boission",9:"entrée"}
 
 
 

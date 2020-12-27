@@ -31,7 +31,6 @@ export class OrdersManagementComponent implements OnInit {
     // this.getOrderByUserId(1);
     await this.getAllOrdersForAllUsersByDate(0,"2020-07-12");
     this.createOrderRecap();
-    console.log("tg");
   }
 //recuperer toutes les commandes
   async getOrders() {
@@ -57,9 +56,16 @@ export class OrdersManagementComponent implements OnInit {
    console.log(allOrdersByDate);
   }
   showDetails(i) {
-    this.detailVisible =i
+    if(this.detailVisible !== i) {
+      this.detailVisible =i;
+    }else {
+      this.detailVisible =undefined;
+    }
     console.log("index => ");
     console.log(i);
+  }
+  test() {
+    console.log("hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh")
   }
    createOrderRecap() {
     let listmeal = []

@@ -2,6 +2,7 @@
   font-family: 'Cormorant Garamond', serif;
 }
 
+<<<<<<< HEAD
 .meals{
   display: flex;
   border-radius: 5px;
@@ -17,3 +18,17 @@
     display:inline;
     font-size:40px;
   }
+=======
+  .meals{
+    display: flex;
+    border-radius: 5px;
+    width: 100%;
+    justify-content: space-between;
+  /*  margin-right: 100px;*/
+  /*  height: auto !important;*/
+    flex-wrap: wrap;
+    flex-direction:row;
+  /*  margin-bottom: 20px;  */
+    }
+
+>>>>>>> 3b0b92017f4c20afd9df5ca3aa9c98f12baaa2a0
