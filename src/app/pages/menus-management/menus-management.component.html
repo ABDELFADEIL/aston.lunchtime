@@ -3,8 +3,11 @@
   p-col-12
 </div>
 
-  <div class="p-col-6">
+  <div class="p-col-12 p-md-12 p-lg-6">
     <h3>Liste des repats</h3>
+    <div class="p-d-flex p-p-1 card">
+        <button pButton pRipple  type="button" icon="pi pi-plus" class="p-mr-auto p-button-help"></button>
+    </div>
     <div class="p-card">
       <p-table #dt [columns]="cols" [value]="meals" [paginator]="true" [rows]="20"
                [rowsPerPageOptions]="[20,30]" [scrollable]="true" scrollHeight="65.2vh"
@@ -41,10 +44,12 @@
     </div>
   </div>
 
-  <div class="p-col-6">
+  <div class="p-col-12 p-md-12 p-lg-6">
     <div class="p-card">
       <h3>Liste des ingredients</h3>
-      <p-table #dt [columns]="cols" [value]="ingredients" [paginator]="true" [rows]="20"
+      <div class="p-d-flex p-p-1 card">
+        <button pButton pRipple  type="button" icon="pi pi-plus" class="p-mr-auto p-button-help"></button>
+      </div>      <p-table #dt [columns]="cols" [value]="ingredients" [paginator]="true" [rows]="20"
                [rowsPerPageOptions]="[20,30]" [scrollable]="true" scrollHeight="65.2vh"
                [rowHover]="true">
         <ng-template pTemplate="header" let-columns>
@@ -83,9 +88,9 @@
   <div class="p-col-12">
     <div class="p-card">
       <h3>lsite des menus</h3>
-
-
-      <p-table #dt [columns]="cols" [value]="menus" [paginator]="true" [rows]="20"
+      <div class="p-d-flex p-p-1 card">
+        <button pButton pRipple  type="button" icon="pi pi-plus" class="p-mr-auto p-button-help"></button>
+      </div>      <p-table #dt [columns]="cols" [value]="menus" [paginator]="true" [rows]="20"
                [rowsPerPageOptions]="[20,30]" [scrollable]="true" scrollHeight="65.2vh"
                [rowHover]="true">
         <ng-template pTemplate="header" let-columns>
