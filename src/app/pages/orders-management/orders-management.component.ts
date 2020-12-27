@@ -18,8 +18,10 @@ export class OrdersManagementComponent implements OnInit {
   listeCommandesDays:any = [];
   cols: any[];
   detailVisible:number;
+  deleteIdx:number;
   listRecaps:Recap[];
   selectedListRecap: Recap[];
+  todayDate:string = this.getTodayDate();
 
   constructor(private orderService: OrdersService) {
 
@@ -97,5 +99,28 @@ export class OrdersManagementComponent implements OnInit {
 
     this.listRecaps = listRecap;
     console.log(listRecap);
+
+
+
+  }
+
+  doDelete(i) {
+    if(this.deleteIdx !== i) {
+      this.deleteIdx =i;
+    }else {
+      this.deleteIdx =undefined;
+    }
+    let date =this.getTodayDate();
+    console.log(date);
+    console.log("index => ");
+    console.log(i);
+  }
+  getTodayDate() {
+    let date = new Date();
+    let year = date.getFullYear();
+    let month = date.getMonth();
+    let day = date.getDay();
+    let fullDate = year + "-" + month + "-" + day;
+    return fullDate;
   }
 }
