@@ -40,7 +40,7 @@ export class HomeComponent implements OnInit {
       this.user = this.authenticationService.getUserAuthenticated();
       this.constraint= this.menuService.getConstraint();
       this.getMealsWeek();
-     // this.getMenuWeek();
+      this.getMenuWeek();
       console.log(new Date());
   }
 
@@ -58,7 +58,7 @@ export class HomeComponent implements OnInit {
     this.menuList.forEach(element => {
       if (element.imageId === res.id) {
         element.img = res.image64;
-        // console.log(this.menuList);
+      //  console.log(this.menuList);
 
       }
     });
@@ -123,7 +123,8 @@ export class HomeComponent implements OnInit {
     const response = await this.mealService.getMealWeek();
     this.mealList = response;
     this.mealList.forEach(element => {
-      this.getMealImage(element.id)
+      this.getMealImage(element.id);
+      console.log(this.mealList);
     });
   }
   async getMealImage(id_meal) {

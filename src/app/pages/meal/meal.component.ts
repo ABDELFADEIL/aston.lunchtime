@@ -20,12 +20,12 @@ export class MealComponent implements OnInit {
   currentPage:number = this.page;
   meals:any[]=[];
   pages: any[]=[];
-
+  currentCategory = 1;
   categories=
-{1: "viande" ,2:"poission",3:"vegeterian",4:"fast-food",5:"fruit-mer",
-6:"dessert",7:"boission",8:"entrée"}
-  motCle: any;
+    {1: "viande" ,3:"poission",4:"vegeterian",5:"fast-food",6:"fruit-mer",
+    7:"dessert",8:"boission",9:"entrée"}
 
+  
 
 
   constructor(private mealService: MealService, private ordersService: OrdersService) { }
@@ -76,25 +76,17 @@ export class MealComponent implements OnInit {
       this.paginateMeals(this.currentPage);
     }
 
+  searchByCategory(value: any) {
+    this.currentCategory = value;
+    console.log(value);
+    if (value != 1){
+      const  meals = this.allMeals.filter(meal => meal.category == value);
+      this.meals = meals;
+      console.log(meals);
+    } else {
+      this.paginateMeals(this.currentPage);
+    }
 
 
   }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+}

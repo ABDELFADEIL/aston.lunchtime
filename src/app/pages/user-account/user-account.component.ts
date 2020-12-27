@@ -31,6 +31,7 @@ export class UserAccountComponent implements OnInit {
     console.log(this.user);
     this.getOrdersForCurrentUser();
     this.getUserImg();
+
   }
 // menu navigation
   userAccountNavigate(navigate: string) {
@@ -77,4 +78,10 @@ export class UserAccountComponent implements OnInit {
       this.user.image64 = res.image64;
     });
   }
+
+ findUserImg(id_user){
+   const res = this.userService.findImgUser(id_user).then(res => {
+   });
+ }
+
 }
