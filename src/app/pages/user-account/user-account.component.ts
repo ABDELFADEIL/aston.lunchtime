@@ -4,6 +4,7 @@ import { UserService } from '../../services/user.service';
 import {AuthenticationService} from "../../services/authentication.service";
 import { User } from 'src/app/models/user';
 import { OrdersService } from 'src/app/services/orders.service';
+import { element } from 'protractor';
 
 @Component({
   selector: 'app-user-account',
@@ -27,8 +28,10 @@ export class UserAccountComponent implements OnInit {
 
   ngOnInit(): void {
     this.user = this.authenticationService.getUserAuthenticated();
+    console.log(this.user);
     this.getOrdersForCurrentUser();
-    this.findUserImg(this.user.id)
+    this.getUserImg();
+
   }
 // menu navigation
   userAccountNavigate(navigate: string) {
@@ -69,10 +72,11 @@ export class UserAccountComponent implements OnInit {
       this.userOrders = data;
     })
    }
-   getUserImg() {
-    const user = this.authenticationService.getUserAuthenticated();
-    const img = this.userService.findUserImag(this.user.id);
-    //console.log(img);
+   getUserImg(){
+    this.user = this.authenticationService.getUserAuthenticated();
+    this.userService.findImgUser(this.user.id).then((res) => {
+      this.user.image64 = res.image64;
+    });
   }
 
  findUserImg(id_user){

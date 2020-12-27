@@ -10,10 +10,18 @@
                 <a class="logo-link" [routerLink]="[ '/home' ]"><img src="assets/logo.jpg" height="80px"></a>
             </div>
             <div class="right p-mr-4">
-                <img src="{{ getUserImg()}}" height="80px" class="img-user">
+                <img [src]="user.image64" height="80px" class="img-user">
             </div>
             <div class="user-role p-mr-4">
-                <p class="user-infos">{{user.name}}<br>{{ user.firstname }}</p>
+                <p class="user-infos">{{user.name}} {{ user.firstname }}
+                  <span *ngIf="authenticationService.isAdmin()">
+                     Admin
+                  </span>
+                  <span *ngIf="authenticationService.isUser()">
+                   User
+                  </span>
+              </p>
+              
             </div>
       </div>
        <!-- end horizontal menu ----->
@@ -94,7 +102,7 @@
           <div class="p-col-1"></div>
           <div class="user-infos-content p-col-9 p-d-flex">
             <div class="p-col-4 profile-img">
-            <img src="assets/user-account/user-profile.jpg" class="img-user" height="150px">
+            <img [src]="user.image64" class="img-user" height="150px">
             <p><b>{{ user.name }}<br> {{ user.firstname }}</b></p>
             </div>
             <div class="p-col-4 user-details">
