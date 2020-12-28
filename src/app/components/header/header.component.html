@@ -15,7 +15,10 @@
                 <i class="fa fa-user clickable" (click)="authenticationService.show()" style="font-size: 1.3rem;"></i>
               </div>
               <div *ngIf="authenticationService.authenticated" class="p-m-2" style="margin-right: 20px;">
-                <i class="fa fa-sign-in clickable" (click)="logout()"  style="font-size: 1.3rem;"></i>
+                <div style="color: blanchedalmond;">
+                  <i class="p-mr-3"> Ma cagnotte:  {{authenticationService.user.wallet}} €</i>          
+                  <i class="fa fa-sign-in clickable" (click)="logout()"  style="font-size: 1.3rem;"></i>
+                </div>
               </div>
             </div>
           </ng-template>
@@ -32,7 +35,7 @@
            [baseZIndex]="10000">
   <app-login style =""></app-login>
 </p-dialog>
-
+<!-- TODO CORRIGER ERREUR -->
 <p-dialog #cd [(visible)]="userService.display" [modal]="true" [draggable]="true"
           [closable]="false" [draggable]="true"
           [showHeader]="false"

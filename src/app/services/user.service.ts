@@ -44,9 +44,10 @@ export class UserService {
       }
     });
   }
-  findUserImag(id: number) {
-    return this.http.get<User>(URL + "/user/findimg/" + id, {headers:new HttpHeaders({'Authorization':this.authenticationService.jwtToken})});
+  findImgUser(id_user: number): Promise<any> {
+    return this.http.get<any>(URL + "user/findimg/" + id_user).toPromise();
   }
+
 
   debitUser(id: number, amount:number){
     if (!this.authenticationService.jwtToken)
@@ -70,9 +71,6 @@ export class UserService {
 
   }
 
-  findImgUser(id_user: number): Promise<any> {
-    return this.http.get<any>(URL + "user/findimg/" + id_user).toPromise();
-  }
+
 
 }
-
