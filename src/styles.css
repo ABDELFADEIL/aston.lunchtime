@@ -104,8 +104,16 @@ login com
 /*ng-trigger ng-trigger-animation ng-tns-c87-0 p-dialog p-dynamic-dialog p-component ng-star-inserted {
 
 }*/
-.p-dialog .p-dialog-content {
-  background: none;
+/* , ng-tns-c96-2 ng-star-inserted */
+
+.p-dialog .ingredient-image {
+  width: 150px;
+  margin: 0 auto 2rem auto;
+  display: block;
+}
+
+.ng-tns-c93-0.p-dialog-content {
+  background: none !important;
   color: #212529;
   padding: 0 !important;
   height: 100%;

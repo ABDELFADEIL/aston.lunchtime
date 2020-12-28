@@ -1,3 +1,5 @@
+import {AccordionModule} from 'primeng/accordion';     //accordion and accordion tab
+import {MenuItem} from 'primeng/api';                  //api
 import {BrowserModule, Title} from '@angular/platform-browser';
 import {NgModule, NO_ERRORS_SCHEMA, OnInit} from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
@@ -13,7 +15,6 @@ import { MenusManagementComponent } from './pages/menus-management/menus-managem
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {AccordionModule} from 'primeng/accordion';
 import {MenubarModule} from 'primeng/menubar';
 import { InputTextModule } from 'primeng/inputtext';
 import {DynamicDialogModule} from 'primeng/dynamicdialog';
@@ -27,8 +28,6 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import {MatSelectModule} from '@angular/material/select';
 import {MatButtonModule} from '@angular/material/button';
-
-
 import { CardModule, } from 'primeng/card';
 import {ConfirmDialogModule} from 'primeng/confirmdialog';
 import {ConfirmationService} from 'primeng/api';
@@ -42,6 +41,8 @@ import {JwtInterceptor} from "./helpers/jwt.interceptor";
 import {ErrorInterceptor} from "./helpers/error.interceptor";
 import { UpdateClientComponent } from './pages/clients-management/update-client/update-client.component';
 import {ListboxModule} from 'primeng/listbox';
+import {FileUploadModule} from 'primeng/fileupload';
+
 
 
 
@@ -62,7 +63,7 @@ import {ListboxModule} from 'primeng/listbox';
     UpdateClientComponent,
   ],
   imports: [
-    
+
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
@@ -91,8 +92,8 @@ import {ListboxModule} from 'primeng/listbox';
     TabViewModule,
     OrderListModule,
     ListboxModule,
-    InputSwitchModule
-
+    InputSwitchModule,
+    FileUploadModule
 
   ],
   entryComponents: [
