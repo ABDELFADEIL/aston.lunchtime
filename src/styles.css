@@ -252,3 +252,6 @@ nav {
 .active, a:active {
   background-color: #87aab9 !important;
 }
+.meal-ingredients .p-checkbox.p-component {
+  display: none !important;
+}

@@ -75,7 +75,6 @@ export class MenusManagementComponent implements OnInit {
         meals.image64 = res.image64;
       })
     })
-    console.log(this.meals);
   }
    async getAllIngredients(){
      this.ingredients = await this.ingredientService.findAllIngredients();

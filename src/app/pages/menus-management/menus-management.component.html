@@ -5,10 +5,11 @@
 
   <div class="p-col-12 p-md-12 p-lg-6">
     <h3>Liste des repats</h3>
-    <div class="p-d-flex p-p-1 card">
-      <button pButton pRipple label="Nouveau" type="button" icon="pi pi-plus" class="p-mr-2 p-button-info" (click)="editMeal(null)"></button>
-    </div>
-    <div class="p-card">
+
+    <div class="p-card" *ngIf="meals">
+      <div class="p-d-flex p-p-1 card">
+        <button pButton pRipple label="Nouveau" type="button" icon="pi pi-plus" class="p-mr-2 p-button-info" (click)="editMeal(null)"></button>
+      </div>
       <p-table #dt [columns]="colsMeals" [value]="meals" [paginator]="true" [rows]="20"
                [rowsPerPageOptions]="[20,30]" [scrollable]="true" scrollHeight="65.2vh"
                [rowHover]="true"
@@ -19,6 +20,7 @@
             <th pResizableColumn *ngFor="let col of columns">
               {{col}}
             </th>
+            <th pResizableColumn></th>
             <th pResizableColumn></th>
           </tr>
         </ng-template>
@@ -33,7 +35,8 @@
               {{meal.status == 0 ? 'activé': meal.status == 1 ? 'désactivé': 'supprimé'}}
             </td>
             <td>
-              {{meal.label}}
+              <span *ngIf="!meal.ingredients"></span>
+              <p-multiSelect class="meal-ingredients" [style]="{maxWidth: '100%'}" *ngIf="meal.ingredients" [options]="meal.ingredients" defaultLabel="select ingredient" [filter]="false"  [showHeader]="false" optionLabel="label" display="chip"></p-multiSelect>
             </td>
             <td>
               <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success p-mr-2" (click)="editMeal(meal)"></button>
@@ -48,7 +51,7 @@
   </div>
 
   <div class="p-col-12 p-md-12 p-lg-6">
-    <div class="p-card">
+    <div class="p-card" *ngIf="ingredients">
       <h3>Liste des ingredients</h3>
       <div class="p-d-flex p-p-1 card">
         <button pButton pRipple label="Nouveau" type="button" icon="pi pi-plus" class="p-mr-2 p-button-info" (click)="editIngredient(null)"></button>
@@ -88,9 +91,9 @@
   </div>
 
   <div class="p-col-12">
-    <div class="p-card">
+    <div class="p-card" *ngIf="menus">
       <h3>lsite des menus</h3>
-      <div class="p-d-flex p-p-1 card">
+      <div class="p-d-flex p-p-1">
         <button pButton pRipple label="Nouveau" type="button" icon="pi pi-plus" class="p-mr-2 p-button-success"></button>
       </div>      <p-table #dt [columns]="cols" [value]="menus" [paginator]="true" [rows]="20"
                [rowsPerPageOptions]="[20,30]" [scrollable]="true" scrollHeight="65.2vh"
@@ -100,7 +103,7 @@
             <th pResizableColumn *ngFor="let col of columns">
               {{col.header}}
             </th>
-            <th style="background: #87AAB9" pResizableColumn></th>
+            <th  pResizableColumn></th>
           </tr>
         </ng-template>
 

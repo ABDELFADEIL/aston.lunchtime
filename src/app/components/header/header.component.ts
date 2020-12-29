@@ -4,7 +4,7 @@ import { DialogService } from 'primeng/dynamicdialog';
 import { LoginComponent } from '../login/login.component';
 import {AuthenticationService} from "../../services/authentication.service";
 import { UserService } from 'src/app/services/user.service';
-import {Router} from "@angular/router";
+import {ActivatedRoute, ActivatedRouteSnapshot, Router} from "@angular/router";
 
 @Component({
   selector: 'app-header',
@@ -16,10 +16,13 @@ export class HeaderComponent implements OnInit {
 
   public items: MenuItem[];
   @ViewChild('cd') cd
+  private snapshot: ActivatedRouteSnapshot;
 
   constructor(public authenticationService: AuthenticationService,
               private messageService: MessageService,
-              public userService: UserService, private router: Router) {}
+              public userService: UserService, private router: Router, private activatedRoute: ActivatedRoute) {
+    this.snapshot = activatedRoute.snapshot;
+  }
 
 
 
@@ -28,7 +31,7 @@ export class HeaderComponent implements OnInit {
     const isAdmin: boolean = this.authenticationService.isAdmin();
     console.log(isAdmin)
       this.items = [
-        {label: 'Menu du jour', routerLink: ['/home']},
+        {label: 'Accueil', routerLink: ['/home']},
        /* {label: 'Plats', routerLink: ['/meal']},*/
         {label: 'Gestion',visible: isAdmin,
         items: [
@@ -36,14 +39,16 @@ export class HeaderComponent implements OnInit {
           {label: 'Gestion commandes', routerLink: ['/orders-management'], visible: isAdmin},
           {label: 'Gestion clients', routerLink: ['/clients-management'], visible: isAdmin},
               ]},
-              {label: 'Mon compte', routerLink: ['/user-account'], visible: isAdmin}
+              {label: 'Mon compte', routerLink: ['/user-account']}
                    ];
 }
 
   logout() {
     this.authenticationService.logout();
     this.messageService.add({severity:'success', summary:'Success', detail:'Data Updated'});
-    window.location.reload();
+    //window.location.reload();
+    const returnURL = this.activatedRoute.queryParams['value'].returnUrl;
+    this.router.navigateByUrl('/'+returnURL);
   }
 }
 
