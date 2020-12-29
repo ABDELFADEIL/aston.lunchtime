@@ -3,6 +3,7 @@ import {MenuService} from "../../services/menu-service.service";
 import {MealService} from "../../services/meal-service.service";
 import {IngredientService} from "../../services/ingredient.service";
 import {ConfirmationService, MessageService} from "primeng/api";
+import {MealDTO} from "../../models/mealDTO";
 
 class Ingredient {
   id: number
@@ -10,6 +11,7 @@ class Ingredient {
   label:string;
   status: number
   imageId: number;
+  description: any;
 }
 class Image {
   imagePath: string;
@@ -23,18 +25,28 @@ class Image {
   providers: [MessageService,ConfirmationService]
 })
 export class MenusManagementComponent implements OnInit {
-  colsIngredients: any[] = ["id", "image64", "label", "status"];
+  cols: any;
+  colsIngredients: any[] = ["label", "image64", "status"];
   menus: any [];
-  meals: any[];
   ingredients: Ingredient [];
   ingredientDialog: boolean;
   ingredient: Ingredient;
+  ingredientsSelected: Ingredient[] = [];
   submitted: boolean;
   public file: File;
   statuses: any[];
   success: boolean;
   message;
+  categories= [ {id: 1, name: "viande"} ,{id: 3, name: "poission"},{id: 4, name: "vegeterian"},{ id: 5, name: "fast-food"},
+                {id: 6, name: "fruit-mer"} ,{id: 7, name: "dessert"}, {id: 8, name: "boission"}, {id: 9, name:"entrée"}]
   private base64textString: string = null;
+  // meals attributes
+  colsMeals: any [] = ["image64", "label", "Status", "ingredients"];
+  meals: any[];
+  mealDialog: boolean;
+  meal: MealDTO;
+  categorySelected: any;
+
   constructor(private menuService: MenuService,
               private mealService: MealService,
               private ingredientService: IngredientService,
@@ -42,11 +54,11 @@ export class MenusManagementComponent implements OnInit {
               private confirmationService: ConfirmationService) { }
 
   ngOnInit(): void {
-    this.getAllMenus();
     this.getAllMeals();
     this.getAllIngredients();
-    this.findIngredientImg(1);
+    this.getAllMenus();
   }
+
   async getAllMenus(){
     this.menus = await this.menuService.getMenus();
     this.menus.forEach((menu:any) => {
@@ -67,13 +79,11 @@ export class MenusManagementComponent implements OnInit {
   }
    async getAllIngredients(){
      this.ingredients = await this.ingredientService.findAllIngredients();
-     console.log(this.ingredients);
      this.ingredients.forEach((ingredient:any) => {
        this.findIngredientImg(ingredient.id).then(res =>{
          ingredient.image64 = res.image64;
        })
-     })
-     console.log(this.ingredients)
+     });
   }
 
   openNew() {
@@ -117,7 +127,7 @@ export class MenusManagementComponent implements OnInit {
   }
 
   // delete ingredient
-  cols: any;
+
   deleteIngredient(ingredient: Ingredient) {
     console.log('delete')
     this.confirmationService.confirm({
@@ -146,7 +156,7 @@ export class MenusManagementComponent implements OnInit {
     image.image64 = this.ingredient.image64;
     image.imagePath = ''
     const ingredientDTO = {
-      description: this.ingredient['description'],
+      description: this.ingredient.description,
       label: this.ingredient.label,
       image: image
     }
@@ -216,6 +226,7 @@ export class MenusManagementComponent implements OnInit {
   }
   hideDialog() {
     this.ingredientDialog = false;
+    this.mealDialog = false;
     this.submitted = false;
   }
 
@@ -234,5 +245,142 @@ export class MenusManagementComponent implements OnInit {
     console.log(binaryString);
     this.base64textString= binaryString;
     console.log(binaryString);
+  }
+
+
+  /*
+  partie meals
+   */
+  openNewMeal() {
+    this.meal = new MealDTO();
+    this.submitted = false;
+    this.mealDialog = true;
+    this.message = '';
+  }
+
+  // delete meal
+
+  deleteMeal(meal: MealDTO) {
+    console.log('delete meal')
+    this.confirmationService.confirm({
+      message: 'Vous voulez vraimment supprimer' + meal.label + '?',
+      header: 'Confirm',
+      icon: 'pi pi-exclamation-triangle',
+      accept: () => {
+        this.mealService.deleteMeal(meal['id']).subscribe(res => {
+          console.log(res);
+          this.messageService.add({severity:'success', summary: 'Successful', detail: 'meal supprimé', life: 3000});
+        }, error => { console.log(error)});
+      }
+    });
+  }
+
+  editMeal(mealDTO) {
+      console.log(mealDTO)
+    this.ingredientsSelected = [];
+    this.categorySelected = null;
+    this.meal = {...mealDTO};
+    this.mealDialog = true;
+    this.categorySelected = this.categories.filter(res => res.id == mealDTO.category);
+    if (this.ingredients.length > 0){
+      this.ingredients.forEach(res => {
+        if (mealDTO && mealDTO['ingredients']){
+          mealDTO['ingredients'].forEach(i => {
+            if (i['id'] == res.id){
+              this.ingredientsSelected.push(res);
+            }
+          })
+        }
+
+      });
+    }
+
+  }
+
+
+  async saveMeal(){
+    // this.done = true
+    this.submitted = true;
+    let image: Image = new Image();
+    image.image64 = this.meal['image64'];
+    image.imagePath = ''
+    const mealDTO: MealDTO = new MealDTO();
+    mealDTO.description = this.meal.description;
+    mealDTO.label = this.meal.label;
+    mealDTO.image = image;
+    mealDTO.priceDF = this.meal.priceDF;
+    mealDTO.availableForWeeks.push(1);
+    mealDTO.category = this.meal.category;
+    this.ingredientsSelected.forEach( (ingredient: any) => {
+      mealDTO.ingredientsId.push(ingredient.id)
+    })
+
+    console.log(this.meal);
+    if (this.meal['id']) {
+      console.log(this.meal);
+      console.log(mealDTO);
+      await this.mealService.updateMeal(this.meal['id'], mealDTO).then(res => {
+        console.log(res);
+        this.success = true;
+        console.log(this.success);
+      }).catch(
+        error => {
+          this.success = false
+          console.log(error);
+          console.log(this.success);
+          this.message = 'il y a eu une erreur '
+        }
+      );
+
+    } else {
+      if (this.base64textString) {
+      console.log('ajouter nouveau meal ');
+      console.log(this.ingredient);
+      mealDTO.image.imagePath = 'img/'+this.file.name;;
+      mealDTO.image.image64 = this.base64textString;
+      console.log(mealDTO);
+      await this.mealService.addMeal(mealDTO).then(res => {
+        console.log(res);
+        this.success = true;
+        console.log(this.success);
+      }).catch(
+        error => {
+          this.success = false
+          console.log(error);
+          console.log(this.success);
+          this.message = 'il y a eu une erreur '
+        }
+      );
+      }
+      // this.done = false
+    }
+
+    // update image
+    if(this.base64textString && this.meal['id']){
+      image.imagePath = 'img/'+this.file.name;
+      image.image64 = this.base64textString;
+      await this.mealService.updateImage(image, this.meal['id']).then(res =>{
+        console.log(res);
+       // this.meal.image.image64 = image.image64;
+        //this.meal['image64'] = image.image64;
+        this.success = true;
+        console.log(this.success);
+      }).catch(
+        error => {
+          this.success = false
+          console.log(error);
+          console.log(this.success);
+          this.message = 'il y a eu une erreur '
+        }
+      );
+    }
+    console.log(this.success);
+    if (this.success){
+      console.log('done ', this.success);
+      this.mealDialog = false;
+      this.submitted = false;
+
+    }
+
   }
 }

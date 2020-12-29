@@ -46,6 +46,7 @@ export class LoginComponent implements OnInit {
       this.authenticationService.getUserAuthenticated();
       this.authenticationService.authenticated = true;
       this.authenticationService.display = false;
+      window.location.reload();
       // this.message = "connexion réussie!"
     }, error => {
       this.message = "Le email ou le mot de passe est incorrect!"

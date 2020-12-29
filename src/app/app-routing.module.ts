@@ -18,12 +18,12 @@ const routes: Routes = [
   { path: 'meal', component: MealComponent},
   { path: 'digital-clock', component:DigitalClockComponent},
   { path: 'login', component: LoginComponent},
-  { path: 'user-account', component: UserAccountComponent },
-  { path: 'client-orders', component: ClientOrdersComponent },
-  { path: 'clients-management', component: ClientsManagementComponent },
-  { path: 'clients', redirectTo: 'clients-management', pathMatch: 'full' },
-  { path: 'menu-management', component: MenusManagementComponent },
-  { path: 'orders-management', component: OrdersManagementComponent }
+  { path: 'user-account', component: UserAccountComponent, canActivate: [AuthGuard] },
+  { path: 'client-orders', component: ClientOrdersComponent, canActivate: [AuthGuard] },
+  { path: 'clients-management', component: ClientsManagementComponent, canActivate: [AuthGuard] },
+  { path: 'clients', redirectTo: 'clients-management', pathMatch: 'full', canActivate: [AuthGuard] },
+  { path: 'menu-management', component: MenusManagementComponent, canActivate: [AuthGuard] },
+  { path: 'orders-management', component: OrdersManagementComponent, canActivate: [AuthGuard] }
 
   /*
     { path: '',  redirectTo: 'home', pathMatch: 'full', canActivate: [AuthGuard]},

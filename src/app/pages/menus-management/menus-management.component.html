@@ -6,10 +6,10 @@
   <div class="p-col-12 p-md-12 p-lg-6">
     <h3>Liste des repats</h3>
     <div class="p-d-flex p-p-1 card">
-      <button pButton pRipple label="Nouveau" type="button" icon="pi pi-plus" class="p-mr-2 p-button-success"></button>
+      <button pButton pRipple label="Nouveau" type="button" icon="pi pi-plus" class="p-mr-2 p-button-info" (click)="editMeal(null)"></button>
     </div>
     <div class="p-card">
-      <p-table #dt [columns]="cols" [value]="meals" [paginator]="true" [rows]="20"
+      <p-table #dt [columns]="colsMeals" [value]="meals" [paginator]="true" [rows]="20"
                [rowsPerPageOptions]="[20,30]" [scrollable]="true" scrollHeight="65.2vh"
                [rowHover]="true"
                [globalFilterFields]="['name','firstname']"
@@ -17,9 +17,9 @@
         <ng-template pTemplate="header" let-columns>
           <tr>
             <th pResizableColumn *ngFor="let col of columns">
-              {{col.header}}
+              {{col}}
             </th>
-            <th style="background: #87AAB9" pResizableColumn></th>
+            <th pResizableColumn></th>
           </tr>
         </ng-template>
 
@@ -33,10 +33,13 @@
               {{meal.status == 0 ? 'activé': meal.status == 1 ? 'désactivé': 'supprimé'}}
             </td>
             <td>
-              <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success p-mr-2" (click)="editProduct(menu)"></button>
+              {{meal.label}}
             </td>
             <td>
-              <button pButton pRipple icon="pi pi-trash" ck class="p-button-rounded p-button-warning"></button>
+              <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success p-mr-2" (click)="editMeal(meal)"></button>
+            </td>
+            <td>
+              <button pButton pRipple icon="pi pi-trash" ck class="p-button-rounded p-button-warning" (click)="deleteMeal(meal)"></button>
             </td>
           </tr>
         </ng-template>
@@ -65,9 +68,6 @@
 
         <ng-template pTemplate="body" let-ingredient let-i="rowIndex">
           <tr >
-            <td>
-              {{ingredient.id}}
-            </td>
             <td>
               {{ingredient.label}}
             </td>
@@ -136,7 +136,7 @@
 
 
 <!--  ingredient dialog -->
-<p-dialog [(visible)]="ingredientDialog" [style]="{width: '450px'}" header="Product Details" [modal]="true" styleClass="p-fluid">
+<p-dialog [(visible)]="ingredientDialog" [style]="{width: '450px'}" header="Ingredient Details" [modal]="true" styleClass="p-fluid">
   <ng-template pTemplate="content">
     <img style="margin-right: auto;margin-left: auto" [src]="ingredient.image64" [alt]="ingredient.label" class="ingredient-image" *ngIf="ingredient.image64">
     <div class="p-field p-text-center" *ngIf="message">
@@ -181,5 +181,75 @@
     <button pButton pRipple label="Envoyer" icon="pi pi-check" class="p-button-text p-button-success p-button-secondary" (click)="saveIngredient()"></button>
   </ng-template>
 </p-dialog>
+
+
+
+<!--  meal dialog -->
+<p-dialog [(visible)]="mealDialog" [style]="{width: '450px'}" header="Meal detail" [modal]="true" styleClass="p-fluid">
+  <ng-template pTemplate="content">
+    <img style="margin-right: auto;margin-left: auto" [src]="meal.image64" [alt]="meal.label" class="ingredient-image" *ngIf="meal.image64">
+    <div class="p-field p-text-center" *ngIf="message">
+      <div class="p-invalid">{{message}}</div>
+    </div>
+    <div class="p-field" *ngIf="meal.id">
+      <label for="id">Id</label>
+      <input [disabled]="meal" type="text" pInputText id="id" [(ngModel)]="meal.id" autofocus />
+    </div>
+
+    <div class="p-field">
+      <label for="label">Label</label>
+      <input type="text" pInputText id="label" [(ngModel)]="meal.label" required autofocus />
+      <small class="p-invalid" *ngIf="submitted && !meal.label">label requis.</small>
+    </div>
+    <div class="p-field" *ngIf="meal.id">
+      <label for="status">Statut</label>
+      <input type="text" pInputText id="status" [(ngModel)]="meal.status" required autofocus />
+      <small class="p-invalid" *ngIf="submitted && !meal.label">Status requis.</small>
+    </div>
+
+    <div class="p-field">
+      <label for="label">Description</label>
+      <input type="text" pInputText id="description" [(ngModel)]="meal.description" required autofocus />
+      <small class="p-invalid" *ngIf="submitted && !meal.description">description requis.</small>
+    </div>
+
+    <div class="p-field">
+      <label for="label">Prix</label>
+      <input type="text" pInputText id="priceDF" [(ngModel)]="meal.priceDF" required autofocus />
+      <small class="p-invalid" *ngIf="submitted && !meal.priceDF">priceDF requis.</small>
+    </div>
+
+    <div class="p-field">
+      <label for="label">Category</label>
+     <!-- <input type="text" pInputText id="category" [(ngModel)]="meal.category" required autofocus /> -->
+      <p-multiSelect [options]="categories" [(ngModel)]="categorySelected" defaultLabel="select ingredient" [selectionLimit]="1" [filter]="false" [showHeader]="false" optionLabel="name" display="chip"></p-multiSelect>
+      <small class="p-invalid" *ngIf="submitted && !meal.category">category requis.</small>
+    </div>
+
+    <div class="p-field">
+      <label for="label">Ingredients</label>
+     <!-- <input type="text" pInputText id="category" [(ngModel)]="meal.category" required autofocus /> -->
+      <p-multiSelect [options]="ingredients" [(ngModel)]="ingredientsSelected" defaultLabel="select ingredient" [filter]="false" [showHeader]="false" optionLabel="label" display="chip"></p-multiSelect>
+      <small class="p-invalid" *ngIf="submitted && !meal.ingredientsId">category requis.</small>
+    </div>
+
+    <div class="p-field" *ngIf="meal.id">
+      <label for="imageId" *ngIf="ingredient">Image id</label>
+      <input type="text" pInputText id="imageId" [(ngModel)]="meal.imageId" required autofocus />
+    </div>
+
+    <div class="p-field">
+      <p-fileUpload name="file" accept="image/*" [auto]="true" (onSelect)="handleFileSelect($event)"></p-fileUpload>
+    </div>
+
+
+  </ng-template>
+
+  <ng-template pTemplate="footer">
+    <button pButton pRipple label="Annuler" icon="pi pi-times" class="p-button-text p-button-danger" (click)="hideDialog()"></button>
+    <button pButton pRipple label="Envoyer" icon="pi pi-check" class="p-button-text p-button-success p-button-secondary" (click)="saveMeal()"></button>
+  </ng-template>
+</p-dialog>
+
 
 <p-confirmDialog [style]="{width: '450px'}"></p-confirmDialog>

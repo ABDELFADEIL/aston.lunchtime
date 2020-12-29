@@ -42,6 +42,7 @@ import {ErrorInterceptor} from "./helpers/error.interceptor";
 import { UpdateClientComponent } from './pages/clients-management/update-client/update-client.component';
 import {ListboxModule} from 'primeng/listbox';
 import {FileUploadModule} from 'primeng/fileupload';
+import {MultiSelectModule} from 'primeng/multiselect';
 
 
 
@@ -64,36 +65,10 @@ import {FileUploadModule} from 'primeng/fileupload';
   ],
   imports: [
 
-    BrowserModule,
-    AppRoutingModule,
-    HttpClientModule,
-    BrowserAnimationsModule,
-    FormsModule,
-    AccordionModule,
-    MenubarModule,
-    InputTextModule,
-    DynamicDialogModule,
-    MatCardModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatSelectModule,
-    MatButtonModule,
-    CardModule,
-    ButtonModule,
-    CardModule,
-    TableModule,
-    ConfirmDialogModule,
-    DialogModule,
-    OverlayPanelModule,
-    SplitButtonModule,
-    ReactiveFormsModule,
-    ButtonModule,
-    DialogModule,
-    TabViewModule,
-    OrderListModule,
-    ListboxModule,
-    InputSwitchModule,
-    FileUploadModule
+    BrowserModule, AppRoutingModule, HttpClientModule, BrowserAnimationsModule, FormsModule, AccordionModule, MenubarModule, InputTextModule,
+    DynamicDialogModule, MatCardModule, MatFormFieldModule, MatInputModule, MatSelectModule, MatButtonModule, CardModule, ButtonModule,
+    CardModule, TableModule, ConfirmDialogModule, DialogModule, OverlayPanelModule, SplitButtonModule, ReactiveFormsModule, ButtonModule,
+    DialogModule, TabViewModule, OrderListModule, ListboxModule, InputSwitchModule, FileUploadModule, MultiSelectModule
 
   ],
   entryComponents: [
