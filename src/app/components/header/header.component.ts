@@ -46,9 +46,15 @@ export class HeaderComponent implements OnInit {
   logout() {
     this.authenticationService.logout();
     this.messageService.add({severity:'success', summary:'Success', detail:'Data Updated'});
-    //window.location.reload();
     const returnURL = this.activatedRoute.queryParams['value'].returnUrl;
     this.router.navigateByUrl('/'+returnURL);
+    window.location.reload();
+  }
+
+  onLogin(){
+    const returnURL = this.router.url;
+    console.log(returnURL)
+    this.router.navigate(['/login'], { queryParams: { returnUrl: returnURL }});
   }
 }
 

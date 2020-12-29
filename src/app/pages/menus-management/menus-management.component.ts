@@ -17,6 +17,9 @@ class Image {
   imagePath: string;
   image64: string | ArrayBuffer;
 }
+class AvailableForWeek {
+  id: number
+}
 
 @Component({
   selector: 'app-menus-management',
@@ -37,11 +40,14 @@ export class MenusManagementComponent implements OnInit {
   statuses: any[];
   success: boolean;
   message;
+  selectedAvailableForWeeks: AvailableForWeek [] = [];
+  availableForWeeks: AvailableForWeek [] = [];
+  indexAV: number
   categories= [ {id: 1, name: "viande"} ,{id: 3, name: "poission"},{id: 4, name: "vegeterian"},{ id: 5, name: "fast-food"},
                 {id: 6, name: "fruit-mer"} ,{id: 7, name: "dessert"}, {id: 8, name: "boission"}, {id: 9, name:"entrée"}]
   private base64textString: string = null;
   // meals attributes
-  colsMeals: any [] = ["image64", "label", "Status", "ingredients"];
+  colsMeals: any [] = ["label", "image64", "Status", "ingredients"];
   meals: any[];
   mealDialog: boolean;
   meal: MealDTO;
@@ -57,6 +63,8 @@ export class MenusManagementComponent implements OnInit {
     this.getAllMeals();
     this.getAllIngredients();
     this.getAllMenus();
+    this.getAvailableForWeeks();
+    console.log(this.availableForWeeks);
   }
 
   async getAllMenus(){
@@ -308,7 +316,14 @@ export class MenusManagementComponent implements OnInit {
     mealDTO.label = this.meal.label;
     mealDTO.image = image;
     mealDTO.priceDF = this.meal.priceDF;
-    mealDTO.availableForWeeks.push(1);
+    if (this.selectedAvailableForWeeks){
+      this.selectedAvailableForWeeks.forEach(weak => {
+        mealDTO.availableForWeeks.push(weak.id);
+      });
+    } else {
+      mealDTO.availableForWeeks = null;
+    }
+
     mealDTO.category = this.meal.category;
     this.ingredientsSelected.forEach( (ingredient: any) => {
       mealDTO.ingredientsId.push(ingredient.id)
@@ -382,4 +397,13 @@ export class MenusManagementComponent implements OnInit {
     }
 
   }
+
+  getAvailableForWeeks() {
+    for(let i = 0; i <= 51; i++){
+      let weak: AvailableForWeek = new AvailableForWeek();
+      weak.id = i+1
+      this.availableForWeeks[i] = weak;
+    }
+  }
+
 }

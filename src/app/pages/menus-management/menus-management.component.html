@@ -190,7 +190,7 @@
 <!--  meal dialog -->
 <p-dialog [(visible)]="mealDialog" [style]="{width: '450px'}" header="Meal detail" [modal]="true" styleClass="p-fluid">
   <ng-template pTemplate="content">
-    <img style="margin-right: auto;margin-left: auto" [src]="meal.image64" [alt]="meal.label" class="ingredient-image" *ngIf="meal.image64">
+    <img style="margin-right: auto;margin-left: auto" [src]="meal['image64']" [alt]="meal.label" class="ingredient-image" *ngIf="meal['image64']">
     <div class="p-field p-text-center" *ngIf="message">
       <div class="p-invalid">{{message}}</div>
     </div>
@@ -234,6 +234,11 @@
      <!-- <input type="text" pInputText id="category" [(ngModel)]="meal.category" required autofocus /> -->
       <p-multiSelect [options]="ingredients" [(ngModel)]="ingredientsSelected" defaultLabel="select ingredient" [filter]="false" [showHeader]="false" optionLabel="label" display="chip"></p-multiSelect>
       <small class="p-invalid" *ngIf="submitted && !meal.ingredientsId">category requis.</small>
+    </div>
+
+    <div class="p-field">
+      <label for="label">Disponibilité par semaine</label>
+      <p-multiSelect [options]="availableForWeeks" [(ngModel)]="selectedAvailableForWeeks" defaultLabel="select ingredient" [filter]="true" [showHeader]="true" optionLabel="id" display="chip"></p-multiSelect>
     </div>
 
     <div class="p-field" *ngIf="meal.id">
