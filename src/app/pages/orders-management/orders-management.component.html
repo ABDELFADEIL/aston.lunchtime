@@ -1,5 +1,5 @@
-<div class="p-grid mr-t">
-  <div class="p-col-7">
+<div class="p-d-flex mr-t p-flex-wrap p-flex-column p-flex-md-row">
+  <div class="p-col-12 p-md-12 p-lg-6">
     <!-- <p-orderList [value]="listeCommandesDayS" [listStyle]="{'height':'auto'}" header="Commandes" filterBy="name"
       filterPlaceholder="Filter by name" dragdrop="true">
       <ng-template let-commande pTemplate="item">
@@ -19,21 +19,21 @@
 
 
     <p-table #dt [value]="listeCommandesDays" [scrollable]="true" scrollHeight="58vh"
-      [globalFilterFields]="['user.name']">
+      [globalFilterFields]="['user.name','user.firstname']">
       <ng-template pTemplate="caption">
         <div class="table-header">
-          Commandes
+          Commandes au {{todayDate}} : 
           <span class="p-input-icon-left">
             <i class="pi pi-search"></i>
             <input pInputText type="text" (input)="dt.filterGlobal($event.target.value, 'contains')"
-              placeholder="Global Search" />
+              placeholder="Utilisateur" />
           </span>
         </div>
       </ng-template>
       <ng-template pTemplate="header">
         <tr>
-          <th pResizableColumn style="width:5rem">Date</th>
           <th pResizableColumn style="width:5rem">Nom</th>
+          <!-- <th pResizableColumn style="width:5rem">Date</th> -->
           <th pResizableColumn style="width:5rem">Quantité</th>
           <!-- <th pResizableColumn style="width:5rem">details</th> -->
           <th pResizableColumn style="width:5rem"></th>
@@ -41,20 +41,26 @@
       </ng-template>
       <ng-template pTemplate="body" let-listeCommandesDay let-i="rowIndex">
         <tr>
-          <td>{{listeCommandesDay.creationDate}}</td>
           <td>{{listeCommandesDay.user.firstname}} {{listeCommandesDay.user.name}}</td>
-          <td>{{listeCommandesDay.quantity != null?listeCommandesDay.quantity.length : ""}}</td>
+          <!-- <td>{{listeCommandesDay.creationDate}}</td> -->
+          <td style="font-weight: bold;">{{listeCommandesDay.quantity != null?listeCommandesDay.quantity.length : ""}}</td>
           <!-- <td> {{listeCommandesDay.user.name}}</td> -->
           <td>
             <!-- <button pButton class="p-button-rounded p-button-primary" styleClass="p-button-sm" (click)="showDetails(i)" icon=" pi pi-search-plus" ></button> -->
 
             <button pButton pRipple type="button" styleClass="p-button-sm" icon="pi pi-search-plus"
               (click)="showDetails(i)" style="margin-right: 0.5rem;" class="p-button-rounded p-button-primary"></button>
-            <button pButton pRipple type="button" styleClass="p-button-sm" icon="pi pi-times"
+            <button pButton pRipple type="button" styleClass="p-button-sm" icon="pi pi-times" (click)="doDelete(i)"
               class="p-button-rounded p-button-danger"></button>
           </td>
 
         </tr>
+        <div *ngIf="deleteIdx === i">
+          <h2 style="min-width: 40rem;" >voulez vous vraiment supprimer la commande de <span style="color: grey;">{{listeCommandesDay.user.firstname}} {{listeCommandesDay.user.name}}</span>? <br>
+            <button pButton pRipple type="button" label="oui" class="p-button-danger" style="margin-right: 0.5rem;" (click)="confirmDelete(i)" ></button>
+            <button pButton pRipple type="button" label="non" (click)="deleteIdx=undefined" ></button>
+          </h2>
+        </div >
         <div *ngIf="detailVisible === i">
           <ul>
             <li *ngFor="let plat of listeCommandesDays[i].quantity; let j = index" style="min-width: 20rem;">
@@ -66,7 +72,7 @@
     </p-table>
 
   </div>
-  <div class="p-col-5">
+  <div class="p-col-12 p-md-12 p-lg-6">
     <p-listbox [options]="listRecaps" [(ngModel)]="selectedListRecap" [filter]="true" [multiple]="true" [readonly] ="true"
       [listStyle]="{'max-height':'60.2vh'}" [style]="{'width':'90%', margin:'auto'}">
       <p-header [style]="{fontSize:'1.3rem'}">

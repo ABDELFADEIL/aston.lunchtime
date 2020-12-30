@@ -1,5 +1,5 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {Router} from '@angular/router';
+import {ActivatedRoute, ActivatedRouteSnapshot, Router} from '@angular/router';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import {ConfirmationService, MessageService} from "primeng/api";
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
@@ -19,10 +19,12 @@ export class LoginComponent implements OnInit {
   userFormLongin: FormGroup;
   user: User = new  User()
   email: string;
-
+  private returnURL: any;
   constructor(public authenticationService: AuthenticationService,
               private messageService: MessageService,
-              private router: Router) {}
+              private router: Router,private activatedRoute: ActivatedRoute) {
+
+  }
 
   ngOnInit(): void {
    this.userFormInit();
@@ -33,7 +35,7 @@ export class LoginComponent implements OnInit {
         Validators.required, Validators.minLength(4)])
     });
 
-
+     this.returnURL = this.activatedRoute.queryParams['value'].returnUrl;
   }
 
    onLogin() {
@@ -46,12 +48,17 @@ export class LoginComponent implements OnInit {
       this.authenticationService.getUserAuthenticated();
       this.authenticationService.authenticated = true;
       this.authenticationService.display = false;
+      //window.location.reload();
+      //const returnURL = this.activatedRoute.queryParams['value'].returnUrl;
+      this.router.navigateByUrl('/'+this.returnURL);
+
       // this.message = "connexion réussie!"
     }, error => {
       this.message = "Le email ou le mot de passe est incorrect!"
       console.log(error);
     });
-
+     //window.location.replace(this.returnURL);
+     window.open(this.returnURL)
   }
 
   onForgetPassword() {

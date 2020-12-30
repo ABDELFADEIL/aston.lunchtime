@@ -38,4 +38,6 @@ getConstraint():Promise<any>{
   return this.http.get<any>(this.api_url+"constraint/findall").toPromise();
 }
 
+
+
 }

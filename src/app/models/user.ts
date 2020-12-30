@@ -15,6 +15,7 @@ export class User {
   postal_code: string;
   town: string;
   image_id: string;
+  image64: any;
 
 
 

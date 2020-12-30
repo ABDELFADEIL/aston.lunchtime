@@ -1,4 +1,4 @@
-  
+
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { User } from '../models/user';
@@ -32,7 +32,6 @@ export class UserService {
   }
 
   creditUser(id: number, amount:number) {
-    console.log(this.authenticationService.jwtToken);
     /*
     return this.http.post<User>(URL+ 'user/credit/'+id+'?amount='+amount, {headers:new HttpHeaders({'Authorization':this.authenticationService.jwtToken})});
   */
@@ -45,9 +44,10 @@ export class UserService {
       }
     });
   }
-  findUserImag(id: number) {
-    return this.http.get<User>(URL + "/user/findimg/" + id, {headers:new HttpHeaders({'Authorization':this.authenticationService.jwtToken})});
+  findImgUser(id_user: number): Promise<any> {
+    return this.http.get<any>(URL + "user/findimg/" + id_user).toPromise();
   }
+
 
   debitUser(id: number, amount:number){
     if (!this.authenticationService.jwtToken)
@@ -71,9 +71,6 @@ export class UserService {
 
   }
 
-  findImgUser(id_user: number): Promise<any> {
-    return this.http.get<any>(URL + "user/findimg/" + id_user).toPromise();
-  }
- 
-}
 
+
+}

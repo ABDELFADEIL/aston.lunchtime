@@ -41,8 +41,6 @@ export class AuthenticationService {
 
   }
 
-
-
   getUserAuthenticated(){
     this.jwtToken = localStorage.getItem('jwtToken');
     let jwtHelper = new JwtHelper();
@@ -77,11 +75,12 @@ export class AuthenticationService {
     if (this.jwtToken){
       this.roles=jwtHelper.decodeToken(this.jwtToken).roles;
       for(let r of this.roles) {
-        if(r.authority=='ROLE_LUNCHLADY'){
+        if(r =='ROLE_LUNCHLADY'){
           return true;
         }
       }
     }
+    return false;
   }
 
   isUser(){
@@ -90,7 +89,7 @@ export class AuthenticationService {
     if (this.jwtToken){
       this.roles=jwtHelper.decodeToken(this.jwtToken).roles;
       for(let r of this.roles) {
-        if(r.authority=='ROLE_USER'){
+        if(r =='ROLE_USER'){
           return true;
         }
       }

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { HttpClient,HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { end } from '@popperjs/core';
-import {AuthenticationService} from 'src/app/services/authentication.service';
+import { AuthenticationService } from 'src/app/services/authentication.service';
 
 
 @Injectable({
@@ -9,15 +9,15 @@ import {AuthenticationService} from 'src/app/services/authentication.service';
 })
 export class OrdersService {
 
-  jwtToken:string;
-  httpOption:any;
+  jwtToken: string;
+  httpOption: any;
 
   private api_url = "http://localhost:8080/lunchtime/";
 
-  constructor(private http: HttpClient, private authenticationService: AuthenticationService) { 
+  constructor(private http: HttpClient, private authenticationService: AuthenticationService) {
     this.httpOption = {
-      'Authorization':this.authenticationService.jwtToken,
-      'Content-Type':'application/json',
+      'Authorization': this.authenticationService.jwtToken,
+      'Content-Type': 'application/json',
     };
   }
 
@@ -26,51 +26,63 @@ export class OrdersService {
   date = this.d.getFullYear() + '-' + (this.d.getMonth() + 1) + '-' + this.d.getDate() + '' + this.d.getHours() + '' + this.d.getMinutes();
 
 
- async getOrders():Promise<any>{
-    return this.http.get<any>(this.api_url+"order/findall").toPromise();
+  async getOrders(): Promise<any> {
+    return this.http.get<any>(this.api_url + "order/findall").toPromise();
 
- }
- /*async addOrder(obj:any): Promise<any>{
-   return this.http.put<any>(this.api_url+"order/add", JSON.stringify(obj),
-     {headers:new HttpHeaders({'authorization':this.authenticationService.jwtToken,
-                                'Content-Type':'application/json',
-                                'dataType': "json",
-                                
-                              })})
-     .toPromise();
-
-  }*/
-   /*async addOrder(obj:any){
-   return this.http.put<any>(this.api_url+"order/add", 
-     {
-       headers:new HttpHeaders({'authorization':this.authenticationService.jwtToken,
-                                'Content-Type':'application/json',
+  }
+  /*async addOrder(obj:any): Promise<any>{
+    return this.http.put<any>(this.api_url+"order/add", JSON.stringify(obj),
+      {headers:new HttpHeaders({'authorization':this.authenticationService.jwtToken,
+                                 'Content-Type':'application/json',
                                  'dataType': "json",
-                                 'body': JSON.stringify(obj),
-                                 'method':"PUT",
-                              })})
-      
-  }*/
+                                 
+                               })})
+      .toPromise();
+ 
+   }*/
+  /*async addOrder(obj:any){
+  return this.http.put<any>(this.api_url+"order/add", 
+    {
+      headers:new HttpHeaders({'authorization':this.authenticationService.jwtToken,
+                               'Content-Type':'application/json',
+                                'dataType': "json",
+                                'body': JSON.stringify(obj),
+                                'method':"PUT",
+                             })})
+     
+ }*/
 
+<<<<<<< HEAD
   addOrder(obj:any){
     return this.http.put<any>(this.api_url+"order/add", obj )       
+=======
+  async addOrder(obj: any) {
+    return this.http.put<any>(this.api_url + "order/add", obj, this.httpOption)
+>>>>>>> f879a8933e09f40244f17123bf57b432e490d66b
   }
 
-  getOrderById(id:number):Promise<any> {
+  getOrderById(id: number): Promise<any> {
     return this.http.get<any>(this.api_url + "order/find/" + id).toPromise();
   }
-  getOrderByUserId(id:number) {
+  getOrderByUserId(id: number) {
     return this.http.get<any>(this.api_url + "order/findallforuser/" + id);
   }
-  getAllOrdersForAllUsersByDate(status?:number,beginDate?:string,endDate?:string):Promise<any> {
-   if (!beginDate){
-     return this.http.get<any>(this.api_url + "order/findallbetweendateinstatus?status="+status+"&endDate=" + endDate ,
-       {headers:new HttpHeaders({'Authorization':this.authenticationService.jwtToken})} ).toPromise();
-   } if (!endDate){
-      return this.http.get<any>(this.api_url + "order/findallbetweendateinstatus?status="+status+"&beginDate="+beginDate ,
-        {headers:new HttpHeaders({'Authorization':this.authenticationService.jwtToken})} ).toPromise();
+  getAllOrdersForAllUsersByDate(status?: number, beginDate?: string, endDate?: string): Promise<any> {
+    if (!beginDate) {
+      return this.http.get<any>(this.api_url + "order/findallbetweendateinstatus?status=" + status + "&endDate=" + endDate,
+        { headers: new HttpHeaders({ 'Authorization': this.authenticationService.jwtToken }) }).toPromise();
+    } if (!endDate) {
+      return this.http.get<any>(this.api_url + "order/findallbetweendateinstatus?status=" + status + "&beginDate=" + beginDate,
+        { headers: new HttpHeaders({ 'Authorization': this.authenticationService.jwtToken }) }).toPromise();
     }
-    return this.http.get<any>(this.api_url + "order/findallbetweendateinstatus?status="+status+"&beginDate="+beginDate+"&endDate=" + endDate ,
-      {headers:new HttpHeaders({'Authorization':this.authenticationService.jwtToken})} ).toPromise();
+    return this.http.get<any>(this.api_url + "order/findallbetweendateinstatus?status=" + status + "&beginDate=" + beginDate + "&endDate=" + endDate,
+      { headers: new HttpHeaders({ 'Authorization': this.authenticationService.jwtToken }) }).toPromise();
+  }
+  /**
+   * delete an order 
+   * @param orderId 
+   */
+  cancelAnOrderByOrderId(orderId: number): Promise<any> {
+    return this.http.patch<any>(this.api_url + "order/cancel/" + orderId, null).toPromise();
   }
 }
