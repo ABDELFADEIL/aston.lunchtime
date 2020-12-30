@@ -9,6 +9,8 @@ import { MatCardModule } from '@angular/material/card';
 import {AuthenticationService} from 'src/app/services/authentication.service';
 import {User} from "../../models/user";
 import {UserService} from 'src/app/services/user.service';
+import { RESOURCE_CACHE_PROVIDER } from '@angular/platform-browser-dynamic';
+import { Order, Quantity } from 'src/app/models/order';
 
 
 @Component({
@@ -18,13 +20,12 @@ import {UserService} from 'src/app/services/user.service';
 })
 export class HomeComponent implements OnInit {
   displayBasic: boolean;
-  mealList = [];
   menuList = [];
   date:boolean;
   user:any;
   constraint: any;
   paniers:[];
-
+  order:Order;
 
 
 
@@ -39,7 +40,6 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
       this.user = this.authenticationService.getUserAuthenticated();
       this.constraint= this.menuService.getConstraint();
-      this.getMealsWeek();
       this.getMenuWeek();
       console.log(new Date());
   }
@@ -50,6 +50,7 @@ export class HomeComponent implements OnInit {
     this.menuList = response;
     this.menuList.forEach(element => {
     this.getMenuImage(element.id)
+    console.log(response);
     })
 
   }
@@ -64,45 +65,32 @@ export class HomeComponent implements OnInit {
     });
   }
  
-/*  async orderMenuHomepage(id_menu,quantity:number,id_constraint) {
-    //console.log('id_menu : '+id_menu);
-    //console.log('quantity : '+quantity);
-    console.log(this.user.id);
-     var obj = {
-      userId: this.user.id,
-      menuId: id_menu,
-      constraintId: 1,     
-      
-    }
+commander(menu) {
+  console.log(menu);
+  this.order = new Order();
+  this.order.userId = this.authenticationService.user.id;
+  this.order.quantity = [];
+  menu.meals.forEach(meal=>{
+  const quantity: Quantity = new Quantity();
+  quantity.mealId = meal.id;
+  quantity.menuId = menu.id;
+  quantity.quantity =1;
+  this.order.quantity.push(quantity);
+  console.log(this.order);
+  })
+  this.ordersService.addOrder(this.order).subscribe(res => {
+    console.log(res);
 
-    console.log(JSON.stringify(obj));
+  },error => {console.log(error)} )
+
+
+}
+
+
+ /*   console.log(JSON.stringify(objMealCommande));
   }*/
 
-
-  async orderMealHomepage(id_meal,quantity:number,id_constraint) {
-    //console.log('id_menu : '+id_menu);
-    //console.log('quantity : '+quantity);
-    console.log(this.user.id);
-    
-    var obj = {
-      user: this.user.id,
-      mealId: id_meal,
-      quantity: quantity,
-   //   constraintId:id_constraint,
-    }
-  
-
-    console.log(JSON.stringify(obj));
-  }
-
-    /*if(this.authenticationService.isUser && this.userService.findById !=null ){
-    const order =await this.ordersService.addOrder(JSON.stringify(obj))
-    .then(res=>{console.log("res:",res)})
-    .catch(err=>{
-    console.log("err:",err);
-    })
-
-  }*/
+ 
 
 
 
@@ -119,24 +107,7 @@ export class HomeComponent implements OnInit {
   /**
    *
    */
-  async getMealsWeek() {
-    const response = await this.mealService.getMealWeek();
-    this.mealList = response;
-    this.mealList.forEach(element => {
-      this.getMealImage(element.id);
-      console.log(this.mealList);
-    });
-  }
-  async getMealImage(id_meal) {
-    const res = await this.mealService.findImgMeal(id_meal);
-    this.mealList.forEach(element => {
-      if (element.imageId === res.id) {
-        element.img = res.image64;
-        //console.log(this.mealList);
 
-      }
-    });
-  }
   showInfo() {
     this.displayBasic = true;
 }

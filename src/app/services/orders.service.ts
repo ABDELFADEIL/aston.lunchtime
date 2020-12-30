@@ -52,8 +52,8 @@ export class OrdersService {
       
   }*/
 
-  async addOrder(obj:any){
-    return this.http.put<any>(this.api_url+"order/add", obj, this.httpOption )       
+  addOrder(obj:any){
+    return this.http.put<any>(this.api_url+"order/add", obj )       
   }
 
   getOrderById(id:number):Promise<any> {

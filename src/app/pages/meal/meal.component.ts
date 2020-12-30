@@ -3,6 +3,12 @@ import {MealService} from 'src/app/services/meal-service.service';
 import {OrdersService} from 'src/app/services/orders.service';
 import {Observable} from 'rxjs';
 import {async} from "rxjs-compat/scheduler/async";
+import { MenuService } from 'src/app/services/menu-service.service';
+import { Order, Quantity } from 'src/app/models/order';
+import {AuthenticationService} from 'src/app/services/authentication.service';
+import {UserService} from 'src/app/services/user.service';
+import {User} from "../../models/user";
+
 
 
 @Component({
@@ -11,82 +17,98 @@ import {async} from "rxjs-compat/scheduler/async";
   styleUrls: ['./meal.component.css']
 })
 export class MealComponent implements OnInit {
+  mealList = [];
+  constraint: any;
+  order:Order;
+  user:any;
+  displayBasic: boolean;
 
-  allMeals:any[]=[];
+  constructor(private mealService: MealService, private ordersService: OrdersService,
+    public authenticationService: AuthenticationService,
+    private userService: UserService,
+    private menuService: MenuService,) {
+    
+   }
+   ngOnInit(): void {
+    this.user = this.authenticationService.getUserAuthenticated();
+    this.constraint= this.menuService.getConstraint();
+    this.getMealsWeek();
+    
+}
 
-  cols: any[];
-  public meal: any;
-  page: number = 1;
-  currentPage:number = this.page;
-  meals:any[]=[];
-  pages: any[]=[];
-  currentCategory = 1;
-  categories=
-    {1: "viande" ,3:"poission",4:"vegeterian",5:"fast-food",6:"fruit-mer",
-    7:"dessert",8:"boission",9:"entrée"}
+
+
+commander(menu) {
+console.log(menu);
+this.order = new Order();
+this.order.userId = this.authenticationService.user.id;
+this.order.quantity = [];
+menu.meals.forEach(meal=>{
+const quantity: Quantity = new Quantity();
+quantity.mealId = meal.id;
+quantity.menuId = menu.id;
+quantity.quantity =1;
+this.order.quantity.push(quantity);
+console.log(this.order);
+})
+this.ordersService.addOrder(this.order).subscribe(res => {
+  console.log(res);
+
+},error => {console.log(error)} )
+
+
+}
+
+  getDate() {
+    let date = new Date();
+    let hour = date.getHours();
+    let mins = date.getMinutes();
+    if( hour<=10 && mins<=30 ){
+      return true;
+    }
+
+  }
+
+/**
+ *
+ */
+async getMealsWeek() {
+  const response = await this.mealService.getMealWeek();
+  this.mealList = response;
+  this.mealList.forEach(element => {
+    this.getMealImage(element.id);
+    console.log(this.mealList);
+  });
+}
+async getMealImage(id_meal) {
+  const res = await this.mealService.findImgMeal(id_meal);
+  this.mealList.forEach(element => {
+    if (element.imageId === res.id) {
+      element.img = res.image64;
+      //console.log(this.mealList);
+
+    }
+  });
+}
+showInfo() {
+  this.displayBasic = true;
+}
+/* getOrderMeal(id_meal) {
+  this.ordersService.orderMeal(id_meal);
+}*/
+
+
+}
+
+
+  
+   
+  
+
+
+
 
   
 
 
-  constructor(private mealService: MealService, private ordersService: OrdersService) { }
 
-  async ngOnInit(){
-    this.allMeals = await this.getAllMeals();
-    this.paginateMeals(this.page);
-  }
-
-
-  async getAllMeals() {
-    const response = await this.mealService.getMeals();
-    this.allMeals = response;
-    this.allMeals.forEach(element => {
-      this.getMealImage(element.id);
-    });
-    return response
-  }
-
-    async getMealImage(id) {
-      const res = await this.mealService.findImgMeal(id);
-      this.allMeals.forEach(element=>{
-        if(element.imageId === res.id){
-          element.img64 = res.image64;
-        }
-      })
-      /*    const img = res.image64;
-          return img;*/
-    }
-
-    paginateMeals(page_number) {
-      const totalPages:any= this.allMeals.length/12;
-      this.pages= new Array<number>(parseInt(totalPages)+1);
-      if (0 > page_number){
-        this.currentPage = 0;
-      } else if (page_number > this.pages.length) {
-        this.currentPage == this.pages.length - 1;
-      } else {
-        this.currentPage = page_number;
-      }
-      this.meals = this.allMeals.slice((this.currentPage-1) * 12, this.currentPage * 12);
-      return this.meals;
-
-    }
-
-    OnMealPage(i){
-      this.currentPage = i ;
-      this.paginateMeals(this.currentPage);
-    }
-
-  searchByCategory(value: any) {
-    this.currentCategory = value;
-    console.log(value);
-    if (value != 1){
-      const  meals = this.allMeals.filter(meal => meal.category == value);
-      this.meals = meals;
-      console.log(meals);
-    } else {
-      this.paginateMeals(this.currentPage);
-    }
-
-
-  }
-}
