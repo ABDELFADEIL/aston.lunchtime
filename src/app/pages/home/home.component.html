@@ -19,7 +19,7 @@
     <p>Déscription: Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
     <ng-template pTemplate="footer">
 
-        <p-button label="Commander" (click)="commander(menu)" *ngIf="authenticationService.authenticated " icon="pi pi-shopping-cart" [style]="{'background': ' #585858','width': '50%'}"></p-button>
+        <p-button label="Commander" (click)="commander()" *ngIf="authenticationService.authenticated " icon="pi pi-shopping-cart" [style]="{'background': ' #585858','width': '50%'}"></p-button>
         <p-button (click)="showInfo()" icon="pi pi-shopping-cart" styleClass="p-button-primary"label="commander"*ngIf="!authenticationService.authenticated"[style]="{'background': '  #87AAB9','width': '50%'}"></p-button>
 
         <p-dialog header="info" [(visible)]="displayBasic" [style]="{width: '20vw',background:'black'}">

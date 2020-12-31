@@ -51,11 +51,9 @@ export class OrdersService {
                              })})
      
  }*/
-
-
-  addOrder(obj:any){
-    return this.http.put<any>(this.api_url+"order/add", obj )   
-  }   
+  addOrder(obj: any) {
+    return this.http.put<any>(this.api_url + "order/add", obj)
+  }
   getOrderById(id: number): Promise<any> {
     return this.http.get<any>(this.api_url + "order/find/" + id).toPromise();
   }
@@ -80,5 +78,5 @@ export class OrdersService {
   cancelAnOrderByOrderId(orderId: number): Promise<any> {
     return this.http.patch<any>(this.api_url + "order/cancel/" + orderId, null).toPromise();
   }
-  
 }
+
