@@ -19,7 +19,6 @@ import {MenubarModule} from 'primeng/menubar';
 import { InputTextModule } from 'primeng/inputtext';
 import {DynamicDialogModule} from 'primeng/dynamicdialog';
 import { UserAccountComponent } from './pages/user-account/user-account.component';
-import { MealComponent } from './pages/meal/meal.component';
 import { ButtonModule } from 'primeng/button';
 import {TabViewModule} from 'primeng/tabview';
 import {InputSwitchModule} from 'primeng/inputswitch';
@@ -59,7 +58,6 @@ import {MultiSelectModule} from 'primeng/multiselect';
     ClientsManagementComponent,
     MenusManagementComponent,
     UserAccountComponent,
-    MealComponent,
     DigitalClockComponent,
     UpdateClientComponent,
   ],
