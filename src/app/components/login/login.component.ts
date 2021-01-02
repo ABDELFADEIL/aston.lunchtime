@@ -51,6 +51,8 @@ export class LoginComponent implements OnInit {
       //window.location.reload();
       //const returnURL = this.activatedRoute.queryParams['value'].returnUrl;
       this.router.navigateByUrl('/'+this.returnURL);
+      window.close();
+      window.open(this.returnURL)
 
       // this.message = "connexion réussie!"
     }, error => {
@@ -58,7 +60,7 @@ export class LoginComponent implements OnInit {
       console.log(error);
     });
      //window.location.replace(this.returnURL);
-     window.open(this.returnURL)
+
   }
 
   onForgetPassword() {

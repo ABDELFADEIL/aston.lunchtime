@@ -16,7 +16,7 @@ export class UserAccountComponent implements OnInit {
   wallet: boolean = false;
   infos: boolean = false;
   parameters:boolean = false;
-  user: User;
+  user: User = null;
   userOrders: any;
 
   constructor(
@@ -67,16 +67,20 @@ export class UserAccountComponent implements OnInit {
 
   // get orders for logged-in user
   async getOrdersForCurrentUser() {
-
-    this.orderService.getOrderByUserId(this.user.id).subscribe(data => {
-      this.userOrders = data;
-    })
+    if (this.user) {
+      this.orderService.getOrderByUserId(this.user.id).subscribe(data => {
+        this.userOrders = data;
+      })
+    }
    }
    getUserImg(){
     this.user = this.authenticationService.getUserAuthenticated();
-    this.userService.findImgUser(this.user.id).then((res) => {
-      this.user.image64 = res.image64;
-    });
+    if (this.user){
+      this.userService.findImgUser(this.user.id).then((res) => {
+        this.user.image64 = res.image64;
+      });
+    }
+
   }
 
  findUserImg(id_user){

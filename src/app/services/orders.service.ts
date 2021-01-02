@@ -35,13 +35,13 @@ export class OrdersService {
       {headers:new HttpHeaders({'authorization':this.authenticationService.jwtToken,
                                  'Content-Type':'application/json',
                                  'dataType': "json",
-                                 
+
                                })})
       .toPromise();
- 
+
    }*/
   /*async addOrder(obj:any){
-  return this.http.put<any>(this.api_url+"order/add", 
+  return this.http.put<any>(this.api_url+"order/add",
     {
       headers:new HttpHeaders({'authorization':this.authenticationService.jwtToken,
                                'Content-Type':'application/json',
@@ -49,13 +49,13 @@ export class OrdersService {
                                 'body': JSON.stringify(obj),
                                 'method':"PUT",
                              })})
-     
+
  }*/
 
 
-  addOrder(obj:any){
-    return this.http.put<any>(this.api_url+"order/add", obj )       
-
+  addOrder(obj:any) {
+    return this.http.put<any>(this.api_url + "order/add", obj)
+  }
   getOrderById(id: number): Promise<any> {
     return this.http.get<any>(this.api_url + "order/find/" + id).toPromise();
   }
@@ -74,8 +74,8 @@ export class OrdersService {
       { headers: new HttpHeaders({ 'Authorization': this.authenticationService.jwtToken }) }).toPromise();
   }
   /**
-   * delete an order 
-   * @param orderId 
+   * delete an order
+   * @param orderId
    */
   cancelAnOrderByOrderId(orderId: number): Promise<any> {
     return this.http.patch<any>(this.api_url + "order/cancel/" + orderId, null).toPromise();

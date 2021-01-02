@@ -3,7 +3,7 @@
    <!-- modal ----->
    <div class="modal p-mr-12">
       <!-- horizontal menu ----->
-      <div class="nav-header p-mr-12">
+      <div class="nav-header p-mr-12" *ngIf="user">
             <div class="p-mr-4">
             </div>
             <div class="small-logo p-mr-4">
@@ -21,7 +21,7 @@
                    User
                   </span>
               </p>
-              
+
             </div>
       </div>
        <!-- end horizontal menu ----->
@@ -65,12 +65,12 @@
       <!---- end vertical menu --->
       <!---- card --->
 
-        <div class="p-grid card" *ngIf="wallet">
+        <div class="p-grid card" *ngIf="user">
           <div class="p-col-1">
           </div>
           <div class="p-col-2">
           </div>
-              <div *ngIf="user.wallet == 0">
+              <div *ngIf="user.wallet == 0 && user">
                 <p-card [style]="{'background-color':'#F6F6F6'}">
                   <ng-template pTemplate="header">
                       <img alt="empty-ct" src="assets/user-account/cat.png" [style]="{'width': '50%','display':'block','margin':'auto'}">
@@ -79,7 +79,7 @@
                   <p class="text">Si vous souhaitez passer des commandes <br/>vous devez recharger votre cagnotte <br/>auprès de la cantinière</p>
                   </p-card>
               </div>
-              <div class="card-content p-col-7" *ngIf="user.wallet > 0">
+              <div class="card-content p-col-7" *ngIf="user.wallet > 0 && user">
               <p-card [style]="{'background-color':'#F6F6F6'}">
               <ng-template pTemplate="header">
               </ng-template>
@@ -98,7 +98,7 @@
           <!---- end card --->
         <!---- user infos --->
 
-        <div class="p-grid" *ngIf="infos">
+        <div class="p-grid" *ngIf="user">
           <div class="p-col-1"></div>
           <div class="user-infos-content p-col-9 p-d-flex">
             <div class="p-col-4 profile-img">
@@ -117,7 +117,7 @@
         </div>
         <!---- end user infos --->
         <!---- parameters --->
-          <div class="p-grid" *ngIf="parameters">
+          <div class="p-grid" *ngIf="parameters && user">
             <div class="user-infos-edit">
               <form>
                 <div class="phone p-d-flex p-flex-column p-flex-md-row p-mt-4 p-mb-4 p-pl-3">
@@ -176,7 +176,7 @@
           </div>
         <!---- end parameters --->
         <!---- my orders --->
-         <div class="p-grid" *ngIf="orders">
+         <div class="p-grid" *ngIf="userOrders">
           <div class="p-col-1"></div>
           <div class="table">
             <p-table class="p-col-11" [value] = "userOrders">
