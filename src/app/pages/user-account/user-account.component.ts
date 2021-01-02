@@ -31,7 +31,6 @@ export class UserAccountComponent implements OnInit {
     console.log(this.user);
     this.getOrdersForCurrentUser();
     this.getUserImg();
-
   }
 // menu navigation
   userAccountNavigate(navigate: string) {
