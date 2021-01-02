@@ -2,8 +2,13 @@
   color: #ef4430;
 }
 
-#login {
+.login-form {
   background: url('src/assets/login_bg.jpg') no-repeat center center;
+  background-size: cover;
+  margin-bottom: 3rem !important;
+}
+#login {
+ /* background: url('src/assets/login_bg.jpg') no-repeat center center; */
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -12,7 +17,6 @@
   max-width: 60vh;
   margin: auto;
   margin-top: 2rem;
-  margin-bottom: 2rem;
 }
 
 .login-form {
@@ -26,8 +30,9 @@
 .login-form {
   background-color: rgba(0, 0, 0, .7);
   margin: auto;
-
-  min-height: 80vh;
+  min-width: 340px !important;
+  height: 80vh;
+  min-height: 608px;
   color: #ffffff;
 }
 .login-form .p-col-12:nth-child(1) {
