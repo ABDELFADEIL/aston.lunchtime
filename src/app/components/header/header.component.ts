@@ -29,17 +29,18 @@ export class HeaderComponent implements OnInit {
 
     ngOnInit() {
     const isAdmin: boolean = this.authenticationService.isAdmin();
+    const isUser: boolean = this.authenticationService.isUser();
     console.log(isAdmin)
       this.items = [
         {label: 'Accueil', routerLink: ['/home']},
        /* {label: 'Plats', routerLink: ['/meal']},*/
-        {label: 'Gestion',visible: isAdmin,
+        {label: 'Admin',visible: isAdmin,
         items: [
           {label: 'Gestion plats', routerLink: ['/menu-management'], visible: isAdmin} ,
           {label: 'Gestion commandes', routerLink: ['/orders-management'], visible: isAdmin},
           {label: 'Gestion clients', routerLink: ['/clients-management'], visible: isAdmin},
               ]},
-              {label: 'Mon compte', routerLink: ['/user-account']}
+              {label: 'Mon compte', routerLink: ['/user-account'], visible: isUser}
                    ];
 }
 

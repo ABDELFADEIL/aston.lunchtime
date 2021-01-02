@@ -53,7 +53,8 @@ export class OrdersService {
  }*/
 
 
-  addOrder(obj:any) {
+
+  addOrder(obj: any) {
     return this.http.put<any>(this.api_url + "order/add", obj)
   }
   getOrderById(id: number): Promise<any> {
@@ -81,3 +82,4 @@ export class OrdersService {
     return this.http.patch<any>(this.api_url + "order/cancel/" + orderId, null).toPromise();
   }
 }
+
