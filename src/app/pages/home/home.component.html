@@ -1,15 +1,12 @@
-
-
-
-
-
-
 <app-digital-clock></app-digital-clock>
 <div>
     <h4 class="ligne">
-        Menus de la semaine
+        Menus de la semaine  
+        <div style="display:flex;justify-content: flex-start;">
+        <a class="btn btn-ghost" [routerLink]="['/meal']">Plate de la semaine</a>  
+        </div>    
     </h4>
-</div>
+  </div>
 <div class ="menus">
 <!--<div  class="card-menu" *ngFor="let menu of menuList">-->
 <p-card *ngFor="let menu of menuList" header={{menu.label}} [style]="{width: '360px'}">
@@ -22,7 +19,7 @@
     <p>Déscription: Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
     <ng-template pTemplate="footer">
 
-        <p-button label="Commander" (click)="orderMealHomepage(menu.id,1)" *ngIf="authenticationService.authenticated " icon="pi pi-shopping-cart" [style]="{'background': ' #585858','width': '50%'}"></p-button>
+        <p-button label="Commander" (click)="commander()" *ngIf="authenticationService.authenticated " icon="pi pi-shopping-cart" [style]="{'background': ' #585858','width': '50%'}"></p-button>
         <p-button (click)="showInfo()" icon="pi pi-shopping-cart" styleClass="p-button-primary"label="commander"*ngIf="!authenticationService.authenticated"[style]="{'background': '  #87AAB9','width': '50%'}"></p-button>
 
         <p-dialog header="info" [(visible)]="displayBasic" [style]="{width: '20vw',background:'black'}">
@@ -34,36 +31,25 @@
     </ng-template>
 </p-card>
 </div>
-
-
-
-<div>
-    <h4 class="ligne">
-        Plats de la semaine
-        &nbsp;
-        <a class="btn btn-ghost" [routerLink]="['/meal']">More Plate</a>
-    </h4>
-</div>
-
 <div class="myclass p-d-flex p-flex-row p-flex-wrap p-jc-center">
-<p-card *ngFor="let meal of mealList" header="{{meal.label}}" [style]="{width: '220px'}" styleClass="p-card-shadow">
-  <p-header>
-      <figure class= "meal_photo">
-    <img class= "meal_photo"alt="Card" src="{{meal.img}}" style="border-top-left-radius: 4px;border-top-right-radius: 4px; height: 220px !important;">
-    </figure>
-  </p-header>
-  <p>Déscription: {{meal.description ? meal.description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit.'}}</p>
-  <h6 style="font-size:15px;font-family: 'Cormorant Garamond', serif;">Prix:{{meal.priceDF + '€'}}</h6>
-  <ng-template pTemplate="footer">
-    <p-button label="Commander" (click)="orderMealHomepage(meal.id,1)" *ngIf="authenticationService.authenticated " icon="pi pi-shopping-cart" [style]="{'background': '#585858','width': '100%'}"></p-button>
-    <p-button label="Commander" (click)="showInfo()" *ngIf="!authenticationService.authenticated" icon="pi pi-shopping-cart" [style]="{'background': '#87AAB9','width': '100%'}"></p-button>
-  </ng-template>
-  <p-dialog header="info" [(visible)]="displayBasic" [style]="{width: '20vw',background:'#212529'}">
-    <h1>Envie commander? inscriez-vous</h1>
+  <p-card *ngFor="let meal of mealList" header="{{meal.label}}" [style]="{width: '220px'}" styleClass="p-card-shadow">
+    <p-header>
+        <figure class= "meal_photo">
+      <img class= "meal_photo"alt="Card" src="{{meal.img}}" style="border-top-left-radius: 4px;border-top-right-radius: 4px; height: 220px !important;">
+      </figure>
+    </p-header>
+    <p>Déscription: {{meal.description ? meal.description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit.'}}</p>
+    <h6 style="font-size:15px;font-family: 'Cormorant Garamond', serif;">Prix:{{meal.priceDF + '€'}}</h6>
     <ng-template pTemplate="footer">
-      <p-button icon="pi pi-check" (click)="displayBasic=false" label="Ok" styleClass="p-button-text"></p-button>
+      <p-button id= "commander"label="Commander" (click)="commander(meal.id)" *ngIf="authenticationService.authenticated " icon="pi pi-shopping-cart" [style]="{'background': '#585858','width': '100%'}"></p-button>
+      <p-button label="Commander" (click)="showInfo()" *ngIf="!authenticationService.authenticated" icon="pi pi-shopping-cart" [style]="{'background': '#87AAB9','width': '100%'}"></p-button>
     </ng-template>
-  </p-dialog>
-</p-card>
-</div>
-
+    <p-dialog header="info" [(visible)]="displayBasic" [style]="{width: '20vw',background:'#212529'}">
+      <h1>Envie commander? inscriez-vous</h1>
+    <ng-template pTemplate="footer">
+        <p-button icon="pi pi-user-edit" [routerLink]="['/login']" label="Ok" styleClass="p-button-text"></p-button>
+    </ng-template>
+    </p-dialog>
+  </p-card>
+  </div>
+  

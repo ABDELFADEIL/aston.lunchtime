@@ -1,5 +1,5 @@
-<div class="p-grid mr-t">
-  <div class="p-col-6">
+<div class="p-d-flex mr-t p-flex-wrap p-flex-column p-flex-md-row">
+  <div class="p-col-12 p-md-12 p-lg-6">
     <!-- <p-orderList [value]="listeCommandesDayS" [listStyle]="{'height':'auto'}" header="Commandes" filterBy="name"
       filterPlaceholder="Filter by name" dragdrop="true">
       <ng-template let-commande pTemplate="item">
@@ -19,7 +19,7 @@
 
 
     <p-table #dt [value]="listeCommandesDays" [scrollable]="true" scrollHeight="58vh"
-      [globalFilterFields]="['user.name']">
+      [globalFilterFields]="['user.name','user.firstname']">
       <ng-template pTemplate="caption">
         <div class="table-header">
           Commandes au {{todayDate}} : 
@@ -57,7 +57,7 @@
         </tr>
         <div *ngIf="deleteIdx === i">
           <h2 style="min-width: 40rem;" >voulez vous vraiment supprimer la commande de <span style="color: grey;">{{listeCommandesDay.user.firstname}} {{listeCommandesDay.user.name}}</span>? <br>
-            <button pButton pRipple type="button" label="oui" class="p-button-danger" style="margin-right: 0.5rem;" ></button>
+            <button pButton pRipple type="button" label="oui" class="p-button-danger" style="margin-right: 0.5rem;" (click)="confirmDelete(i)" ></button>
             <button pButton pRipple type="button" label="non" (click)="deleteIdx=undefined" ></button>
           </h2>
         </div >
@@ -72,7 +72,7 @@
     </p-table>
 
   </div>
-  <div class="p-col-6">
+  <div class="p-col-12 p-md-12 p-lg-6">
     <p-listbox [options]="listRecaps" [(ngModel)]="selectedListRecap" [filter]="true" [multiple]="true" [readonly] ="true"
       [listStyle]="{'max-height':'60.2vh'}" [style]="{'width':'90%', margin:'auto'}">
       <p-header [style]="{fontSize:'1.3rem'}">

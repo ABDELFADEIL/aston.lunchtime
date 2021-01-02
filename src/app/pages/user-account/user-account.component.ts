@@ -5,6 +5,7 @@ import {AuthenticationService} from "../../services/authentication.service";
 import { User } from 'src/app/models/user';
 import { OrdersService } from 'src/app/services/orders.service';
 import { element } from 'protractor';
+import {FormControl, FormGroup, Validators} from "@angular/forms";
 
 @Component({
   selector: 'app-user-account',
@@ -18,6 +19,7 @@ export class UserAccountComponent implements OnInit {
   parameters:boolean = false;
   user: User;
   userOrders: any;
+  public userForm: FormGroup;
 
   constructor(
   public authenticationService: AuthenticationService,
@@ -62,6 +64,28 @@ export class UserAccountComponent implements OnInit {
       default:
         this.orders = true;
     }
+  }
+  private userFormInit() {
+    this.userForm = new FormGroup({
+      firstname: new FormControl('', [
+        Validators.required, Validators.minLength(4)]),
+      name: new FormControl('', [
+        Validators.required, Validators.minLength(4)]),
+      email: new FormControl('', [
+        Validators.required, Validators.minLength(4)]),
+      password: new FormControl('', [
+        Validators.required, Validators.minLength(4)]),
+      address: new FormControl('', [
+        Validators.required, Validators.minLength(4)]),
+      postalCode: new FormControl('', [
+        Validators.required, Validators.minLength(4)]),
+      town: new FormControl('', [
+        Validators.required, Validators.minLength(3)]),
+      phone: new FormControl('', [
+        Validators.required, Validators.minLength(8)]),
+      sex: new FormControl('', [
+        Validators.required]),
+    });
   }
 
   // get orders for logged-in user

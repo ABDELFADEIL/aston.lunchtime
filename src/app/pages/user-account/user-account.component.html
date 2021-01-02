@@ -119,53 +119,43 @@
         <!---- parameters --->
           <div class="p-grid" *ngIf="parameters">
             <div class="user-infos-edit">
-              <form>
+              <form [formGroup]="userForm" (ngSubmit)="updateUser()" novalidate>
                 <div class="phone p-d-flex p-flex-column p-flex-md-row p-mt-4 p-mb-4 p-pl-3">
                   <div class="p-col-12 p-md-6 p-lg-3 display-grid">
-                    <label>Téléphone</label>
-                    <input class="p-mt-2" required type="phone" placeholder="+336 60 55 42 96" pInputText>
+                    <label>Nom</label>
+                    <input class="p-mt-2" type="text"  formControlName="name" pInputText [(ngModel)]="user.name">
                   </div>
                   <div class="p-col-12 p-md-6 p-lg-3 display-grid">
-                    <label>Nouveau  téléphone</label>
-                    <input class="p-mt-2" required type="phone" pInputText>
+                    <label>Prénom</label>
+                    <input class="p-mt-2" type="text" formControlName="firstname" pInputText [(ngModel)]="user.firstname">
                   </div>
                   <div class="p-col-12 p-md-6 p-lg-3 display-grid">
-                    <label>Confirmer</label>
-                    <input class="p-mt-2" class="p-mt-2" required type="phone" pInputText>
+                    <label>Télephone</label>
+                    <input class="p-mt-2" type="text" formControlName="phone" pInputText [(ngModel)]="user.phone">
                   </div>
                   <div class="p-col-12 p-md-6 p-lg-3 display-grid">
-                    <button pButton  pRipple type="button" label="Editer" class="p-button-rounded btn-edit p-mt-4"></button>
+                    <label>Email</label>
+                    <input class="p-mt-2" type="text" formControlName="email" pInputText [(ngModel)]="user.email">
                   </div>
                 </div>
                 <div class="email p-d-flex p-flex-column p-flex-md-row p-mt-4 p-mb-4 p-pl-3">
                   <div class="p-col-12 p-md-6 p-lg-3 display-grid">
-                    <label>Email</label>
-                    <input class="p-mt-2"  required type="phone" placeholder="email@gmail.com" pInputText>
+                    <label>Adresse</label>
+                    <input class="p-mt-2"  type="text" formControlName="address" pInputText [(ngModel)]="user.address">
                   </div>
                   <div class="p-col-12 p-md-6 p-lg-3 display-grid">
-                    <label>Nouveau  email</label>
-                    <input class="p-mt-2" required type="phone" pInputText>
+                    <label>Code postale</label>
+                    <input class="p-mt-2" type="number" formControlName="postalCode" pInputText [(ngModel)]="user.postalCode">
                   </div>
                   <div class="p-col-12 p-md-6 p-lg-3 display-grid">
-                    <label>Confirmer</label>
-                    <input class="p-mt-2" required type="phone" pInputText>
-                  </div>
-                  <div class="p-col-12 p-md-6 p-lg-3 display-grid">
-                    <button pButton  pRipple type="button" label="Editer" class="p-button-rounded btn-edit p-mt-4"></button>
+                    <label>Ville</label>
+                    <input class="p-mt-2" type="text" formControlName="town" pInputText [(ngModel)]="user.town">
                   </div>
                 </div>
                 <div class="mdp p-d-flex p-flex-column p-flex-md-row p-mt-4 p-mb-4 p-pl-3">
                   <div class="p-col-12 p-md-6 p-lg-3 display-grid">
-                    <label>Ancien mot de passe</label>
-                    <input class="p-mt-2" required type="phone" placeholder="......." pInputText>
-                  </div>
-                  <div class="p-col-12 p-md-6 p-lg-3 display-grid">
-                    <label>Nouveau  mot de passe</label>
-                    <input class="p-mt-2" required type="phone" pInputText>
-                  </div>
-                  <div class="p-col-12 p-md-6 p-lg-3 display-grid">
-                    <label>Confirmer</label>
-                    <input class="p-mt-2" required type="phone" pInputText>
+                    <label>Mot de passe</label>
+                    <input class="p-mt-2" formControlName="password" pInputText [(ngModel)]="user.password">
                   </div>
                   <div class="p-col-12 p-md-6 p-lg-3">
                     <button pButton  pRipple type="button" label="Editer" class="p-button-rounded btn-edit p-mt-4"></button>
