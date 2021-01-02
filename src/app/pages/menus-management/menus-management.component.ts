@@ -4,6 +4,7 @@ import {MealService} from "../../services/meal-service.service";
 import {IngredientService} from "../../services/ingredient.service";
 import {ConfirmationService, MessageService} from "primeng/api";
 import {MealDTO} from "../../models/mealDTO";
+import {MenuDTO} from "../../models/menuDTO";
 
 class Ingredient {
   id: number
@@ -51,6 +52,7 @@ export class MenusManagementComponent implements OnInit {
   meals: any[];
   mealDialog: boolean;
   meal: MealDTO;
+  menu: MenuDTO;
   categorySelected: any;
 
   constructor(private menuService: MenuService,
@@ -405,5 +407,16 @@ export class MenusManagementComponent implements OnInit {
       this.availableForWeeks[i] = weak;
     }
   }
+   /*
+  partie menus
+   */
+  openNewMenu() {
+    this.menu= new MenuDTO();
+    this.submitted = false;
+    this.mealDialog = true;
+    this.message = '';
+  }
 
 }
+
+ 

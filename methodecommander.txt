@@ -1,0 +1,25 @@
+let result = (<HTMLInputElement>document.getElementById("commander")).value;
+
+
+
+ commanderHomePage(id_meal){
+   const order= this.ordersService.commander(id_meal);
+   return order;
+ }*/
+/*commanderHo(id_meal) {
+  this.count++;
+ // let result = (<HTMLInputElement>document.getElementById("commander")).value;
+  const obj = {  
+  userId : this.user.id,
+  constraintId : 1,
+  quantity :{
+    quantity:this.count,   
+    mealId : id_meal,
+    menuId: 0,
+     
+  }  
+
+}
+  console.log(JSON.stringify(obj));
+  return JSON.stringify(obj); 
+}
