@@ -29,6 +29,8 @@ export class HomeComponent implements OnInit {
   date:boolean;
   user:any;
   constraint: any;
+  order:any;
+  
 
   constructor(private menuService: MenuService,
     private ordersService: OrdersService,
@@ -70,23 +72,9 @@ export class HomeComponent implements OnInit {
     });
   }
 
-  /* add a commande*/
- 
-commander(id_meal) {
-  this.count++;
- (<HTMLInputElement>document.getElementById("commander")).value;
- const obj = {  
-  userId : this.user.id,
-  constraintId : 1,
-  quantity :{
-    quantity:this.count,   
-    mealId : id_meal,
-    menuId: 0,
-     
-  }  
-}
-  console.log(JSON.stringify(obj));
-  return JSON.stringify(obj); 
+/* add Order*/
+commanderHo(obj){
+  return this.ordersService.commander(JSON.stringify(obj));
 }
 
 /* meals de la semaine*/
@@ -113,24 +101,6 @@ async getMealImage(id_meal) {
   });
 
 }
-
-/* commander(menu){
-  this.order = new Order();
-  this.order.userId = this.authenticationService.user.id;
-  this.order.quantity = [];
-  menu.forEach(menu=>{
-  const quantity = new Quantity();
-//  quantity.mealId = meal.id;
-  quantity.menuId = menu.id;
-  quantity.quantity =1;
-  this.order.quantity.push(quantity);
-  console.log(this.order);
-  })
-  this.ordersService.addOrder(this.order).subscribe(res => {
-    console.log(res);
-
-  },error => {console.log(error)} )
-}*/
 
 /* time constraint */
 

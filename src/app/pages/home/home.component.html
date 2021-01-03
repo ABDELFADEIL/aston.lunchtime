@@ -19,7 +19,7 @@
     <p>Déscription: Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
     <ng-template pTemplate="footer">
 
-        <p-button label="Commander" (click)="commander()" *ngIf="authenticationService.authenticated " icon="pi pi-shopping-cart" [style]="{'background': ' #585858','width': '50%'}"></p-button>
+        <p-button label="Commander" (click)="commanderHo()" *ngIf="authenticationService.authenticated " icon="pi pi-shopping-cart" [style]="{'background': ' #585858','width': '50%'}"></p-button>
         <p-button (click)="showInfo()" icon="pi pi-shopping-cart" styleClass="p-button-primary"label="commander"*ngIf="!authenticationService.authenticated"[style]="{'background': '  #87AAB9','width': '50%'}"></p-button>
 
         <p-dialog header="info" [(visible)]="displayBasic" [style]="{width: '20vw',background:'black'}">
@@ -41,11 +41,11 @@
     <p>Déscription: {{meal.description ? meal.description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit.'}}</p>
     <h6 style="font-size:15px;font-family: 'Cormorant Garamond', serif;">Prix:{{meal.priceDF + '€'}}</h6>
     <ng-template pTemplate="footer">
-      <p-button id= "commander"label="Commander" (click)="commander(meal.id)" *ngIf="authenticationService.authenticated " icon="pi pi-shopping-cart" [style]="{'background': '#585858','width': '100%'}"></p-button>
+      <p-button id= "commander"label="Commander" (click)="commanderHo(meal.id)" *ngIf="authenticationService.authenticated " icon="pi pi-shopping-cart" [style]="{'background': '#585858','width': '100%'}"></p-button>
       <p-button label="Commander" (click)="showInfo()" *ngIf="!authenticationService.authenticated" icon="pi pi-shopping-cart" [style]="{'background': '#87AAB9','width': '100%'}"></p-button>
     </ng-template>
     <p-dialog header="info" [(visible)]="displayBasic" [style]="{width: '20vw',background:'#212529'}">
-      <h1>Envie commander? inscriez-vous</h1>
+      <h2>Envie commander? inscriez-vous</h2>
     <ng-template pTemplate="footer">
         <p-button icon="pi pi-user-edit" [routerLink]="['/login']" label="Ok" styleClass="p-button-text"></p-button>
     </ng-template>

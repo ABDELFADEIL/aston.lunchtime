@@ -255,3 +255,13 @@ nav {
 .meal-ingredients .p-checkbox.p-component {
   display: none !important;
 }
+.p-button.p-button-danger .btn[_ngcontent-jhl-c54] {
+  max-height: 42px !important;
+}
+
+.mat-h4, .mat-subheading-1, .mat-typography h4 {
+  font: 400 15px/24px Roboto, "Helvetica Neue", sans-serif;
+  letter-spacing: normal;
+  margin: 0 0 10px;
+  font-size: 1.4rem !important;
+}
