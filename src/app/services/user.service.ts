@@ -54,6 +54,12 @@ export class UserService {
       this.authenticationService.jwtToken = this.authenticationService.loadToken();
     return this.http.post(URL+ 'user/debit/'+id+'?amount='+amount, {headers:new HttpHeaders({'Authorization':this.authenticationService.jwtToken})});
   }
+  async updateImage(image, UserId){
+    return this.http.patch(URL+ 'user/updateimg/'+UserId, image).toPromise()
+      .then(res => {
+        return res
+      });
+  }
 
   show(){
     this.display = true;

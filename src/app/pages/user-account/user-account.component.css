@@ -12,20 +12,8 @@
     margin: auto;
     background-color: #E5E5E5;
 }
-
-div.small-logo{
-margin: auto;
-}
-.logo-link {
-    display: block;
-    text-align: center;
-    height: 0;
-}
-.logo-link img {
-    vertical-align: middle;
-}
 .user-infos {
-    padding-top: 40%;
+    padding-top: 20%;
     padding-right: 30px;
 }
 
@@ -36,6 +24,15 @@ margin: auto;
 .img-user {
     border-radius: 80px;
 border: 1px solid #E9E581;
+}
+.btn-edit-img {
+    margin-top: -15px!important;
+}
+.p-button.p-fileupload-choose {
+    background-color: #DE1B1B!important;
+}
+.p-button-label {
+    font-size: 10px!important;
 }
 
 .nav-left {
@@ -71,9 +68,6 @@ border: 1px solid #E9E581;
 .text {
     text-align: center;
     font-size: 20px;
-}
-.small-logo {
-    margin: auto;
 }
 #shopping {
     width: 700px;
@@ -211,10 +205,6 @@ border: 1px solid #E9E581;
 
     .img-user {
         height: 40px;
-    }
-
-    .small-logo {
-        display: none;
     }
     .user-infos {
         padding-top: 0;

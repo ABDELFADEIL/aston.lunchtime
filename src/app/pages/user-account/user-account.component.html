@@ -3,20 +3,26 @@
    <!-- modal ----->
    <div class="modal p-mr-12">
       <!-- horizontal menu ----->
-      <div class="nav-header p-mr-12" *ngIf="user">
+      <div class="nav-header p-mr-12">
             <div class="p-mr-4">
-            </div>
-            <div class="small-logo p-mr-4">
-                <a class="logo-link" [routerLink]="[ '/home' ]"><img src="assets/logo.jpg" height="80px"></a>
             </div>
             <div class="right p-mr-4">
                 <img [src]="user.image64" height="80px" class="img-user">
+                <div class="btn-edit-img" *ngIf="upload">
+                  <p-fileUpload #fubauto  mode="basic" name="file" accept="image/*"
+                 (onSelect)="handleFileSelect($event)" [auto]="true" chooseLabel="Editer"></p-fileUpload>
+                 </div>
+                 <div *ngIf="!upload">
+                  <button
+                  (click)="editOuSaveImage()"
+                  value="envoyer">Envoyer</button>
+                </div>
             </div>
             <div class="user-role p-mr-4">
                 <p class="user-infos">{{user.name}} {{ user.firstname }}
                   <br/>
                   <span *ngIf="authenticationService.isAdmin()">
-                     Admin
+                   Admin
                   </span>
                   <span *ngIf="authenticationService.isUser()">
                    User
@@ -65,12 +71,12 @@
       <!---- end vertical menu --->
       <!---- card --->
 
-        <div class="p-grid card" *ngIf="user">
+        <div class="p-grid card" *ngIf="wallet">
           <div class="p-col-1">
           </div>
           <div class="p-col-2">
           </div>
-              <div *ngIf="user.wallet == 0 && user">
+              <div *ngIf="user.wallet == 0">
                 <p-card [style]="{'background-color':'#F6F6F6'}">
                   <ng-template pTemplate="header">
                       <img alt="empty-ct" src="assets/user-account/cat.png" [style]="{'width': '50%','display':'block','margin':'auto'}">
@@ -98,7 +104,7 @@
           <!---- end card --->
         <!---- user infos --->
 
-        <div class="p-grid" *ngIf="user">
+        <div class="p-grid" *ngIf="infos">
           <div class="p-col-1"></div>
           <div class="user-infos-content p-col-9 p-d-flex">
             <div class="p-col-4 profile-img">
@@ -117,48 +123,48 @@
         </div>
         <!---- end user infos --->
         <!---- parameters --->
-          <div class="p-grid" *ngIf="parameters && user">
+          <div class="p-grid" *ngIf="parameters">
             <div class="user-infos-edit">
-              <form [formGroup]="userForm" (ngSubmit)="updateUser()" novalidate>
+              <form [formGroup]="userForm" (ngSubmit)="updateUser()">
                 <div class="phone p-d-flex p-flex-column p-flex-md-row p-mt-4 p-mb-4 p-pl-3">
-                  <div class="p-col-12 p-md-6 p-lg-3 display-grid">
+                  <div class="p-col-12 p-md-6 p-lg-4 display-grid">
                     <label>Nom</label>
                     <input class="p-mt-2" type="text"  formControlName="name" pInputText [(ngModel)]="user.name">
                   </div>
-                  <div class="p-col-12 p-md-6 p-lg-3 display-grid">
+                  <div class="p-col-12 p-md-6 p-lg-4 display-grid">
                     <label>Prénom</label>
                     <input class="p-mt-2" type="text" formControlName="firstname" pInputText [(ngModel)]="user.firstname">
                   </div>
-                  <div class="p-col-12 p-md-6 p-lg-3 display-grid">
-                    <label>Télephone</label>
-                    <input class="p-mt-2" type="text" formControlName="phone" pInputText [(ngModel)]="user.phone">
-                  </div>
-                  <div class="p-col-12 p-md-6 p-lg-3 display-grid">
+                  <div class="p-col-12 p-md-6 p-lg-4 display-grid">
                     <label>Email</label>
                     <input class="p-mt-2" type="text" formControlName="email" pInputText [(ngModel)]="user.email">
                   </div>
                 </div>
-                <div class="email p-d-flex p-flex-column p-flex-md-row p-mt-4 p-mb-4 p-pl-3">
-                  <div class="p-col-12 p-md-6 p-lg-3 display-grid">
+                <div class="p-d-flex p-flex-column p-flex-md-row p-mt-4 p-mb-4 p-pl-3">
+                  <div class="p-col-12 p-md-6 p-lg-4 display-grid">
+                    <label>Télephone</label>
+                    <input class="p-mt-2" type="text" formControlName="phone" pInputText [(ngModel)]="user.phone">
+                  </div>
+                  <div class="p-col-12 p-md-6 p-lg-4 display-grid">
                     <label>Adresse</label>
                     <input class="p-mt-2"  type="text" formControlName="address" pInputText [(ngModel)]="user.address">
                   </div>
-                  <div class="p-col-12 p-md-6 p-lg-3 display-grid">
+                  <div class="p-col-12 p-md-6 p-lg-4 display-grid">
                     <label>Code postale</label>
                     <input class="p-mt-2" type="number" formControlName="postalCode" pInputText [(ngModel)]="user.postalCode">
                   </div>
-                  <div class="p-col-12 p-md-6 p-lg-3 display-grid">
+                </div>
+                <div class="mdp p-d-flex p-flex-column p-flex-md-row p-mt-4 p-mb-4 p-pl-3">
+                  <div class="p-col-12 p-md-6 p-lg-6 display-grid">
                     <label>Ville</label>
                     <input class="p-mt-2" type="text" formControlName="town" pInputText [(ngModel)]="user.town">
                   </div>
-                </div>
-                <div class="mdp p-d-flex p-flex-column p-flex-md-row p-mt-4 p-mb-4 p-pl-3">
-                  <div class="p-col-12 p-md-6 p-lg-3 display-grid">
+                  <div class="p-col-12 p-md-6 p-lg-6 display-grid">
                     <label>Mot de passe</label>
                     <input class="p-mt-2" formControlName="password" pInputText [(ngModel)]="user.password">
                   </div>
-                  <div class="p-col-12 p-md-6 p-lg-3">
-                    <button pButton  pRipple type="button" label="Editer" class="p-button-rounded btn-edit p-mt-4"></button>
+                  <div class="p-col-12">
+                    <button pButton pRipple type="submit" label="Editer" class="p-button-rounded btn-edit p-mt-4"></button>
                   </div>
                 </div>
             </form>
@@ -166,7 +172,7 @@
           </div>
         <!---- end parameters --->
         <!---- my orders --->
-         <div class="p-grid" *ngIf="userOrders">
+         <div class="p-grid" *ngIf="userOrders && orders">
           <div class="p-col-1"></div>
           <div class="table">
             <p-table class="p-col-11" [value] = "userOrders">
@@ -192,12 +198,8 @@
           </div>
          </div>
         <!---- end my orders --->
-         <!----
-          <div class="p-field p-col-6">
-          <button pButton (click)="onCancel()" pRipple type="button" label="annuler" class="p-button-rounded p-button-info"></button>
-        </div>
-      </div> --->
-      <!---- end modal --->
+      </div> 
+    
 </div>
 
 
