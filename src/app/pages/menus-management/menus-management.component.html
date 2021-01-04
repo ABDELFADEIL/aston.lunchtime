@@ -94,15 +94,17 @@
       <div class="p-card" *ngIf="menus">
         <h3>lsite des menus</h3>
         <div class="p-d-flex p-p-1">
-          <button pButton pRipple label="Nouveau" type="button" icon="pi pi-plus" class="p-mr-2 p-button-success"></button>
-        </div>      <p-table #dt [columns]="cols" [value]="menus" [paginator]="true" [rows]="20"
+          <button pButton pRipple label="Nouveau" type="button" icon="pi pi-plus" class="p-mr-2 p-button-info"(click)="editMenu(null)"></button>
+        </div>      
+        <p-table #dt [columns]="colsMenus" [value]="menus" [paginator]="true" [rows]="20"
                  [rowsPerPageOptions]="[20,30]" [scrollable]="true" scrollHeight="65.2vh"
                  [rowHover]="true">
           <ng-template pTemplate="header" let-columns>
             <tr>
               <th pResizableColumn *ngFor="let col of columns">
-                {{col.header}}
+                {{col}}
               </th>
+              <th  pResizableColumn></th>
               <th  pResizableColumn></th>
             </tr>
           </ng-template>
@@ -110,10 +112,9 @@
           <ng-template pTemplate="body" let-menu let-i="rowIndex">
             <tr>
               <td>
-                {{menu.label}}
+                 {{menu.label}}
               </td>
-              <td><img [src]="menu.image64" alt="" width="60" class="p-shadow-4"></td>
-  
+              <td><img [src]="menu.image64" alt="" width="60" class="p-shadow-4"></td>            
               <td>
                 {{menu.availableForWeeks }}
               </td>
@@ -124,10 +125,10 @@
                 {{menu.status == 0 ? 'activé': menu.status == 1 ? 'désactivé': 'supprimé'}}
               </td>
               <td>
-                <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success p-mr-2" (click)="editProduct(menu)"></button>
+                <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success p-mr-2" (click)="editMenu(menu)"></button>
               </td>
               <td>
-                <button pButton pRipple icon="pi pi-trash"  ck class="p-button-rounded p-button-warning"></button>
+                <button pButton pRipple icon="pi pi-trash" ck class="p-button-rounded p-button-warning" (click)="deleteMenu(menu)"></button>
               </td>
             </tr>
           </ng-template>
@@ -225,7 +226,7 @@
       <div class="p-field">
         <label for="label">Category</label>
        <!-- <input type="text" pInputText id="category" [(ngModel)]="meal.category" required autofocus /> -->
-        <p-multiSelect [options]="categories" [(ngModel)]="categorySelected" defaultLabel="select ingredient" [selectionLimit]="1" [filter]="false" [showHeader]="false" optionLabel="name" display="chip"></p-multiSelect>
+        <p-multiSelect [options]="categories" [(ngModel)]="categorySelected" defaultLabel="select category" [selectionLimit]="1" [filter]="false" [showHeader]="false" optionLabel="name" display="chip"></p-multiSelect>
         <small class="p-invalid" *ngIf="submitted && !meal.category">category requis.</small>
       </div>
   
@@ -238,7 +239,7 @@
   
       <div class="p-field">
         <label for="label">Disponibilité par semaine</label>
-        <p-multiSelect [options]="availableForWeeks" [(ngModel)]="selectedAvailableForWeeks" defaultLabel="select ingredient" [filter]="true" [showHeader]="true" optionLabel="id" display="chip"></p-multiSelect>
+        <p-multiSelect [options]="availableForWeeks" [(ngModel)]="selectedAvailableForWeeks" defaultLabel="select semaine" [filter]="true" [showHeader]="true" optionLabel="id" display="chip"></p-multiSelect>
       </div>
   
       <div class="p-field" *ngIf="meal.id">
@@ -256,6 +257,64 @@
     <ng-template pTemplate="footer">
       <button pButton pRipple label="Annuler" icon="pi pi-times" class="p-button-text p-button-danger" (click)="hideDialog()"></button>
       <button pButton pRipple label="Envoyer" icon="pi pi-check" class="p-button-text p-button-success p-button-secondary" (click)="saveMeal()"></button>
+    </ng-template>
+  </p-dialog>
+    
+  <p-confirmDialog [style]="{width: '450px'}"></p-confirmDialog>
+
+  <!--  menu dialog -->
+
+  <p-dialog [(visible)]="menuDialog" [style]="{width: '450px'}" header="Menu detail" [modal]="true" styleClass="p-fluid">
+    <ng-template pTemplate="content">
+      <img style="margin-right: auto;margin-left: auto" [src]="menu['image64']" [alt]="menu.label" class="ingredient-image" *ngIf="menu['image64']">
+      <div class="p-field p-text-center" *ngIf="message">
+        <div class="p-invalid">{{message}}</div>
+      </div>
+      <div class="p-field" *ngIf="menu.id">
+        <label for="id">Id</label>
+        <input [disabled]="menu" type="text" pInputText id="id" [(ngModel)]="menu.id" autofocus />
+      </div>
+  
+      <div class="p-field">
+        <label for="label">Label</label>
+        <input type="text" pInputText id="label" [(ngModel)]="menu.label" required autofocus />
+        <small class="p-invalid" *ngIf="submitted && !menu.label">label requis.</small>
+      </div>
+      <div class="p-field">
+        <label for="label">Description</label>
+        <input type="text" pInputText id="description" [(ngModel)]="menu.description" required autofocus />
+        <small class="p-invalid" *ngIf="submitted && !menu.description">description requis.</small>
+      </div>
+ <div class="p-field">
+        <label for="label">Disponibilité par semaine</label>
+        <p-multiSelect [options]="availableForWeeks" [(ngModel)]="selectedAvailableForWeeks" defaultLabel="select semaine" [filter]="true" [showHeader]="true" optionLabel="id" display="chip"></p-multiSelect>
+      </div>   
+      <div class="p-field">
+        <label for="label">Prix</label>
+        <input type="text" pInputText id="priceDF" [(ngModel)]="menu.priceDF" required autofocus />
+        <small class="p-invalid" *ngIf="submitted && !menu.priceDF">priceDF requis.</small>
+      </div>
+      <div class="p-field" *ngIf="menu.id">
+        <label for="status">Statut</label>
+        <input type="text" pInputText id="status" [(ngModel)]="menu.status" required autofocus />
+        <small class="p-invalid" *ngIf="submitted && !menu.label">Status requis.</small>
+      </div>  
+  
+      <div class="p-field" *ngIf="menu.id">
+        <label for="imageId" *ngIf="ingredient">Image id</label>
+        <input type="text" pInputText id="imageId" [(ngModel)]="menu.imageId" required autofocus />
+      </div>
+  
+      <div class="p-field">
+        <p-fileUpload name="file" accept="image/*" [auto]="true" (onSelect)="handleFileSelect($event)"></p-fileUpload>
+      </div>
+  
+  
+    </ng-template>
+  
+    <ng-template pTemplate="footer">
+      <button pButton pRipple label="Annuler" icon="pi pi-times" class="p-button-text p-button-danger" (click)="hideDialog()"></button>
+      <button pButton pRipple label="Envoyer" icon="pi pi-check" class="p-button-text p-button-success p-button-secondary" (click)="saveMenu()"></button>
     </ng-template>
   </p-dialog>
   

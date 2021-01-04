@@ -2,11 +2,10 @@ export class MenuDTO {
 
     description;
     label;
-    image: { imagePath, image64} = { imagePath: '', image64: ''}
+    image
     priceDF: number;
     availableForWeeks: any[] = [];
-    ingredientsId: number [] = [];
-    category: number;
+    meals:[];     
   
+  } 
   
-  }
