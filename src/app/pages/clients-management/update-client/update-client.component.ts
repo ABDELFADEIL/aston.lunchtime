@@ -23,8 +23,7 @@ export class UpdateClientComponent implements OnInit, OnChanges {
     this.userFormInit();
 
   }
-
-
+  
   private _user; // private property _user
   // use getter setter to define the property
   get user(): any {
