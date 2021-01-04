@@ -165,6 +165,7 @@ export class OrdersManagementComponent implements OnInit {
   doDelete(i) {
     if (this.deleteIdx !== i) {
       this.deleteIdx = i;
+      this.detailVisible = undefined;
     } else {
       this.deleteIdx = undefined;
     }

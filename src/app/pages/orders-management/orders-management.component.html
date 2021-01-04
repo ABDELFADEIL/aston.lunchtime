@@ -61,27 +61,28 @@
           <button pButton pRipple type="button" label="oui" class="p-button-danger" style="margin-right: 0.5rem;" (click)="confirmDelete(i)" ></button>
           <button pButton pRipple type="button" label="non" (click)="deleteIdx=undefined" ></button>
         </td >
-        <div *ngIf="detailVisible === i">
+        <td colspan="3" *ngIf="detailVisible === i">
           <ul>
             <li>
               Commande:
               <ul>
-                <li *ngFor="let plat of listeCommandesDays[i].quantity; let j = index" style="min-width: 20rem;">
+                <li *ngFor="let plat of listeCommandesDays[i].quantity; let j = index" >
                   <p>{{plat.meal.label}} prix: {{plat.meal.priceDF}}</p>
                 </li>
               </ul>
             </li>
+            <br>
             <li>
               Contact:
               <ul>
-                <li style="min-width: 20rem;">
+                <li>
                   <p *ngIf="listeCommandesDay.user.phone != null">Tel: {{listeCommandesDay.user.phone}}</p>
                    <p *ngIf="listeCommandesDay.user.email != null">Mail: {{listeCommandesDay.user.email}}</p>             
                 </li>
               </ul>        
             </li>
           </ul>
-        </div>
+        </td>
       </ng-template>
     </p-table>
 
