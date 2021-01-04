@@ -117,7 +117,7 @@ input[type=submit]:hover{
 .meal_photo img,
 .menus .menu_photo img{
   opacity: 0.7;
-  
+
   height:auto;
   transform: scale(1.15);
   transition: transform 0.5s opacity 0.5s;
@@ -144,14 +144,12 @@ h2{
   color:red;
   font-size:1.5rem;
 }
-<<<<<<< HEAD
 
 .p-component *{
   display: inline-block!important;
 }
 
-=======
 .description{
   height:30px;
 }
->>>>>>> be9164f5d61e226721fb95de08c4556baf2f2253
+
