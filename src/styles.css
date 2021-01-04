@@ -206,12 +206,6 @@ span.fa.fa-pencil-square-o.p-button-icon.ng-star-inserted, span.pi.pi-euro.p-but
 .mr-top {
   margin-top: 40px !important;
 }
-
-.credit-form form button.p-button{
-
-}
-
-
 ul.pagination {
   display: -ms-flexbox;
   display: flex;
@@ -265,3 +259,8 @@ nav {
   margin: 0 0 10px;
   font-size: 1.4rem !important;
 }
+
+span.p-submenu-icon.pi.pi-angle-down.ng-star-inserted, i.pi.pi-bars {
+  color: red!important;
+}
+ 

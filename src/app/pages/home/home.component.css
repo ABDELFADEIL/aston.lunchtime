@@ -141,6 +141,11 @@ input[type=submit]:hover{
   color:white;
 }*/
 h2{
-  color:black;
+  color:red;
   font-size:1.5rem;
 }
+
+.p-component *{
+  display: inline-block!important;
+}
+

@@ -85,7 +85,7 @@
                   <p class="text">Si vous souhaitez passer des commandes <br/>vous devez recharger votre cagnotte <br/>auprès de la cantinière</p>
                   </p-card>
               </div>
-              <div class="card-content p-col-7" *ngIf="user.wallet > 0 && user">
+              <div class="card-content p-col-7" *ngIf="user.wallet > 0">
               <p-card [style]="{'background-color':'#F6F6F6'}">
               <ng-template pTemplate="header">
               </ng-template>
@@ -97,7 +97,7 @@
                 </div>
               </div>
               </p-card>
-              <button pButton type="button" label="commander" class="btn-order p-button-rounded"></button>
+              <a pButton [routerLink]="[ '/home' ]" type="button" label="commander" class="btn-order p-button-rounded"></a>
           </div>
           <div class="p-col-2 left"></div>
         </div>
@@ -126,45 +126,50 @@
           <div class="p-grid" *ngIf="parameters">
             <div class="user-infos-edit">
               <form [formGroup]="userForm" (ngSubmit)="updateUser()">
-                <div class="phone p-d-flex p-flex-column p-flex-md-row p-mt-4 p-mb-4 p-pl-3">
-                  <div class="p-col-12 p-md-6 p-lg-4 display-grid">
+                <div class="phone p-d-flex p-flex-column p-flex-md-row p-mt-6 p-mb-4 p-pl-3">
+                  <div class="p-col-12 display-grid p-md-6 p-lg-3  label-align">
                     <label>Nom</label>
                     <input class="p-mt-2" type="text"  formControlName="name" pInputText [(ngModel)]="user.name">
                   </div>
-                  <div class="p-col-12 p-md-6 p-lg-4 display-grid">
+                  <div class="p-col-12 display-grid p-md-6 p-lg-3 label-align">
                     <label>Prénom</label>
                     <input class="p-mt-2" type="text" formControlName="firstname" pInputText [(ngModel)]="user.firstname">
                   </div>
-                  <div class="p-col-12 p-md-6 p-lg-4 display-grid">
+                  <div class="p-col-12 display-grid p-md-6 p-lg-3 label-align">
                     <label>Email</label>
                     <input class="p-mt-2" type="text" formControlName="email" pInputText [(ngModel)]="user.email">
                   </div>
-                </div>
-                <div class="p-d-flex p-flex-column p-flex-md-row p-mt-4 p-mb-4 p-pl-3">
-                  <div class="p-col-12 p-md-6 p-lg-4 display-grid">
+                  <div class="p-col-12 display-grid p-md-6 p-lg-3 label-align">
                     <label>Télephone</label>
                     <input class="p-mt-2" type="text" formControlName="phone" pInputText [(ngModel)]="user.phone">
                   </div>
-                  <div class="p-col-12 p-md-6 p-lg-4 display-grid">
+                </div>
+
+                <div class="p-d-flex p-flex-column p-flex-md-row p-mt-4 p-mb-4 p-pl-3">
+                  <div class="p-col-12 display-grid p-md-6 p-lg-3 label-align">
                     <label>Adresse</label>
                     <input class="p-mt-2"  type="text" formControlName="address" pInputText [(ngModel)]="user.address">
                   </div>
-                  <div class="p-col-12 p-md-6 p-lg-4 display-grid">
-                    <label>Code postale</label>
-                    <input class="p-mt-2" type="number" formControlName="postalCode" pInputText [(ngModel)]="user.postalCode">
-                  </div>
-                </div>
-                <div class="mdp p-d-flex p-flex-column p-flex-md-row p-mt-4 p-mb-4 p-pl-3">
-                  <div class="p-col-12 p-md-6 p-lg-6 display-grid">
+                  <div class="p-col-12 display-grid p-md-6 p-lg-3 label-align">
                     <label>Ville</label>
                     <input class="p-mt-2" type="text" formControlName="town" pInputText [(ngModel)]="user.town">
                   </div>
-                  <div class="p-col-12 p-md-6 p-lg-6 display-grid">
+                  <div class="p-col-12 display-grid p-md-3 label-align">
+                    <label>Code postale</label>
+                    <input class="p-mt-2" type="number" formControlName="postalCode" pInputText [(ngModel)]="user.postalCode">
+                  </div>
+                  <div class="p-col-12 display-grid p-md-3 label-align">
                     <label>Mot de passe</label>
                     <input class="p-mt-2" formControlName="password" pInputText [(ngModel)]="user.password">
                   </div>
-                  <div class="p-col-12">
+                </div>
+                <div class="p-d-flex p-flex-column p-flex-md-row p-mt-4 p-mb-4 p-pl-3">
+                  <div class="p-col-12 display-grid p-md-4 label-align">
+                  </div>
+                  <div class="p-col-12 display-grid p-md-4 label-align">
                     <button pButton pRipple type="submit" label="Editer" class="p-button-rounded btn-edit p-mt-4"></button>
+                  </div>
+                  <div class="p-col-12 display-grid p-md-4 label-align">
                   </div>
                 </div>
             </form>
