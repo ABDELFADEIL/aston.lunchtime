@@ -92,7 +92,7 @@
   
     <div class="p-col-12">
       <div class="p-card" *ngIf="menus">
-        <h3>lsite des menus</h3>
+        <h3>Liste des menus</h3>
         <div class="p-d-flex p-p-1">
           <button pButton pRipple label="Nouveau" type="button" icon="pi pi-plus" class="p-mr-2 p-button-info"(click)="editMenu(null)"></button>
         </div>      
@@ -246,7 +246,7 @@
         <label for="imageId" *ngIf="ingredient">Image id</label>
         <input type="text" pInputText id="imageId" [(ngModel)]="meal.imageId" required autofocus />
       </div>
-  
+      lsite des menus
       <div class="p-field">
         <p-fileUpload name="file" accept="image/*" [auto]="true" (onSelect)="handleFileSelect($event)"></p-fileUpload>
       </div>

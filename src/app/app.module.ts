@@ -66,7 +66,7 @@ import {MultiSelectModule} from 'primeng/multiselect';
     BrowserModule, AppRoutingModule, HttpClientModule, BrowserAnimationsModule, FormsModule, AccordionModule, MenubarModule, InputTextModule,
     DynamicDialogModule, MatCardModule, MatFormFieldModule, MatInputModule, MatSelectModule, MatButtonModule, CardModule, ButtonModule,
     CardModule, TableModule, ConfirmDialogModule, DialogModule, OverlayPanelModule, SplitButtonModule, ReactiveFormsModule, ButtonModule,
-    DialogModule, TabViewModule, OrderListModule, ListboxModule, InputSwitchModule, FileUploadModule, MultiSelectModule
+    DialogModule, TabViewModule, OrderListModule, ListboxModule, InputSwitchModule, FileUploadModule, MultiSelectModule,ConfirmDialogModule
 
   ],
   entryComponents: [

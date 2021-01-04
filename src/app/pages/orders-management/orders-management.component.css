@@ -4,3 +4,7 @@
 .mr-t {
   margin-top: 1rem;
 }
+
+.module {
+  all: unset;
+}

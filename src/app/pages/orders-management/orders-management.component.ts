@@ -2,6 +2,7 @@ import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { Component, OnInit } from '@angular/core';
 import { OrdersService } from 'src/app/services/orders.service';
 import { UserService } from 'src/app/services/user.service';
+import { ConfirmationService, MessageService } from 'primeng/api';
 
 
 interface Recap {
@@ -12,7 +13,8 @@ interface Recap {
 @Component({
   selector: 'app-orders-management',
   templateUrl: './orders-management.component.html',
-  styleUrls: ['./orders-management.component.css']
+  styleUrls: ['./orders-management.component.css'],
+  providers: [MessageService]
 })
 export class OrdersManagementComponent implements OnInit {
 
@@ -24,7 +26,9 @@ export class OrdersManagementComponent implements OnInit {
   selectedListRecap: Recap[];
   todayDate: string = this.getTodayDate();
 
-  constructor(private orderService: OrdersService, private userService: UserService) {
+  position: string;
+
+  constructor(private orderService: OrdersService, private userService: UserService, private confirmationService: ConfirmationService, private messageService: MessageService) {
 
   }
 
@@ -161,6 +165,7 @@ export class OrdersManagementComponent implements OnInit {
   doDelete(i) {
     if (this.deleteIdx !== i) {
       this.deleteIdx = i;
+      this.detailVisible = undefined;
     } else {
       this.deleteIdx = undefined;
     }
@@ -183,5 +188,19 @@ export class OrdersManagementComponent implements OnInit {
     let day = date.getDay();
     let fullDate = year + "-" + month + "-" + day;
     return fullDate;
+  }
+  confirm2() {
+    console.log("GGGGGGGGGG")
+    this.confirmationService.confirm({
+      message: 'Do you want to delete this record?',
+      header: 'Delete Confirmation',
+      icon: 'pi pi-info-circle',
+      accept: () => {
+        this.messageService.add({ severity: 'info', summary: 'Confirmed', detail: 'Record deleted' });
+      },
+      reject: () => {
+        this.messageService.add({ severity: 'info', summary: 'Rejected', detail: 'You have rejected' });
+      }
+    });
   }
 }
