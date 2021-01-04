@@ -140,7 +140,7 @@
   
   
   <!--  ingredient dialog -->
-  <p-dialog [(visible)]="ingredientDialog" [style]="{width: '450px'}" header="Ingredient Details" [modal]="true" styleClass="p-fluid">
+  <p-dialog key="ingredient" [(visible)]="ingredientDialog" [style]="{width: '450px'}" header="Ingredient Details" [modal]="true" styleClass="p-fluid">
     <ng-template pTemplate="content">
       <img style="margin-right: auto;margin-left: auto" [src]="ingredient.image64" [alt]="ingredient.label" class="ingredient-image" *ngIf="ingredient.image64">
       <div class="p-field p-text-center" *ngIf="message">
@@ -259,8 +259,6 @@
       <button pButton pRipple label="Envoyer" icon="pi pi-check" class="p-button-text p-button-success p-button-secondary" (click)="saveMeal()"></button>
     </ng-template>
   </p-dialog>
-    
-  <p-confirmDialog [style]="{width: '450px'}"></p-confirmDialog>
 
   <!--  menu dialog -->
 
@@ -323,4 +321,4 @@
   </p-dialog>
   
   
-  <p-confirmDialog [style]="{width: '450px'}"></p-confirmDialog>
+  <p-confirmDialog  [style]="{width: '450px'}"></p-confirmDialog>

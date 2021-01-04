@@ -240,6 +240,7 @@ export class MenusManagementComponent implements OnInit {
     this.ingredientDialog = false;
     this.mealDialog = false;
     this.submitted = false;
+    this.menuDialog = false;
   }
 
   handleFileSelect(event){
@@ -455,7 +456,12 @@ export class MenusManagementComponent implements OnInit {
     image.image64 = this.menu['image64'];
     image.imagePath = ''
     const menuDTO: MenuDTO = new MenuDTO();
-    menuDTO.description = this.menu.description;    
+    menuDTO.description = this.menu.description;
+    this.mealsSelected.forEach( meal => {
+      menuDTO.mealIds.push(meal["id"])
+    })
+    console.log("XXXXXXXXXXXXXXXXXXXXXXXXXXXX")
+    console.log(menuDTO)
     menuDTO.label = this.menu.label;
     menuDTO.image64 = image;
     menuDTO.priceDF = this.menu.priceDF;
