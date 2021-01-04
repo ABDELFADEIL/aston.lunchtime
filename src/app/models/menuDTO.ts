@@ -9,7 +9,6 @@ export class MenuDTO  {
   mealIds:number[]=[];
   category:number;
   availableForWeeks: any[] = [];
-  
 
 }
 class Image {

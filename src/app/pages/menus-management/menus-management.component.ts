@@ -6,7 +6,6 @@ import {ConfirmationService, MessageService} from "primeng/api";
 import {MealDTO} from "../../models/mealDTO";
 import {MenuDTO} from "../../models/menuDTO";
 
-
 class Ingredient {
   id: number
   image64: any;
@@ -32,6 +31,7 @@ class AvailableForWeek {
 export class MenusManagementComponent implements OnInit {
   cols: any;
   colsIngredients: any[] = ["label", "image64", "status"];
+  colsMenus: any[] = ["label", "image64", "availableweek","price","status"];
   menus: any [];
   ingredients: Ingredient [];
   ingredientDialog: boolean;
@@ -50,8 +50,7 @@ export class MenusManagementComponent implements OnInit {
                 {id: 6, name: "fruit-mer"} ,{id: 7, name: "dessert"}, {id: 8, name: "boission"}, {id: 9, name:"entrée"}]
   private base64textString: string = null;
   // meals attributes
-  colsMeals: any [] = ["label", "image64", "Status", "ingredients"];
-  colsMenus: any [] =["Label","Image64","Availableweek","Price","Status"];
+  colsMeals: any [] = ["label", "image64", "Status", "ingredients"];  
   meals: any[];
   mealDialog: boolean;
   menuDialog: boolean;
@@ -129,7 +128,7 @@ export class MenusManagementComponent implements OnInit {
     return imgInfo;
   }
 
-   /*
+  /*
   partie ingredinets
    */
   openNewIngredinet() {
@@ -404,6 +403,7 @@ export class MenusManagementComponent implements OnInit {
 
   }
 
+
  
   
 
@@ -430,9 +430,10 @@ export class MenusManagementComponent implements OnInit {
 
   editMenu(menuDTO) {
       console.log(menuDTO);
+      this.mealsSelected = [];
     this.menu = {...menuDTO};
     this.menuDialog = true;
-    if (this.meals.length > 0){
+    if (this.menu["meals"].length > 0){
       this.meals.forEach(res => {
         if (menuDTO && menuDTO['meals']){
           menuDTO['meals'].forEach(i => {
@@ -445,21 +446,7 @@ export class MenusManagementComponent implements OnInit {
       });
     }
 
-  }
-  /*  if (this.availableForWeeks.length > 0){
-      this.availableForWeeks.forEach(res => {
-        if (menuDTO && menuDTO['availableForWeeks']){
-          menuDTO['availableForWeeks'].forEach(i => {
-            if (i['id'] == res.id){
-              this.selectedAvailableForWeeks.push(res);
-            }
-          })
-        }
-
-      });
-    }
-
-  }*/
+  } 
 
   async saveMenu(){
     // this.done = true
@@ -468,7 +455,7 @@ export class MenusManagementComponent implements OnInit {
     image.image64 = this.menu['image64'];
     image.imagePath = ''
     const menuDTO: MenuDTO = new MenuDTO();
-    menuDTO.description = this.menu.description;
+    menuDTO.description = this.menu.description;    
     menuDTO.label = this.menu.label;
     menuDTO.image64 = image;
     menuDTO.priceDF = this.menu.priceDF;
@@ -546,5 +533,16 @@ export class MenusManagementComponent implements OnInit {
       this.availableForWeeks[i] = weak;
     }
   }
+   /*
+  partie menus
+   */
+  openNewMenu() {
+    this.menu= new MenuDTO();
+    this.submitted = false;
+    this.mealDialog = true;
+    this.message = '';
+  }
 
 }
+
+ 

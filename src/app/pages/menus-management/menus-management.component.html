@@ -290,11 +290,9 @@
         <p-multiSelect [options]="availableForWeeks" [(ngModel)]="selectedAvailableForWeeks" defaultLabel="select semaine" [filter]="true" [showHeader]="true" optionLabel="id" display="chip"></p-multiSelect>
       </div>   
       <div class="p-field">
-        <label for="label">Meals</label>
-       <!-- <input type="text" pInputText id="category" [(ngModel)]="meal.category" required autofocus /> -->
-        <p-multiSelect [options]="meals" [(ngModel)]="mealsSelected" defaultLabel="select meal" optionLabel="label" display="chip"></p-multiSelect>
-        
-      </div>     
+        <label for="label">Meal</label>
+        <p-multiSelect [options]="meals" [(ngModel)]="mealsSelected" defaultLabel="select meal" [filter]="false" [showHeader]="false" optionLabel="label" display="chip"></p-multiSelect>
+      </div>    
       <div class="p-field">
         <label for="label">Prix</label>
         <input type="text" pInputText id="priceDF" [(ngModel)]="menu.priceDF" required autofocus />
