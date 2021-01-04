@@ -544,5 +544,3 @@ export class MenusManagementComponent implements OnInit {
   }
 
 }
-
- 
