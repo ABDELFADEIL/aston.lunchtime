@@ -455,7 +455,7 @@ export class MenusManagementComponent implements OnInit {
     const menuDTO: MenuDTO = new MenuDTO();
     menuDTO.description = this.menu.description;
     menuDTO.label = this.menu.label;
-    menuDTO.image = image;
+    menuDTO.image64 = image;
     menuDTO.priceDF = this.menu.priceDF;
     if (this.selectedAvailableForWeeks){
       this.selectedAvailableForWeeks.forEach(weak => {
@@ -480,8 +480,8 @@ export class MenusManagementComponent implements OnInit {
       if (this.base64textString) {
       console.log('ajouter nouveau menu ');
       console.log(this.ingredient);
-      menuDTO.image.imagePath = 'img/'+this.file.name;;
-      menuDTO.image.image64 = this.base64textString;
+      menuDTO.image64.imagePath = 'img/'+this.file.name;;
+      menuDTO.image64.image64 = this.base64textString;
       console.log(menuDTO);
       await this.menuService.addMenu(menuDTO).then(res => {
         console.log(res);
@@ -499,7 +499,7 @@ export class MenusManagementComponent implements OnInit {
     }
 
     // update image
-    if(this.base64textString && this.meal['id']){
+    if(this.base64textString && this.menu['id']){
       image.imagePath = 'img/'+this.file.name;
       image.image64 = this.base64textString;
       await this.menuService.updateImage(image, this.menu['id']).then(res =>{
