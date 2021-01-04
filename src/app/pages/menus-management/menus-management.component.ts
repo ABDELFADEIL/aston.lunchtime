@@ -37,6 +37,7 @@ export class MenusManagementComponent implements OnInit {
   ingredientDialog: boolean;
   ingredient: Ingredient;
   ingredientsSelected: Ingredient[] = [];
+  mealsSelected:MealDTO[]=[];
   submitted: boolean;
   public file: File;
   statuses: any[];
@@ -431,7 +432,21 @@ export class MenusManagementComponent implements OnInit {
       console.log(menuDTO);
     this.menu = {...menuDTO};
     this.menuDialog = true;
-    if (this.availableForWeeks.length > 0){
+    if (this.meals.length > 0){
+      this.meals.forEach(res => {
+        if (menuDTO && menuDTO['meals']){
+          menuDTO['meals'].forEach(i => {
+            if (i['id'] == res.id){
+              this.mealsSelected.push(res);
+            }
+          })
+        }
+
+      });
+    }
+
+  }
+  /*  if (this.availableForWeeks.length > 0){
       this.availableForWeeks.forEach(res => {
         if (menuDTO && menuDTO['availableForWeeks']){
           menuDTO['availableForWeeks'].forEach(i => {
@@ -444,7 +459,7 @@ export class MenusManagementComponent implements OnInit {
       });
     }
 
-  }
+  }*/
 
   async saveMenu(){
     // this.done = true

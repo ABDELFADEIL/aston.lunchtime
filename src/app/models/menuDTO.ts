@@ -6,9 +6,11 @@ export class MenuDTO  {
   imageId: number;
   description: any;
   priceDF:number;
-  mealIds:number;
+  mealIds:number[]=[];
   category:number;
   availableForWeeks: any[] = [];
+  
+
 }
 class Image {
   imagePath: string;
