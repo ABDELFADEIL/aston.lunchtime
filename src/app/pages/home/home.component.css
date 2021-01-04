@@ -144,8 +144,14 @@ h2{
   color:red;
   font-size:1.5rem;
 }
+<<<<<<< HEAD
 
 .p-component *{
   display: inline-block!important;
 }
 
+=======
+.description{
+  height:30px;
+}
+>>>>>>> be9164f5d61e226721fb95de08c4556baf2f2253

@@ -6,6 +6,7 @@ import {ConfirmationService, MessageService} from "primeng/api";
 import {MealDTO} from "../../models/mealDTO";
 import {MenuDTO} from "../../models/menuDTO";
 
+
 class Ingredient {
   id: number
   image64: any;
@@ -49,8 +50,10 @@ export class MenusManagementComponent implements OnInit {
   private base64textString: string = null;
   // meals attributes
   colsMeals: any [] = ["label", "image64", "Status", "ingredients"];
+  colsMenus: any [] =["Label","Image64","Availableweek","Price","Status"];
   meals: any[];
   mealDialog: boolean;
+  menuDialog: boolean;
   meal: MealDTO;
   menu: MenuDTO;
   categorySelected: any;
@@ -125,7 +128,7 @@ export class MenusManagementComponent implements OnInit {
     return imgInfo;
   }
 
-  /*
+   /*
   partie ingredinets
    */
   openNewIngredinet() {
@@ -400,6 +403,127 @@ export class MenusManagementComponent implements OnInit {
 
   }
 
+ 
+  
+
+
+
+
+
+   // partie manu*/
+
+   deleteMenu(menu: MenuDTO) {
+    console.log('delete menu')
+    this.confirmationService.confirm({
+      message: 'Vous voulez vraimment supprimer' + menu.label + '?',
+      header: 'Confirm',
+      icon: 'pi pi-exclamation-triangle',
+      accept: () => {
+        this.menuService.deleteMenu(menu['id']).subscribe(res => {
+          console.log(res);
+          this.messageService.add({severity:'success', summary: 'Successful', detail: 'meal supprimé', life: 3000});
+        }, error => { console.log(error)});
+      }
+    });
+  }
+
+  editMenu(menuDTO) {
+      console.log(menuDTO);
+    this.menu = {...menuDTO};
+    this.menuDialog = true;
+    if (this.availableForWeeks.length > 0){
+      this.availableForWeeks.forEach(res => {
+        if (menuDTO && menuDTO['availableForWeeks']){
+          menuDTO['availableForWeeks'].forEach(i => {
+            if (i['id'] == res.id){
+              this.selectedAvailableForWeeks.push(res);
+            }
+          })
+        }
+
+      });
+    }
+
+  }
+
+  async saveMenu(){
+    // this.done = true
+    this.submitted = true;
+    let image: Image = new Image();
+    image.image64 = this.menu['image64'];
+    image.imagePath = ''
+    const menuDTO: MenuDTO = new MenuDTO();
+    menuDTO.description = this.menu.description;
+    menuDTO.label = this.menu.label;
+    menuDTO.image64 = image;
+    menuDTO.priceDF = this.menu.priceDF;
+    if (this.selectedAvailableForWeeks){
+      this.selectedAvailableForWeeks.forEach(weak => {
+        menuDTO.availableForWeeks.push(weak.id);
+      });
+    } else {
+      menuDTO.availableForWeeks = null;
+    }
+    if (this.menu['id']) {     
+      await this.menuService.updateMenu(this.menu['id'], menuDTO).then(res => {
+        this.success = true;
+        console.log(this.success);
+      }).catch(
+        error => {
+          this.success = false
+          console.log(error);
+          this.message = 'il y a eu une erreur '
+        }
+      );
+
+    } else {
+      if (this.base64textString) {
+      console.log('ajouter nouveau menu ');
+      console.log(this.ingredient);
+      menuDTO.image64.imagePath = 'img/'+this.file.name;;
+      menuDTO.image64.image64 = this.base64textString;
+      console.log(menuDTO);
+      await this.menuService.addMenu(menuDTO).then(res => {
+        console.log(res);
+        this.success = true;
+        console.log(this.success);
+      }).catch(
+        error => {
+          this.success = false
+          console.log(error);
+          console.log(this.success);
+          this.message = 'il y a eu une erreur '
+        }
+      );
+      }
+    }
+
+    // update image
+    if(this.base64textString && this.menu['id']){
+      image.imagePath = 'img/'+this.file.name;
+      image.image64 = this.base64textString;
+      await this.menuService.updateImage(image, this.menu['id']).then(res =>{
+        console.log(res);
+        this.success = true;
+        console.log(this.success);
+      }).catch(
+        error => {
+          this.success = false
+          console.log(error);
+          console.log(this.success);
+          this.message = 'il y a eu une erreur '
+        }
+      );
+    }
+    console.log(this.success);
+    if (this.success){
+      console.log('done ', this.success);
+      this.menuDialog = false;
+      this.submitted = false;
+
+    }
+
+  }
   getAvailableForWeeks() {
     for(let i = 0; i <= 51; i++){
       let weak: AvailableForWeek = new AvailableForWeek();
@@ -407,16 +531,5 @@ export class MenusManagementComponent implements OnInit {
       this.availableForWeeks[i] = weak;
     }
   }
-   /*
-  partie menus
-   */
-  openNewMenu() {
-    this.menu= new MenuDTO();
-    this.submitted = false;
-    this.mealDialog = true;
-    this.message = '';
-  }
 
 }
-
- 
