@@ -6,6 +6,12 @@ import { User } from 'src/app/models/user';
 import { OrdersService } from 'src/app/services/orders.service';
 import { element } from 'protractor';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {Router} from "@angular/router";
+
+class Image {
+  imagePath: string;
+  image64: string | ArrayBuffer;
+}
 
 @Component({
   selector: 'app-user-account',
@@ -20,16 +26,24 @@ export class UserAccountComponent implements OnInit {
   user: User = null;
   userOrders: any;
   public userForm: FormGroup;
+  update: boolean = false;
+  private base64textString: string = null;
+  success: boolean;
+  message;
+  public file: File;
+  upload: boolean = true;
 
   constructor(
   public authenticationService: AuthenticationService,
   public orderService: OrdersService,
-  public userService: UserService
+  public userService: UserService,
+  private router: Router
 
   ) { }
 
   ngOnInit(): void {
     this.user = this.authenticationService.getUserAuthenticated();
+    this.userFormInit();
     console.log(this.user);
     this.getOrdersForCurrentUser();
     this.getUserImg();
@@ -83,8 +97,6 @@ export class UserAccountComponent implements OnInit {
         Validators.required, Validators.minLength(3)]),
       phone: new FormControl('', [
         Validators.required, Validators.minLength(8)]),
-      sex: new FormControl('', [
-        Validators.required]),
     });
   }
 
@@ -110,5 +122,75 @@ export class UserAccountComponent implements OnInit {
    const res = this.userService.findImgUser(id_user).then(res => {
    });
  }
+ onUpdate(){
+  this.update = true;
+}
+
+ updateUser() {
+  console.log(this.userForm.value)
+  this.userService.update(this.user.id, this.userForm.value).subscribe(data=> {
+    console.log(data);
+    this.update = false;
+    this.router.navigateByUrl("/user-account");
+  }, error => {
+    console.log("error ///////////////////");
+    console.log(error);
+  })
+}
+handleFileSelect(event){
+  let file = event.currentFiles[0];
+  this.file = file;
+  if (file) {
+    var reader = new FileReader();
+    reader.onload =this._handleReaderLoaded.bind(this);
+    reader.readAsDataURL(file);
+    this.upload = false;
+  }
+}
+_handleReaderLoaded(readerEvt) {
+  var binaryString = readerEvt.target.result;
+  this.base64textString= binaryString;
+  console.log(this.base64textString);
+}
+
+editUserImg() {
+  // update image
+  let image: Image = new Image();
+    image.image64 = this.user.image64;
+    image.imagePath = ''
+  if(this.base64textString && this.user.id){
+    image.imagePath = 'img/'+this.file.name;
+    image.image64 = this.base64textString;
+    this.userService.updateImage(image, this.user.id).then(res =>{
+      console.log(res);
+      this.user.image64 = image.image64;
+      this.success = true;
+      console.log(this.success);
+    }).catch(
+      error => {
+        this.success = false
+        console.log(error);
+        console.log(this.success);
+        this.message = 'il y a eu une erreur'
+      }
+    );
+  }
+}
+editOuSaveImage(){
+  let image: Image = new Image();
+  if(this.base64textString && this.user['id']){
+     image.imagePath = 'img/'+this.file.name;
+     image.image64 = this.base64textString;
+     this.userService.updateImage(image, this.user['id']).then(res =>{
+       console.log(res);
+  
+       }).catch(
+       error => {
+         console.log(error);
+       }
+     );
+   }
+   
+}
 
 }

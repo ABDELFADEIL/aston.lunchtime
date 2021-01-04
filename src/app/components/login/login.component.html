@@ -1,13 +1,12 @@
 
 <div class="container" id="login">
 
-<div class="login-form">
-
+<div class="login-form" style="">
   <div class="p-grid">
 
     <div style="" class="p-col-12 p-d-flex p-jc-center">
-      <div *ngIf="!forgetPassword" class="box p-mr-5"><h4 (click)="connectionNavigate('signin')" style="font-size: 24px;cursor: pointer" [ngClass]="login? 'connexion': ''">CONNEXTION</h4></div>
-      <div *ngIf="!forgetPassword" class="box"><h4 (click)="connectionNavigate('signup')" style="font-size: 24px; cursor: pointer"  [ngClass]="login? '': 'connexion'">INSCRIPTION</h4></div>
+      <div *ngIf="!forgetPassword" class="box p-mr-5"><h4 (click)="connectionNavigate('signin')" style="font-size: 24px;cursor: pointer;" [ngClass]="login? 'connexion': ''">CONNEXTION</h4></div>
+      <div *ngIf="!forgetPassword" class="box"><h4 (click)="connectionNavigate('signup')" style="font-size: 24px; cursor: pointer;margin-left: -10px;"  [ngClass]="login? '': 'connexion'">INSCRIPTION</h4></div>
       <div *ngIf="forgetPassword" class="box p-mr-5"><h4 style="font-size: 24px;cursor: pointer" [ngClass]="forgetPassword? 'connexion': ''">MOT DE PASSE OUBLIE</h4></div>
 
     </div>
@@ -30,7 +29,7 @@
 
        <div class="p-d-flex p-jc-center mr-top">
         <div class="p-col-6 p-mr-4">
-          <button pButton [disabled]="!userFormLongin.valid" pRipple type="submit" label="Connectez-vous" class="btn p-button-rounded p-button-danger"></button>
+          <button style="max-height: 42px !important;" pButton [disabled]="!userFormLongin.valid" pRipple type="submit" label="Connectez-vous" class="btn p-button-rounded p-button-danger"></button>
         </div>
         <div class="p-col-6">
           <button pButton (click)="onCancel()" pRipple type="button" label="annuler" style="background: #87AAB9" class="p-button-rounded p-button-info"></button>
@@ -94,7 +93,7 @@
             </div>
 
               <div class="p-field p-col-6">
-                <button pButton pRipple type="submit" label="Connectez-vous" style="width: 100%;margin-top: 20px" class="btn p-button-rounded p-button-danger"></button>
+                <button pButton pRipple type="submit" label="Envoyer" style="width: 100%;margin-top: 20px" class="btn p-button-rounded p-button-danger"></button>
               </div>
               <div class="p-field p-col-6">
                 <button pButton (click)="onCancel()" pRipple type="button" label="annuler" style="background: #87AAB9;width: 100%; margin-top: 20px" class="p-button-rounded p-button-info"></button>
