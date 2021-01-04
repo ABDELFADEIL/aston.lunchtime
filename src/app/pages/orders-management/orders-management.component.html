@@ -31,19 +31,19 @@
         </div>
       </ng-template>
       <ng-template pTemplate="header">
-        <tr>
-          <th pResizableColumn style="width:5rem">Nom</th>
+        <tr >
+          <th pResizableColumn style="width:5rem; text-align: center;">Nom</th>
           <!-- <th pResizableColumn style="width:5rem">Date</th> -->
-          <th pResizableColumn style="width:5rem">Quantité</th>
+          <th pResizableColumn style="width:5rem; text-align: center;">Quantité</th>
           <!-- <th pResizableColumn style="width:5rem">details</th> -->
-          <th pResizableColumn style="width:5rem"></th>
+          <th pResizableColumn style="width:5rem; text-align: center;"></th>
         </tr>
       </ng-template>
-      <ng-template pTemplate="body" let-listeCommandesDay let-i="rowIndex">
+      <ng-template style="width: 100%;;" pTemplate="body" let-listeCommandesDay let-i="rowIndex">
         <tr>
-          <td>{{listeCommandesDay.user.firstname}} {{listeCommandesDay.user.name}}</td>
+          <td style="text-align: center;">{{listeCommandesDay.user.firstname}} {{listeCommandesDay.user.name}}</td>
           <!-- <td>{{listeCommandesDay.creationDate}}</td> -->
-          <td style="font-weight: bold;">{{listeCommandesDay.quantity != null?listeCommandesDay.quantity.length : ""}}</td>
+          <td style="font-weight: bold; text-align: center; font-size: 1.5rem;">{{listeCommandesDay.quantity != null?listeCommandesDay.quantity.length : ""}}</td>
           <!-- <td> {{listeCommandesDay.user.name}}</td> -->
           <td>
             <!-- <button pButton class="p-button-rounded p-button-primary" styleClass="p-button-sm" (click)="showDetails(i)" icon=" pi pi-search-plus" ></button> -->
@@ -55,16 +55,30 @@
           </td>
 
         </tr>
-        <div *ngIf="deleteIdx === i">
-          <h2 style="min-width: 40rem;" >voulez vous vraiment supprimer la commande de <span style="color: grey;">{{listeCommandesDay.user.firstname}} {{listeCommandesDay.user.name}}</span>? <br>
-            <button pButton pRipple type="button" label="oui" class="p-button-danger" style="margin-right: 0.5rem;" (click)="confirmDelete(i)" ></button>
-            <button pButton pRipple type="button" label="non" (click)="deleteIdx=undefined" ></button>
+        <td colspan="3" *ngIf="deleteIdx === i">
+          <h2 >voulez vous vraiment supprimer la commande de <span style="color: grey;">{{listeCommandesDay.user.firstname}} {{listeCommandesDay.user.name}}</span>? <br>
           </h2>
-        </div >
+          <button pButton pRipple type="button" label="oui" class="p-button-danger" style="margin-right: 0.5rem;" (click)="confirmDelete(i)" ></button>
+          <button pButton pRipple type="button" label="non" (click)="deleteIdx=undefined" ></button>
+        </td >
         <div *ngIf="detailVisible === i">
           <ul>
-            <li *ngFor="let plat of listeCommandesDays[i].quantity; let j = index" style="min-width: 20rem;">
-              <p>{{plat.meal.label}} prix: {{plat.meal.priceDF}}</p>
+            <li>
+              Commande:
+              <ul>
+                <li *ngFor="let plat of listeCommandesDays[i].quantity; let j = index" style="min-width: 20rem;">
+                  <p>{{plat.meal.label}} prix: {{plat.meal.priceDF}}</p>
+                </li>
+              </ul>
+            </li>
+            <li>
+              Contact:
+              <ul>
+                <li style="min-width: 20rem;">
+                  <p *ngIf="listeCommandesDay.user.phone != null">Tel: {{listeCommandesDay.user.phone}}</p>
+                   <p *ngIf="listeCommandesDay.user.email != null">Mail: {{listeCommandesDay.user.email}}</p>             
+                </li>
+              </ul>        
             </li>
           </ul>
         </div>
