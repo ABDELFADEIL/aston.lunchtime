@@ -245,6 +245,71 @@
         <label for="imageId" *ngIf="ingredient">Image id</label>
         <input type="text" pInputText id="imageId" [(ngModel)]="meal.imageId" required autofocus />
       </div>
+
+      lsite des menus
+      <div class="p-field">
+        <p-fileUpload name="file" accept="image/*" [auto]="true" (onSelect)="handleFileSelect($event)"></p-fileUpload>
+      </div>
+  
+  
+    </ng-template>
+  
+    <ng-template pTemplate="footer">
+      <button pButton pRipple label="Annuler" icon="pi pi-times" class="p-button-text p-button-danger" (click)="hideDialog()"></button>
+      <button pButton pRipple label="Envoyer" icon="pi pi-check" class="p-button-text p-button-success p-button-secondary" (click)="saveMeal()"></button>
+    </ng-template>
+  </p-dialog>
+    
+  <p-confirmDialog [style]="{width: '450px'}"></p-confirmDialog>
+
+  <!--  menu dialog -->
+
+  <p-dialog [(visible)]="menuDialog" [style]="{width: '450px'}" header="Menu detail" [modal]="true" styleClass="p-fluid">
+    <ng-template pTemplate="content">
+      <img style="margin-right: auto;margin-left: auto" [src]="menu['image64']" [alt]="menu.label" class="ingredient-image" *ngIf="menu['image64']">
+      <div class="p-field p-text-center" *ngIf="message">
+        <div class="p-invalid">{{message}}</div>
+      </div>
+      <div class="p-field" *ngIf="menu.id">
+        <label for="id">Id</label>
+        <input [disabled]="menu" type="text" pInputText id="id" [(ngModel)]="menu.id" autofocus />
+      </div>
+  
+      <div class="p-field">
+        <label for="label">Label</label>
+        <input type="text" pInputText id="label" [(ngModel)]="menu.label" required autofocus />
+        <small class="p-invalid" *ngIf="submitted && !menu.label">label requis.</small>
+      </div>
+      <div class="p-field">
+        <label for="label">Description</label>
+        <input type="text" pInputText id="description" [(ngModel)]="menu.description" required autofocus />
+        <small class="p-invalid" *ngIf="submitted && !menu.description">description requis.</small>
+      </div>
+ <div class="p-field">
+        <label for="label">Disponibilité par semaine</label>
+        <p-multiSelect [options]="availableForWeeks" [(ngModel)]="selectedAvailableForWeeks" defaultLabel="select semaine" [filter]="true" [showHeader]="true" optionLabel="id" display="chip"></p-multiSelect>
+      </div>   
+      <div class="p-field">
+        <label for="label">Meals</label>
+       <!-- <input type="text" pInputText id="category" [(ngModel)]="meal.category" required autofocus /> -->
+        <p-multiSelect [options]="meals" [(ngModel)]="mealsSelected" defaultLabel="select meal" optionLabel="label" display="chip"></p-multiSelect>
+        
+      </div>     
+      <div class="p-field">
+        <label for="label">Prix</label>
+        <input type="text" pInputText id="priceDF" [(ngModel)]="menu.priceDF" required autofocus />
+        <small class="p-invalid" *ngIf="submitted && !menu.priceDF">priceDF requis.</small>
+      </div>
+      <div class="p-field" *ngIf="menu.id">
+        <label for="status">Statut</label>
+        <input type="text" pInputText id="status" [(ngModel)]="menu.status" required autofocus />
+        <small class="p-invalid" *ngIf="submitted && !menu.label">Status requis.</small>
+      </div>  
+  
+      <div class="p-field" *ngIf="menu.id">
+        <label for="imageId" *ngIf="ingredient">Image id</label>
+        <input type="text" pInputText id="imageId" [(ngModel)]="menu.imageId" required autofocus />
+      </div>
   
       <div class="p-field">
         <p-fileUpload name="file" accept="image/*" [auto]="true" (onSelect)="handleFileSelect($event)"></p-fileUpload>
