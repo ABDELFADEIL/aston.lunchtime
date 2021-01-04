@@ -5,8 +5,8 @@
   <div class="p-grid">
 
     <div style="" class="p-col-12 p-d-flex p-jc-center">
-      <div *ngIf="!forgetPassword" class="box p-mr-5"><h4 (click)="connectionNavigate('signin')" style="font-size: 24px;cursor: pointer" [ngClass]="login? 'connexion': ''">CONNEXTION</h4></div>
-      <div *ngIf="!forgetPassword" class="box"><h4 (click)="connectionNavigate('signup')" style="font-size: 24px; cursor: pointer"  [ngClass]="login? '': 'connexion'">INSCRIPTION</h4></div>
+      <div *ngIf="!forgetPassword" class="box p-mr-5"><h4 (click)="connectionNavigate('signin')" style="font-size: 24px;cursor: pointer;" [ngClass]="login? 'connexion': ''">CONNEXTION</h4></div>
+      <div *ngIf="!forgetPassword" class="box"><h4 (click)="connectionNavigate('signup')" style="font-size: 24px; cursor: pointer;margin-left: -10px;"  [ngClass]="login? '': 'connexion'">INSCRIPTION</h4></div>
       <div *ngIf="forgetPassword" class="box p-mr-5"><h4 style="font-size: 24px;cursor: pointer" [ngClass]="forgetPassword? 'connexion': ''">MOT DE PASSE OUBLIE</h4></div>
 
     </div>
