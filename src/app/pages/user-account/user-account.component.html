@@ -10,7 +10,7 @@
                 <img [src]="user.image64" height="80px" class="img-user">
                 <div class="btn-edit-img" *ngIf="upload">
                   <p-fileUpload #fubauto  mode="basic" name="file" accept="image/*"
-                 (onSelect)="handleFileSelect($event)" [auto]="true" chooseLabel="Editer"></p-fileUpload>
+                 (onSelect)="handleFileSelect($event)" [auto]="true" chooseLabel=""></p-fileUpload>
                  </div>
                  <div *ngIf="!upload">
                   <button
@@ -19,30 +19,19 @@
                 </div>
             </div>
             <div class="user-role p-mr-4">
-                <p class="user-infos">{{user.name}} {{ user.firstname }}
+                <p class="user-infos"> {{ user.firstname }} {{user.name}} : 
                   <br/>
                   <span *ngIf="authenticationService.isAdmin()">
-                   Admin
+                   admin
                   </span>
                   <span *ngIf="authenticationService.isUser()">
-                   User
+                   user
                   </span>
               </p>
             </div>
       </div>
-       <!-- end horizontal menu ----->
-      <div class='p-grid'>
-        <div class="p-col-1">
-        </div>
-        <div class="p-col-11 title">
-          <h1 class="title-card" *ngIf="orders">Mes commandes</h1>
-          <h1 class="title-card" *ngIf="parameters">Paramètres</h1>
-          <h1 class="title-card" *ngIf="infos">Mes informations</h1>
-          <h1 class="title-card" *ngIf="wallet"> Ma cagnotte</h1>
-        </div>
-      </div>
        <!---- vertical menu --->
-      <div class="p-grid nav-content">
+      <div class="p-grid nav-content p-col-12">
         <div class="p-col-1 nav-left">
           <div class="items">
               <div class="order">
@@ -67,25 +56,30 @@
               </div>
           </div>
         </div>
+        <div class="p-col-11 title p-mt-4 p-mb-4">
+          <h1 class="title-card" *ngIf="orders">Mes commandes</h1>
+          <h1 class="title-card" *ngIf="parameters">Paramètres</h1>
+          <h1 class="title-card" *ngIf="infos">Mes informations</h1>
+          <h1 class="title-card" *ngIf="wallet"> Ma cagnotte</h1>
+        </div>
       </div>
       <!---- end vertical menu --->
       <!---- card --->
 
-        <div class="p-grid card" *ngIf="wallet">
-          <div class="p-col-1">
-          </div>
-          <div class="p-col-2">
-          </div>
-              <div *ngIf="user.wallet == 0">
-                <p-card [style]="{'background-color':'#F6F6F6'}">
-                  <ng-template pTemplate="header">
-                      <img alt="empty-ct" src="assets/user-account/cat.png" [style]="{'width': '50%','display':'block','margin':'auto'}">
-                  </ng-template>
-                  <h1 class="titte-ct-empty">Votre Cagnotte est vide </h1>
-                  <p class="text">Si vous souhaitez passer des commandes <br/>vous devez recharger votre cagnotte <br/>auprès de la cantinière</p>
-                  </p-card>
+        <div class="p-grid p-col-12" *ngIf="wallet">
+          <div class="p-col-1"></div>
+              <div class="p-col-11" *ngIf="user.wallet == 0">
+                <div class="card"> 
+                  <p-card [style]="{'background-color':'#F6F6F6'}">
+                    <ng-template pTemplate="header">
+                        <img alt="empty-ct" src="assets/user-account/cat.png" [style]="{'width': '50%','display':'block','margin':'auto'}">
+                    </ng-template>
+                    <h1 class="titte-ct-empty">Votre Cagnotte est vide </h1>
+                    <p class="text">Si vous souhaitez passer des commandes <br/>vous devez recharger votre cagnotte <br/>auprès de la cantinière</p>
+                    </p-card>
+                </div>
               </div>
-              <div class="card-content p-col-7" *ngIf="user.wallet > 0">
+              <div class="card-content p-col-11" *ngIf="user.wallet > 0">
               <p-card [style]="{'background-color':'#F6F6F6'}">
               <ng-template pTemplate="header">
               </ng-template>
@@ -99,17 +93,16 @@
               </p-card>
               <a pButton [routerLink]="[ '/home' ]" type="button" label="commander" class="btn-order p-button-rounded"></a>
           </div>
-          <div class="p-col-2 left"></div>
         </div>
           <!---- end card --->
         <!---- user infos --->
 
         <div class="p-grid" *ngIf="infos">
           <div class="p-col-1"></div>
-          <div class="user-infos-content p-col-9 p-d-flex">
+          <div class="user-infos-content p-col-9 p-d-flex p-mt-6">
             <div class="p-col-4 profile-img">
             <img [src]="user.image64" class="img-user" height="150px">
-            <p><b>{{ user.name }}<br> {{ user.firstname }}</b></p>
+            <p><b>{{ user.firstname }}<br> {{ user.name }}</b></p>
             </div>
             <div class="p-col-4 user-details">
               <p class="user-info"><i class="fa fa-envelope" aria-hidden="true"></i>{{ user.email }}</p>
@@ -123,8 +116,9 @@
         </div>
         <!---- end user infos --->
         <!---- parameters --->
-          <div class="p-grid" *ngIf="parameters">
-            <div class="user-infos-edit">
+          <div class="p-grid p-col-12" *ngIf="parameters">
+            <div class="p-col-1"></div>
+            <div class="user-infos-edit p-mt-6">
               <form [formGroup]="userForm" (ngSubmit)="updateUser()">
                 <div class="phone p-d-flex p-flex-column p-flex-md-row p-mt-6 p-mb-4 p-pl-3">
                   <div class="p-col-12 display-grid p-md-6 p-lg-3  label-align">
@@ -179,7 +173,7 @@
         <!---- my orders --->
          <div class="p-grid" *ngIf="userOrders && orders">
           <div class="p-col-1"></div>
-          <div class="table">
+          <div class="table p-mt-6">
             <p-table class="p-col-11" [value] = "userOrders">
               <ng-template pTemplate="header">
                   <tr>
@@ -206,49 +200,6 @@
       </div> 
     
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
