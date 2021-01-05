@@ -1,15 +1,15 @@
 import { Component, OnInit } from '@angular/core';
-import {MenuService} from "../../services/menu-service.service";
-import {MealService} from "../../services/meal-service.service";
-import {IngredientService} from "../../services/ingredient.service";
-import {ConfirmationService, MessageService} from "primeng/api";
-import {MealDTO} from "../../models/mealDTO";
-import {MenuDTO} from "../../models/menuDTO";
+import { MenuService } from "../../services/menu-service.service";
+import { MealService } from "../../services/meal-service.service";
+import { IngredientService } from "../../services/ingredient.service";
+import { ConfirmationService, MessageService } from "primeng/api";
+import { MealDTO } from "../../models/mealDTO";
+import { MenuDTO } from "../../models/menuDTO";
 
 class Ingredient {
   id: number
   image64: any;
-  label:string;
+  label: string;
   status: number
   imageId: number;
   description: any;
@@ -26,31 +26,31 @@ class AvailableForWeek {
   selector: 'app-menus-management',
   templateUrl: './menus-management.component.html',
   styleUrls: ['./menus-management.component.css'],
-  providers: [MessageService,ConfirmationService]
+  providers: [MessageService, ConfirmationService]
 })
 export class MenusManagementComponent implements OnInit {
   cols: any;
-  colsIngredients: any[] = ["label", "image64", "status"];
-  colsMenus: any[] = ["label", "image64", "availableweek","price","status"];
-  menus: any [];
-  ingredients: Ingredient [];
+  colsIngredients: any[] = ["Libellé", "Image", "Statut"];
+  colsMenus: any[] = ["Libellé", "Image", "Semaines", "Prix", "Statut"];
+  menus: any[];
+  ingredients: Ingredient[];
   ingredientDialog: boolean;
   ingredient: Ingredient;
   ingredientsSelected: Ingredient[] = [];
-  mealsSelected:MealDTO[]=[];
+  mealsSelected: MealDTO[] = [];
   submitted: boolean;
   public file: File;
   statuses: any[];
   success: boolean;
   message;
-  selectedAvailableForWeeks: AvailableForWeek [] = [];
-  availableForWeeks: AvailableForWeek [] = [];
+  selectedAvailableForWeeks: AvailableForWeek[] = [];
+  availableForWeeks: AvailableForWeek[] = [];
   indexAV: number
-  categories= [ {id: 1, name: "viande"} ,{id: 3, name: "poission"},{id: 4, name: "vegeterian"},{ id: 5, name: "fast-food"},
-                {id: 6, name: "fruit-mer"} ,{id: 7, name: "dessert"}, {id: 8, name: "boission"}, {id: 9, name:"entrée"}]
+  categories = [{ id: 1, name: "viande" }, { id: 3, name: "poission" }, { id: 4, name: "vegeterian" }, { id: 5, name: "fast-food" },
+  { id: 6, name: "fruit-mer" }, { id: 7, name: "dessert" }, { id: 8, name: "boission" }, { id: 9, name: "entrée" }]
   private base64textString: string = null;
   // meals attributes
-  colsMeals: any [] = ["label", "image64", "Status", "ingredients"];  
+  colsMeals: any[] = ["Libellé", "Image", "Statut", "Ingrédients"];
   meals: any[];
   mealDialog: boolean;
   menuDialog: boolean;
@@ -59,10 +59,10 @@ export class MenusManagementComponent implements OnInit {
   categorySelected: any;
 
   constructor(private menuService: MenuService,
-              private mealService: MealService,
-              private ingredientService: IngredientService,
-              private messageService: MessageService,
-              private confirmationService: ConfirmationService) { }
+    private mealService: MealService,
+    private ingredientService: IngredientService,
+    private messageService: MessageService,
+    private confirmationService: ConfirmationService) { }
 
   ngOnInit(): void {
     this.getAllMeals();
@@ -72,30 +72,34 @@ export class MenusManagementComponent implements OnInit {
     console.log(this.availableForWeeks);
   }
 
-  async getAllMenus(){
+  async getAllMenus() {
     this.menus = await this.menuService.getMenus();
-    this.menus.forEach((menu:any) => {
-      this.findMenuImg(menu.id).then(res =>{
+    this.menus.forEach((menu: any) => {
+      this.findMenuImg(menu.id).then(res => {
         menu.image64 = res.image64;
       })
     })
     console.log(this.menus)
   }
-  async getAllMeals(){
+  async getAllMeals() {
     this.meals = await this.mealService.getMeals();
-    this.meals.forEach((meals:any) => {
-      this.findMealImg(meals.id).then(res =>{
+    this.meals.forEach((meals: any) => {
+      this.findMealImg(meals.id).then(res => {
         meals.image64 = res.image64;
       })
     })
   }
-   async getAllIngredients(){
-     this.ingredients = await this.ingredientService.findAllIngredients();
-     this.ingredients.forEach((ingredient:any) => {
-       this.findIngredientImg(ingredient.id).then(res =>{
-         ingredient.image64 = res.image64;
-       })
-     });
+  async getAllIngredients() {
+    this.ingredients = await this.ingredientService.findAllIngredients();
+    this.ingredients.forEach((ingredient: any) => {
+      this.findIngredientImg(ingredient.id).then(res => {
+        ingredient.image64 = res.image64;
+        //TODO RETIRERCOM
+        // console.log("GGGGGGGGGGGGGGGGGGGGGGGGGGGG")
+        // console.log(this.ingredients)
+      })
+    });
+    
   }
 
   openNew() {
@@ -110,19 +114,19 @@ export class MenusManagementComponent implements OnInit {
 
   }
 
-  async findMenuImg(id_menu){
+  async findMenuImg(id_menu) {
     let imgInfo;
     imgInfo = await this.menuService.findImgMenu(id_menu);
     return imgInfo;
   }
 
-  async findMealImg(id_meals){
+  async findMealImg(id_meals) {
     let imgInfo;
     imgInfo = await this.mealService.findImgMeal(id_meals);
     return imgInfo;
   }
 
-  async findIngredientImg(id_ingredient){
+  async findIngredientImg(id_ingredient) {
     let imgInfo;
     imgInfo = await this.ingredientService.findImgIngredient(id_ingredient);
     return imgInfo;
@@ -140,34 +144,39 @@ export class MenusManagementComponent implements OnInit {
 
   // delete ingredient
 
-  deleteIngredient(ingredient: Ingredient) {
+  deleteIngredient(ingredient) {
     console.log('delete')
     this.confirmationService.confirm({
-      message: 'Vous voulez vraimment supprimer' + ingredient.label + '?',
+      message: 'Vous voulez vraimment supprimer ' + ingredient.label + ' ?',
       header: 'Confirm',
       icon: 'pi pi-exclamation-triangle',
       accept: () => {
         this.ingredientService.deleteIngredient(ingredient.id).subscribe(res => {
           console.log(res);
-          this.messageService.add({severity:'success', summary: 'Successful', detail: 'Ingredient supprimé', life: 3000});
-        }, error => { console.log(error)});
+          let idx = this.ingredients.findIndex(e => e.id === ingredient.id);
+          this.ingredients.splice(idx, 1);
+          this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Ingredient supprimé', life: 3000 });
+        }, error => { console.log(error) });
       }
     });
   }
-
+  /**
+   * modifier un ingrédient
+   * @param ingredient 
+   */
   editIngredient(ingredient: Ingredient) {
-    this.ingredient = {...ingredient};
+    this.ingredient = { ...ingredient };
     this.ingredientDialog = true;
   }
 
 
- async saveIngredient(){
-   // this.done = true
+  async saveIngredient() {
+    // this.done = true
     this.submitted = true;
     let image: Image = new Image();
     image.image64 = this.ingredient.image64;
     image.imagePath = ''
-    const ingredientDTO = {
+    let ingredientDTO:any = {
       description: this.ingredient.description,
       label: this.ingredient.label,
       image: image
@@ -177,25 +186,6 @@ export class MenusManagementComponent implements OnInit {
       console.log(this.ingredient);
       console.log(ingredientDTO);
       await this.ingredientService.updateIngredient(this.ingredient.id, ingredientDTO).then(res => {
-        console.log(res);
-       this.success = true;
-        console.log(this.success);
-      }).catch(
-        error => {
-          this.success = false
-          console.log(error);
-          console.log(this.success);
-          this.message = 'il y a eu une erreur '
-        }
-      );
-
-      } else if (this.base64textString){
-      console.log('ajouter nouveau ingredient ');
-      console.log(this.ingredient);
-      ingredientDTO.image.imagePath = 'img/'+this.file.name;;
-      ingredientDTO.image.image64 = this.base64textString;
-      console.log(ingredientDTO);
-      await this.ingredientService.addIngredient(ingredientDTO).then(res => {
         console.log(res);
         this.success = true;
         console.log(this.success);
@@ -207,16 +197,45 @@ export class MenusManagementComponent implements OnInit {
           this.message = 'il y a eu une erreur '
         }
       );
-     // this.done = false
+
+    } else if (this.base64textString) {
+      console.log('ajouter nouveau ingredient ');
+      console.log(this.ingredient);
+      ingredientDTO.image.imagePath = 'img/' + this.file.name;;
+      ingredientDTO.image.image64 = this.base64textString;
+      console.log(ingredientDTO);
+      let copyRes:any;
+      await this.ingredientService.addIngredient(ingredientDTO).then((res:any) => {
+        console.log(res);
+        console.log(this.ingredients);
+        copyRes = res;
+        
+        this.success = true;
+        console.log(this.success);
+      }).catch(
+        error => {
+          this.success = false
+          console.log(error);
+          console.log(this.success);
+          this.message = 'il y a eu une erreur '
+        }
+      );
+      ingredientDTO.id=copyRes.id;
+        ingredientDTO.status=copyRes.status;
+        ingredientDTO.image64 =this.base64textString;
+        this.ingredients.push(ingredientDTO);
+      // this.done = false
     }
 
     // update image
-    if(this.base64textString && this.ingredient.id){
-      image.imagePath = 'img/'+this.file.name;
+    if (this.base64textString && this.ingredient.id) {
+      image.imagePath = 'img/' + this.file.name;
       image.image64 = this.base64textString;
-      await this.ingredientService.updateImage(image, this.ingredient.id).then(res =>{
-        console.log(res);
-        this.ingredient.image64 = image.image64;
+      await this.ingredientService.updateImage(image, this.ingredient.id).then(res => {
+        // console.log("GGGGGGGGGGGGG");
+        // console.log(res);
+        // console.log(this.ingredients);
+        // this.ingredient.image64 = image.image64;
         this.success = true;
         console.log(this.success);
       }).catch(
@@ -229,12 +248,12 @@ export class MenusManagementComponent implements OnInit {
       );
     }
     console.log(this.success);
-    if (this.success){
+    if (this.success) {
       console.log('done ', this.success);
       this.ingredientDialog = false;
       this.submitted = false;
     }
-
+this.base64textString =undefined;
   }
   hideDialog() {
     this.ingredientDialog = false;
@@ -243,12 +262,12 @@ export class MenusManagementComponent implements OnInit {
     this.menuDialog = false;
   }
 
-  handleFileSelect(event){
+  handleFileSelect(event) {
     var file = event.currentFiles[0];
     this.file = file;
     if (file) {
       var reader = new FileReader();
-      reader.onload =this._handleReaderLoaded.bind(this);
+      reader.onload = this._handleReaderLoaded.bind(this);
       reader.readAsDataURL(file);
     }
   }
@@ -256,7 +275,7 @@ export class MenusManagementComponent implements OnInit {
   _handleReaderLoaded(readerEvt) {
     var binaryString = readerEvt.target.result;
     console.log(binaryString);
-    this.base64textString= binaryString;
+    this.base64textString = binaryString;
     console.log(binaryString);
   }
 
@@ -273,33 +292,35 @@ export class MenusManagementComponent implements OnInit {
 
   // delete meal
 
-  deleteMeal(meal: MealDTO) {
+  deleteMeal(meal) {
     console.log('delete meal')
     this.confirmationService.confirm({
-      message: 'Vous voulez vraimment supprimer' + meal.label + '?',
+      message: 'Vous voulez vraimment supprimer ' + meal.label + ' ?',
       header: 'Confirm',
       icon: 'pi pi-exclamation-triangle',
       accept: () => {
         this.mealService.deleteMeal(meal['id']).subscribe(res => {
           console.log(res);
-          this.messageService.add({severity:'success', summary: 'Successful', detail: 'meal supprimé', life: 3000});
-        }, error => { console.log(error)});
+          let idx = this.meals.findIndex(e => e.id === meal.id);
+          this.meals.splice(idx, 1);
+          this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'meal supprimé', life: 3000 });
+        }, error => { console.log(error) });
       }
     });
   }
 
   editMeal(mealDTO) {
-      console.log(mealDTO)
+    console.log(mealDTO)
     this.ingredientsSelected = [];
     this.categorySelected = null;
-    this.meal = {...mealDTO};
+    this.meal = { ...mealDTO };
     this.mealDialog = true;
     this.categorySelected = this.categories.filter(res => res.id == mealDTO.category);
-    if (this.ingredients.length > 0){
+    if (this.ingredients.length > 0) {
       this.ingredients.forEach(res => {
-        if (mealDTO && mealDTO['ingredients']){
+        if (mealDTO && mealDTO['ingredients']) {
           mealDTO['ingredients'].forEach(i => {
-            if (i['id'] == res.id){
+            if (i['id'] == res.id) {
               this.ingredientsSelected.push(res);
             }
           })
@@ -311,7 +332,7 @@ export class MenusManagementComponent implements OnInit {
   }
 
 
-  async saveMeal(){
+  async saveMeal() {
     // this.done = true
     this.submitted = true;
     let image: Image = new Image();
@@ -322,7 +343,7 @@ export class MenusManagementComponent implements OnInit {
     mealDTO.label = this.meal.label;
     mealDTO.image = image;
     mealDTO.priceDF = this.meal.priceDF;
-    if (this.selectedAvailableForWeeks){
+    if (this.selectedAvailableForWeeks) {
       this.selectedAvailableForWeeks.forEach(weak => {
         mealDTO.availableForWeeks.push(weak.id);
       });
@@ -331,7 +352,7 @@ export class MenusManagementComponent implements OnInit {
     }
 
     mealDTO.category = this.meal.category;
-    this.ingredientsSelected.forEach( (ingredient: any) => {
+    this.ingredientsSelected.forEach((ingredient: any) => {
       mealDTO.ingredientsId.push(ingredient.id)
     })
 
@@ -354,34 +375,34 @@ export class MenusManagementComponent implements OnInit {
 
     } else {
       if (this.base64textString) {
-      console.log('ajouter nouveau meal ');
-      console.log(this.ingredient);
-      mealDTO.image.imagePath = 'img/'+this.file.name;;
-      mealDTO.image.image64 = this.base64textString;
-      console.log(mealDTO);
-      await this.mealService.addMeal(mealDTO).then(res => {
-        console.log(res);
-        this.success = true;
-        console.log(this.success);
-      }).catch(
-        error => {
-          this.success = false
-          console.log(error);
+        console.log('ajouter nouveau meal ');
+        console.log(this.ingredient);
+        mealDTO.image.imagePath = 'img/' + this.file.name;;
+        mealDTO.image.image64 = this.base64textString;
+        console.log(mealDTO);
+        await this.mealService.addMeal(mealDTO).then(res => {
+          console.log(res);
+          this.success = true;
           console.log(this.success);
-          this.message = 'il y a eu une erreur '
-        }
-      );
+        }).catch(
+          error => {
+            this.success = false
+            console.log(error);
+            console.log(this.success);
+            this.message = 'il y a eu une erreur '
+          }
+        );
       }
       // this.done = false
     }
 
     // update image
-    if(this.base64textString && this.meal['id']){
-      image.imagePath = 'img/'+this.file.name;
+    if (this.base64textString && this.meal['id']) {
+      image.imagePath = 'img/' + this.file.name;
       image.image64 = this.base64textString;
-      await this.mealService.updateImage(image, this.meal['id']).then(res =>{
+      await this.mealService.updateImage(image, this.meal['id']).then(res => {
         console.log(res);
-       // this.meal.image.image64 = image.image64;
+        // this.meal.image.image64 = image.image64;
         //this.meal['image64'] = image.image64;
         this.success = true;
         console.log(this.success);
@@ -395,7 +416,7 @@ export class MenusManagementComponent implements OnInit {
       );
     }
     console.log(this.success);
-    if (this.success){
+    if (this.success) {
       console.log('done ', this.success);
       this.mealDialog = false;
       this.submitted = false;
@@ -405,40 +426,44 @@ export class MenusManagementComponent implements OnInit {
   }
 
 
- 
-  
 
 
 
 
 
-   // partie manu*/
 
-   deleteMenu(menu: MenuDTO) {
+
+  // partie manu*/
+
+  deleteMenu(menu) {
     console.log('delete menu')
+    console.log(menu);
+    console.log(this.menus);
     this.confirmationService.confirm({
-      message: 'Vous voulez vraimment supprimer' + menu.label + '?',
+      message: 'Vous voulez vraimment supprimer ' + menu.label + ' ?',
       header: 'Confirm',
       icon: 'pi pi-exclamation-triangle',
       accept: () => {
-        this.menuService.deleteMenu(menu['id']).subscribe(res => {
+        this.menuService.deleteMenu(menu.id).subscribe(res => {
           console.log(res);
-          this.messageService.add({severity:'success', summary: 'Successful', detail: 'meal supprimé', life: 3000});
-        }, error => { console.log(error)});
+          let idx = this.menus.findIndex(e => e.id === menu.id);
+          this.menus.splice(idx, 1);
+          this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'meal supprimé', life: 3000 });
+        }, error => { console.log(error) });
       }
     });
   }
 
   editMenu(menuDTO) {
-      console.log(menuDTO);
-      this.mealsSelected = [];
-    this.menu = {...menuDTO};
+    console.log(menuDTO);
+    this.mealsSelected = [];
+    this.menu = { ...menuDTO };
     this.menuDialog = true;
-    if (this.menu["meals"].length > 0){
+    if (this.menu["meals"].length > 0) {
       this.meals.forEach(res => {
-        if (menuDTO && menuDTO['meals']){
+        if (menuDTO && menuDTO['meals']) {
           menuDTO['meals'].forEach(i => {
-            if (i['id'] == res.id){
+            if (i['id'] == res.id) {
               this.mealsSelected.push(res);
             }
           })
@@ -447,9 +472,9 @@ export class MenusManagementComponent implements OnInit {
       });
     }
 
-  } 
+  }
 
-  async saveMenu(){
+  async saveMenu() {
     // this.done = true
     this.submitted = true;
     let image: Image = new Image();
@@ -457,7 +482,7 @@ export class MenusManagementComponent implements OnInit {
     image.imagePath = ''
     const menuDTO: MenuDTO = new MenuDTO();
     menuDTO.description = this.menu.description;
-    this.mealsSelected.forEach( meal => {
+    this.mealsSelected.forEach(meal => {
       menuDTO.mealIds.push(meal["id"])
     })
     console.log("XXXXXXXXXXXXXXXXXXXXXXXXXXXX")
@@ -465,14 +490,14 @@ export class MenusManagementComponent implements OnInit {
     menuDTO.label = this.menu.label;
     menuDTO.image64 = image;
     menuDTO.priceDF = this.menu.priceDF;
-    if (this.selectedAvailableForWeeks){
+    if (this.selectedAvailableForWeeks) {
       this.selectedAvailableForWeeks.forEach(weak => {
         menuDTO.availableForWeeks.push(weak.id);
       });
     } else {
       menuDTO.availableForWeeks = null;
     }
-    if (this.menu['id']) {     
+    if (this.menu['id']) {
       await this.menuService.updateMenu(this.menu['id'], menuDTO).then(res => {
         this.success = true;
         console.log(this.success);
@@ -486,31 +511,31 @@ export class MenusManagementComponent implements OnInit {
 
     } else {
       if (this.base64textString) {
-      console.log('ajouter nouveau menu ');
-      console.log(this.ingredient);
-      menuDTO.image64.imagePath = 'img/'+this.file.name;;
-      menuDTO.image64.image64 = this.base64textString;
-      console.log(menuDTO);
-      await this.menuService.addMenu(menuDTO).then(res => {
-        console.log(res);
-        this.success = true;
-        console.log(this.success);
-      }).catch(
-        error => {
-          this.success = false
-          console.log(error);
+        console.log('ajouter nouveau menu ');
+        console.log(this.ingredient);
+        menuDTO.image64.imagePath = 'img/' + this.file.name;;
+        menuDTO.image64.image64 = this.base64textString;
+        console.log(menuDTO);
+        await this.menuService.addMenu(menuDTO).then(res => {
+          console.log(res);
+          this.success = true;
           console.log(this.success);
-          this.message = 'il y a eu une erreur '
-        }
-      );
+        }).catch(
+          error => {
+            this.success = false
+            console.log(error);
+            console.log(this.success);
+            this.message = 'il y a eu une erreur '
+          }
+        );
       }
     }
 
     // update image
-    if(this.base64textString && this.menu['id']){
-      image.imagePath = 'img/'+this.file.name;
+    if (this.base64textString && this.menu['id']) {
+      image.imagePath = 'img/' + this.file.name;
       image.image64 = this.base64textString;
-      await this.menuService.updateImage(image, this.menu['id']).then(res =>{
+      await this.menuService.updateImage(image, this.menu['id']).then(res => {
         console.log(res);
         this.success = true;
         console.log(this.success);
@@ -524,7 +549,7 @@ export class MenusManagementComponent implements OnInit {
       );
     }
     console.log(this.success);
-    if (this.success){
+    if (this.success) {
       console.log('done ', this.success);
       this.menuDialog = false;
       this.submitted = false;
@@ -533,17 +558,17 @@ export class MenusManagementComponent implements OnInit {
 
   }
   getAvailableForWeeks() {
-    for(let i = 0; i <= 51; i++){
+    for (let i = 0; i <= 51; i++) {
       let weak: AvailableForWeek = new AvailableForWeek();
-      weak.id = i+1
+      weak.id = i + 1
       this.availableForWeeks[i] = weak;
     }
   }
-   /*
-  partie menus
-   */
+  /*
+ partie menus
+  */
   openNewMenu() {
-    this.menu= new MenuDTO();
+    this.menu = new MenuDTO();
     this.submitted = false;
     this.mealDialog = true;
     this.message = '';
