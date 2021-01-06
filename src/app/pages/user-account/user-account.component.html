@@ -53,19 +53,19 @@
           </div>
         </div>
         <div class="p-col-11 title p-mt-4 p-mb-4">
-          <h1 class="title-card" *ngIf="orders">Mes commandes</h1>
           <h1 class="title-card" *ngIf="parameters">Paramètres</h1>
           <h1 class="title-card" *ngIf="infos">Mes informations</h1>
-          <h1 class="title-card" *ngIf="wallet"> Ma cagnotte</h1>
         </div>
       </div>
       <!---- end vertical menu --->
       <!---- card --->
-
-        <div class="p-grid p-col-12" *ngIf="wallet">
-          <div class="p-col-1"></div>
-              <div class="p-col-11" *ngIf="user.wallet == 0">
+        <div class="p-grid">
+        <div class="p-col-1"></div>
+        <div class="p-col-1"></div>
+        <div class="p-grid p-col-9" *ngIf="wallet">
+              <div *ngIf="user.wallet == 0">
                 <div class="card">
+                  <h1 class="title-card p-mb-4 p-ml-1" *ngIf="wallet"> Ma cagnotte</h1>
                   <p-card [style]="{'background-color':'#F6F6F6'}">
                     <ng-template pTemplate="header">
                         <img alt="empty-ct" src="assets/user-account/cat.png" [style]="{'width': '50%','display':'block','margin':'auto'}">
@@ -75,7 +75,8 @@
                     </p-card>
                 </div>
               </div>
-              <div class="card-content p-col-11" *ngIf="user.wallet > 0">
+              <div class="card-content p-col-9" *ngIf="user.wallet > 0">
+                <h1 class="title-card p-mb-4 p-ml-1" *ngIf="wallet"> Ma cagnotte</h1>
               <p-card [style]="{'background-color':'#F6F6F6'}">
               <ng-template pTemplate="header">
               </ng-template>
@@ -90,6 +91,7 @@
               <a pButton [routerLink]="[ '/home' ]" type="button" label="commander" class="btn-order p-button-rounded"></a>
           </div>
         </div>
+        <div class="p-col-1"></div>
           <!---- end card --->
         <!---- user infos --->
 
@@ -169,10 +171,12 @@
         <!---- my orders --->
          <div class="p-grid" *ngIf="userOrders && orders">
           <div class="p-col-1"></div>
-          <div class="table p-mt-6">
-            <p-table class="p-col-11" [value] = "userOrders">
+          <div class="p-col-1"></div>
+          <div class="table p-col-9 p-mt-6">
+            <h1 class="title-card p-mb-4 p-ml-1" *ngIf="orders">Mes commandes</h1>
+            <p-table [value] = "userOrders">
               <ng-template pTemplate="header">
-                  <tr>
+                  <tr class="row-table">
                       <th>Date</th>
                       <th>Heure</th>
                       <th>Commande</th>
@@ -181,7 +185,7 @@
                   </tr>
               </ng-template>
               <ng-template pTemplate="body" let-userOrder let-i="rowIndex">
-                  <tr>
+                  <tr class="row-table">
                       <td>{{ userOrder.creationDate }}</td>
                       <td>{{ userOrder.creationTime }}</td>
                       <td>commande</td>
@@ -191,6 +195,7 @@
               </ng-template>
             </p-table>
           </div>
+          <div class="p-col-1"></div>
          </div>
         <!---- end my orders --->
       </div>

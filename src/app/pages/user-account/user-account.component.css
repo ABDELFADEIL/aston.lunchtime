@@ -84,8 +84,6 @@ border: 1px solid #E9E581;
 }
 
 .title-card {
-    padding-top: 30px;
-    margin: 0;
     font-size: 20px;
 }
 .p-col-1 {
@@ -101,7 +99,7 @@ border: 1px solid #E9E581;
 
 .card {
     margin: auto;
-    width: 80%;
+
 }
 
 
@@ -141,6 +139,9 @@ border: 1px solid #E9E581;
     display: flex;
     border: 1px solid #E9E581;
 
+}
+.ng-star-inserted {
+    margin: auto!important;
 }
 /***********end jackpot***********/
 
@@ -197,7 +198,6 @@ border: 1px solid #E9E581;
 
 /*********** orders ***********/
 .table {
-    width: 80%;
     margin: auto;
 }
 /*********** end orders ***********/
@@ -225,7 +225,6 @@ border: 1px solid #E9E581;
         height: 30px;
     }
     .title-card {
-        padding-left: 15%;
         font-size: 14px;
         padding-top: 0;
     }
@@ -261,10 +260,31 @@ border: 1px solid #E9E581;
     br {
         display:none;
     }
-    
-    
+    th, tr, td{
+        font-size: 12px!important;
+        text-align: center!important;
+    }
+    th{
+        padding: 0!important;
+
+    }
+    .titte-ct-empty, .text {
+        font-size: 14px;
+    }
+    .titte-ct-empty {
+        margin-bottom: 0;
+    }
+    .text {
+        margin-bottom: 35px;
+    }
 }
+
+
+
 /********* end responsive ***********/
+
+
+
 
 
 
