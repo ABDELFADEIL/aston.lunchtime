@@ -118,6 +118,7 @@ export class OrdersManagementComponent implements OnInit {
   showDetails(i) {
     if (this.detailVisible !== i) {
       this.detailVisible = i;
+      this.deleteIdx = undefined;
     } else {
       this.detailVisible = undefined;
     }
