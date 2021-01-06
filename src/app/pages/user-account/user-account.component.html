@@ -8,15 +8,16 @@
             </div>
             <div class="right p-mr-4">
                 <img [src]="user.image64" height="80px" class="img-user">
-                <div class="btn-edit-img" *ngIf="upload">
-                  <p-fileUpload #fubauto  mode="basic" name="file" accept="image/*"
+                <div class="btn-edit-img">
+                  <p-fileUpload *ngIf="upload"  mode="basic" name="file" accept="image/*"
                  (onSelect)="handleFileSelect($event)" [auto]="true" chooseLabel="Editer"></p-fileUpload>
+                  <button (click)="editUserImg()" *ngIf="!upload" pButton pRipple type="button" label="Envoyer" class="p-button-raised"></button>
                  </div>
+              <!--
                  <div *ngIf="!upload">
                   <button
-                  (click)="editUserImg()"
-                  value="envoyer"></button>
-                </div>
+                  (click)="editUserImg()">Envoyer</button>
+                </div> -->
             </div>
             <div class="user-role p-mr-4">
                 <p class="user-infos">{{user.name}} {{ user.firstname }}
@@ -203,8 +204,8 @@
           </div>
          </div>
         <!---- end my orders --->
-      </div> 
-    
+      </div>
+
 </div>
 
 

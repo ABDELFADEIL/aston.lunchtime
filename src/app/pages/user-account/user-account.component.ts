@@ -7,6 +7,7 @@ import { OrdersService } from 'src/app/services/orders.service';
 import { element } from 'protractor';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {Router} from "@angular/router";
+import {ConfirmationService, MessageService} from "primeng/api";
 
 class Image {
   imagePath: string;
@@ -16,7 +17,8 @@ class Image {
 @Component({
   selector: 'app-user-account',
   templateUrl: './user-account.component.html',
-  styleUrls: ['./user-account.component.css']
+  styleUrls: ['./user-account.component.css'],
+  providers: [MessageService]
 })
 export class UserAccountComponent implements OnInit {
   orders: boolean = true;
@@ -37,7 +39,8 @@ export class UserAccountComponent implements OnInit {
   public authenticationService: AuthenticationService,
   public orderService: OrdersService,
   public userService: UserService,
-  private router: Router
+  private router: Router,
+  private messageService: MessageService
 
   ) { }
 
@@ -137,21 +140,23 @@ export class UserAccountComponent implements OnInit {
     console.log(error);
   })
 }
-handleFileSelect(event){
-  let file = event.currentFiles[0];
-  this.file = file;
-  if (file) {
-    var reader = new FileReader();
-    reader.onload =this._handleReaderLoaded.bind(this);
-    reader.readAsDataURL(file);
-    this.upload = false;
+  handleFileSelect(event){
+    var file = event.currentFiles[0];
+    this.file = file;
+    if (file) {
+      var reader = new FileReader();
+      reader.onload =this._handleReaderLoaded.bind(this);
+      reader.readAsDataURL(file);
+      this.upload = false;
+    }
   }
-}
-_handleReaderLoaded(readerEvt) {
-  var binaryString = readerEvt.target.result;
-  this.base64textString= binaryString;
-  console.log(this.base64textString);
-}
+
+  _handleReaderLoaded(readerEvt) {
+    var binaryString = readerEvt.target.result;
+    console.log(binaryString);
+    this.base64textString= binaryString;
+    console.log(binaryString);
+  }
 
 editUserImg() {
   // update image
@@ -164,8 +169,7 @@ editUserImg() {
     this.userService.updateImage(image, this.user.id).then(res =>{
       console.log(res);
       this.user.image64 = image.image64;
-      this.success = true;
-      console.log(this.success);
+      this.upload = true;
     }).catch(
       error => {
         this.success = false
@@ -175,22 +179,25 @@ editUserImg() {
       }
     );
   }
+  this.messageService.add({severity: 'info', summary: 'Success', detail: 'File Uploaded'})
 }
 editOuSaveImage(){
+    console.log("editOuSaveImage ")
   let image: Image = new Image();
   if(this.base64textString && this.user['id']){
      image.imagePath = 'img/'+this.file.name;
      image.image64 = this.base64textString;
      this.userService.updateImage(image, this.user['id']).then(res =>{
        console.log(res);
-  
+
        }).catch(
        error => {
          console.log(error);
        }
      );
    }
-   
+
 }
+
 
 }

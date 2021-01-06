@@ -84,6 +84,7 @@ export class AuthenticationService {
     return false;
   }
 
+
   isUser(){
     let jwtHelper=new JwtHelper();
     this.jwtToken= localStorage.getItem('jwtToken');
