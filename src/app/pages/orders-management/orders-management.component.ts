@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { OrdersService } from 'src/app/services/orders.service';
 import { UserService } from 'src/app/services/user.service';
 import { ConfirmationService, MessageService } from 'primeng/api';
+import { formatDate } from '@angular/common';
 
 
 interface Recap {
@@ -36,6 +37,7 @@ export class OrdersManagementComponent implements OnInit {
     // this.getOrders();
     // this.getOrderById(1);
     // this.getOrderByUserId(1);
+    // "2020-07-12"
     await this.getAllOrdersForAllUsersByDate(0, "2020-07-12");
     this.createOrderRecap();
   }
@@ -184,11 +186,10 @@ export class OrdersManagementComponent implements OnInit {
 
   getTodayDate() {
     let date = new Date();
-    let year = date.getFullYear();
-    let month = date.getMonth();
-    let day = date.getDay();
-    let fullDate = year + "-" + month + "-" + day;
-    return fullDate;
+    const todayDate = formatDate(date,"yyyy-MM-dd","en-US")
+    console.log("daaaaate =>")
+    console.log(todayDate) 
+    return todayDate;
   }
   confirm2() {
     console.log("GGGGGGGGGG")
