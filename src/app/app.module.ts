@@ -42,6 +42,7 @@ import { UpdateClientComponent } from './pages/clients-management/update-client/
 import {ListboxModule} from 'primeng/listbox';
 import {FileUploadModule} from 'primeng/fileupload';
 import {MultiSelectModule} from 'primeng/multiselect';
+import {TooltipModule} from 'primeng/tooltip';
 
 
 
@@ -66,7 +67,8 @@ import {MultiSelectModule} from 'primeng/multiselect';
     BrowserModule, AppRoutingModule, HttpClientModule, BrowserAnimationsModule, FormsModule, AccordionModule, MenubarModule, InputTextModule,
     DynamicDialogModule, MatCardModule, MatFormFieldModule, MatInputModule, MatSelectModule, MatButtonModule, CardModule, ButtonModule,
     CardModule, TableModule, ConfirmDialogModule, DialogModule, OverlayPanelModule, SplitButtonModule, ReactiveFormsModule, ButtonModule,
-    DialogModule, TabViewModule, OrderListModule, ListboxModule, InputSwitchModule, FileUploadModule, MultiSelectModule,ConfirmDialogModule
+    DialogModule, TabViewModule, OrderListModule, ListboxModule, InputSwitchModule, FileUploadModule, MultiSelectModule,ConfirmDialogModule,
+    TooltipModule
 
   ],
   entryComponents: [
