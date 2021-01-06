@@ -8,18 +8,14 @@
             </div>
             <div class="right p-mr-4">
                 <img [src]="user.image64" height="80px" class="img-user">
-                <div class="btn-edit-img" *ngIf="upload">
-                  <p-fileUpload #fubauto  mode="basic" name="file" accept="image/*"
-                 (onSelect)="handleFileSelect($event)" [auto]="true" chooseLabel=""></p-fileUpload>
+                <div class="btn-edit-img">
+                  <p-fileUpload *ngIf="upload"  mode="basic" name="file" accept="image/*"
+                 (onSelect)="handleFileSelect($event)" [auto]="true" chooseLabel="Editer"></p-fileUpload>
+                  <button (click)="editUserImg()" *ngIf="!upload" pButton pRipple type="button" label="Envoyer" class="p-button-raised"></button>
                  </div>
-                 <div *ngIf="!upload">
-                  <button
-                  (click)="editUserImg()"
-                  value="envoyer"></button>
-                </div>
             </div>
             <div class="user-role p-mr-4">
-                <p class="user-infos"> {{ user.firstname }} {{user.name}} : 
+                <p class="user-infos"> {{ user.firstname }} {{user.name}} :
                   <br/>
                   <span *ngIf="authenticationService.isAdmin()">
                    admin
@@ -69,7 +65,7 @@
         <div class="p-grid p-col-12" *ngIf="wallet">
           <div class="p-col-1"></div>
               <div class="p-col-11" *ngIf="user.wallet == 0">
-                <div class="card"> 
+                <div class="card">
                   <p-card [style]="{'background-color':'#F6F6F6'}">
                     <ng-template pTemplate="header">
                         <img alt="empty-ct" src="assets/user-account/cat.png" [style]="{'width': '50%','display':'block','margin':'auto'}">
@@ -197,8 +193,8 @@
           </div>
          </div>
         <!---- end my orders --->
-      </div> 
-    
+      </div>
+
 </div>
 
 
