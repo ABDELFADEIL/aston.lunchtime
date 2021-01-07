@@ -1,7 +1,7 @@
 export class Order{
     userId:number;
     constraintId:number = 1;
-    quantity: Quantity[]
+    quantity: number;
     
   }
 

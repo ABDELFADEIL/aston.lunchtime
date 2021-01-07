@@ -1,5 +1,5 @@
 import { Time } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { MenuService } from 'src/app/services/menu-service.service';
 import { OrdersService } from 'src/app/services/orders.service';
 import { IngredientService } from 'src/app/services/ingredient.service';
@@ -11,7 +11,9 @@ import {User} from "../../models/user";
 import {UserService} from 'src/app/services/user.service';
 import { RESOURCE_CACHE_PROVIDER } from '@angular/platform-browser-dynamic';
 import { Order, Quantity } from 'src/app/models/order';
-import { Input } from '@angular/core';
+
+
+
 
 @Component({
   selector: 'app-home',
@@ -30,6 +32,9 @@ export class HomeComponent implements OnInit {
   user:any;
   constraint: any;
   order:any;
+  submitted: boolean;
+  success: boolean;
+  message;
   
 
   constructor(private menuService: MenuService,
@@ -73,9 +78,51 @@ export class HomeComponent implements OnInit {
   }
 
 /* add Order*/
-commanderHo(obj){
-  return this.ordersService.commander(JSON.stringify(obj));
-}
+async commanderHo(meal_id){
+      this.count++;
+  /*  const order: Order = new Order();
+    order.userId=this.user.id;
+    order.constraintId =1;  
+    order.quantity= this.count;
+    order.quantity['mealId']= meal_id;
+    order.quantity['menuId']=0;
+    await this.ordersService.addOrder(order).then(res => {
+      console.log(res);
+      this.success = true;
+      console.log(this.success);
+    }).catch(
+      error => {
+        this.success = false
+        console.log(error);
+        console.log(this.success);
+        this.message = 'il y a eu une erreur '
+      }
+    );
+}*/
+    let obj = {  
+    userId : this.user.id,
+    constraintId: null,
+    quantity :[
+      {
+        quantity:1,
+        mealId :meal_id,
+        menuId: 0,     
+      }
+    ]  
+    };
+    console.log(JSON.stringify(obj));
+    return await this.ordersService.addOrder(JSON.stringify(obj))
+    .then(res=>{
+      console.log("res",res);
+    })
+    .catch(err=>{
+      console.log("err",err);
+    });
+  }
+  
+
+  
+
 
 /* meals de la semaine*/
 

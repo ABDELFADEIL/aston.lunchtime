@@ -10,7 +10,7 @@ import { Input } from '@angular/core';
   providedIn: 'root'
 })
 export class OrdersService {
-  @Input() count:number =0; 
+  
   jwtToken: string;
   httpOption: any;
   constraint: any;
@@ -23,9 +23,11 @@ export class OrdersService {
   constructor(private http: HttpClient, private authenticationService: AuthenticationService,
     private userService: UserService) {
     this.httpOption = {
-      'Authorization': this.authenticationService.jwtToken,
-      'Content-Type': 'application/json',
-    };
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': this.authenticationService.jwtToken
+      })
+    }
     this.user = this.authenticationService.getUserAuthenticated();
   }
 
@@ -62,8 +64,17 @@ export class OrdersService {
 
 
 
-  addOrder(obj: any) {
-    return this.http.put<any>(this.api_url + "order/add", obj)
+  async addOrder(obj: any): Promise<any> {
+    return this.http.put<any>(this.api_url + 'order/add', obj, this.httpOption).toPromise();
+    /*return this.http.put<any>(this.api_url + "order/add", obj,
+   { 
+      headers: new HttpHeaders({
+          'Content-Type': 'application/json',
+          'Authorization':this.authenticationService.jwtToken 
+          
+      })
+  }) .toPromise();*/
+    /*obj,this.httpOption)*/
   }
   getOrderById(id: number): Promise<any> {
     return this.http.get<any>(this.api_url + "order/find/" + id).toPromise();
@@ -90,19 +101,6 @@ export class OrdersService {
     return this.http.patch<any>(this.api_url + "order/cancel/" + orderId, null).toPromise();
   }
    
-  commander(id_meal) {
-  this.count++;
-  const obj = {  
-  userId : this.user.id,
-  constraintId : 1,
-  quantity :{
-    quantity:this.count,   
-    mealId : id_meal,
-    menuId: 0,     
-  }  
-}
-  console.log(JSON.stringify(obj));
-  return JSON.stringify(obj); 
-}
+
 }
 
