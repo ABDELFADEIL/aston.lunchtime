@@ -172,6 +172,7 @@ border: 1px solid #E9E581;
 .fa-map-marker, .fa-mobile {
     font-size: 38px;
 }
+
 /*********** end user infos ***********/
 
 /*********** edit user infos form ***********/
@@ -191,6 +192,8 @@ border: 1px solid #E9E581;
     border-radius: 5px;
     margin: auto;
 }
+
+
 
 /*********** end edit user infos form ***********/
 
