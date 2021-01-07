@@ -1,6 +1,6 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {ConfirmationService, MenuItem, MessageService} from 'primeng/api';
-import { DialogService } from 'primeng/dynamicdialog';
+import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { LoginComponent } from '../login/login.component';
 import {AuthenticationService} from "../../services/authentication.service";
 import { UserService } from 'src/app/services/user.service';
@@ -10,18 +10,19 @@ import {ActivatedRoute, ActivatedRouteSnapshot, Router} from "@angular/router";
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css'],
-  providers: [MessageService]
+  providers: [MessageService,DialogService] 
 })
-export class HeaderComponent implements OnInit {
-
+export class HeaderComponent implements OnInit, OnDestroy {
+  ref: DynamicDialogRef;
   public items: MenuItem[];
   @ViewChild('cd') cd
   private snapshot: ActivatedRouteSnapshot;
 
   constructor(public authenticationService: AuthenticationService,
               private messageService: MessageService,
-              public userService: UserService, private router: Router, private activatedRoute: ActivatedRoute) {
+              public userService: UserService, private router: Router, private activatedRoute: ActivatedRoute,public dialogService: DialogService) {
     this.snapshot = activatedRoute.snapshot;
+ref: DynamicDialogRef;
   }
 
 
@@ -57,5 +58,39 @@ export class HeaderComponent implements OnInit {
     console.log(returnURL)
     this.router.navigate(['/login'], { queryParams: { returnUrl: returnURL }});
   }
+
+
+
+
+
+
+
+
+    
+
+    show() {
+        this.ref = this.dialogService.open(null, {
+            header: 'Choose a Product',
+            width: '70%',
+            contentStyle: {"max-height": "500px", "overflow": "auto"},
+            baseZIndex: 10000
+        });
+
+        this.ref.onClose.subscribe(() =>{
+            if (true) {
+                this.messageService.add({severity:'info', summary: 'Product Selected', detail: ""});
+            }
+        });
+    }
+
+    ngOnDestroy() {
+        if (this.ref) {
+            this.ref.close();
+        }
+    }
+
 }
+
+
+
 

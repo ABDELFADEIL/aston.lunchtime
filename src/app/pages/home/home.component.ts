@@ -6,11 +6,12 @@ import { IngredientService } from 'src/app/services/ingredient.service';
 import { OrdersManagementComponent } from '../orders-management/orders-management.component';
 import { MealService } from 'src/app/services/meal-service.service';
 import { MatCardModule } from '@angular/material/card';
-import {AuthenticationService} from 'src/app/services/authentication.service';
-import {User} from "../../models/user";
-import {UserService} from 'src/app/services/user.service';
+import { AuthenticationService } from 'src/app/services/authentication.service';
+import { User } from "../../models/user";
+import { UserService } from 'src/app/services/user.service';
 import { RESOURCE_CACHE_PROVIDER } from '@angular/platform-browser-dynamic';
 import { Order, Quantity } from 'src/app/models/order';
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 
 
 
@@ -23,19 +24,22 @@ import { Order, Quantity } from 'src/app/models/order';
 
 export class HomeComponent implements OnInit {
 
-  @Input() count:number =0; 
-  
+  @Input() count: number = 0;
+
   displayBasic: boolean;
   mealList = [];
   menuList = [];
-  date:boolean;
-  user:any;
+  date: boolean;
+  user: any;
   constraint: any;
-  order:any;
+  order: Order = new Order();
   submitted: boolean;
   success: boolean;
   message;
+  quantity: Quantity = new Quantity()
   
+
+
 
   constructor(private menuService: MenuService,
     private ordersService: OrdersService,
@@ -46,21 +50,21 @@ export class HomeComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-      this.user = this.authenticationService.getUserAuthenticated();
-      this.constraint= this.menuService.getConstraint();
-      this.getMenuWeek();
-      this.getMealsWeek();
-      console.log(new Date());
+    this.user = this.authenticationService.getUserAuthenticated();
+    this.constraint = this.menuService.getConstraint();
+    this.getMenuWeek();
+    this.getMealsWeek();
+    console.log(new Date());
   }
 
-/* menus de la semaine*/
+  /* menus de la semaine*/
 
   async getMenuWeek() {
     const response = await this.menuService.getMenuToday();
     this.menuList = response;
     this.menuList.forEach(element => {
-    this.getMenuImage(element.id)
-    console.log(response);
+      this.getMenuImage(element.id)
+      console.log(response);
     })
   }
 
@@ -71,83 +75,115 @@ export class HomeComponent implements OnInit {
     this.menuList.forEach(element => {
       if (element.imageId === res.id) {
         element.img = res.image64;
-      //  console.log(this.menuList);
+        //  console.log(this.menuList);
 
       }
     });
   }
 
-/* add Order*/
-async commanderHo(meal_id){
-      this.count++;  
-    let obj = {  
-    userId : this.user.id,
-    constraintId: -1,
-    quantity :[
-      {
-        quantity:this.count,
-        mealId :meal_id,
-        menuId: 0,     
-      }
-    ]  
+  /* add Order*/
+  async commanderHo(meal_id) {
+    this.count++;
+    let obj = {
+      userId: this.user.id,
+      constraintId: -1,
+      quantity: [
+        {
+          quantity: this.count,
+          mealId: meal_id,
+          menuId: 0,
+        }
+      ]
     };
     console.log(JSON.stringify(obj));
     return await this.ordersService.addOrder(JSON.stringify(obj))
-    .then(res=>{
-      console.log("res",res);
-    })
-    .catch(err=>{
-      console.log("err",err);
+      .then(res => {
+        console.log("res", res);
+      })
+      .catch(err => {
+        console.log("err", err);
+      });
+  }
+
+
+
+
+
+  /* meals de la semaine*/
+
+  async getMealsWeek() {
+    const response = await this.mealService.getMealWeek();
+    this.mealList = response;
+    this.mealList.forEach(element => {
+      this.getMealImage(element.id);
+      console.log(this.mealList);
     });
   }
-  
 
-  
+  /* images de meals de la semaine*/
 
+  async getMealImage(id_meal) {
+    const res = await this.mealService.findImgMeal(id_meal);
+    this.mealList.forEach(element => {
+      if (element.imageId === res.id) {
+        element.img = res.image64;
+        //console.log(this.mealList);
 
-/* meals de la semaine*/
-
-async getMealsWeek() {
-  const response = await this.mealService.getMealWeek();
-  this.mealList = response;
-  this.mealList.forEach(element => {
-    this.getMealImage(element.id);
-    console.log(this.mealList);
-  });
-}
-
-/* images de meals de la semaine*/
-
-async getMealImage(id_meal) {
-  const res = await this.mealService.findImgMeal(id_meal);
-  this.mealList.forEach(element => {
-    if (element.imageId === res.id) {
-      element.img = res.image64;
-      //console.log(this.mealList);
-
-    }
-  });
-
-}
-
-/* time constraint */
-
-    getDate() {
-      let date = new Date();
-      let hour = date.getHours();
-      let mins = date.getMinutes();
-      if( hour<=10 && mins<=30 ){
-        return true;
       }
+    });
 
+  }
+
+  /* time constraint */
+
+  getDate() {
+    let date = new Date();
+    let hour = date.getHours();
+    let mins = date.getMinutes();
+    if (hour <= 10 && mins <= 30) {
+      return true;
     }
 
-/* popup box inscription*/
+  }
+
+  /* popup box inscription*/
 
   showInfo() {
     this.displayBasic = true;
   }
+
+
+
+
+
+/**
+ * Fonction pour recuperer une liste de class: Quantity a ajouter dans une class order lors de la validation de la commande
+ * @param id //id du meal ou du repas
+ * @param isMeal // true si c'est un meal et false si c'est un menu
+ */
+  addTocart(id, isMeal) {
+    let item = new Quantity();
+    if (isMeal) {
+      let idx = this.ordersService.quantities.findIndex(x => x.mealId === id);
+      if (idx != -1) {
+        this.ordersService.quantities[idx].quantity += 1;
+      } else {
+        item.mealId = id;
+        item.quantity = +1;
+        this.ordersService.quantities.push(item);
+      }
+      console.log(this.ordersService.quantities);
+    }
+    
+    else {
+      let idx = this.ordersService.quantities.findIndex(x => x.menuId === id);
+      if (idx != -1) {
+      this.ordersService.quantities[idx].quantity += 1;
+    } else {
+      item.menuId = id;
+      item.quantity = +1;
+      this.ordersService.quantities.push(item);
+    }
+    }
+  }
 }
-
-
-

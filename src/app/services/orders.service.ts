@@ -4,6 +4,7 @@ import { end } from '@popperjs/core';
 import {UserService} from 'src/app/services/user.service';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { Input } from '@angular/core';
+import { Quantity } from '../models/order';
 
 
 @Injectable({
@@ -16,7 +17,7 @@ export class OrdersService {
   constraint: any;
   order:any;
   user:any;
-  
+  quantities:Quantity[]= []
 
   private api_url = "http://localhost:8080/lunchtime/";
 
