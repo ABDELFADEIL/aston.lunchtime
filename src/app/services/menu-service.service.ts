@@ -33,7 +33,7 @@ async findImgMenu(id_menu:number): Promise<any> {
 
 }
 getMenuWeek():Promise<any>{
-  return this.http.get<any>(this.api_url+"menu/findallavailableforweek/").toPromise();
+  return this.http.get<any>(this.api_url+"menu/findallavailableforweek/1").toPromise();
 }
 /*/menu/findallavailableforweek/{weeknumber}*/
 getConstraint():Promise<any>{

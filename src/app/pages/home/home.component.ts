@@ -79,32 +79,13 @@ export class HomeComponent implements OnInit {
 
 /* add Order*/
 async commanderHo(meal_id){
-      this.count++;
-  /*  const order: Order = new Order();
-    order.userId=this.user.id;
-    order.constraintId =1;  
-    order.quantity= this.count;
-    order.quantity['mealId']= meal_id;
-    order.quantity['menuId']=0;
-    await this.ordersService.addOrder(order).then(res => {
-      console.log(res);
-      this.success = true;
-      console.log(this.success);
-    }).catch(
-      error => {
-        this.success = false
-        console.log(error);
-        console.log(this.success);
-        this.message = 'il y a eu une erreur '
-      }
-    );
-}*/
+      this.count++;  
     let obj = {  
     userId : this.user.id,
-    constraintId: null,
+    constraintId: -1,
     quantity :[
       {
-        quantity:1,
+        quantity:this.count,
         mealId :meal_id,
         menuId: 0,     
       }
