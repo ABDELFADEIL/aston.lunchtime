@@ -165,10 +165,9 @@ border: 1px solid #E9E581;
     vertical-align: middle;
 }
 .fa-envelope, .fa-calendar, .fa-map-marker, .fa-mobile {
-    padding-right: 10px;
     color:#87AAB9;
     vertical-align: middle;
-    font-size: 30px;
+    font-size: 25px;
 }
 .fa-map-marker, .fa-mobile {
     font-size: 38px;
@@ -190,7 +189,6 @@ border: 1px solid #E9E581;
 .user-infos-edit {
     background-color: white;
     border-radius: 5px;
-    width: 85%;
     margin: auto;
 }
 
@@ -210,7 +208,9 @@ border: 1px solid #E9E581;
     }
     .user-infos {
         font-size: 12px;
-        padding-right: 0;
+    }
+    p.user-info{
+        font-size: 10px;
     }
 
     .nav-header {
@@ -221,9 +221,7 @@ border: 1px solid #E9E581;
         height: 60px;
         width: 60px;
     }
-    .icone, p {
-        height: 30px;
-    }
+    
     .title-card {
         font-size: 14px;
         padding-top: 0;
@@ -251,8 +249,9 @@ border: 1px solid #E9E581;
         width: 100%!important;
     }
     .user-details {
-
         width: 100%!important;
+        padding-bottom: 0;
+        padding-top: 0;
     }
     .display-grid {
         display: grid;
