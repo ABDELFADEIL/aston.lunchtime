@@ -38,16 +38,21 @@ export class OrdersManagementComponent implements OnInit {
     // this.getOrderById(1);
     // this.getOrderByUserId(1);
     // "2020-07-12"
-    await this.getAllOrdersForAllUsersByDate(0, "2020-07-12");
+    await this.getAllOrdersForAllUsersByDate(0, "2021-01-07");
     this.createOrderRecap();
   }
-  //recuperer toutes les commandes
+  /**recuperer toutes les commandes
+   * 
+   */
   async getOrders() {
     const allOrders = await this.orderService.getOrders()
     console.log("getOrders =>");
     console.log(allOrders);
   }
   //recuperer une commande avec un id
+  /**
+   * 
+   */
   async getOrderById(id: number) {
     const order = await this.orderService.getOrderById(id)
     console.log("getOrderById =>");
@@ -71,8 +76,10 @@ export class OrdersManagementComponent implements OnInit {
     console.log("getAllOrdersForAllUsersByDate =>");
     console.log(allOrdersByDate);
   }
-
+/** */
   confirmDelete(id: number) {
+    console.log("ID =>")
+    console.log(id)
     let orderSelected = this.listeCommandesDays[id];
     if (orderSelected.id != null) {
       this.orderService.cancelAnOrderByOrderId(orderSelected.id).then(() => {
@@ -166,6 +173,10 @@ export class OrdersManagementComponent implements OnInit {
   }
 
   doDelete(i) {
+    console.log("ID =>")
+    console.log(i)
+    let orderSelected = this.listeCommandesDays[i];
+    console.log(orderSelected)
     if (this.deleteIdx !== i) {
       this.deleteIdx = i;
       this.detailVisible = undefined;
@@ -183,26 +194,14 @@ export class OrdersManagementComponent implements OnInit {
   // this.cancelAnOrderByOrderId(orderSelected.id).then()
   // }
 
-
+/**
+//  recuperer la date du jour au fromat yyyy-mm-dd
+ */
   getTodayDate() {
     let date = new Date();
     const todayDate = formatDate(date,"yyyy-MM-dd","en-US")
     console.log("daaaaate =>")
     console.log(todayDate) 
     return todayDate;
-  }
-  confirm2() {
-    console.log("GGGGGGGGGG")
-    this.confirmationService.confirm({
-      message: 'Do you want to delete this record?',
-      header: 'Delete Confirmation',
-      icon: 'pi pi-info-circle',
-      accept: () => {
-        this.messageService.add({ severity: 'info', summary: 'Confirmed', detail: 'Record deleted' });
-      },
-      reject: () => {
-        this.messageService.add({ severity: 'info', summary: 'Rejected', detail: 'You have rejected' });
-      }
-    });
   }
 }

@@ -101,7 +101,7 @@ async commanderHo(meal_id){
 }*/
     let obj = {  
     userId : this.user.id,
-    constraintId: null,
+    constraintId: -1,
     quantity :[
       {
         quantity:1,
