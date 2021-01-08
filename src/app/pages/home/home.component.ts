@@ -23,8 +23,8 @@ import { Order, Quantity } from 'src/app/models/order';
 
 export class HomeComponent implements OnInit {
 
-  @Input() count:number =0; 
-  
+  @Input() count:number =0;
+
   displayBasic: boolean;
   mealList = [];
   menuList = [];
@@ -35,7 +35,7 @@ export class HomeComponent implements OnInit {
   submitted: boolean;
   success: boolean;
   message;
-  
+
 
   constructor(private menuService: MenuService,
     private ordersService: OrdersService,
@@ -79,17 +79,17 @@ export class HomeComponent implements OnInit {
 
 /* add Order*/
 async commanderHo(meal_id){
-      this.count++;  
-    let obj = {  
+      this.count++;
+    let obj = {
     userId : this.user.id,
     constraintId: -1,
     quantity :[
       {
         quantity:this.count,
         mealId :meal_id,
-        menuId: 0,     
+        menuId: 0,
       }
-    ]  
+    ]
     };
     console.log(JSON.stringify(obj));
     return await this.ordersService.addOrder(JSON.stringify(obj))
@@ -100,9 +100,9 @@ async commanderHo(meal_id){
       console.log("err",err);
     });
   }
-  
 
-  
+
+
 
 
 /* meals de la semaine*/
@@ -147,6 +147,9 @@ async getMealImage(id_meal) {
   showInfo() {
     this.displayBasic = true;
   }
+
+
+
 }
 
 

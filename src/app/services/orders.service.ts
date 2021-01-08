@@ -10,13 +10,13 @@ import { Input } from '@angular/core';
   providedIn: 'root'
 })
 export class OrdersService {
-  
+
   jwtToken: string;
   httpOption: any;
   constraint: any;
   order:any;
   user:any;
-  
+
 
   private api_url = "http://localhost:8080/lunchtime/";
 
@@ -67,11 +67,11 @@ export class OrdersService {
   async addOrder(obj: any): Promise<any> {
     return this.http.put<any>(this.api_url + 'order/add', obj, this.httpOption).toPromise();
     /*return this.http.put<any>(this.api_url + "order/add", obj,
-   { 
+   {
       headers: new HttpHeaders({
           'Content-Type': 'application/json',
-          'Authorization':this.authenticationService.jwtToken 
-          
+          'Authorization':this.authenticationService.jwtToken
+
       })
   }) .toPromise();*/
     /*obj,this.httpOption)*/
@@ -100,7 +100,7 @@ export class OrdersService {
   cancelAnOrderByOrderId(orderId: number): Promise<any> {
     return this.http.patch<any>(this.api_url + "order/cancel/" + orderId, null).toPromise();
   }
-   
+
 
 }
 

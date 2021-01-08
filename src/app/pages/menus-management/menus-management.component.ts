@@ -99,7 +99,7 @@ export class MenusManagementComponent implements OnInit {
         // console.log(this.ingredients)
       })
     });
-    
+
   }
 
   openNew() {
@@ -162,7 +162,7 @@ export class MenusManagementComponent implements OnInit {
   }
   /**
    * modifier un ingrédient
-   * @param ingredient 
+   * @param ingredient
    */
   editIngredient(ingredient: Ingredient) {
     this.ingredient = { ...ingredient };
@@ -209,7 +209,7 @@ export class MenusManagementComponent implements OnInit {
         console.log(res);
         console.log(this.ingredients);
         copyRes = res;
-        
+
         this.success = true;
         console.log(this.success);
       }).catch(
