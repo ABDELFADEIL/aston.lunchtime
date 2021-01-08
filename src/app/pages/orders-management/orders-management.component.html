@@ -49,7 +49,7 @@
               Commande:
               <ul>
                 <li>
-                  <p *ngFor="let plat of listeCommandesDays[i].quantity; let j = index">{{plat.meal.label}} prix:
+                  <p *ngFor="let plat of listeCommandesDays[i].quantity; let j = index"> {{ plat.quantity }} {{plat.meal.label}} prix:
                     {{plat.meal.priceDF}} </p>
                 </li>
               </ul>

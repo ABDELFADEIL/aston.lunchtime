@@ -1,6 +1,6 @@
 export class Order{
     userId:number;
-    constraintId:number = 1;
+    constraintId:number = -1;
     quantity:Quantity [] =[];
     
   }

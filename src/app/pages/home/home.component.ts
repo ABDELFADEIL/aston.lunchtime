@@ -37,7 +37,7 @@ export class HomeComponent implements OnInit {
   success: boolean;
   message;
   quantity: Quantity = new Quantity()
-  
+
 
 
 
@@ -156,11 +156,11 @@ export class HomeComponent implements OnInit {
 
 
 
-/**
- * Fonction pour recuperer une liste de class: Quantity a ajouter dans une class order lors de la validation de la commande
- * @param id //id du meal ou du repas
- * @param isMeal // true si c'est un meal et false si c'est un menu
- */
+  /**
+   * Fonction pour recuperer une liste de class: Quantity a ajouter dans une class order lors de la validation de la commande
+   * @param id //id du meal ou du repas
+   * @param isMeal // true si c'est un meal et false si c'est un menu
+   */
   addTocart(id, isMeal) {
     let item = new Quantity();
     if (isMeal) {
@@ -174,16 +174,56 @@ export class HomeComponent implements OnInit {
       }
       console.log(this.ordersService.quantities);
     }
-    
     else {
       let idx = this.ordersService.quantities.findIndex(x => x.menuId === id);
       if (idx != -1) {
-      this.ordersService.quantities[idx].quantity += 1;
-    } else {
-      item.menuId = id;
-      item.quantity = +1;
-      this.ordersService.quantities.push(item);
+        this.ordersService.quantities[idx].quantity += 1;
+      } else {
+        item.menuId = id;
+        item.quantity = +1;
+        this.ordersService.quantities.push(item);
+      }
     }
+    this.ordersService.order.quantity= this.ordersService.quantities;
+    this.ordersService.order.userId = this.authenticationService.user.id;
+  }
+  addOderToCart(id, isMeal){
+    let mealOrMenu: Quantity;
+    if (!this.ordersService.order.userId) {
+      this.ordersService.order.userId = this.authenticationService.user.id;
     }
+    if (isMeal){
+       this.ordersService.order.quantity.forEach(m => {
+         if(m.mealId === id){
+           mealOrMenu = m;
+         }
+       });
+      if (mealOrMenu){
+        mealOrMenu.quantity = mealOrMenu.quantity +1;
+        console.log(mealOrMenu);
+      }else {
+        mealOrMenu = new Quantity();
+        mealOrMenu.mealId = id;
+        mealOrMenu.quantity = 1;
+        this.ordersService.order.quantity.push(mealOrMenu);
+      }
+    }else {
+      this.ordersService.order.quantity.forEach(m => {
+        if(m.menuId === id){
+          mealOrMenu = m;
+        }
+      });
+      if (mealOrMenu){
+        mealOrMenu.quantity = mealOrMenu.quantity + 1;
+      }else {
+        mealOrMenu = new Quantity();
+        mealOrMenu.mealId = id;
+        mealOrMenu.quantity = 1;
+        this.ordersService.order.quantity.push(mealOrMenu);
+      }
+    }
+    console.log(this.ordersService.order);
   }
 }
+
+

@@ -1,0 +1,12 @@
+<div>
+  <ul>
+    <li *ngIf="orderService.order" >
+      <p *ngFor="let order of orderService.order.quantity" >
+        {{ order.mealId ||order.menuId }} quantité: {{ order.quantity }}
+      </p>
+      
+    </li>
+  </ul>
+  <button (click)="commanderHo()" >commander</button>
+</div>
+<p>order works!</p>

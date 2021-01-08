@@ -316,6 +316,11 @@ this.base64textString =undefined;
     this.meal = { ...mealDTO };
     this.mealDialog = true;
     this.categorySelected = this.categories.filter(res => res.id == mealDTO.category);
+    mealDTO.availableForWeeks.forEach(element => {
+      let week= new AvailableForWeek();
+      week.id =element;
+      this.selectedAvailableForWeeks.push(week);  
+    });
     if (this.ingredients.length > 0) {
       this.ingredients.forEach(res => {
         if (mealDTO && mealDTO['ingredients']) {
@@ -459,6 +464,11 @@ this.base64textString =undefined;
     this.mealsSelected = [];
     this.menu = { ...menuDTO };
     this.menuDialog = true;
+    menuDTO.availableForWeeks.forEach(element => {
+      let week= new AvailableForWeek();
+      week.id =element;
+      this.selectedAvailableForWeeks.push(week);  
+    });
     if (this.menu["meals"].length > 0) {
       this.meals.forEach(res => {
         if (menuDTO && menuDTO['meals']) {

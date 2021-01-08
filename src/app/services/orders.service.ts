@@ -4,7 +4,7 @@ import { end } from '@popperjs/core';
 import {UserService} from 'src/app/services/user.service';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { Input } from '@angular/core';
-import { Quantity } from '../models/order';
+import { Order, Quantity } from '../models/order';
 
 
 @Injectable({
@@ -14,10 +14,10 @@ export class OrdersService {
   
   jwtToken: string;
   httpOption: any;
-  constraint: any;
-  order:any;
+  constraint: any;;
   user:any;
-  quantities:Quantity[]= []
+  quantities:Quantity[]= [];
+  order: Order = new Order();
 
   private api_url = "http://localhost:8080/lunchtime/";
 
