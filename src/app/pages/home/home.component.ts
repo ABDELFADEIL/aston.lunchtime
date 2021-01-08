@@ -24,7 +24,8 @@ import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 
 export class HomeComponent implements OnInit {
 
-  @Input() count: number = 0;
+  @Input() count:number =0;
+
 
   displayBasic: boolean;
   mealList = [];
@@ -81,6 +82,8 @@ export class HomeComponent implements OnInit {
     });
   }
 
+
+
   /* add Order*/
   async commanderHo(meal_id) {
     this.count++;
@@ -104,9 +107,6 @@ export class HomeComponent implements OnInit {
         console.log("err", err);
       });
   }
-
-
-
 
 
   /* meals de la semaine*/
@@ -151,6 +151,9 @@ export class HomeComponent implements OnInit {
   showInfo() {
     this.displayBasic = true;
   }
+
+
+
 
 
 
