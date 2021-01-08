@@ -4,6 +4,8 @@ import { end } from '@popperjs/core';
 import {UserService} from 'src/app/services/user.service';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { Input } from '@angular/core';
+import { Order, Quantity } from '../models/order';
+import {URL} from "../api-url/url";
 
 
 @Injectable({
@@ -14,11 +16,10 @@ export class OrdersService {
   jwtToken: string;
   httpOption: any;
   constraint: any;
-  order:any;
   user:any;
+  quantities:Quantity[]= [];
+  order: Order = new Order();
 
-
-  private api_url = "http://localhost:8080/lunchtime/";
 
   constructor(private http: HttpClient, private authenticationService: AuthenticationService,
     private userService: UserService) {
@@ -37,7 +38,7 @@ export class OrdersService {
 
 
   async getOrders(): Promise<any> {
-    return this.http.get<any>(this.api_url + "order/findall").toPromise();
+    return this.http.get<any>(URL + "order/findall").toPromise();
 
   }
   /*async addOrder(obj:any): Promise<any>{
@@ -65,7 +66,7 @@ export class OrdersService {
 
 
   async addOrder(obj: any): Promise<any> {
-    return this.http.put<any>(this.api_url + 'order/add', obj, this.httpOption).toPromise();
+    return this.http.put<any>(URL + 'order/add', obj, this.httpOption).toPromise();
     /*return this.http.put<any>(this.api_url + "order/add", obj,
    {
       headers: new HttpHeaders({
@@ -77,20 +78,20 @@ export class OrdersService {
     /*obj,this.httpOption)*/
   }
   getOrderById(id: number): Promise<any> {
-    return this.http.get<any>(this.api_url + "order/find/" + id).toPromise();
+    return this.http.get<any>(URL + "order/find/" + id).toPromise();
   }
   getOrderByUserId(id: number) {
-    return this.http.get<any>(this.api_url + "order/findallforuser/" + id);
+    return this.http.get<any>(URL + "order/findallforuser/" + id);
   }
   getAllOrdersForAllUsersByDate(status?: number, beginDate?: string, endDate?: string): Promise<any> {
     if (!beginDate) {
-      return this.http.get<any>(this.api_url + "order/findallbetweendateinstatus?status=" + status + "&endDate=" + endDate,
+      return this.http.get<any>(URL + "order/findallbetweendateinstatus?status=" + status + "&endDate=" + endDate,
         { headers: new HttpHeaders({ 'Authorization': this.authenticationService.jwtToken }) }).toPromise();
     } if (!endDate) {
-      return this.http.get<any>(this.api_url + "order/findallbetweendateinstatus?status=" + status + "&beginDate=" + beginDate,
+      return this.http.get<any>(URL + "order/findallbetweendateinstatus?status=" + status + "&beginDate=" + beginDate,
         { headers: new HttpHeaders({ 'Authorization': this.authenticationService.jwtToken }) }).toPromise();
     }
-    return this.http.get<any>(this.api_url + "order/findallbetweendateinstatus?status=" + status + "&beginDate=" + beginDate + "&endDate=" + endDate,
+    return this.http.get<any>(URL + "order/findallbetweendateinstatus?status=" + status + "&beginDate=" + beginDate + "&endDate=" + endDate,
       { headers: new HttpHeaders({ 'Authorization': this.authenticationService.jwtToken }) }).toPromise();
   }
   /**
@@ -98,7 +99,7 @@ export class OrdersService {
    * @param orderId
    */
   cancelAnOrderByOrderId(orderId: number): Promise<any> {
-    return this.http.patch<any>(this.api_url + "order/cancel/" + orderId, null).toPromise();
+    return this.http.patch<any>(URL + "order/cancel/" + orderId, null).toPromise();
   }
 
 

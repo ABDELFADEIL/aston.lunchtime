@@ -43,6 +43,7 @@ import {ListboxModule} from 'primeng/listbox';
 import {FileUploadModule} from 'primeng/fileupload';
 import {MultiSelectModule} from 'primeng/multiselect';
 import {TooltipModule} from 'primeng/tooltip';
+import { OrderComponent } from './components/order/order.component';
 
 
 
@@ -61,6 +62,7 @@ import {TooltipModule} from 'primeng/tooltip';
     UserAccountComponent,
     DigitalClockComponent,
     UpdateClientComponent,
+    OrderComponent,
   ],
   imports: [
 

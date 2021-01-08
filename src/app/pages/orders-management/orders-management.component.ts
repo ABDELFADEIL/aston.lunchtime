@@ -38,7 +38,7 @@ export class OrdersManagementComponent implements OnInit {
     // this.getOrderById(1);
     // this.getOrderByUserId(1);
     // "2020-07-12"
-    await this.getAllOrdersForAllUsersByDate(0, "2021-01-07");
+    await this.getAllOrdersForAllUsersByDate(0, "2020-07-12");
     this.createOrderRecap();
   }
   /**recuperer toutes les commandes

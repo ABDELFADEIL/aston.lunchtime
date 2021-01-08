@@ -1,7 +1,7 @@
 export class Order{
     userId:number;
-    constraintId:number = 0;
-    quantity: Quantity []= new Array<Quantity>();
+    constraintId:number = -1;
+    quantity:Quantity [] =[];
 
   }
 
@@ -10,3 +10,4 @@ export class Order{
     mealId:number;
     menuId:number;
   }
+
