@@ -1,42 +1,33 @@
 .nav-header {
     background-color: white;
-    border-bottom: 0.08em solid #C4C4C4;
-    height: 100px;
-    padding: 10px 0 10px 0;
+    border  : 0.08em solid #C4C4C4;
     box-shadow: 0 2px 2px -2px gray;
+    border-radius: 1px;
+    max-height: 100px;
+}
+.p-grid {
+    margin: 0!important;
 }
 
-.modal {
-    width: 1000px;
-    height: 650px;
+.content {
     margin: auto;
     background-color: #E5E5E5;
+    padding: 0;
 }
-.user-infos {
-    padding-top: 20%;
-    padding-right: 30px;
-}
-
 .p-button .p-button-icon-left{
     margin-right: 0!important;
 }
-
-
-.right, .user-role {
-    float: right;
-}
 .img-user {
     border-radius: 80px;
-border: 1px solid #E9E581;
+    border: 1px solid #E9E581;
 }
-.btn-edit-img {
-    margin-top: -15px!important;
-}
+
 .p-button.p-fileupload-choose {
     background-color: #DE1B1B!important;
 }
 .p-button-label {
     font-size: 10px!important;
+
 }
 
 .nav-left {
@@ -44,8 +35,7 @@ border: 1px solid #E9E581;
 }
 
 .order, .euro, .infos , .settings {
-    height: 100px;
-    display: flex;  
+    height: 100px; 
 }
 
 .order:hover, .euro:hover, .infos:hover, .settings:hover{
@@ -58,9 +48,7 @@ border: 1px solid #E9E581;
 .order-link:active, .euro-link:active, .infos-link:active, .settings-link:active{
     background-color: #E9E581;
 }
-.items {
-    padding-top: 170px;
-}
+
 .titte-ct-empty {
     color: #DE1B1B;
     text-align: center;
@@ -100,6 +88,11 @@ border: 1px solid #E9E581;
 .card {
     margin: auto;
 
+}
+
+.items{
+    vertical-align: middle;
+    display: inline-block;
 }
 
 
@@ -176,6 +169,12 @@ border: 1px solid #E9E581;
 /*********** end user infos ***********/
 
 /*********** edit user infos form ***********/
+.btn-edit-img {
+    background-color: #DE1B1B!important;
+    text-transform: uppercase!important;
+    font-size: 12px!important;
+
+}
 .btn-edit {
     background-color: #DE1B1B;
     text-transform: uppercase;
@@ -215,11 +214,6 @@ border: 1px solid #E9E581;
     p.user-info{
         font-size: 10px;
     }
-
-    .nav-header {
-        height: 60px;
-    }
-
     .order, .euro, .infos , .settings {
         height: 60px;
         width: 60px;
@@ -279,98 +273,12 @@ border: 1px solid #E9E581;
     .text {
         margin-bottom: 35px;
     }
+    .icone, p {
+        height: 30px;
+        margin: auto;
+    }
 }
-
-
-
 /********* end responsive ***********/
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
