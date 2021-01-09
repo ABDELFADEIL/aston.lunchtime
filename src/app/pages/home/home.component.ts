@@ -250,26 +250,7 @@ export class HomeComponent implements OnInit {
     }
   }
   /* meals categories*/
- 
- /* paginateMeals(page_number) {
-    const totalPages:any= this.mealList.length/12;
-    this.pages= new Array<number>(parseInt(totalPages)+1);
-    if (0 > page_number){
-      this.currentPage = 0;
-    } else if (page_number > this.pages.length) {
-      this.currentPage == this.pages.length - 1;
-    } else {
-      this.currentPage = page_number;
-    }
-    this.meals = this.allMeals.slice((this.currentPage-1) * 12, this.currentPage * 12);
-    return this.meals;
 
-  }
-
-  OnMealPage(i){
-    this.currentPage = i ;
-    this.paginateMeals(this.currentPage);
-  }*/
 
   searchByCategory(value: any) {
     this.currentCategory = value;
@@ -279,8 +260,8 @@ export class HomeComponent implements OnInit {
       this.meals = meals;
       console.log(meals);
     } else{ 
-      const meals = this.mealList;
-      this.meals = meals;
+      
+      this.meals = this.mealList;
     }
 }
 }
