@@ -12,11 +12,9 @@ export class OrderComponent implements OnInit {
 
 
   list: any[] = [];
-  messageInfo: string;
   constructor(public orderService: OrdersService, public mealService: MealService) { }
 
   ngOnInit(): void {
-    this.messageInfo = undefined;
     this.getMealList();
   }
 
@@ -32,7 +30,7 @@ export class OrderComponent implements OnInit {
       .then(res => {
         console.log("res", res);
         this.orderService.order = new Order();
-        this.messageInfo = "Votre commande a bien été prise en compte !"
+        this.orderService.messageInfo = "Votre commande a bien été prise en compte !"
       })
       .catch(err => {
         console.log("err", err);

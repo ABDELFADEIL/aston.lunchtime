@@ -19,6 +19,7 @@ export class OrdersService {
   user:any;
   quantities:Quantity[]= [];
   order: Order = new Order();
+  messageInfo: string;
 
 
   constructor(private http: HttpClient, private authenticationService: AuthenticationService,

@@ -171,7 +171,8 @@ export class HomeComponent implements OnInit {
     this.displayBasic = true;
   }
   /**
-   * Fonction pour recuperer une liste de class: Quantity a ajouter dans une class order lors de la validation de la commande
+   * Fonction pour recuperer une liste de class: Quantity a ajouter dans une class order
+   *  lors de la validation de la commande (fais la meme chose que   addOrderToCart(id, isMeal)
    * @param id //id du meal ou du repas
    * @param isMeal // true si c'est un meal et false si c'est un menu
    */
@@ -203,6 +204,7 @@ export class HomeComponent implements OnInit {
     this.ordersService.order.userId = this.authenticationService.user.id;
   }
   addOrderToCart(id, isMeal) {
+    this.ordersService.messageInfo = undefined;
     let mealOrMenu: Quantity;
     if (!this.ordersService.order.userId) {
       this.ordersService.order.userId = this.authenticationService.user.id;
