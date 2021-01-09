@@ -1,16 +1,15 @@
 <div class = "p-grid">
-  <div class = "p-col-2" style="font-weight:bold;font-size:30px;font-style:italic"> 
+  <div class = "p-col-12 p-md-12 p-lg-2 " style="font-weight:bold;font-size:30px;font-style:italic"> 
   <div *ngFor ="let category of categories | keyvalue " style="margin: 10px">
     <div>
       <p style="width: 120px"><a  [ngClass]="currentCategory == category.key ? 'active': ''" style="color: #2d2d2d; font-size: 30px;cursor: pointer" (click)="searchByCategory(category.key)"> {{category.value | titlecase}}</a></p>
     </div>
   </div>
   </div>
-  <div class="p-col-10">
-  <div class="p-col">
-  </div>
-  <div *ngIf = "meals" class="myclass p-d-flex p-flex-row p-flex-wrap p-jc-start">
-    <p-card *ngFor="let meal of meals; let i = index" header="{{meal.label}}" [style]="{width: '220px'}" styleClass="p-card-shadow p-m-2">
+  <div class="p-col-10 p-md-12 p-lg-10">
+ <!--- <div *ngIf = "meals" class="myclass p-d-flex p-flex-row p-flex-wrap p-jc-start">-->
+  <div class="myclass p-d-flex p-flex-row p-flex-wrap p-jc-start">
+        <p-card *ngFor="let meal of meals; let i = index" header="{{meal.label}}" [style]="{width: '220px'}" styleClass="p-card-shadow">
         <p-header>
           <figure class= "meal_photo">
             <img class= "meal_photo"alt="Card" src="{{meal.img}}" style="border-top-left-radius: 4px;border-top-right-radius: 4px; height: 220px !important;">

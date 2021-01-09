@@ -34,6 +34,7 @@ export class UserAccountComponent implements OnInit {
   message;
   public file: File;
   upload: boolean = true;
+  detailVisible: number;
 
   constructor(
   public authenticationService: AuthenticationService,
@@ -108,6 +109,7 @@ export class UserAccountComponent implements OnInit {
     if (this.user) {
       this.orderService.getOrderByUserId(this.user.id).subscribe(data => {
         this.userOrders = data;
+        console.log(data);
       })
     }
    }
@@ -196,8 +198,5 @@ editOuSaveImage(){
        }
      );
    }
-
 }
-
-
 }
