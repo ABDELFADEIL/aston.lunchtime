@@ -256,11 +256,10 @@ export class HomeComponent implements OnInit {
     this.currentCategory = value;
     console.log(value);
     if (value != 0){
-      const  meals = this.mealList.filter(meal => meal.category == value);
-      this.meals = meals;
-      console.log(meals);
+      console.log(this.mealList);
+      this.meals = this.mealList.filter(meal => meal.category === value);
+      console.log(this.meals);
     } else{ 
-      
       this.meals = this.mealList;
     }
 }
