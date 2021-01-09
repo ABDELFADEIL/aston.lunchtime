@@ -15,8 +15,10 @@ export class OrderComponent implements OnInit {
   constructor(public orderService: OrdersService, public mealService: MealService) { }
 
   ngOnInit(): void {
-    this.list = this.mealService.mealList
-    console.log(this.list);
+    this.getMealList();
+    // this.list = this.mealService.mealList
+    // console.log("MALISTE =>");
+    // console.log(this.mealService.mealList);
   }
 
   async commanderHo() {
@@ -43,10 +45,22 @@ export class OrderComponent implements OnInit {
     this.orderService.order.quantity = [];
   }
   getLabel(mealId) {
+    // console.log("MEALID =>")
+    // console.log(mealId)
+    // console.log(this.list)
     for (let meal of this.list) {
       if (meal.id === mealId) {
+        console.log("TTTTTTTTT")
         return meal.label;
       }
     }
+  }
+
+  getMealList() {
+     this.mealService.getMealWeek().then( res => {
+       this.list = res;
+       console.log("MEAL LIST = >")
+       console.log(this.list)
+     })
   }
 }
