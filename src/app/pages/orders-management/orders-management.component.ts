@@ -1,4 +1,3 @@
-import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { Component, OnInit } from '@angular/core';
 import { OrdersService } from 'src/app/services/orders.service';
 import { UserService } from 'src/app/services/user.service';
@@ -25,22 +24,24 @@ export class OrdersManagementComponent implements OnInit {
   deleteIdx: number;
   listRecaps: Recap[];
   selectedListRecap: Recap[];
-  todayDate: string = this.getTodayDate();
+  selectedDate: string;
+  selectedCommandeTotalPrice: number;
 
   position: string;
 
-  constructor(private orderService: OrdersService, private userService: UserService, private confirmationService: ConfirmationService, private messageService: MessageService) {
-
-  }
+  constructor(private orderService: OrdersService, private userService: UserService,
+    private confirmationService: ConfirmationService, private messageService: MessageService) { }
 
   async ngOnInit() {
-    // this.getOrders();
-    // this.getOrderById(1);
-    // this.getOrderByUserId(1);
+    this.selectedDate = this.getTodayDate();
     // "2020-07-12"
-    await this.getAllOrdersForAllUsersByDate(0, "2020-07-12");
+    await this.getAllOrdersForAllUsersByDate(0, this.getTodayDate(), this.getTodayDate());
     this.createOrderRecap();
   }
+
+  /////////////////////////////////////// FONCTIONS ACCEDANT A LA BASE DE DONNEE ///////////////////////////////////////
+
+
   /**recuperer toutes les commandes
    * 
    */
@@ -49,23 +50,26 @@ export class OrdersManagementComponent implements OnInit {
     console.log("getOrders =>");
     console.log(allOrders);
   }
-  //recuperer une commande avec un id
-  /**
+  /**recuperer une commande avec un id
    * 
+   * @param id 
    */
   async getOrderById(id: number) {
     const order = await this.orderService.getOrderById(id)
     console.log("getOrderById =>");
     console.log(order);
   }
-  // recuperer une commande avec l'id d'un utilisateur
+  /**
+   * recuperer une commande avec l'id d'un utilisateur
+   * @param id 
+   */
   async getOrderByUserId(id: number) {
     const userOrders = await this.orderService.getOrderByUserId(id)
     console.log("getOrderByUserId =>");
     console.log(userOrders);
   }
   /**
-   * recuperer toutes les commandes à entre 2 dates
+   * recuperer toutes les commandes à entre 2 dates avec filtre sur le statut
    * @param status 
    * @param beginDate 
    * @param endDate 
@@ -76,7 +80,11 @@ export class OrdersManagementComponent implements OnInit {
     console.log("getAllOrdersForAllUsersByDate =>");
     console.log(allOrdersByDate);
   }
-/** */
+
+  /**
+   * confirmer L'anulation de la commande id
+   * @param id 
+   */
   confirmDelete(id: number) {
     console.log("ID =>")
     console.log(id)
@@ -84,6 +92,9 @@ export class OrdersManagementComponent implements OnInit {
     if (orderSelected.id != null) {
       this.orderService.cancelAnOrderByOrderId(orderSelected.id).then(() => {
         if (orderSelected.quantity != null) {
+          console.log("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX")
+          console.log(orderSelected.user.id)
+          console.log(this.getOrderTotalPrice(orderSelected.quantity))
           this.userService.creditUser(orderSelected.user.id, this.getOrderTotalPrice(orderSelected.quantity));
         }
         this.detailVisible = undefined;
@@ -93,56 +104,30 @@ export class OrdersManagementComponent implements OnInit {
     }
   }
 
+  /////////////////////////////////////// AUTRES FONCTIONS ///////////////////////////////////////
+
+
+  /**
+   * 
+   * @param tabQuantity 
+   */
   getOrderTotalPrice(tabQuantity) {
     let totalpirce = 0;
     for (let el of tabQuantity) {
-      totalpirce += el.meal.priceDF;
+      let qty = el.quantity
+      let mealPrice = el.meal.priceDF
+      let total = mealPrice * qty
+      totalpirce += total;
     }
     return totalpirce;
   }
-
-
   /**
- * cancel an order with an order Id
- * @param orderId 
- */
-  // cancelAnOrderByOrderId(orderId:number) {
-  //   if(orderId != null){
-
-  //     this.orderService.cancelAnOrderByOrderId(orderId)
-  //   } 
-  // }
-
-  /**
-   * credit an user
-   * @param userId 
-   * @param amount 
+   * créer le recapitulatif des plats commandés avec la quantité
    */
-  // creditUser(userId:number, amount:number) {
-  //   this.userService.creditUser(userId,amount);
-  // }
-
-
-
-  showDetails(i) {
-    if (this.detailVisible !== i) {
-      this.detailVisible = i;
-      this.deleteIdx = undefined;
-    } else {
-      this.detailVisible = undefined;
-    }
-    console.log("index => ");
-    console.log(i);
-  }
-  test() {
-    console.log("hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh")
-  }
   createOrderRecap() {
     let listmeal = []
     let listUnicName = []
     let listRecap = []
-    console.log("ssssssssssssssssssssssssssssssssssssssss");
-    console.log(this.listeCommandesDays);
     for (let command of this.listeCommandesDays) {
       if (command.quantity != null) {
         for (let item of command.quantity) {
@@ -161,18 +146,17 @@ export class OrdersManagementComponent implements OnInit {
             }
           }
         }
-
       }
     }
-
     this.listRecaps = listRecap;
     console.log(listRecap);
-
-
-
   }
-
-  doDelete(i) {
+  /**
+   * afficher la demande de confirmation d'annulation d'une commande grace à son index
+   * @param i 
+   */
+  askDelete(i) {
+    this.selectedCommandeTotalPrice = undefined
     console.log("ID =>")
     console.log(i)
     let orderSelected = this.listeCommandesDays[i];
@@ -183,25 +167,43 @@ export class OrdersManagementComponent implements OnInit {
     } else {
       this.deleteIdx = undefined;
     }
-    let date = this.getTodayDate();
-    console.log(date);
+  }
+  /**afficher les détails d'une commande grace à son index
+ * 
+ * @param i 
+ */
+  showDetails(i) {
+    if (this.detailVisible !== i) {
+      this.detailVisible = i;
+      this.deleteIdx = undefined;
+      let orderSelected = this.listeCommandesDays[i];
+      this.selectedCommandeTotalPrice = this.getOrderTotalPrice(orderSelected.quantity);
+
+      console.log(orderSelected);
+    } else {
+      this.selectedCommandeTotalPrice = undefined;
+      this.detailVisible = undefined;
+    }
     console.log("index => ");
     console.log(i);
   }
-
-  // confirmDelete(i) {
-  //   let orderSelected = this.listeCommandesDays[i];
-  // this.cancelAnOrderByOrderId(orderSelected.id).then()
-  // }
-
-/**
-//  recuperer la date du jour au fromat yyyy-mm-dd
- */
+  /**
+  //  recuperer la date du jour au fromat yyyy-mm-dd
+   */
   getTodayDate() {
     let date = new Date();
-    const todayDate = formatDate(date,"yyyy-MM-dd","en-US")
+    const todayDate = formatDate(date, "yyyy-MM-dd", "en-US")
     console.log("daaaaate =>")
-    console.log(todayDate) 
+    console.log(todayDate)
     return todayDate;
+  }
+  /**
+   * recuperer les commandes au jour selectionné
+   */
+  async findOrdersByDate() {
+    console.log("DATE SELECTIONNEE =>")
+    console.log(this.selectedDate)
+    await this.getAllOrdersForAllUsersByDate(0, this.selectedDate, this.selectedDate);
+    this.createOrderRecap();
   }
 }

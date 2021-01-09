@@ -48,6 +48,8 @@
     margin: auto;
     width: 40px;
     vertical-align: middle;
+    margin-top: 30px!important;
+    margin-bottom: 30px!important;
 }
 .order-link:active, .euro-link:active, .infos-link:active, .settings-link:active{
     background-color: #E9E581;
@@ -135,6 +137,11 @@
 /***********end jackpot***********/
 
 /*********** user infos ***********/
+.user-info {
+    font-size: 14px!important;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
 .profile-img {
    text-align: center;
 }
@@ -142,10 +149,13 @@
     background-color: white;
     border-radius: 5px;
     margin: auto;
+    padding-top: 30px!important;
+    padding-bottom: 30px!important;
 }
 .user-details {
     vertical-align: middle;
-    margin: auto;
+    margin-right:0!important;
+    padding-right: 0!important;
 }
 .user-info-img{
     padding-right: 10px;
@@ -154,11 +164,9 @@
 .fa-envelope, .fa-calendar, .fa-map-marker, .fa-mobile {
     color:#87AAB9;
     vertical-align: middle;
-    font-size: 25px;
+    font-size: 30px;
 }
-.fa-map-marker, .fa-mobile {
-    font-size: 38px;
-}
+
 
 /*********** end user infos ***********/
 
@@ -192,17 +200,33 @@
 
 /*********** orders ***********/
 .table {
-    margin: auto;
+    border-radius: 5px;
 }
 /*********** end orders ***********/
 
 /***********responsive***********/
 
-@media screen and (min-width: 768px) and (max-width: 1024px) {
+@media screen and (min-width: 656px) and (max-width: 1024px) {
     .icone{
         width: 20px;
         height: 20px;
         
+    }
+    .user-details {
+        padding-bottom:0!important;
+        padding-top:0!important;
+        padding-left:30px!important;
+    }
+    .user-infos-content {
+        padding-bottom: 30!important;
+        padding-top: 30!important;
+    }
+    .ct-background {
+        width: 150px;
+        height: 150px;
+    }
+    .ct-text {
+        font-size: 12px;
     }
 }
 @media screen and (max-width: 540px) {
@@ -216,36 +240,31 @@
     p.user-info{
         font-size: 10px;
     }
-   
-
     .title-card {
         font-size: 14px;
         padding-top: 0;
-    }
-    .ct-background {
-        width: 120px;
-        height: 120px;
     }
     .ct-sum{
         font-size:40px;
     }
     .ct-text{
-        font-size: 12px;
+        font-size: 10px;
     }
     .items {
         margin-top: 0px;
     }
     .user-infos-content {
-        padding-bottom: 0;
-        padding-top: 0;
+        padding-bottom: 30!important;
+        padding-top: 30!important;
     }
     .profile-img {
         width: 100%!important;
     }
     .user-details {
         width: 100%!important;
-        padding-bottom: 0;
-        padding-top: 0;
+        padding-bottom: 0!important;
+        padding-top: 0!important;
+        padding-left: 30px!important;
     }
     .display-grid {
         display: grid;
@@ -279,6 +298,10 @@
     .p-col{
         padding-right: 0!important;
         padding-left: 0!important;
+    }
+    .ct-background {
+        width: 100px;
+        height: 100px;
     }
 }
 /********* end responsive ***********/
