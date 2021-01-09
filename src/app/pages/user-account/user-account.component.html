@@ -15,7 +15,7 @@
                 </span>
                 </p>
            </div>
-           <div class="p-col-4 p-md-4 p-mt-4 p-lg-3">
+           <div class="p-col-4 p-md-4 p-lg-3">
             <img [src]="user.image64" height="80px" class="img-user">
             <div>
               <p-fileUpload *ngIf="upload"  mode="basic" name="file" accept="image/*"
@@ -26,9 +26,7 @@
        </div>
      </div>
     <!-- end horizontal menu ----->
-
-
-      <!---- vertical menu --->
+    <!---- vertical menu --->
      <div class="p-grid p-col-12">
         <div class="p-col-1 nav-left">
             <div class="items p-grid p-dir-col">
@@ -82,7 +80,6 @@
        <!---- end my orders --->
       <!---- card --->
         <div class="p-col-9 p-mb-6" *ngIf="wallet">
-          <h1 class="title-card p-mb-4 p-mt-6 p-ml-1"> Ma cagnotte</h1>
         <!---- wallet 0 --->
               <div *ngIf="user.wallet == 0">
                 <div class="card">
@@ -116,18 +113,19 @@
       <div class="p-col-9 p-mb-6" *ngIf="infos">
         <h1 class="title-card p-mb-4 p-mt-6 p-ml-1" *ngIf="infos">Mes informations</h1>
         <div class="user-infos-content p-grid p-d-flex">
-            <div class="p-col-12 p-md-12 p-lg-3 profile-img">
+            <div class="p-col-12 p-md-12 p-lg-12 profile-img">
                 <img [src]="user.image64" class="img-user" height="150px">
-                <p><b>{{ user.firstname }}<br> {{ user.name }}</b></p>
+                <p><b>{{ user.firstname }} {{ user.name }}</b></p>
             </div>
-            <div class="p-col-12 p-md-12 p-lg-5 user-details">
-                <p class="user-info"><i class="fa fa-envelope p-mr-2" aria-hidden="true"></i>{{ user.email }}</p>
-                <p class="user-info"><i class="fa fa-map-marker p-mr-2" aria-hidden="true"></i>{{user.address | titlecase}} {{ user.postalCode }} {{ user.town | titlecase }}</p>
+              <div class="p-col-12 p-md-12 p-lg-6 user-details">
+                <p class="user-info p-ml-6"><i class="fa fa-envelope p-mr-2" aria-hidden="true"></i>{{ user.email }}</p>
+                <p class="user-info p-ml-6"><i class="fa fa-map-marker p-mr-2" aria-hidden="true"></i>{{user.address | titlecase}} {{ user.postalCode }} {{ user.town | titlecase }}</p>
             </div>
-            <div class="p-col-12 p-md-12 p-lg-4 user-details">
-                <p class="user-info"><i class="fa fa-mobile p-mr-2"></i>{{ user.phone}}</p>
-                <p class="user-info"><i class="fa fa-calendar p-mr-2" aria-hidden="true"></i>{{ user.registrationDate}}</p>
+            <div class="p-col-12 p-md-12 p-lg-6 user-details">
+                <p class="user-info p-ml-6"><i class="fa fa-mobile p-mr-2"></i>{{ user.phone}}</p>
+                <p class="user-info p-ml-6"><i class="fa fa-calendar p-mr-2" aria-hidden="true"></i>{{ user.registrationDate}}</p>
             </div>
+           
         </div>
   </div>
   <!---- end user infos --->
