@@ -15,13 +15,16 @@
                 </span>
                 </p>
            </div>
-           <div class="p-col-4 p-md-4 p-lg-3">
-            <img [src]="user.image64" height="80px" class="img-user">
-            <div>
+           <div class="p-col-4 p-md-4 p-lg-3 p-d-flex">
+             <div>
+              <img [src]="user.image64" height="80px" class="img-user">
+             </div>
+            <div class="btn-img p-mt-6">
               <p-fileUpload *ngIf="upload"  mode="basic" name="file" accept="image/*"
-              (onSelect)="handleFileSelect($event)" [auto]="true" chooseLabel="Editer"></p-fileUpload>
-              <button (click)="editUserImg()" *ngIf="!upload" pButton pRipple type="button" class="btn-edit-img" label="Enregistrer" 
-              class="p-button-raised"></button>
+              (onSelect)="handleFileSelect($event)" [auto]="true" chooseLabel="Editer" id="btn-edit-img"></p-fileUpload>
+              <button (click)="editUserImg()" *ngIf="!upload" pButton pRipple type="button" id="btn-save-img" label="Enregistrer" 
+              class="p-button-raised">
+            </button>
             </div>
        </div>
      </div>
@@ -70,7 +73,7 @@
                     <tr class="row-table">
                         <td>{{ userOrder.creationDate }}</td>
                         <td>{{ userOrder.creationTime }}</td>
-                        <td>commande</td>
+                        <td>{{ userOrder[0]}}</td>
                         <td>5</td>
                         <td>{{ userOrder.status == 0 ? 'crée': userOrder.status == 1 ? 'prête': 'annulée'}}</td>
                     </tr>
