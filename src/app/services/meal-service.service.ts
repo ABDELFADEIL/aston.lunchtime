@@ -8,6 +8,10 @@ import {MealDTO} from "../models/mealDTO";
   providedIn: 'root'
 })
 export class MealService {
+
+  meal:MealDTO = new MealDTO;
+  mealList:MealDTO [] =[];
+
   jwtToken: string;
   private api_url = "http://localhost:8080/lunchtime/";
   constructor(private http: HttpClient, private authenticationService: AuthenticationService) { }

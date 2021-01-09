@@ -1,7 +1,7 @@
 <app-digital-clock></app-digital-clock>
 
 <div class="myclass p-d-flex p-flex-row p-flex-wrap p-jc-center">
-  <p-card *ngFor="let meal of mealList" header="{{meal.label}}" [style]="{width: '220px'}" styleClass="p-card-shadow">
+  <p-card *ngFor="let meal of mealList;" header="{{meal.label}}" [style]="{width: '220px'}" styleClass="p-card-shadow">
     <p-header>
         <figure class= "meal_photo">
       <img class= "meal_photo"alt="Card" src="{{meal.img}}" style="border-top-left-radius: 4px;border-top-right-radius: 4px; height: 220px !important;">
@@ -10,7 +10,7 @@
     <p>Déscription: {{meal.description ? meal.description: 'Lorem ipsum dolor sit amet'}}</p>
     <h6 style="font-size:15px;font-family: 'Cormorant Garamond', serif;">Prix:{{meal.priceDF + '€'}}</h6>
     <ng-template pTemplate="footer">
-      <p-button id= "commander"label="Commander" (click)="addOderToCart(meal.id,true)" *ngIf="authenticationService.authenticated" icon="pi pi-shopping-cart" [style]="{'background': '#585858','width': '100%','margin-bottom':'30px'}"></p-button>
+      <p-button id= "commander"label="Commander" (click)="addOderToCart(meal.id,true)" *ngIf="authenticationService.authenticated" icon="pi pi-shopping-cart" [style]="{'background': '#585858','width': '100%','margin-bottom':'30px'}"> {{ getMealQty(meal.id) }} </p-button>
       <p-button label="Commander" (click)="showInfo()" *ngIf="!authenticationService.authenticated" icon="pi pi-shopping-cart" [style]="{'background': '#87AAB9','width': '100%'}"></p-button>
     </ng-template>
     <p-dialog header="info" [(visible)]="displayBasic" [style]="{width: '20vw',background:'#212529'}">

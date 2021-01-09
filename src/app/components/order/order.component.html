@@ -1,12 +1,13 @@
 <div>
   <ul>
     <li *ngIf="orderService.order" >
-      <p *ngFor="let order of orderService.order.quantity" >
-        {{ order.mealId ||order.menuId }} quantité: {{ order.quantity }}
+      <p *ngFor="let order of orderService.order.quantity; let index = index;"  >
+        {{ getLabel(order.mealId)  ||order.menuId }} quantité: {{ order.quantity }} <button (click)="retirerPlat(index)" >retirer</button>
       </p>
       
     </li>
   </ul>
   <button (click)="commanderHo()" >commander</button>
+  <button (click)="emptyCart()" >vider le panier</button>
 </div>
 <p>order works!</p>
