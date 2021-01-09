@@ -2,6 +2,7 @@
 
 export class MealDTO {
 
+  id: number;
   description;
   label;
   image: { imagePath, image64} = { imagePath: '', image64: ''}

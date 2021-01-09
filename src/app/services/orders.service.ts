@@ -85,14 +85,12 @@ export class OrdersService {
   }
   getAllOrdersForAllUsersByDate(status?: number, beginDate?: string, endDate?: string): Promise<any> {
     if (!beginDate) {
-      return this.http.get<any>(URL + "order/findallbetweendateinstatus?status=" + status + "&endDate=" + endDate,
-        { headers: new HttpHeaders({ 'Authorization': this.authenticationService.jwtToken }) }).toPromise();
+      return this.http.get<any>(URL + "order/findallbetweendateinstatus?status=" + status + "&endDate=" + endDate).toPromise();
     } if (!endDate) {
       return this.http.get<any>(URL + "order/findallbetweendateinstatus?status=" + status + "&beginDate=" + beginDate,
-        { headers: new HttpHeaders({ 'Authorization': this.authenticationService.jwtToken }) }).toPromise();
+        ).toPromise();
     }
-    return this.http.get<any>(URL + "order/findallbetweendateinstatus?status=" + status + "&beginDate=" + beginDate + "&endDate=" + endDate,
-      { headers: new HttpHeaders({ 'Authorization': this.authenticationService.jwtToken }) }).toPromise();
+    return this.http.get<any>(URL + "order/findallbetweendateinstatus?status=" + status + "&beginDate=" + beginDate + "&endDate=" + endDate).toPromise();
   }
   /**
    * delete an order

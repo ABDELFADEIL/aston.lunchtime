@@ -10,16 +10,23 @@
           </ng-template>
 
           <ng-template pTemplate="end">
-            <div class="p-d-flex p-p-3" style="display: flex;">
+            <div class="p-d-flex" style="display: flex;">
               <div *ngIf="!authenticationService.authenticated" class="p-m-2" style="margin-right: 20px;">
                 <i class="fa fa-user clickable" (click)="onLogin()" style="font-size: 1.3rem;"></i>
               </div>
               <div *ngIf="authenticationService.authenticated" class="p-m-2" style="margin-right: 20px;">
-                <div style="color: blanchedalmond;">
-                  <button type="button" (click)="show()" pButton icon="pi pi-info-circle" label="Show"></button>
-                  <i class="p-mr-3"> Bonjour {{authenticationService.user.firstname}} {{authenticationService.user.name}}</i> <br>
-                  <i class="p-mr-3"> Ma cagnotte:  {{authenticationService.user.wallet}} €</i>
-                  <i class="fa fa-sign-in clickable" (click)="logout()"  style="font-size: 1.3rem;"></i>
+                <div style="color: blanchedalmond;" class="p-d-flex p-flex-wrap">
+                  <div  class="p-col-12 p-md-12 p-lg-9" >
+                    <i class="p-mr-3"> Bonjour {{authenticationService.user.firstname}} {{authenticationService.user.name}}</i>
+                    <br>
+                    <i class="p-mr-3"> Ma cagnotte:  {{authenticationService.user.wallet}} €</i>
+                    <button type="button" (click)="show('top-right')" class="p-button-sm" style="background-color: #17a2b8; margin:auto;" pButton icon="pi pi-shopping-cart" label="Panier"></button> <br>
+                  </div>
+                  <div class="p-col-12 p-md-12 p-lg-3">
+                    <i class="fa fa-sign-in clickable" (click)="logout()"  style="font-size: 1.3rem;"></i>
+                  </div>
+
+
                 </div>
               </div>
             </div>
@@ -38,11 +45,18 @@
   <app-login style =""></app-login>
 </p-dialog>
 <!-- TODO CORRIGER ERREUR -->
-<p-dialog #cd [(visible)]="userService.display" [modal]="true" [draggable]="true"
+<p-dialog #cd [(visible)]="userService.display"  [modal]="true" [draggable]="true"
           [closable]="false" [draggable]="true"
           [showHeader]="false"
           [responsive]="true"
           [style]="{ minWidth: '100vh', height:'100vh', border: 'none', overflow: 'hidden', paddingTop: '1rem'}"
            [baseZIndex]="10000">
   <app-user-account style =""></app-user-account>
+</p-dialog>
+
+<p-dialog header="Votre panier" [(visible)]="displayPosition" [position]="position" [modal]="true" [style]="{width: '50vw', maxHeight: '700px', marginTop:'130px'}" [baseZIndex]="10000"
+          [draggable]="true" [resizable]="true">
+  <app-order></app-order>
+  <ng-template pTemplate="footer">
+  </ng-template>
 </p-dialog>

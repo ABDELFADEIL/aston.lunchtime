@@ -7,17 +7,16 @@ import {AuthenticationService} from "./authentication.service";
 })
 export class IngredientService {
 
-  private api_url="http://localhost:8080/lunchtime/";
 
   constructor(private http:HttpClient, private authenticationService: AuthenticationService) { }
 
 
   findAllIngredients() : Promise<any> {
-    return this.http.get<any>(this.api_url+"ingredient/findall").toPromise();
+    return this.http.get<any>(URL+"ingredient/findall").toPromise();
   }
 
   getById(ingredientId:number) : Promise<any> {
-    return this.http.get<any>(this.api_url+"ingredient/find/ingredientId").toPromise();
+    return this.http.get<any>(URL+"ingredient/find/ingredientId").toPromise();
   }
 
   findImgIngredient(ingredientId: number): Promise<any> {

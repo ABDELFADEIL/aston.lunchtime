@@ -9,6 +9,9 @@
     margin: 0!important;
     padding: 0!important;
 }
+.p-col {
+    padding: 0!important;
+}
 
 .content {
     margin: auto;
@@ -41,15 +44,17 @@
     background-color: #E9E581;
 }
 .icone{
-    height: 50px;
+    height: 40px;
     margin: auto;
-    width: 50px;
+    width: 40px;
+    vertical-align: middle;
 }
 .order-link:active, .euro-link:active, .infos-link:active, .settings-link:active{
     background-color: #E9E581;
 }
 .order-link, .euro-link, .infos-link, .settings-link {
     text-align: center;
+    margin-bottom: 0;
 }
 
 .titte-ct-empty {
@@ -125,7 +130,7 @@
 
 }
 .ng-star-inserted {
-    margin: auto!important;
+    margin: auto;
 }
 /***********end jackpot***********/
 
@@ -192,6 +197,14 @@
 /*********** end orders ***********/
 
 /***********responsive***********/
+
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+    .icone{
+        width: 20px;
+        height: 20px;
+        
+    }
+}
 @media screen and (max-width: 540px) {
 
     .img-user {
@@ -264,7 +277,8 @@
         margin: auto;
     }
     .p-col{
-        padding: 0;
+        padding-right: 0!important;
+        padding-left: 0!important;
     }
 }
 /********* end responsive ***********/

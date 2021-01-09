@@ -24,7 +24,7 @@ import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 
 export class HomeComponent implements OnInit {
 
-  @Input() count:number =0;
+  @Input() count: number = 0;
 
 
   displayBasic: boolean;
@@ -38,6 +38,7 @@ export class HomeComponent implements OnInit {
   success: boolean;
   message;
   quantity: Quantity = new Quantity()
+
 
 
 
@@ -61,7 +62,7 @@ export class HomeComponent implements OnInit {
   /* menus de la semaine*/
 
   async getMenuWeek() {
-    const response = await this.menuService.getMenuToday();
+    const response = await this.menuService.getMenuWeek();
     this.menuList = response;
     this.menuList.forEach(element => {
       this.getMenuImage(element.id)
@@ -114,6 +115,9 @@ export class HomeComponent implements OnInit {
   async getMealsWeek() {
     const response = await this.mealService.getMealWeek();
     this.mealList = response;
+
+    // modifier
+    this.mealService.mealList = response;
     this.mealList.forEach(element => {
       this.getMealImage(element.id);
       console.log(this.mealList);
@@ -188,38 +192,38 @@ export class HomeComponent implements OnInit {
         this.ordersService.quantities.push(item);
       }
     }
-    this.ordersService.order.quantity= this.ordersService.quantities;
+    this.ordersService.order.quantity = this.ordersService.quantities;
     this.ordersService.order.userId = this.authenticationService.user.id;
   }
-  addOderToCart(id, isMeal){
+  addOrderToCart(id, isMeal) {
     let mealOrMenu: Quantity;
     if (!this.ordersService.order.userId) {
       this.ordersService.order.userId = this.authenticationService.user.id;
     }
-    if (isMeal){
-       this.ordersService.order.quantity.forEach(m => {
-         if(m.mealId === id){
-           mealOrMenu = m;
-         }
-       });
-      if (mealOrMenu){
-        mealOrMenu.quantity = mealOrMenu.quantity +1;
+    if (isMeal) {
+      this.ordersService.order.quantity.forEach(m => {
+        if (m.mealId === id) {
+          mealOrMenu = m;
+        }
+      });
+      if (mealOrMenu) {
+        mealOrMenu.quantity = mealOrMenu.quantity + 1;
         console.log(mealOrMenu);
-      }else {
+      } else {
         mealOrMenu = new Quantity();
         mealOrMenu.mealId = id;
         mealOrMenu.quantity = 1;
         this.ordersService.order.quantity.push(mealOrMenu);
       }
-    }else {
+    } else {
       this.ordersService.order.quantity.forEach(m => {
-        if(m.menuId === id){
+        if (m.menuId === id) {
           mealOrMenu = m;
         }
       });
-      if (mealOrMenu){
+      if (mealOrMenu) {
         mealOrMenu.quantity = mealOrMenu.quantity + 1;
-      }else {
+      } else {
         mealOrMenu = new Quantity();
         mealOrMenu.mealId = id;
         mealOrMenu.quantity = 1;
@@ -228,6 +232,16 @@ export class HomeComponent implements OnInit {
     }
     console.log(this.ordersService.order);
   }
-}
 
+  getMealQty(id) {
+    if(this.ordersService.order){
+      for (let q of this.ordersService.order.quantity) {
+        if (q.mealId === id) {
+          return q.quantity;
+        }
+      }
+    }
+
+  }
+}
 

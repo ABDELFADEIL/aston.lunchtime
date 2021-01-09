@@ -1,12 +1,27 @@
-<div>
-  <ul>
-    <li *ngIf="orderService.order" >
-      <p *ngFor="let order of orderService.order.quantity" >
-        {{ order.mealId ||order.menuId }} quantité: {{ order.quantity }}
+
+
+<div *ngIf="orderService.order.quantity.length > 0">
+
+    <div *ngIf="orderService.order" class="p-d-flex p-flex-wrap p-flex-column">
+      <p *ngFor="let order of orderService.order.quantity; let index = index;" class="p-col">
+          {{ getLabel(order.mealId)  ||order.menuId }} quantité: {{ order.quantity }}
+          <i style="color: red; font-size: 24px" class="fa fa-trash-o p-ml-4 clickable" (click)="retirerPlat(index)"  aria-hidden="true"></i>
       </p>
-      
-    </li>
-  </ul>
-  <button (click)="commanderHo()" >commander</button>
+    </div>
+  </div>
+  <div class="p-col p-d-flex p-flex-nowrap p-jc-start">
+    <div class="col-6">
+      <button *ngIf="orderService.order.quantity.length > 0" (click)="commanderHo()" pButton pRipple type="button" label="commander" class="p-button-raised p-ml-4"></button>
+    </div>
+    <div class="col-6">
+      <button *ngIf="orderService.order.quantity.length > 0" (click)="emptyCart()" pButton pRipple type="button" label="vider le panier" class="p-button-raised p-button-danger p-ml-4"></button>
+    </div>
+  </div>
+
+
+
+<div *ngIf="orderService.order.quantity.length == 0">
+  <div style="color: red">
+    Votre panier est vide!
+  </div>
 </div>
-<p>order works!</p>
