@@ -57,7 +57,7 @@
       </div>
       <!---- end vertical menu --->
       <!---- my orders --->
-            <div class="table p-col-9 p-mb-6" *ngIf="userOrders && orders">
+            <div class="table p-col-11 p-mb-6" *ngIf="userOrders && orders">
               <h1 class="title-card p-mb-4 p-mt-6 p-ml-1">Mes commandes</h1>
               <p-table [value] = "userOrders">
                 <ng-template pTemplate="header">
@@ -66,18 +66,27 @@
                         <th>Heure</th>
                         <th>Commande</th>
                         <th>Prix</th>
-                        <th>Statut</th>
                     </tr>
                 </ng-template>
                 <ng-template pTemplate="body" let-userOrder let-i="rowIndex">
                     <tr class="row-table">
                         <td>{{ userOrder.creationDate }}</td>
                         <td>{{ userOrder.creationTime }}</td>
-                        <td *ngFor="let order of userOrders[i].quantity; let j = index" >
-                          {{ order.meal.label }}
+                        <td>
+                          <ul>
+                            <li>
+                              <ul>
+                                <li>
+                                  <p *ngFor="let order of userOrders[i].quantity; let j=index" class="table-text"> <span
+                                      style="font-weight: bold;"> {{ order.quantity }}</span> - {{order.meal.label}}, prix:
+                                    {{order.meal.priceDF}} € </p>
+                                </li>
+                              </ul>
+                            </li>
+                            <br>
+                          </ul>
                         </td>
-                        <td>5</td>
-                        <td>{{ userOrder.status == 0 ? 'crée': userOrder.status == 1 ? 'prête': 'annulée'}}</td>
+                        <td>€</td>
                     </tr>
                 </ng-template>
               </p-table>

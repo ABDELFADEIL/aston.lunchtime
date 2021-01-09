@@ -201,6 +201,10 @@
 /*********** orders ***********/
 .table {
     border-radius: 5px;
+
+}
+.p-datatable table {
+    width: 80%!important;
 }
 /*********** end orders ***********/
 

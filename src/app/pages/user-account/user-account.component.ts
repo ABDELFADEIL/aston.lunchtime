@@ -8,6 +8,7 @@ import { element } from 'protractor';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {Router} from "@angular/router";
 import {ConfirmationService, MessageService} from "primeng/api";
+import { Order, Quantity } from 'src/app/models/order';
 
 class Image {
   imagePath: string;
@@ -35,6 +36,7 @@ export class UserAccountComponent implements OnInit {
   public file: File;
   upload: boolean = true;
   detailVisible: number;
+  totalePrice: number;
 
   constructor(
   public authenticationService: AuthenticationService,
@@ -109,9 +111,8 @@ export class UserAccountComponent implements OnInit {
     if (this.user) {
       this.orderService.getOrderByUserId(this.user.id).subscribe(data => {
         this.userOrders = data;
-        console.log("XXXXXXXXXXXXXXXXXXXXXXXXXXXX");
         console.log(data);
-        console.log("XXXXXXXXXXXXXXXXXXXXXXXXXXXX");
+        return data;
       })
     }
    }
@@ -122,7 +123,6 @@ export class UserAccountComponent implements OnInit {
         this.user.image64 = res.image64;
       });
     }
-
   }
 
  findUserImg(id_user){
@@ -200,5 +200,6 @@ editOuSaveImage(){
        }
      );
    }
-}
+  }
+
 }
