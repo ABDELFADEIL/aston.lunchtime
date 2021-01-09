@@ -11,6 +11,7 @@ export class OrderComponent implements OnInit {
   constructor(public orderService: OrdersService) { }
 
   ngOnInit(): void {
+    
   }
   async commanderHo() {
     console.log(this.orderService.order);
@@ -23,4 +24,5 @@ export class OrderComponent implements OnInit {
         console.log("err", err);
       });
   }
+
 }
