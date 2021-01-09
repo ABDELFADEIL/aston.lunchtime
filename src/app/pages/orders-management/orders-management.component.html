@@ -1,14 +1,14 @@
 <div class="p-d-flex mr-t p-flex-wrap p-flex-column p-flex-md-row">
   <!-- liste des commandes pour chaque utilisateur -->
   <div class="p-col-12 p-md-12 p-lg-6">
-    <p-table #dt [value]="listeCommandesDays" [scrollable]="true" scrollHeight="58vh" [style]="{'width':'96%', margin:'auto'}"
-      [globalFilterFields]="['user.name','user.firstname']">
+    <p-table #dt [value]="listeCommandesDays" [scrollable]="true" scrollHeight="58vh"
+      [style]="{'width':'96%', margin:'auto'}" [globalFilterFields]="['user.name','user.firstname']">
       <ng-template pTemplate="caption">
         <div class="table-header">
-          Commandes au {{ todayDate }} :
+          Commandes au <input style="margin-left: 2px;" type="date" [(ngModel)]="selectedDate" (input)="findOrdersByDate()"> :
           <span class="p-input-icon-left">
             <i class="pi pi-search"></i>
-            <input pInputText type="text" (input)="dt.filterGlobal($event.target.value, 'contains')"
+            <input style="width: 10.8rem;" pInputText type="text" (input)="dt.filterGlobal($event.target.value, 'contains')"
               placeholder="Utilisateur" />
           </span>
         </div>
@@ -30,8 +30,9 @@
             <button pButton pRipple type="button" styleClass="p-button-sm" icon="pi pi-search-plus"
               pTooltip="Détails de la commande" (click)="showDetails(i)"
               style="margin: 0 0.5rem 0 -0.4rem; background-color:#17a2b8;" class="p-button-rounded"></button>
-            <button pButton pRipple type="button" styleClass="p-button-sm" icon="pi pi-times" style="margin-left: 0.2rem;"
-              pTooltip="Annuler la commande" (click)="doDelete(i)" class="p-button-rounded p-button-warning"></button>
+            <button pButton pRipple type="button" styleClass="p-button-sm" icon="pi pi-times"
+              style="margin-left: 0.2rem;" pTooltip="Annuler la commande" (click)="askDelete(i)"
+              class="p-button-rounded p-button-warning"></button>
           </td>
         </tr>
         <td colspan="3" *ngIf="deleteIdx === i">
@@ -46,17 +47,24 @@
         <td colspan="3" *ngIf="detailVisible === i">
           <ul>
             <li>
-              Commande:
+              <div style="color:#17a2b8; font-size: 1.3rem;">
+                Commande: (total : {{ selectedCommandeTotalPrice }} € )
+              </div>
+
               <ul>
                 <li>
-                  <p *ngFor="let plat of listeCommandesDays[i].quantity; let j = index"> {{ plat.quantity }} - {{plat.meal.label}} prix:
-                    {{plat.meal.priceDF}} </p>
+                  <p *ngFor="let plat of listeCommandesDays[i].quantity; let j = index"> <span
+                      style="font-weight: bold;"> {{ plat.quantity }}</span> - {{plat.meal.label}}, prix:
+                    {{plat.meal.priceDF}} € </p>
                 </li>
               </ul>
             </li>
             <br>
             <li>
-              Contact:
+              <div style="color:#17a2b8; font-size: 1.3rem;">
+                Contact:
+              </div>
+              
               <ul>
                 <li>
                   <p *ngIf="listeCommandesDay.user.phone != null">Tel: {{listeCommandesDay.user.phone}}</p>

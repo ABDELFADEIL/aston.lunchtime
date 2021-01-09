@@ -118,6 +118,9 @@ export class HomeComponent implements OnInit {
 
     // modifier
     this.mealService.mealList = response;
+    console.log("REPONSE GET MEAL WEAK =>")
+    console.log(response)
+    console.log(this.mealService.mealList)
     this.mealList.forEach(element => {
       this.getMealImage(element.id);
       console.log(this.mealList);
