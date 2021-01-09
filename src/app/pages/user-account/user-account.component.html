@@ -116,11 +116,11 @@
       <div class="p-col-9 p-mb-6" *ngIf="infos">
         <h1 class="title-card p-mb-4 p-mt-6 p-ml-1" *ngIf="infos">Mes informations</h1>
         <div class="user-infos-content p-grid p-d-flex">
-            <div class="p-col-12 p-md-12 p-lg-4 profile-img">
+            <div class="p-col-12 p-md-12 p-lg-3 profile-img">
                 <img [src]="user.image64" class="img-user" height="150px">
                 <p><b>{{ user.firstname }}<br> {{ user.name }}</b></p>
             </div>
-            <div class="p-col-12 p-md-12 p-lg-4 user-details">
+            <div class="p-col-12 p-md-12 p-lg-5 user-details">
                 <p class="user-info"><i class="fa fa-envelope p-mr-2" aria-hidden="true"></i>{{ user.email }}</p>
                 <p class="user-info"><i class="fa fa-map-marker p-mr-2" aria-hidden="true"></i>{{user.address | titlecase}} {{ user.postalCode }} {{ user.town | titlecase }}</p>
             </div>
