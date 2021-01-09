@@ -43,7 +43,7 @@ export class HomeComponent implements OnInit {
   pages: any[]=[];
   meals:any[]=[];
   quantity: Quantity = new Quantity();
-  currentCategory = 0;
+  currentCategory: number = 0;
   categories=
     {0:"categories",1: "viande" ,2:"poission",4:"fast-food",5:"fruit-mer",
     6:"dessert",7:"boission",8:"entrée"}
@@ -65,6 +65,7 @@ export class HomeComponent implements OnInit {
     this.user = this.authenticationService.getUserAuthenticated();
     this.constraint = this.menuService.getConstraint();
     this.mealList = await this.getMealsWeek();
+    this.meals = this.mealList;
     this.getMenuWeek();
      console.log(new Date());
   }
@@ -175,7 +176,7 @@ export class HomeComponent implements OnInit {
    * @param isMeal // true si c'est un meal et false si c'est un menu
    */
   addTocart(id, isMeal) {
-    
+
     let item = new Quantity();
     if (isMeal) {
       let idx = this.ordersService.quantities.findIndex(x => x.mealId === id);
@@ -253,14 +254,15 @@ export class HomeComponent implements OnInit {
 
 
   searchByCategory(value: any) {
-    this.currentCategory = value;
+    this.currentCategory = parseInt(value);
     console.log(value);
     if (value != 0){
       console.log(this.mealList);
-      this.meals = this.mealList.filter(meal => meal.category === value);
+      this.meals = this.mealList.filter(meal => meal.category === this.currentCategory);
       console.log(this.meals);
-    } else{ 
+    } else{
       this.meals = this.mealList;
+      console.log(this.meals);
     }
 }
 }
