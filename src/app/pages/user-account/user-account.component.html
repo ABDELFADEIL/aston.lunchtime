@@ -3,7 +3,7 @@
   <!-- modal ----->
   <div class="content p-col-12 p-md-6 p-lg-8">
      <!-- horizontal menu ----->
-     <div class="nav-header p-grid">
+     <div class="nav-header p-grid" *ngIf = "user">
           <div class="p-col-4 p-md-4 p-lg-6"></div>
            <div class="p-col-4 p-md-4 p-lg-3">
                 <p class="user-infos p-mt-6"> {{ user.firstname }} {{user.name}} :

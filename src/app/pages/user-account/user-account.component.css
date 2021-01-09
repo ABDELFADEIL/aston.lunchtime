@@ -48,6 +48,8 @@
     margin: auto;
     width: 40px;
     vertical-align: middle;
+    margin-top: 30px!important;
+    margin-bottom: 30px!important;
 }
 .order-link:active, .euro-link:active, .infos-link:active, .settings-link:active{
     background-color: #E9E581;
@@ -142,6 +144,8 @@
     background-color: white;
     border-radius: 5px;
     margin: auto;
+    padding-top: 70px!important;
+    padding-bottom: 70px!important;
 }
 .user-details {
     vertical-align: middle;
@@ -193,6 +197,7 @@
 /*********** orders ***********/
 .table {
     margin: auto;
+    border-radius: 5px;
 }
 /*********** end orders ***********/
 
@@ -204,6 +209,16 @@
         height: 20px;
         
     }
+    .user-details {
+        padding-bottom: 0!important;
+        padding-top: 0!important;
+    }
+    .user-infos-content {
+        padding-bottom: 30!important;
+        padding-top: 30!important;
+
+    }
+    
 }
 @media screen and (max-width: 540px) {
 
@@ -236,16 +251,16 @@
         margin-top: 0px;
     }
     .user-infos-content {
-        padding-bottom: 0;
-        padding-top: 0;
+        padding-bottom: 30!important;
+        padding-top: 30!important;
     }
     .profile-img {
         width: 100%!important;
     }
     .user-details {
         width: 100%!important;
-        padding-bottom: 0;
-        padding-top: 0;
+        padding-bottom: 0!important;
+        padding-top: 0!important;
     }
     .display-grid {
         display: grid;
