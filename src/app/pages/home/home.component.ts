@@ -262,6 +262,7 @@ export class HomeComponent implements OnInit {
       console.log(this.meals);
     } else{
       this.meals = this.mealList;
+      console.log(this.meals);
     }
 }
 }
