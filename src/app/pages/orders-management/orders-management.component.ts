@@ -112,8 +112,6 @@ export class OrdersManagementComponent implements OnInit {
    * @param tabQuantity 
    */
   getOrderTotalPrice(tabQuantity) {
-
-    
     return this.orderService.getOrderTotalPrice(tabQuantity);
   }
   /**

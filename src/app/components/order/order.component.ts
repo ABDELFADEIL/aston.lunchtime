@@ -12,11 +12,10 @@ export class OrderComponent implements OnInit {
 
 
   list: any[] = [];
-  messageInfo: string;
+  messageInfo: string= undefined;
   constructor(public orderService: OrdersService, public mealService: MealService) { }
 
   ngOnInit(): void {
-    this.messageInfo = undefined;
     this.getMealList();
   }
 
@@ -31,8 +30,9 @@ export class OrderComponent implements OnInit {
     return await this.orderService.addOrder(this.orderService.order)
       .then(res => {
         console.log("res", res);
+        this.messageInfo = "Votre commande a bien été prise en compte !";
         this.orderService.order = new Order();
-        this.messageInfo = "Votre commande a bien été prise en compte !"
+        setTimeout(()=>{ this.messageInfo= "" }, 5000);
       })
       .catch(err => {
         console.log("err", err);
