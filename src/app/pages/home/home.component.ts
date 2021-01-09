@@ -204,7 +204,6 @@ export class HomeComponent implements OnInit {
     this.ordersService.order.userId = this.authenticationService.user.id;
   }
   addOrderToCart(id, isMeal) {
-    this.ordersService.messageInfo = undefined;
     let mealOrMenu: Quantity;
     if (!this.ordersService.order.userId) {
       this.ordersService.order.userId = this.authenticationService.user.id;

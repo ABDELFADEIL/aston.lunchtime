@@ -2,7 +2,7 @@
   <div class = "p-col-12 p-md-12 p-lg-2 " style="font-weight:bold;font-size:30px;font-style:italic"> 
   <div *ngFor ="let category of categories | keyvalue " style="margin: 10px">
     <div>
-      <p style="width: 120px"><a  [ngClass]="currentCategory == category.key ? 'active': ''" style="color: #2d2d2d; font-size: 30px;cursor: pointer" (click)="searchByCategory(category.key)"> {{category.value | titlecase}}</a></p>
+      <p style="width: 120px;"><a  [ngClass]="currentCategory == category.key ? 'active': ''" style="color: #2d2d2d; font-size: 30px;cursor: pointer" (click)="searchByCategory(category.key)"> {{category.value | titlecase}}</a></p>
     </div>
   </div>
   </div>
@@ -15,7 +15,7 @@
             <img class= "meal_photo"alt="Card" src="{{meal.img}}" style="border-top-left-radius: 4px;border-top-right-radius: 4px; height: 220px !important;">
           </figure>
       </p-header>
-      <p>Déscription: {{meal.description ? meal.description: 'Lorem ipsum dolor sit amet'}}</p>
+      <p style="min-height: 4rem; max-height:4rem; overflow: auto;">Déscription: {{meal.description ? meal.description: 'Lorem ipsum dolor sit amet'}}</p>
         <h6 style="font-size:15px;font-family: 'Cormorant Garamond', serif;">Prix:{{meal.priceDF + '€'}}</h6>      
         <p-button id= "commander"label="Commander" (click)="addOrderToCart(meal.id,true)" *ngIf="authenticationService.authenticated" icon="pi pi-shopping-cart" [style]="{'background': '#585858','width': '100%','margin-bottom':'30px'}"> </p-button>
         <ng-template pTemplate="footer">

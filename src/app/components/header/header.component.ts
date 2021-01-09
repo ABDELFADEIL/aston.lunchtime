@@ -88,20 +88,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
   show(position: string) {
     this.position = position;
     this.displayPosition = true;
-    /*
-    this.ref = this.dialogService.open(OrderComponent, {
-      header: 'Votre panier',
-      width: '40%',
-      contentStyle: { "max-height": "600px", 'position': 'absolute'},
-      baseZIndex: 10000,
-    });
-
-    this.ref.onClose.subscribe(() => {
-      if (true) {
-        this.messageService.add({ severity: 'info', summary: 'panier', detail:  this.ordersService.order.quantity.length+""});
-      }
-    });
-     */
   }
 
   ngOnDestroy() {

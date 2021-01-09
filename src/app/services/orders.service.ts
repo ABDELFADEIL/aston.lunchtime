@@ -19,7 +19,6 @@ export class OrdersService {
   user:any;
   quantities:Quantity[]= [];
   order: Order = new Order();
-  messageInfo: string;
 
 
   constructor(private http: HttpClient, private authenticationService: AuthenticationService,
@@ -42,27 +41,6 @@ export class OrdersService {
     return this.http.get<any>(URL + "order/findall").toPromise();
 
   }
-  /*async addOrder(obj:any): Promise<any>{
-    return this.http.put<any>(this.api_url+"order/add", JSON.stringify(obj),
-      {headers:new HttpHeaders({'authorization':this.authenticationService.jwtToken,
-                                 'Content-Type':'application/json',
-                                 'dataType': "json",
-
-                               })})
-      .toPromise();
-
-   }*/
-  /*async addOrder(obj:any){
-  return this.http.put<any>(this.api_url+"order/add",
-    {
-      headers:new HttpHeaders({'authorization':this.authenticationService.jwtToken,
-                               'Content-Type':'application/json',
-                                'dataType': "json",
-                                'body': JSON.stringify(obj),
-                                'method':"PUT",
-                             })})
-
- }*/
 
 
 
@@ -100,7 +78,10 @@ export class OrdersService {
   cancelAnOrderByOrderId(orderId: number): Promise<any> {
     return this.http.patch<any>(URL + "order/cancel/" + orderId, null).toPromise();
   }
-
+/**
+ * recuperer le prix total d'une commande a partir d'un objet quantity
+ * @param tabQuantity 
+ */
     getOrderTotalPrice(tabQuantity){
       let totalpirce = 0;
     for (let el of tabQuantity) {
