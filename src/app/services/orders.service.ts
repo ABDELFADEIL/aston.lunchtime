@@ -100,6 +100,16 @@ export class OrdersService {
     return this.http.patch<any>(URL + "order/cancel/" + orderId, null).toPromise();
   }
 
+    getOrderTotalPrice(tabQuantity){
+      let totalpirce = 0;
+    for (let el of tabQuantity) {
+      let qty = el.quantity
+      let mealPrice = el.meal.priceDF
+      let total = mealPrice * qty
+      totalpirce += total;
+    }
+    return totalpirce;
+    }
 
 }
 

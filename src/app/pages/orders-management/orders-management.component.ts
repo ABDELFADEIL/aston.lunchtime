@@ -112,14 +112,9 @@ export class OrdersManagementComponent implements OnInit {
    * @param tabQuantity 
    */
   getOrderTotalPrice(tabQuantity) {
-    let totalpirce = 0;
-    for (let el of tabQuantity) {
-      let qty = el.quantity
-      let mealPrice = el.meal.priceDF
-      let total = mealPrice * qty
-      totalpirce += total;
-    }
-    return totalpirce;
+
+    
+    return this.orderService.getOrderTotalPrice(tabQuantity);
   }
   /**
    * créer le recapitulatif des plats commandés avec la quantité
