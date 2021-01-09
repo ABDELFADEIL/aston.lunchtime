@@ -12,25 +12,24 @@ export class MealService {
   meal:MealDTO = new MealDTO;
   mealList:MealDTO [] =[];
 
-  jwtToken: string;
-  private api_url = "http://localhost:8080/lunchtime/";
-  constructor(private http: HttpClient, private authenticationService: AuthenticationService) { }
+
+  constructor(private http: HttpClient) { }
 
   async getMeals():Promise<[]>{
-    return this.http.get<[]>(this.api_url+"meal/findall")
+    return this.http.get<[]>(URL+"meal/findall")
     .toPromise();
 
  }
   getById(mealId: number): Promise<any> {
-    return this.http.get<any>(this.api_url + "meal/find/mealId").toPromise();
+    return this.http.get<any>(URL + "meal/find/mealId").toPromise();
   }
 
   getMealWeek(): Promise<any> {
-    return this.http.get<any>(this.api_url + "meal/findallavailableforweek/1").toPromise();
+    return this.http.get<any>(URL + "meal/findallavailableforweek/1").toPromise();
   }
 
   async findImgMeal(id_meal: number): Promise<any> {
-    return this.http.get<any>(this.api_url + "meal/findimg/" + id_meal).toPromise();
+    return this.http.get<any>(URL + "meal/findimg/" + id_meal).toPromise();
   }
 
 

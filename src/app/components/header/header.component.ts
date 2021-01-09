@@ -7,6 +7,7 @@ import { UserService } from 'src/app/services/user.service';
 import { ActivatedRoute, ActivatedRouteSnapshot, Router } from "@angular/router";
 import { OrdersService } from 'src/app/services/orders.service';
 import { OrderComponent } from '../order/order.component';
+import {absoluteFrom} from "@angular/compiler-cli/src/ngtsc/file_system";
 
 @Component({
   selector: 'app-header',
@@ -19,6 +20,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
   public items: MenuItem[];
   @ViewChild('cd') cd
   private snapshot: ActivatedRouteSnapshot;
+  public position: string;
+  public displayPosition: boolean;
 
   constructor(public authenticationService: AuthenticationService,
     private messageService: MessageService,
@@ -82,20 +85,23 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
 
 
-  show() {
-    const order:any = this.ordersService.order;
+  show(position: string) {
+    this.position = position;
+    this.displayPosition = true;
+    /*
     this.ref = this.dialogService.open(OrderComponent, {
-      header: 'Choose a Product',
-      width: '70%',
-      contentStyle: { "max-height": "500px", "overflow": "auto" },
-      baseZIndex: 10000
+      header: 'Votre panier',
+      width: '40%',
+      contentStyle: { "max-height": "600px", 'position': 'absolute'},
+      baseZIndex: 10000,
     });
 
     this.ref.onClose.subscribe(() => {
       if (true) {
-        this.messageService.add({ severity: 'info', summary: 'Product Selected', detail: "" });
+        this.messageService.add({ severity: 'info', summary: 'panier', detail:  this.ordersService.order.quantity.length+""});
       }
     });
+     */
   }
 
   ngOnDestroy() {

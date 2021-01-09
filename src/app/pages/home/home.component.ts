@@ -194,7 +194,7 @@ export class HomeComponent implements OnInit {
     this.ordersService.order.quantity = this.ordersService.quantities;
     this.ordersService.order.userId = this.authenticationService.user.id;
   }
-  addOderToCart(id, isMeal) {
+  addOrderToCart(id, isMeal) {
     let mealOrMenu: Quantity;
     if (!this.ordersService.order.userId) {
       this.ordersService.order.userId = this.authenticationService.user.id;
@@ -233,11 +233,14 @@ export class HomeComponent implements OnInit {
   }
 
   getMealQty(id) {
-    for (let q of this.ordersService.order.quantity) {
-      if (q.mealId === id) {
-        return q.quantity;
+    if(this.ordersService.order){
+      for (let q of this.ordersService.order.quantity) {
+        if (q.mealId === id) {
+          return q.quantity;
+        }
       }
     }
+
   }
 }
 

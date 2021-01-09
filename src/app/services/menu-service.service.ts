@@ -12,32 +12,31 @@ import {URL} from "../api-url/url";
 export class MenuService {
   jwtToken: string;
 
-  private api_url="http://localhost:8080/lunchtime/";
 
   constructor(private http:HttpClient, private authenticationService: AuthenticationService) { }
 
 async getMenus():Promise<any>{
-   return this.http.get<any>(this.api_url+"menu/findall").toPromise();
+   return this.http.get<any>(URL+"menu/findall").toPromise();
 
 }
 getMenuById(menuId:number) : Promise<any> {
-  return this.http.get<any>(this.api_url+"menu/find/menuId",  null).toPromise();
+  return this.http.get<any>(URL+"menu/find/menuId",  null).toPromise();
 }
 
 getMenuToday() : Promise<[]> {
     console.log("getMenuToday : ")
-return this.http.get<[]>(this.api_url+"menu/findallavailablefortoday").toPromise();
+return this.http.get<[]>(URL+"menu/findallavailablefortoday").toPromise();
   }
 async findImgMenu(id_menu:number): Promise<any> {
-   return this.http.get<any>(this.api_url+"menu/findimg/"+id_menu).toPromise();
+   return this.http.get<any>(URL+"menu/findimg/"+id_menu).toPromise();
 
 }
 getMenuWeek():Promise<any>{
-  return this.http.get<any>(this.api_url+"menu/findallavailableforweek/1").toPromise();
+  return this.http.get<any>(URL+"menu/findallavailableforweek/1").toPromise();
 }
 /*/menu/findallavailableforweek/{weeknumber}*/
 getConstraint():Promise<any>{
-  return this.http.get<any>(this.api_url+"constraint/findall").toPromise();
+  return this.http.get<any>(URL+"constraint/findall").toPromise();
 }
 async updateImage(image, menuId){
   return this.http.patch(URL+ 'meal/updateimg/'+menuId, image).toPromise()

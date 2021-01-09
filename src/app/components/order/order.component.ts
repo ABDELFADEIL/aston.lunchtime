@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MealService } from 'src/app/services/meal-service.service';
 import { OrdersService } from 'src/app/services/orders.service';
+import {Order} from "../../models/order";
 
 @Component({
   selector: 'app-order',
@@ -23,7 +24,7 @@ export class OrderComponent implements OnInit {
     return await this.orderService.addOrder(this.orderService.order)
       .then(res => {
         console.log("res", res);
-        this.orderService.order = undefined;
+        this.orderService.order = new Order();
       })
       .catch(err => {
         console.log("err", err);
