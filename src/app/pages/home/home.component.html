@@ -1,6 +1,5 @@
 <div class = "p-grid">
   <div class = "p-col-2" style="font-weight:bold;font-size:30px;font-style:italic"> 
-    <h1 style="font-size:30px;font-style:italic">Categories</h1> 
   <div *ngFor ="let category of categories | keyvalue " style="margin: 10px">
     <div>
       <p style="width: 120px"><a  [ngClass]="currentCategory == category.key ? 'active': ''" style="color: #2d2d2d; font-size: 30px;cursor: pointer" (click)="searchByCategory(category.key)"> {{category.value | titlecase}}</a></p>

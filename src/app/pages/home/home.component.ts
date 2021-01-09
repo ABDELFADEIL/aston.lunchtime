@@ -39,11 +39,13 @@ export class HomeComponent implements OnInit {
   submitted: boolean;
   success: boolean;
   message;
+  page: number = 1;
+  pages: any[]=[];
   meals:any[]=[];
   quantity: Quantity = new Quantity();
   currentCategory = 0;
   categories=
-    {1: "viande" ,2:"poission",4:"fast-food",5:"fruit-mer",
+    {0:"categories",1: "viande" ,2:"poission",4:"fast-food",5:"fruit-mer",
     6:"dessert",7:"boission",8:"entrée"}
 
 
@@ -249,6 +251,26 @@ export class HomeComponent implements OnInit {
   }
   /* meals categories*/
  
+ /* paginateMeals(page_number) {
+    const totalPages:any= this.mealList.length/12;
+    this.pages= new Array<number>(parseInt(totalPages)+1);
+    if (0 > page_number){
+      this.currentPage = 0;
+    } else if (page_number > this.pages.length) {
+      this.currentPage == this.pages.length - 1;
+    } else {
+      this.currentPage = page_number;
+    }
+    this.meals = this.allMeals.slice((this.currentPage-1) * 12, this.currentPage * 12);
+    return this.meals;
+
+  }
+
+  OnMealPage(i){
+    this.currentPage = i ;
+    this.paginateMeals(this.currentPage);
+  }*/
+
   searchByCategory(value: any) {
     this.currentCategory = value;
     console.log(value);
