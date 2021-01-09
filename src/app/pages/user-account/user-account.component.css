@@ -149,8 +149,8 @@
     background-color: white;
     border-radius: 5px;
     margin: auto;
-    padding-top: 70px!important;
-    padding-bottom: 70px!important;
+    padding-top: 30px!important;
+    padding-bottom: 30px!important;
 }
 .user-details {
     vertical-align: middle;
@@ -200,7 +200,6 @@
 
 /*********** orders ***********/
 .table {
-    margin: auto;
     border-radius: 5px;
 }
 /*********** end orders ***********/
@@ -222,6 +221,13 @@
         padding-bottom: 30!important;
         padding-top: 30!important;
     }
+    .ct-background {
+        width: 150px;
+        height: 150px;
+    }
+    .ct-text {
+        font-size: 12px;
+    }
 }
 @media screen and (max-width: 540px) {
 
@@ -234,21 +240,15 @@
     p.user-info{
         font-size: 10px;
     }
-   
-
     .title-card {
         font-size: 14px;
         padding-top: 0;
-    }
-    .ct-background {
-        width: 120px;
-        height: 120px;
     }
     .ct-sum{
         font-size:40px;
     }
     .ct-text{
-        font-size: 12px;
+        font-size: 10px;
     }
     .items {
         margin-top: 0px;
@@ -298,6 +298,10 @@
     .p-col{
         padding-right: 0!important;
         padding-left: 0!important;
+    }
+    .ct-background {
+        width: 100px;
+        height: 100px;
     }
 }
 /********* end responsive ***********/
