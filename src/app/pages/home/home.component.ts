@@ -62,7 +62,7 @@ export class HomeComponent implements OnInit {
   /* menus de la semaine*/
 
   async getMenuWeek() {
-    const response = await this.menuService.getMenuToday();
+    const response = await this.menuService.getMenuWeek();
     this.menuList = response;
     this.menuList.forEach(element => {
       this.getMenuImage(element.id)
@@ -172,6 +172,7 @@ export class HomeComponent implements OnInit {
    * @param isMeal // true si c'est un meal et false si c'est un menu
    */
   addTocart(id, isMeal) {
+    
     let item = new Quantity();
     if (isMeal) {
       let idx = this.ordersService.quantities.findIndex(x => x.mealId === id);
