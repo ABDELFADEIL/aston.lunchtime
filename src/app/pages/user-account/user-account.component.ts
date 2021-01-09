@@ -109,7 +109,9 @@ export class UserAccountComponent implements OnInit {
     if (this.user) {
       this.orderService.getOrderByUserId(this.user.id).subscribe(data => {
         this.userOrders = data;
+        console.log("XXXXXXXXXXXXXXXXXXXXXXXXXXXX");
         console.log(data);
+        console.log("XXXXXXXXXXXXXXXXXXXXXXXXXXXX");
       })
     }
    }

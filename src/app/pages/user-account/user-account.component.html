@@ -73,7 +73,9 @@
                     <tr class="row-table">
                         <td>{{ userOrder.creationDate }}</td>
                         <td>{{ userOrder.creationTime }}</td>
-                        <td></td>
+                        <td *ngFor="let order of userOrders[i].quantity; let j = index" >
+                          {{ order.meal.label }}
+                        </td>
                         <td>5</td>
                         <td>{{ userOrder.status == 0 ? 'crée': userOrder.status == 1 ? 'prête': 'annulée'}}</td>
                     </tr>
