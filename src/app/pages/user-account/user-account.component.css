@@ -7,6 +7,7 @@
 }
 .p-grid {
     margin: 0!important;
+    padding: 0!important;
 }
 
 .content {
@@ -32,21 +33,23 @@
 
 .nav-left {
     background-color:#87AAB9;
-}
-
-.order, .euro, .infos , .settings {
-    height: 100px; 
+    margin: 0;
+    padding: 0;
 }
 
 .order:hover, .euro:hover, .infos:hover, .settings:hover{
     background-color: #E9E581;
 }
-.icone, p {
+.icone{
     height: 50px;
     margin: auto;
+    width: 50px;
 }
 .order-link:active, .euro-link:active, .infos-link:active, .settings-link:active{
     background-color: #E9E581;
+}
+.order-link, .euro-link, .infos-link, .settings-link {
+    text-align: center;
 }
 
 .titte-ct-empty {
@@ -66,11 +69,6 @@
     width: 700px;
     height: 413px;
 }
-
-.content {
-    float: right;
-}
-
 .title-card {
     font-size: 20px;
 }
@@ -89,13 +87,6 @@
     margin: auto;
 
 }
-
-.items{
-    vertical-align: middle;
-    display: inline-block;
-}
-
-
 /***********jackpot***********/
 .btn-order {
     text-transform: uppercase;
@@ -146,8 +137,6 @@
     background-color: white;
     border-radius: 5px;
     margin: auto;
-    padding-top: 50px;
-    padding-bottom: 50px;
 }
 .user-details {
     vertical-align: middle;
@@ -203,6 +192,20 @@
 /*********** end orders ***********/
 
 /***********responsive***********/
+
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+    .content {
+        background-color: red;
+    }
+    .icone{
+        width: 25px;
+        height: 25px;
+        
+    }
+    .p-col{
+        padding: 0;
+    }
+}
 @media screen and (max-width: 540px) {
 
     .img-user {
@@ -214,11 +217,8 @@
     p.user-info{
         font-size: 10px;
     }
-    .order, .euro, .infos , .settings {
-        height: 60px;
-        width: 60px;
-    }
-    
+   
+
     .title-card {
         font-size: 14px;
         padding-top: 0;
@@ -237,10 +237,8 @@
         margin-top: 0px;
     }
     .user-infos-content {
-        display: block!important;
         padding-bottom: 0;
         padding-top: 0;
-        padding-left: 20px;
     }
     .profile-img {
         width: 100%!important;
@@ -273,9 +271,14 @@
     .text {
         margin-bottom: 35px;
     }
-    .icone, p {
-        height: 30px;
+    img.icone{
+        height: 25px;
+        width: 25px;
+        text-align: center;
         margin: auto;
+    }
+    .p-col{
+        padding: 0;
     }
 }
 /********* end responsive ***********/
