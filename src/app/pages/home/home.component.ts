@@ -256,7 +256,9 @@ export class HomeComponent implements OnInit {
     this.currentCategory = value;
     console.log(value);
     if (value != 0){
+      console.log(value);
       const  meals = this.mealList.filter(meal => meal.category == value);
+      console.log(meals);
       this.meals = meals;
       console.log(meals);
     } else{ 
