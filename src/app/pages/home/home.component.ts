@@ -11,6 +11,8 @@ import { User } from "../../models/user";
 import { UserService } from 'src/app/services/user.service';
 import { RESOURCE_CACHE_PROVIDER } from '@angular/platform-browser-dynamic';
 import { Order, Quantity } from 'src/app/models/order';
+import {Observable} from 'rxjs';
+import {async} from "rxjs-compat/scheduler/async";
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 
 
@@ -23,13 +25,13 @@ import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 })
 
 export class HomeComponent implements OnInit {
-
-  @Input() count: number = 0;
+   @Input() count: number = 0;
 
 
   displayBasic: boolean;
-  mealList = [];
+  mealList :any= [];
   menuList = [];
+  cols: any[];
   date: boolean;
   user: any;
   constraint: any;
@@ -37,7 +39,13 @@ export class HomeComponent implements OnInit {
   submitted: boolean;
   success: boolean;
   message;
-  quantity: Quantity = new Quantity()
+  meals:any[]=[];
+  quantity: Quantity = new Quantity();
+  currentCategory = 0;
+  categories=
+    {1: "viande" ,2:"poission",4:"fast-food",5:"fruit-mer",
+    6:"dessert",7:"boission",8:"entrée"}
+
 
 
 
@@ -51,12 +59,12 @@ export class HomeComponent implements OnInit {
     private userService: UserService,
   ) { }
 
-  ngOnInit(): void {
+  async ngOnInit() {
     this.user = this.authenticationService.getUserAuthenticated();
     this.constraint = this.menuService.getConstraint();
+    this.mealList = await this.getMealsWeek();
     this.getMenuWeek();
-    this.getMealsWeek();
-    console.log(new Date());
+     console.log(new Date());
   }
 
   /* menus de la semaine*/
@@ -122,6 +130,7 @@ export class HomeComponent implements OnInit {
       this.getMealImage(element.id);
       console.log(this.mealList);
     });
+    return response;
   }
 
   /* images de meals de la semaine*/
@@ -155,14 +164,6 @@ export class HomeComponent implements OnInit {
   showInfo() {
     this.displayBasic = true;
   }
-
-
-
-
-
-
-
-
   /**
    * Fonction pour recuperer une liste de class: Quantity a ajouter dans une class order lors de la validation de la commande
    * @param id //id du meal ou du repas
@@ -231,6 +232,7 @@ export class HomeComponent implements OnInit {
       }
     }
     console.log(this.ordersService.order);
+    console.log()
   }
 
   getMealQty(id) {
@@ -241,7 +243,19 @@ export class HomeComponent implements OnInit {
         }
       }
     }
-
   }
+  /* meals categories*/
+ 
+  searchByCategory(value: any) {
+    this.currentCategory = value;
+    console.log(value);
+    if (value != 0){
+      const  meals = this.mealList.filter(meal => meal.category == value);
+      this.meals = meals;
+      console.log(meals);
+    } else{ 
+      const meals = this.mealList;
+      this.meals = meals;
+    }
 }
-
+}
