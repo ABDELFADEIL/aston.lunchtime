@@ -17,11 +17,11 @@
       <button *ngIf="orderService.order.quantity.length > 0" (click)="emptyCart()" pButton pRipple type="button" label="vider le panier" class="p-button-raised p-button-danger p-ml-4"></button>
     </div>
   </div>
-
-
-
+<div style="color: #17a2b8; font-size: 1.4rem;">
+  {{ messageInfo }}
+</div>
 <div *ngIf="orderService.order.quantity.length == 0">
-  <div style="color: red">
+  <div style="color: red; font-size: 1.4rem;">
     Votre panier est vide!
   </div>
 </div>
