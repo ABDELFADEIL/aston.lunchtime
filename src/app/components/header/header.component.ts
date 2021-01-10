@@ -1,13 +1,10 @@
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { ConfirmationService, MenuItem, MessageService } from 'primeng/api';
+import { MenuItem, MessageService } from 'primeng/api';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
-import { LoginComponent } from '../login/login.component';
 import { AuthenticationService } from "../../services/authentication.service";
 import { UserService } from 'src/app/services/user.service';
 import { ActivatedRoute, ActivatedRouteSnapshot, Router } from "@angular/router";
 import { OrdersService } from 'src/app/services/orders.service';
-import { OrderComponent } from '../order/order.component';
-import {absoluteFrom} from "@angular/compiler-cli/src/ngtsc/file_system";
 
 @Component({
   selector: 'app-header',
@@ -31,8 +28,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
 
 
-
-
   ngOnInit() {
     const isAdmin: boolean = this.authenticationService.isAdmin();
     const isUser: boolean = this.authenticationService.isUser();
@@ -51,7 +46,9 @@ export class HeaderComponent implements OnInit, OnDestroy {
       { label: 'Mon compte', routerLink: ['/user-account'], visible: isUser }
     ];
   }
-
+/**
+ * se deconnecter
+ */
   logout() {
     this.authenticationService.logout();
     this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Data Updated' });
@@ -59,17 +56,23 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.router.navigateByUrl('/' + returnURL);
     window.location.reload();
   }
-
+/**
+ * afficher le composant pour la connexion/ inscription
+ */
   onLogin() {
     const returnURL = this.router.url;
     console.log(returnURL)
     this.router.navigate(['/login'], { queryParams: { returnUrl: returnURL } });
   }
 
+<<<<<<< HEAD
 
 /**
  * add order
  */
+=======
+  /* add Order*/
+>>>>>>> 5269d2b4affc5e2f48d32312274577b47ff84659
   async commanderHo() {
     console.log(this.ordersService.order);
     return await this.ordersService.addOrder(this.ordersService.order)
@@ -80,13 +83,10 @@ export class HeaderComponent implements OnInit, OnDestroy {
         console.log("err", err);
       });
   }
-
-
-
-
-
-
-
+/**
+ * afficher le panier
+ * @param position 
+ */
   show(position: string) {
     this.position = position;
     this.displayPosition = true;

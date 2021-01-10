@@ -37,7 +37,10 @@ export class LoginComponent implements OnInit {
 
      this.returnURL = this.activatedRoute.queryParams['value'].returnUrl;
   }
-
+  
+/**
+ * se connecter
+ */
    onLogin() {
      console.log(this.userFormLongin.value);
     this.user = this.userFormLongin.value;
@@ -81,7 +84,9 @@ export class LoginComponent implements OnInit {
     this.login = true;
     this.authenticationService.display = false;
   }
-
+/**
+ * s'enregistrer
+ */
   onRegister() {
     console.log(this.userForm.value);
     this.authenticationService.register(this.userForm.value).subscribe((res:any)=> {
@@ -93,7 +98,10 @@ export class LoginComponent implements OnInit {
       console.log(error);
     });
   }
-
+/**
+ * reinitialiser le password et envoi de mail
+ * @param form 
+ */
   resendingPassword(form){
     this.authenticationService.resendPassword(form.email).subscribe(res => {
       this.message = "Un email vous a été envoyé avec votre mot de passe! ";
