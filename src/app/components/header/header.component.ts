@@ -67,7 +67,9 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
 
 
-  /* add Order*/
+/**
+ * add order
+ */
   async commanderHo() {
     console.log(this.ordersService.order);
     return await this.ordersService.addOrder(this.ordersService.order)
