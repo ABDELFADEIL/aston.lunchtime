@@ -65,14 +65,9 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.router.navigate(['/login'], { queryParams: { returnUrl: returnURL } });
   }
 
-<<<<<<< HEAD
-
 /**
  * add order
  */
-=======
-  /* add Order*/
->>>>>>> 5269d2b4affc5e2f48d32312274577b47ff84659
   async commanderHo() {
     console.log(this.ordersService.order);
     return await this.ordersService.addOrder(this.ordersService.order)

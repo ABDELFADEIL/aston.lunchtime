@@ -240,11 +240,8 @@ export class HomeComponent implements OnInit {
     console.log(this.ordersService.order);
     
   }
-   /**
-    * afficher quantity de commander dans popup (button panier)
-    */
-
-  getMealQty(id) {
+  
+/*  getMealQty(id) {
     if(this.ordersService.order){
       for (let q of this.ordersService.order.quantity) {
         if (q.mealId === id) {
@@ -253,7 +250,7 @@ export class HomeComponent implements OnInit {
         }
       }
     }
-  }
+  }*/
 
   /**
    *  afficher les meals par category
