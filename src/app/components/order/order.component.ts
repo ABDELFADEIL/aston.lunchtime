@@ -26,7 +26,7 @@ export class OrderComponent implements OnInit {
    * validation de la commande
    */
   async commanderHo() {
-    console.log(this.orderService.order);
+    console.log("commande à valider =>" + this.orderService.order);
     return await this.orderService.addOrder(this.orderService.order)
       .then(res => {
         console.log("res", res);
@@ -54,6 +54,7 @@ export class OrderComponent implements OnInit {
    * vider le panier
    */
   emptyCart() {
+    console.log("panier vidé")
     this.orderService.order.quantity = [];
   }
   /**
@@ -63,6 +64,7 @@ export class OrderComponent implements OnInit {
   getLabel(mealId) {
     for (let meal of this.list) {
       if (meal.id === mealId) {
+        console.log("label du plat : " + meal.label )
         return meal.label;
       }
     }

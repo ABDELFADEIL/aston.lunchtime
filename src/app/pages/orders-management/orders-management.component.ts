@@ -86,20 +86,18 @@ export class OrdersManagementComponent implements OnInit {
    * @param id 
    */
   confirmDelete(id: number) {
-    console.log("ID =>")
-    console.log(id)
     let orderSelected = this.listeCommandesDays[id];
     if (orderSelected.id != null) {
       this.orderService.cancelAnOrderByOrderId(orderSelected.id).then(() => {
+        console.log("Commande Annulée")
         if (orderSelected.quantity != null) {
-          console.log("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX")
-          console.log(orderSelected.user.id)
-          console.log(this.getOrderTotalPrice(orderSelected.quantity))
           this.userService.creditUser(orderSelected.user.id, this.getOrderTotalPrice(orderSelected.quantity));
+          console.log("Utilisateur crédité de: " +this.getOrderTotalPrice(orderSelected.quantity) + " €" )
         }
         this.detailVisible = undefined;
         this.deleteIdx = undefined;
         this.listeCommandesDays.splice(id, 1)
+        this.createOrderRecap()
       })
     }
   }
@@ -118,7 +116,6 @@ export class OrdersManagementComponent implements OnInit {
    * créer le recapitulatif des plats commandés avec la quantité
    */
   createOrderRecap() {
-    let listmeal = []
     let listUnicName = []
     let listRecap = []
     for (let command of this.listeCommandesDays) {
@@ -142,7 +139,8 @@ export class OrdersManagementComponent implements OnInit {
       }
     }
     this.listRecaps = listRecap;
-    console.log(listRecap);
+    console.log(" recapitulatif des commandes =>");
+    console.log( listRecap);
   }
   /**
    * afficher la demande de confirmation d'annulation d'une commande grace à son index
@@ -150,8 +148,6 @@ export class OrdersManagementComponent implements OnInit {
    */
   askDelete(i) {
     this.selectedCommandeTotalPrice = undefined
-    console.log("ID =>")
-    console.log(i)
     let orderSelected = this.listeCommandesDays[i];
     console.log(orderSelected)
     if (this.deleteIdx !== i) {
@@ -172,13 +168,12 @@ export class OrdersManagementComponent implements OnInit {
       let orderSelected = this.listeCommandesDays[i];
       this.selectedCommandeTotalPrice = this.getOrderTotalPrice(orderSelected.quantity);
 
-      console.log(orderSelected);
+      console.log("commande de l'utilisateur =>");
+      console.log( orderSelected);
     } else {
       this.selectedCommandeTotalPrice = undefined;
       this.detailVisible = undefined;
     }
-    console.log("index => ");
-    console.log(i);
   }
   /**
   //  recuperer la date du jour au fromat yyyy-mm-dd
@@ -186,16 +181,14 @@ export class OrdersManagementComponent implements OnInit {
   getTodayDate() {
     let date = new Date();
     const todayDate = formatDate(date, "yyyy-MM-dd", "en-US")
-    console.log("daaaaate =>")
-    console.log(todayDate)
+    console.log("date d'aujourd'hui =>" + todayDate)
     return todayDate;
   }
   /**
    * recuperer les commandes au jour selectionné
    */
   async findOrdersByDate() {
-    console.log("DATE SELECTIONNEE =>")
-    console.log(this.selectedDate)
+    console.log("date selectionnée =>" + this.selectedDate)
     await this.getAllOrdersForAllUsersByDate(0, this.selectedDate, this.selectedDate);
     this.createOrderRecap();
   }

@@ -1,0 +1,33 @@
+                            Guide d'utilisation du projet pour les développeurs
+
+
+Les fichiers necessaire au lancement du projet sont disponibles au meme niveau que ce fichier dans le dossier "Documentation_projet"
+
+//BASE DE DONNE:
+-le dump de base du projet est nommé: lunchtime.sql
+à importer depuis votre gestionnaire de base de donnée.
+
+//SERVER:
+-pour démarer le projet en local:
+executer la commande : "java -jar -Dspring.profiles.active=mysql,secured stone.lunchtime.war"
+au niveau de la localisation du fichier war "stone.lunchtime.war"
+
+//FRONT:
+-pour lancer l'application web executer la commande "ng serve" au niveau du dossier aston.lunchtime dans l'arborescence
+-adresse: http://localhost:4200/
+-pour tester l'api rest lorsque le serveur est démarré: "http://localhost:8080/lunchtime/swagger-ui/index.html"
+
+//VERSIONS/
+angular:
+angular CLI:
+node:
+
+
+
+//ORGANISATION DU CODE:
+-architecture classique Angular: dans "src/app" :
+*pages: contient les différentes pages du site
+*components: contient différents composant comme header footer executer*
+*services: les services liés aux fonctionnalités pouvant etre utilisés partout. les appels en base passent par les services
+*models: exporte les classes pour le typage des variables
+*helpers: notament pour la securité

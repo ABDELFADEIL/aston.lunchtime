@@ -1,9 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { end } from '@popperjs/core';
 import {UserService} from 'src/app/services/user.service';
 import { AuthenticationService } from 'src/app/services/authentication.service';
-import { Input } from '@angular/core';
 import { Order, Quantity } from '../models/order';
 import {URL} from "../api-url/url";
 
@@ -46,15 +44,6 @@ export class OrdersService {
 
   async addOrder(obj: any): Promise<any> {
     return this.http.put<any>(URL + 'order/add', obj, this.httpOption).toPromise();
-    /*return this.http.put<any>(this.api_url + "order/add", obj,
-   {
-      headers: new HttpHeaders({
-          'Content-Type': 'application/json',
-          'Authorization':this.authenticationService.jwtToken
-
-      })
-  }) .toPromise();*/
-    /*obj,this.httpOption)*/
   }
   getOrderById(id: number): Promise<any> {
     return this.http.get<any>(URL + "order/find/" + id).toPromise();
@@ -90,6 +79,7 @@ export class OrdersService {
       let total = mealPrice * qty
       totalpirce += total;
     }
+    // console.log("prix total de la commande =>" + totalpirce)
     return totalpirce;
     }
 
