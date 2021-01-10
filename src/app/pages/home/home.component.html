@@ -1,5 +1,5 @@
 <div class = "p-grid">
-  <div class = "p-col-12 p-md-12 p-lg-2 " style="font-weight:bold;font-size:30px;font-style:italic"> 
+  <div class = "p-col-12 p-md-12 p-lg-2 " style="font-weight:bold;font-size:30px;font-style:italic">
   <div *ngFor ="let category of categories | keyvalue " style="margin: 10px">
     <div>
       <p style="width: 120px;"><a  [ngClass]="currentCategory == category.key ? 'active': ''" style="color: #2d2d2d; font-size: 30px;cursor: pointer" (click)="searchByCategory(category.key)"> {{category.value | titlecase}}</a></p>
@@ -8,7 +8,7 @@
   </div>
   <div class="p-col-10 p-md-12 p-lg-10">
  <!--- <div *ngIf = "meals" class="myclass p-d-flex p-flex-row p-flex-wrap p-jc-start">-->
-  <div class="myclass p-d-flex p-flex-row p-flex-wrap p-jc-start">
+  <div class="myclass p-d-flex p-flex-row p-flex-wrap p-jc-md-start p-jc-sm-center">
         <p-card *ngFor="let meal of meals; let i = index" header="{{meal.label}}" [style]="{width: '220px'}" styleClass="p-card-shadow">
         <p-header>
           <figure class= "meal_photo">
@@ -16,7 +16,7 @@
           </figure>
       </p-header>
       <p style="min-height: 4rem; max-height:4rem; overflow: auto;">Déscription: {{meal.description ? meal.description: 'Lorem ipsum dolor sit amet'}}</p>
-        <h6 style="font-size:15px;font-family: 'Cormorant Garamond', serif;">Prix:{{meal.priceDF + '€'}}</h6>      
+        <h6 style="font-size:15px;font-family: 'Cormorant Garamond', serif;">Prix:{{meal.priceDF + '€'}}</h6>
         <p-button id= "commander"label="Commander" (click)="addOrderToCart(meal.id,true)" *ngIf="authenticationService.authenticated" icon="pi pi-shopping-cart" [style]="{'background': '#585858','width': '100%','margin-bottom':'30px'}"> </p-button>
         <ng-template pTemplate="footer">
         <p-button label="Commander" (click)="showInfo()" *ngIf="!authenticationService.authenticated" icon="pi pi-shopping-cart" [style]="{'background': '#87AAB9','width': '100%'}"></p-button>
@@ -28,15 +28,15 @@
       </ng-template>
       </p-dialog>
     </p-card>
-   
-
-    
-         
-    
 
 
 
 
-  
-  
+
+
+
+
+
+
+
 
