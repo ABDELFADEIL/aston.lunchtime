@@ -88,7 +88,7 @@ export class HomeComponent implements OnInit {
     this.menuList.forEach(element => {
       if (element.imageId === res.id) {
         element.img = res.image64;
-        //  console.log(this.menuList);
+        console.log(this.menuList);
 
       }
     });
@@ -146,7 +146,7 @@ export class HomeComponent implements OnInit {
     this.mealList.forEach(element => {
       if (element.imageId === res.id) {
         element.img = res.image64;
-        //console.log(this.mealList);
+        console.log(this.mealList);
 
       }
     });
@@ -239,13 +239,14 @@ export class HomeComponent implements OnInit {
       }
     }
     console.log(this.ordersService.order);
-    console.log()
+    
   }
 
   getMealQty(id) {
     if(this.ordersService.order){
       for (let q of this.ordersService.order.quantity) {
         if (q.mealId === id) {
+          console.log(q.quantity);
           return q.quantity;
         }
       }

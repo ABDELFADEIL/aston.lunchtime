@@ -25,7 +25,7 @@ export class MealService {
   }
 
   getMealWeek(): Promise<any> {
-    return this.http.get<any>(URL + "meal/findallavailableforweek/1").toPromise();
+    return this.http.get<any>(URL + "meal/findallavailableforweek/2").toPromise();
   }
 
   async findImgMeal(id_meal: number): Promise<any> {
