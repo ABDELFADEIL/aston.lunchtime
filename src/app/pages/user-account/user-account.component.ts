@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../../services/user.service';
 import {AuthenticationService} from "../../services/authentication.service";
@@ -54,7 +54,10 @@ export class UserAccountComponent implements OnInit {
     this.getOrdersForCurrentUser();
     this.getUserImg();
   }
-// menu navigation
+/**
+ * menu navigation
+ * @param navigate 
+ */
   userAccountNavigate(navigate: string) {
     switch (navigate) {
       case 'orders':
@@ -85,6 +88,9 @@ export class UserAccountComponent implements OnInit {
         this.orders = true;
     }
   }
+  /**
+   * Form initialization 
+   */
   private userFormInit() {
     this.userForm = new FormGroup({
       firstname: new FormControl('', [
@@ -105,8 +111,9 @@ export class UserAccountComponent implements OnInit {
         Validators.required, Validators.minLength(8)]),
     });
   }
-
-  // get orders for logged-in user
+/**
+ * get orders for current user
+ */
   async getOrdersForCurrentUser() {
     if (this.user) {
       this.orderService.getOrderByUserId(this.user.id).subscribe(data => {
@@ -116,15 +123,22 @@ export class UserAccountComponent implements OnInit {
       })
     }
    }
+   /**
+    * get image for current user
+    */
    getUserImg(){
     this.user = this.authenticationService.getUserAuthenticated();
     if (this.user){
       this.userService.findImgUser(this.user.id).then((res) => {
         this.user.image64 = res.image64;
+        console.log(this.user.image64);
       });
     }
   }
-
+  /**
+   * find user img 
+   * @param id_user 
+   */
  findUserImg(id_user){
    const res = this.userService.findImgUser(id_user).then(res => {
    });
@@ -133,6 +147,9 @@ export class UserAccountComponent implements OnInit {
   this.update = true;
 }
 
+/**
+ * edit user
+ */
  updateUser() {
   console.log(this.userForm.value)
   this.userService.update(this.user.id, this.userForm.value).subscribe(data=> {
@@ -143,7 +160,7 @@ export class UserAccountComponent implements OnInit {
     console.log("error ///////////////////");
     console.log(error);
   })
-}
+} 
   handleFileSelect(event){
     var file = event.currentFiles[0];
     this.file = file;
@@ -161,7 +178,9 @@ export class UserAccountComponent implements OnInit {
     this.base64textString= binaryString;
     console.log(binaryString);
   }
-
+/**
+ * edid img for the current user
+ */
 editUserImg() {
   // update image
   let image: Image = new Image();
@@ -185,6 +204,7 @@ editUserImg() {
   }
   this.messageService.add({severity: 'info', summary: 'Success', detail: 'File Uploaded'})
 }
+
 editOuSaveImage(){
     console.log("editOuSaveImage ")
   let image: Image = new Image();
@@ -202,7 +222,7 @@ editOuSaveImage(){
    }
   }
   /**
-   * recuperer le montant total de la commande 
+   * get the total order price
    * @param quantity 
    */
   getTotalPriceForOrder(quantity) {
