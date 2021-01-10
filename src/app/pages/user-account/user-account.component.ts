@@ -53,6 +53,7 @@ export class UserAccountComponent implements OnInit {
     console.log(this.user);
     this.getOrdersForCurrentUser();
     this.getUserImg();
+    this.getPrice();
   }
 // menu navigation
   userAccountNavigate(navigate: string) {
@@ -200,6 +201,9 @@ editOuSaveImage(){
        }
      );
    }
+  }
+  getPrice() {
+    this.totalePrice = this.orderService.getOrderTotalPrice(this.userOrders.Quantity);
   }
 
 }
