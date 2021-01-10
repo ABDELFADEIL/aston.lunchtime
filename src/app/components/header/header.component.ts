@@ -92,7 +92,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
       this.ref.close();
     }
   }
-
 }
 
 
