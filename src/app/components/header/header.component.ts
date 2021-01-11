@@ -30,7 +30,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     const isAdmin: boolean = this.authenticationService.isAdmin();
-    const isUser: boolean = this.authenticationService.isUser();
+    const isUser: boolean = this.authenticationService.authenticated;
     console.log(isAdmin)
     this.items = [
       { label: 'Accueil', routerLink: ['/home'] },
@@ -65,7 +65,9 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.router.navigate(['/login'], { queryParams: { returnUrl: returnURL } });
   }
 
-  /* add Order*/
+/**
+ * add order
+ */
   async commanderHo() {
     console.log(this.ordersService.order);
     return await this.ordersService.addOrder(this.ordersService.order)
@@ -90,7 +92,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
       this.ref.close();
     }
   }
-
 }
 
 

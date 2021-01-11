@@ -20,8 +20,10 @@
         </div>
         <div class="btn-img p-mt-6">
           <p-fileUpload *ngIf="upload" mode="basic" name="file" accept="image/*" (onSelect)="handleFileSelect($event)"
-            [auto]="true" chooseLabel="Editer" id="btn-edit-img"></p-fileUpload>
-          <button (click)="editUserImg()" *ngIf="!upload" pButton pRipple type="button" id="btn-save-img"
+            [auto]="true" chooseLabel="Editer" id="btn-edit-img">
+          </p-fileUpload>
+          <button (click)="editUserImg()" *ngIf="!upload" pButton pRipple type="button" id="btn-save-img" 
+          style="background-color: red!important;text-transform: uppercase;font-size: 8px;border-radius: 25px;border: none;margin-right: 20px;"
             label="Enregistrer" class="p-button-raised">
           </button>
         </div>
@@ -69,19 +71,18 @@
           </ng-template>
           <ng-template pTemplate="body" let-userOrder let-i="rowIndex">
             <tr class="row-table">
-              <td>{{ userOrder.creationDate }}</td>
-              <td>{{ userOrder.creationTime }}</td>
-              <td>
-                <ul style="padding-left: 0;">
+              <td style="padding:0 0 0 10px;margin:0;">{{ userOrder.creationDate }}</td>
+              <td style="padding:0;margin:0;">{{ userOrder.creationTime }}</td>
+              <td style="padding:0;margin:0;font-size: 12px;">
+                <ul style="padding:0;margin:0;">
                   <li>
-                    <p *ngFor="let order of userOrders[i].quantity; let j=index" class="table-text"> <span
-                        style="font-weight: bold;"> {{ order.quantity }}</span> - {{order.meal.label}}, prix:
-                      {{order.meal.priceDF}} € </p>
+                    <p *ngFor="let order of userOrders[i].quantity; let j=index" class="table-text"> <span>{{ order.quantity }}</span> - {{order.meal.label}} :
+                      {{order.meal.priceDF}}€ </p>
                   </li>
                   <br>
                 </ul>
               </td>
-              <td>{{getTotalPriceForOrder(userOrder.quantity)}}€</td>
+              <td style="padding:0;margin:0;">{{getTotalPriceForOrder(userOrder.quantity)}}€</td>
             </tr>
           </ng-template>
         </p-table>
@@ -146,10 +147,10 @@
       <!---- end card --->
 
       <!---- parameters --->
-      <div class="p-col-9 p-mb-6" *ngIf="parameters">
+      <div class="p-col-9 p-mb-6" *ngIf="parameters && user">
         <h1 class="title-card p-mt-6 p-ml-1">Paramètres</h1>
         <div class="user-infos-edit p-col-12">
-          <form [formGroup]="userForm" (ngSubmit)="updateUser()">
+          <form [formGroup]="userForm" (ngSubmit)="updateUser()" novalidate>
             <div class="p-grid p-d-flex p-mt-6 p-mb-4">
               <div class="p-col-12 p-md-12 p-lg-6 label-align">
                 <label>Nom</label>
