@@ -30,7 +30,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     const isAdmin: boolean = this.authenticationService.isAdmin();
-    const isUser: boolean = this.authenticationService.isUser();
+    const isUser: boolean = this.authenticationService.authenticated;
     console.log(isAdmin)
     this.items = [
       { label: 'Accueil', routerLink: ['/home'] },
