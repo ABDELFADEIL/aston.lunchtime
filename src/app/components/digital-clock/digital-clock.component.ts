@@ -25,6 +25,9 @@ export class DigitalClockComponent implements OnInit {
     },1000);
     this.day= this.daysArray[this.date.getDay()];
   }
+  /**
+   * créér digital o'clock
+   */
 private updateDate(date:Date){
   const hours = date.getHours();
 

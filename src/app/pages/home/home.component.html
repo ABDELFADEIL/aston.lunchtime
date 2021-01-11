@@ -18,7 +18,7 @@
       </p-header>
       <p style="min-height: 4rem; max-height:4rem; overflow: auto;">Déscription: {{meal.description ? meal.description: 'Lorem ipsum dolor sit amet'}}</p>
         <h6 style="font-size:15px;font-family: 'Cormorant Garamond', serif;">Prix:{{meal.priceDF + '€'}}</h6>
-        <p-button id= "commander"label="Commander" (click)="addOrderToCart(meal.id,true)" *ngIf="authenticationService.authenticated" icon="pi pi-shopping-cart" [style]="{'background': '#585858','width': '100%','margin-bottom':'30px'}"> </p-button>
+        <p-button id= "commander"label="Commander" (click)="addOrderToCart(meal.id,true)" *ngIf="authenticationService.authenticated && getDate()" icon="pi pi-shopping-cart" [style]="{'background': '#585858','width': '100%','margin-bottom':'30px'}"> </p-button>
         <ng-template pTemplate="footer">
         <p-button label="Commander" (click)="showInfo()" *ngIf="!authenticationService.authenticated" icon="pi pi-shopping-cart" [style]="{'background': '#87AAB9','width': '100%'}"></p-button>
       </ng-template>
