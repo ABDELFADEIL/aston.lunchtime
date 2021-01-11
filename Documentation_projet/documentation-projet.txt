@@ -1,7 +1,10 @@
-                            Guide d'utilisation du projet pour les développeurs
-
+                            //Guide d'utilisation du projet pour les développeurs//
+                                  //informations modifiées le 10/01/2021//
 
 Les fichiers necessaire au lancement du projet sont disponibles au meme niveau que ce fichier dans le dossier "Documentation_projet"
+
+le projet utilise la bibliothèque PRIME NG se referer à la doc sur le site officiel https://www.primefaces.org/primeng/showcase/#/setup
+
 
 //BASE DE DONNE:
 -le dump de base du projet est nommé: lunchtime.sql
@@ -15,13 +18,16 @@ au niveau de la localisation du fichier war "stone.lunchtime.war"
 //FRONT:
 -pour lancer l'application web executer la commande "ng serve" au niveau du dossier aston.lunchtime dans l'arborescence
 -adresse: http://localhost:4200/
+-adresse server distant: http://ec2-18-198-97-101.eu-central-1.compute.amazonaws.com:8080/lunchtime/
 -pour tester l'api rest lorsque le serveur est démarré: "http://localhost:8080/lunchtime/swagger-ui/index.html"
 
 //VERSIONS/
-angular:
-angular CLI:
-node:
+-angular:10
+-angular CLI:10
+-node:v12.18.3
 
+//APPLICATION MOBILE:
+-génerée avec le plugin capacitor
 
 
 //ORGANISATION DU CODE:
@@ -30,4 +36,9 @@ node:
 *components: contient différents composant comme header footer executer*
 *services: les services liés aux fonctionnalités pouvant etre utilisés partout. les appels en base passent par les services
 *models: exporte les classes pour le typage des variables
-*helpers: notament pour la securité
+*helpers: pour la securité
+
+//AUTRE DOCUMENTATION:
+- ATTENTION le projet utilise la bibliothèque PRIME NG !!!!!
+ se referer à la doc sur le site officiel https://www.primefaces.org/primeng/showcase/#/setup
+-d'autres documents tels que le diagramme uml et la maquette simplifiée sont disponibles dans le dossier
